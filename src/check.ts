@@ -46,7 +46,7 @@ const decodeYaml = <T>(schema: Schema.ConstraintDecoder<T>, text: string) =>
 
 // `Call the Skill tool with "x"` or `Call the Skill tool twice, for "x" and "y"`, quoted or in backticks.
 const skillCall =
-  /call(?:s|ing)? the skill tool (?:with|twice, for) ["`]([\w-]+)["`](?:,? and ["`]([\w-]+)["`])?/giu;
+  /call(?:s|ing)?\s+the\s+skill\s+tool\s+(?:with|twice,\s+for)\s+["`]([\w-]+)["`](?:,?\s+and\s+["`]([\w-]+)["`])?/giu;
 
 interface LoadedSkill {
   readonly files: Files;
@@ -66,7 +66,7 @@ function readFrontmatter(
   files: Files
 ): Result.Result<typeof Frontmatter.Type, string> {
   const skillMd = files.find(([file]) => file === "SKILL.md")?.[1] ?? "";
-  const block = /^---\n([\s\S]*?)\n---\n/u.exec(skillMd)?.[1];
+  const block = /^---\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)/u.exec(skillMd)?.[1];
   if (block === undefined) {
     return Result.fail("SKILL.md has no frontmatter block");
   }

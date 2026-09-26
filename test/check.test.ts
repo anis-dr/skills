@@ -106,9 +106,24 @@ const tree: Files = [
     "Body.\n"
   ),
   ...skill(
+    "policy-only",
+    "name: policy-only\ndescription: Blocked in Codex only.\n",
+    "Body.\n",
+    userPolicy
+  ),
+  // Clean, with Windows line endings.
+  ...skill(
+    "crlf",
+    "name: crlf\r\ndescription: Saved on Windows.\r\n",
+    "Body.\r\n"
+  ).map(([file, content]): readonly [string, string] => [
+    file,
+    content.replaceAll("---\n", "---\r\n"),
+  ]),
+  ...skill(
     "unknown-call",
     "name: unknown-call\ndescription: Calls a ghost.\n",
-    'Call the Skill tool with "ghost".\n'
+    'Call the Skill tool\nwith "ghost".\n'
   ),
   ...skill(
     "calls-user",
@@ -139,6 +154,8 @@ const entries = [
     "long-description",
     "no-openai",
     "policy-mismatch",
+    "policy-only",
+    "crlf",
     "unknown-call",
     "calls-user",
     "cursor-term",
@@ -167,6 +184,7 @@ layer(rootLayer)("check on a tree with one broken skill per rule", (it) => {
             ["engineering/no-openai", "invocation"],
             ["engineering/orphan", "orphan-folder"],
             ["engineering/policy-mismatch", "invocation"],
+            ["engineering/policy-only", "invocation"],
             ["engineering/private-term", "banned-term"],
             ["engineering/unknown-call", "skill-call"],
             ["engineering/wrong-name", "frontmatter"],

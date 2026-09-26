@@ -13,7 +13,7 @@
   },
   { "pattern": "~/\\.cursor/", "reason": "Cursor-only path" },
   {
-    "pattern": "\\b(?:claude|gpt|grok|gemini|composer)-\\d[\\w.-]*",
+    "pattern": "\\b(?:claude|gpt|grok|gemini|composer)-(?:\\d|opus|sonnet|haiku)[\\w.-]*",
     "reason": "model id; name models by role"
   },
   {
