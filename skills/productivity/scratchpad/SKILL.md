@@ -33,7 +33,9 @@ Pick the first row that matches.
 
 ## What belongs here
 
-- Reports, catalogs and pickers the user reviews in a browser.
+- Reports, as PDFs (call the Skill tool with "technical-pdf").
+- Plans and explanations in show-me's format: Markdown or HTML, whichever show-me picks.
+- Prototypes, pickers, catalogs and boards the user clicks through, as HTML.
 - Drafts the user may edit before they are published, such as a spec or a PR body.
 - Evidence: screenshots, recordings, captured logs, API responses, generated SQL, measurements.
 - Decision logs and resume notes from long runs.

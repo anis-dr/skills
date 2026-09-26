@@ -40,6 +40,13 @@ A skill outside this repo is a recommended skill. Name it with its install comma
 
 The scratchpad skill owns the rule. Durable output follows Matt Pocock's structure (`CONTEXT.md`, `docs/adr/`, `docs/agents/`, the issue tracker). Temporary files the user may want to see, read or change go in `.scratchpad/<task>/`, and our skills write them there. Temporary plumbing only the agent touches goes in the OS temp folder. Vendored skills keep their own locations unless the file is one the user reads, such as Matt's architecture report and handoff note, which are patched to `.scratchpad/`. Matt's local issue tracker folder `.scratch/` is renamed to `.issues/` by a sync rule.
 
+## Output formats
+
+- A report (findings, audits, reviews worth keeping) is a PDF, made with the technical-pdf skill.
+- A plan for an executor comes from the to-plan skill, and show-me decides its display: Markdown or HTML.
+- An explanation or idea is shown with show-me, in Markdown or HTML as it decides.
+- Prototypes, pickers, catalogs and boards the user clicks through are HTML files in `.scratchpad/`.
+
 ## Harness-neutral wording
 
 - Describe a subagent by its role and constraints ("a read-only research subagent", "a subagent that runs in the background"), never by one harness's tool parameters.
