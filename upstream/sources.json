@@ -238,5 +238,126 @@
     "source": "https://github.com/mattpocock/skills",
     "path": "skills/in-progress/writing-shape",
     "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
+  },
+  {
+    "name": "how",
+    "bucket": "engineering",
+    "mode": "vendor",
+    "invocation": "model",
+    "source": "https://github.com/cursor/plugins",
+    "path": "pstack/skills/how",
+    "commit": "ecc249f1e306fc64ddf83c7bed16cacf7c2239db"
+  },
+  {
+    "name": "why",
+    "bucket": "engineering",
+    "mode": "vendor",
+    "invocation": "model",
+    "source": "https://github.com/cursor/plugins",
+    "path": "pstack/skills/why",
+    "commit": "ecc249f1e306fc64ddf83c7bed16cacf7c2239db"
+  },
+  {
+    "name": "architect",
+    "bucket": "engineering",
+    "mode": "vendor",
+    "source": "https://github.com/cursor/plugins",
+    "path": "pstack/skills/architect",
+    "commit": "ecc249f1e306fc64ddf83c7bed16cacf7c2239db"
+  },
+  {
+    "name": "arena",
+    "bucket": "engineering",
+    "mode": "vendor",
+    "source": "https://github.com/cursor/plugins",
+    "path": "pstack/skills/arena",
+    "commit": "ecc249f1e306fc64ddf83c7bed16cacf7c2239db"
+  },
+  {
+    "name": "interrogate",
+    "bucket": "engineering",
+    "mode": "vendor",
+    "source": "https://github.com/cursor/plugins",
+    "path": "pstack/skills/interrogate",
+    "commit": "ecc249f1e306fc64ddf83c7bed16cacf7c2239db"
+  },
+  {
+    "name": "blast-radius",
+    "bucket": "engineering",
+    "mode": "vendor",
+    "source": "https://github.com/cursor/plugins",
+    "path": "pstack/skills/blast-radius",
+    "commit": "ecc249f1e306fc64ddf83c7bed16cacf7c2239db"
+  },
+  {
+    "name": "recall",
+    "bucket": "engineering",
+    "mode": "vendor",
+    "source": "https://github.com/cursor/plugins",
+    "path": "pstack/skills/recall",
+    "commit": "ecc249f1e306fc64ddf83c7bed16cacf7c2239db"
+  },
+  {
+    "name": "show-me-your-work",
+    "bucket": "engineering",
+    "mode": "vendor",
+    "source": "https://github.com/cursor/plugins",
+    "path": "pstack/skills/show-me-your-work",
+    "commit": "ecc249f1e306fc64ddf83c7bed16cacf7c2239db"
+  },
+  {
+    "name": "typescript-best-practices",
+    "bucket": "engineering",
+    "mode": "vendor",
+    "invocation": "model",
+    "source": "https://github.com/cursor/plugins",
+    "path": "pstack/skills/typescript-best-practices",
+    "commit": "ecc249f1e306fc64ddf83c7bed16cacf7c2239db"
+  },
+  {
+    "name": "automate-me",
+    "bucket": "engineering",
+    "mode": "vendor",
+    "source": "https://github.com/cursor/plugins",
+    "path": "pstack/skills/automate-me",
+    "commit": "ecc249f1e306fc64ddf83c7bed16cacf7c2239db"
+  },
+  {
+    "name": "create-verification-skill",
+    "bucket": "engineering",
+    "mode": "vendor",
+    "source": "https://github.com/cursor/plugins",
+    "path": "pstack/skills/create-verification-skill",
+    "commit": "ecc249f1e306fc64ddf83c7bed16cacf7c2239db"
+  },
+  {
+    "name": "maintain-verification-skill",
+    "bucket": "engineering",
+    "mode": "vendor",
+    "source": "https://github.com/cursor/plugins",
+    "path": "pstack/skills/maintain-verification-skill",
+    "commit": "ecc249f1e306fc64ddf83c7bed16cacf7c2239db"
+  },
+  {
+    "name": "technical-writing",
+    "bucket": "productivity",
+    "mode": "vendor",
+    "source": "https://github.com/cursor/plugins",
+    "path": "pstack/skills/technical-writing",
+    "commit": "ecc249f1e306fc64ddf83c7bed16cacf7c2239db"
+  },
+  {
+    "name": "unslop",
+    "bucket": "productivity",
+    "mode": "vendor",
+    "invocation": "model",
+    "source": "https://github.com/cursor/plugins",
+    "path": "pstack/skills/unslop",
+    "commit": "ecc249f1e306fc64ddf83c7bed16cacf7c2239db"
+  },
+  {
+    "name": "transcripts",
+    "bucket": "engineering",
+    "mode": "ours"
   }
 ]

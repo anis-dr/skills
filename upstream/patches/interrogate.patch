@@ -1,0 +1,33 @@
+diff --git a/SKILL.md b/SKILL.md
+index bd8ed7c..0d25893 100644
+--- a/SKILL.md
++++ b/SKILL.md
+@@ -33,20 +33,20 @@ Write one clear paragraph. If you're unsure about the intent, ask the user befor
+ 
+ ## Step 3, Spawn Reviewers
+ 
+-Launch all reviewers in a single message using the Task tool. Use the `interrogate reviewers` line in `~/.cursor/rules/pstack-models.mdc`, one reviewer per entry, extending or shrinking the Reviewer A/B/C labels below to the configured entry count. If the rule or that line is missing, use the table defaults.
++Launch all reviewers in a single message, each as its own subagent. Put each reviewer on a different model family, your strongest model from each. Three is the default; use more or fewer when the user asks.
+ 
+-| Subagent | Default model |
+-|----------|---------------|
+-| Reviewer A | `claude-opus-5-5-max` |
+-| Reviewer B | `gpt-5.6-sol-max` |
+-| Reviewer C | `grok-4.7-xhigh-fast` |
++| Subagent | Model |
++|----------|-------|
++| Reviewer A | your strongest judgment model |
++| Reviewer B | a model from another family |
++| Reviewer C | a model from a third family |
+ 
+ For each reviewer:
+ - Subagent: general-purpose
+-- `model`: the configured `interrogate reviewers` entry, or the table default with no configured line. For an `auto` or `inherit-parent` entry, omit `model` so that reviewer runs on the parent model.
++- Model: the one in the table
+ - Read-only: yes
+ 
+-If the Task tool rejects a configured entry, run that reviewer on the table default of its family and say so. Families go by prefix: `claude-*`, `gpt-*`, and `grok-*`. With no family match, use Reviewer A's default. If it rejects a table default, check the valid slugs in the Task tool's error message, pick the closest equivalent (prefer the highest-reasoning tier of the same family), spawn with it, and open a separate PR to update the default table. Do not block the review on the slug issue. Never treat an alias entry as a rejected slug or apply either fallback to it.
++If your harness offers fewer model families, fill the missing seats with the strongest model you have and say so in the report. Do not block the review on model choice.
+ 
+ Read `references/reviewer-prompt.md` and fill in the template with:
+ 1. The stated intent

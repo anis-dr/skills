@@ -1,0 +1,3 @@
+interface:
+  display_name: "Transcripts"
+  short_description: "Find session transcripts per harness"

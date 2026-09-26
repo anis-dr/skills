@@ -1,0 +1,4 @@
+interface:
+  display_name: "Arena"
+policy:
+  allow_implicit_invocation: false

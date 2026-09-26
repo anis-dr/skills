@@ -1,0 +1,4 @@
+interface:
+  display_name: "Show Me Your Work"
+policy:
+  allow_implicit_invocation: false

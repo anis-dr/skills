@@ -2,16 +2,20 @@ import { Effect, FileSystem, Layer, Path, Schema } from "effect";
 import * as Context from "effect/Context";
 import type { PlatformError } from "effect/PlatformError";
 
-// One entry of upstream/sources.json: where a skill comes from and where it lives here.
-export class SourceEntry extends Schema.Class<SourceEntry>("SourceEntry")({
-  bucket: Schema.Literals([
-    "engineering",
-    "productivity",
-    "design",
-    "in-progress",
-  ]),
+const Bucket = Schema.Literals([
+  "engineering",
+  "productivity",
+  "design",
+  "in-progress",
+]);
+
+// An upstream copy that sync writes (CONVENTIONS.md, "Layout and ownership").
+export class VendorEntry extends Schema.Class<VendorEntry>("VendorEntry")({
+  bucket: Bucket,
   // Full SHA: git fetches a pinned commit only by its full id.
   commit: Schema.String.check(Schema.isPattern(/^[0-9a-f]{40}$/u)),
+  // Makes a skill that upstream marks user-invoked model-invoked.
+  invocation: Schema.optionalKey(Schema.Literal("model")),
   mode: Schema.Literal("vendor"),
   name: Schema.String,
   // Folder inside the upstream repo.
@@ -25,19 +29,28 @@ export class SourceEntry extends Schema.Class<SourceEntry>("SourceEntry")({
   }
 }
 
-export class MissingUpstreamPath extends Schema.TaggedError<MissingUpstreamPath>()(
-  "MissingUpstreamPath",
-  { from: Schema.String, skill: Schema.String }
-) {
-  override get message() {
-    return `${this.skill}: upstream has no folder at ${this.from}`;
+// A skill with no upstream; its folder is the source.
+export class OursEntry extends Schema.Class<OursEntry>("OursEntry")({
+  bucket: Bucket,
+  mode: Schema.Literal("ours"),
+  name: Schema.String,
+}) {
+  get skill() {
+    return `${this.bucket}/${this.name}`;
   }
 }
 
-const Sources = Schema.fromJsonString(Schema.Array(SourceEntry));
+// One entry of upstream/sources.json.
+export type SourceEntry = OursEntry | VendorEntry;
+
+const Sources = Schema.fromJsonString(
+  Schema.Array(Schema.Union([VendorEntry, OursEntry]))
+);
 
 // A regex (matched case-insensitively) that no file under skills/ may contain.
 export class BannedTerm extends Schema.Class<BannedTerm>("BannedTerm")({
+  // Skills ("<bucket>/<name>") whose job is to name the term, e.g. a table of harness paths.
+  allowIn: Schema.optionalKey(Schema.Array(Schema.String)),
   pattern: Schema.String,
   reason: Schema.String,
 }) {}
@@ -60,11 +73,15 @@ export class SkillTree extends Context.Service<
       ReadonlyArray<SourceEntry>,
       PlatformError | Schema.SchemaError
     >;
-    // Replaces the skill's folder with a copy of `from`, keeping it when `from` is missing.
+    // Replaces the skill's folder with a copy of `from`.
     readonly writeSkill: (
       entry: SourceEntry,
       from: string
-    ) => Effect.Effect<void, MissingUpstreamPath | PlatformError>;
+    ) => Effect.Effect<void, PlatformError>;
+    // Absolute path of a skill folder ("<bucket>/<name>").
+    readonly skillDir: (skill: string) => string;
+    // Absolute path of upstream/patches/<name>.patch, which may not exist.
+    readonly patchPath: (name: string) => string;
     // Every "<bucket>/<name>" folder under skills/, sorted.
     readonly listSkills: Effect.Effect<ReadonlyArray<string>, PlatformError>;
     // Every file of a skill as [path relative to the skill folder, content], sorted by path.
@@ -84,7 +101,7 @@ export class SkillTree extends Context.Service<
       Effect.gen(function* () {
         const fs = yield* FileSystem.FileSystem;
         const path = yield* Path.Path;
-        const skillsDir = path.join(root, "skills");
+        const skillsDir = path.resolve(root, "skills");
 
         const readSources = Effect.gen(function* () {
           const text = yield* fs.readFileString(
@@ -98,9 +115,6 @@ export class SkillTree extends Context.Service<
           from: string
         ) {
           const dest = path.join(skillsDir, entry.skill);
-          if (!(yield* fs.exists(from))) {
-            return yield* new MissingUpstreamPath({ from, skill: entry.skill });
-          }
           yield* fs.remove(dest, { force: true, recursive: true });
           yield* fs.makeDirectory(path.dirname(dest), { recursive: true });
           yield* fs.copy(from, dest);
@@ -172,9 +186,12 @@ export class SkillTree extends Context.Service<
 
         return SkillTree.of({
           listSkills,
+          patchPath: (name) =>
+            path.resolve(root, "upstream", "patches", `${name}.patch`),
           readBannedTerms,
           readSkillFiles,
           readSources,
+          skillDir: (skill) => path.join(skillsDir, skill),
           writeSkill,
         });
       })

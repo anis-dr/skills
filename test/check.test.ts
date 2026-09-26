@@ -4,7 +4,7 @@ import { Effect, FileSystem, Layer, Path } from "effect";
 import * as Context from "effect/Context";
 
 import { check } from "../src/check.ts";
-import { SkillTree, SourceEntry } from "../src/SkillTree.ts";
+import { OursEntry, SkillTree, VendorEntry } from "../src/SkillTree.ts";
 
 type Files = ReadonlyArray<readonly [string, string]>;
 
@@ -42,7 +42,7 @@ const skill = (
 ];
 
 const entry = (bucket: "engineering" | "productivity", name: string) =>
-  new SourceEntry({
+  new VendorEntry({
     bucket,
     commit: "0000000000000000000000000000000000000000",
     mode: "vendor",
@@ -53,7 +53,7 @@ const entry = (bucket: "engineering" | "productivity", name: string) =>
 
 const publicTerms: readonly [string, string] = [
   "upstream/banned-terms.json",
-  '[{ "pattern": "subagent_type", "reason": "Cursor Task tool parameter" }]',
+  '[{ "pattern": "subagent_type", "reason": "Cursor Task tool parameter", "allowIn": ["engineering/clean-target"] }]',
 ];
 const privateTerms: readonly [string, string] = [
   "upstream/private-terms.json",
@@ -75,7 +75,7 @@ const tree: Files = [
   ...skill(
     "clean-target",
     "name: clean-target\ndescription: Is called.\n",
-    "Body.\n"
+    "Documents Cursor's subagent_type, which only this skill may name.\n"
   ),
   ...skill(
     "clean-user",
@@ -146,7 +146,6 @@ const tree: Files = [
 const entries = [
   ...[
     "clean-caller",
-    "clean-target",
     "clean-user",
     "bad-yaml",
     "wrong-name",
@@ -161,6 +160,7 @@ const entries = [
     "cursor-term",
     "private-term",
   ].map((name) => entry("engineering", name)),
+  new OursEntry({ bucket: "engineering", mode: "ours", name: "clean-target" }),
   entry("productivity", "missing"),
 ];
 

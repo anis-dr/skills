@@ -11,7 +11,11 @@
     "pattern": "generalPurpose",
     "reason": "Cursor subagent type; describe the subagent by role"
   },
-  { "pattern": "~/\\.cursor/", "reason": "Cursor-only path" },
+  {
+    "pattern": "~/\\.cursor/",
+    "reason": "Cursor-only path",
+    "allowIn": ["engineering/transcripts"]
+  },
   {
     "pattern": "\\b(?:claude|gpt|grok|gemini|composer)-(?:\\d|opus|sonnet|haiku)[\\w.-]*",
     "reason": "model id; name models by role"

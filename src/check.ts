@@ -203,7 +203,11 @@ function bannedTermFindings(
 ): Array<Finding> {
   return files.flatMap(([file, content]) =>
     terms
-      .filter((term) => new RegExp(term.pattern, "iu").test(content))
+      .filter(
+        (term) =>
+          !term.allowIn?.includes(skill) &&
+          new RegExp(term.pattern, "iu").test(content)
+      )
       .map((term) =>
         finding(
           "banned-term",

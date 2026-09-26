@@ -8,7 +8,7 @@ A skill lives at `skills/<bucket>/<name>/SKILL.md`, with buckets `engineering`, 
 
 Every skill has one entry in `upstream/sources.json`. The entry's `mode` says who owns the text:
 
-- **vendor**: an upstream copy. `bun run skills sync` writes the folder from the pinned upstream commit, so a hand edit is lost on the next sync. Change a vendored skill through a sync rule or a patch.
+- **vendor**: an upstream copy. `bun run skills sync` builds the folder from the pinned upstream commit, then applies the agent-neutral rules in `src/rules.ts`, the entry's `invocation` override, generated `agents/openai.yaml` when upstream ships none, and `upstream/patches/<name>.patch`. A hand edit alone is lost on the next sync: edit the folder, then run `bun run skills patch <name>` to save the edit as the skill's patch. A rewrite that several skills need belongs in `src/rules.ts` instead.
 - **fork**: our text, based on an upstream skill. Upstream changes are ported by review.
 - **ours**: no upstream.
 
@@ -34,8 +34,8 @@ A skill outside this repo is a recommended skill. Name it with its install comma
 ## Harness-neutral wording
 
 - Describe a subagent by its role and constraints ("a read-only research subagent", "a subagent that runs in the background"), never by one harness's tool parameters.
-- Name models by role: "your strongest judgment model", "a model from another family". Model ids and model config files belong to one harness.
-- Facts that differ per harness, such as where each harness stores session transcripts, live in one reference table inside the skill that owns them.
+- Name models by role: "your strongest judgment model", "a fast model", "a model from another family". Model ids and model config files belong to one harness.
+- Facts that differ per harness live in one skill that owns them, which other skills call. Transcript locations live in the `transcripts` skill. Its banned-term exemption (`allowIn` in `upstream/banned-terms.json`) is the only place a harness path may appear.
 - Links, paths and commands work in every harness: no `skill://` links, no paths under one harness's home folder.
 
 ## Public repo
@@ -44,4 +44,4 @@ This repo is public. Skills name no private project, host or account; examples u
 
 ## Prose
 
-No em dashes anywhere (Matt's rule). Rewrite the sentence with a comma, colon, period or parentheses, whichever it needs.
+No em dashes in text we write (Matt's rule). Rewrite the sentence with a comma, colon, period or parentheses, whichever it needs. Vendored text keeps upstream's punctuation.
