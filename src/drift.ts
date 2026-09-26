@@ -17,7 +17,11 @@ export interface Drift {
   readonly stat: string;
 }
 
-// Every pinned entry whose upstream path changed after its commit, in entry order.
+// The upstream paths an entry is built from.
+const pathsOf = (entry: ForkEntry | ReferenceEntry | VendorEntry) =>
+  [entry.path].flat();
+
+// Every pinned entry whose upstream paths changed after its commit, in entry order.
 export const findDrift = Effect.fn("findDrift")(function* (
   entries: ReadonlyArray<SourceEntry>
 ) {
@@ -28,7 +32,7 @@ export const findDrift = Effect.fn("findDrift")(function* (
       const commits = yield* upstream.commitsSince(
         entry.source,
         entry.commit,
-        entry.path
+        pathsOf(entry)
       );
       if (commits.length > 0) {
         drift.push({
@@ -38,7 +42,7 @@ export const findDrift = Effect.fn("findDrift")(function* (
           stat: yield* upstream.diffStat(
             entry.source,
             entry.commit,
-            entry.path
+            pathsOf(entry)
           ),
         });
       }
@@ -66,7 +70,7 @@ const section = ({ commits, entry, head, stat }: Drift) =>
   [
     `### ${entry.name} (${entry.mode}, ${entry.skill})`,
     "",
-    `\`${entry.source}\` \`${entry.path}\`, ${entry.commit.slice(0, 7)}..${head.slice(0, 7)}`,
+    `\`${entry.source}\` \`${pathsOf(entry).join(", ")}\`, ${entry.commit.slice(0, 7)}..${head.slice(0, 7)}`,
     "",
     ...commits.map(([sha, subject]) => `- ${sha.slice(0, 7)} ${subject}`),
     "",

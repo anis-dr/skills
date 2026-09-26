@@ -58,20 +58,20 @@ export class Upstream extends Context.Service<
     readonly head: (
       source: string
     ) => Effect.Effect<string, UpstreamFetchError>;
-    // [sha, subject] of every commit after `from`, up to HEAD, that touches `path`, newest first.
+    // [sha, subject] of every commit after `from`, up to HEAD, that touches any of `paths`, newest first.
     readonly commitsSince: (
       source: string,
       from: string,
-      path: string
+      paths: ReadonlyArray<string>
     ) => Effect.Effect<
       ReadonlyArray<readonly [string, string]>,
       UpstreamFetchError
     >;
-    // `git diff --stat` of `path` from `from` to HEAD.
+    // `git diff --stat` of `paths` from `from` to HEAD.
     readonly diffStat: (
       source: string,
       from: string,
-      path: string
+      paths: ReadonlyArray<string>
     ) => Effect.Effect<string, UpstreamFetchError>;
   }
 >()("skills/Upstream") {
@@ -170,13 +170,17 @@ export class Upstream extends Context.Service<
         );
 
         const commitsSince = Effect.fn("Upstream.commitsSince")(
-          function* (source: string, from: string, dir: string) {
+          function* (
+            source: string,
+            from: string,
+            paths: ReadonlyArray<string>
+          ) {
             const out = yield* git(yield* mirror(source), [
               "log",
               "--format=%H%x09%s",
               `${from}..HEAD`,
               "--",
-              dir,
+              ...paths,
             ]);
             return out
               .split("\n")
@@ -190,14 +194,18 @@ export class Upstream extends Context.Service<
         );
 
         const diffStat = Effect.fn("Upstream.diffStat")(
-          function* (source: string, from: string, dir: string) {
+          function* (
+            source: string,
+            from: string,
+            paths: ReadonlyArray<string>
+          ) {
             return yield* git(yield* mirror(source), [
               "diff",
               "--stat",
               from,
               "HEAD",
               "--",
-              dir,
+              ...paths,
             ]);
           },
           (effect, source, from) => failWith(source, from)(effect)

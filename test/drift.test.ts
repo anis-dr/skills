@@ -164,3 +164,30 @@ layer(fixtureLayer)("updatePins then sync", (it) => {
       })
   );
 });
+
+layer(fixtureLayer)(
+  "findDrift on a fork built from several upstream paths",
+  (it) => {
+    it.effect("lists commits that touch any of the paths", () =>
+      Effect.gen(function* () {
+        const { ask, commits } = yield* Fixture;
+        const multi = new ForkEntry({
+          bucket: ask.bucket,
+          commit: ask.commit,
+          mode: "fork",
+          name: "ask-plus-docs",
+          path: ["skills/ask", "docs/readme.md"],
+          source: ask.source,
+        });
+
+        const drift = yield* findDrift([multi]);
+
+        assert.deepStrictEqual(
+          drift.map((each) => each.commits.map(([sha]) => sha)),
+          [[commits.c, commits.b]]
+        );
+        assert.include(renderDrift(drift), "skills/ask, docs/readme.md");
+      })
+    );
+  }
+);

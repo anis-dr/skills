@@ -63,7 +63,8 @@ export class ForkEntry extends Schema.Class<ForkEntry>("ForkEntry")({
   bucket: Bucket,
   mode: Schema.Literal("fork"),
   source: Schema.String,
-  path: Schema.String,
+  // One upstream path, or several when the fork is built from more than one.
+  path: Schema.Union([Schema.String, Schema.Array(Schema.String)]),
   commit: Commit,
 }) {
   get skill() {
@@ -256,6 +257,10 @@ export class SkillTree extends Context.Service<
           for (const file of (yield* fs.readDirectory(dir, {
             recursive: true,
           })).sort()) {
+            // A skill's bundled script may install its dependencies next to it.
+            if (file.split("/").includes("node_modules")) {
+              continue;
+            }
             const info = yield* fs.stat(path.join(dir, file));
             if (info.type === "File") {
               files.push([
