@@ -256,3 +256,45 @@ layer(rootLayer)("check without the private terms file", (it) => {
     })
   );
 });
+
+layer(rootLayer)("check on the ask-anis router", (it) => {
+  it.effect(
+    "reports a skill the router leaves out and a /name it routes to that does not exist",
+    () =>
+      Effect.gen(function* () {
+        yield* writeFiles([
+          publicTerms,
+          privateTerms,
+          ...skill(
+            "ask-anis",
+            "name: ask-anis\ndescription: Routes to skills.\ndisable-model-invocation: true\n",
+            "Run **`/named`**, or `/ghost`, then `/clear` the window.\n",
+            userPolicy
+          ),
+          ...skill("named", "name: named\ndescription: Routed.\n", "Body.\n"),
+          ...skill(
+            "unnamed",
+            "name: unnamed\ndescription: Left out.\n",
+            "Body.\n"
+          ),
+        ]);
+
+        const findings = yield* check(
+          ["ask-anis", "named", "unnamed"].map(
+            (name) =>
+              new OursEntry({ bucket: "engineering", mode: "ours", name })
+          )
+        );
+
+        assert.deepStrictEqual(
+          findings.map(({ rule, skill }) => [skill, rule]),
+          [
+            ["engineering/ask-anis", "router"],
+            ["engineering/ask-anis", "router"],
+          ]
+        );
+        assert.isTrue(findings[0]?.detail.includes('"ghost"'));
+        assert.isTrue(findings[1]?.detail.includes('"unnamed"'));
+      })
+  );
+});

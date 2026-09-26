@@ -15,6 +15,7 @@ export interface Finding {
     | "missing-folder"
     | "orphan-folder"
     | "reference-index"
+    | "router"
     | "skill-call";
   // "<bucket>/<name>"
   readonly skill: string;
@@ -128,6 +129,35 @@ function referenceIndexFindings({ files, skill }: LoadedSkill): Array<Finding> {
           skill,
           `SKILL.md links ${file}, which does not exist`
         )
+      ),
+  ];
+}
+
+// The router maps every skill in the repo by its `/name` label.
+const router = "ask-anis";
+// Harness commands the router names that are not skills.
+const harnessCommands = new Set(["clear", "compact"]);
+
+function routerFindings(
+  { files, skill }: LoadedSkill,
+  repoSkills: ReadonlySet<string>
+): Array<Finding> {
+  const skillMd = files.find(([file]) => file === "SKILL.md")?.[1] ?? "";
+  const named = new Set(
+    [...skillMd.matchAll(/`\/([a-z0-9][a-z0-9-]*)/gu)]
+      .map((match) => match[1] ?? "")
+      .filter((name) => !harnessCommands.has(name))
+  );
+  return [
+    ...[...named]
+      .filter((name) => !repoSkills.has(name))
+      .map((name) =>
+        finding("router", skill, `"${name}": routed to, but not a skill here`)
+      ),
+    ...[...repoSkills]
+      .filter((name) => name !== router && !named.has(name))
+      .map((name) =>
+        finding("router", skill, `"${name}": skill missing from the router`)
       ),
   ];
 }
@@ -292,6 +322,9 @@ export const check = Effect.fn("check")(function* (
     ...skills
       .filter((each) => indexes.has(each.skill))
       .flatMap(referenceIndexFindings),
+    ...skills
+      .filter((each) => each.name === router)
+      .flatMap((each) => routerFindings(each, repoSkills)),
     ...skills.flatMap((each) => [
       ...frontmatterFindings(each),
       ...invocationFindings(each),

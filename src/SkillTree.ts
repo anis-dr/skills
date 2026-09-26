@@ -40,6 +40,21 @@ export class OursEntry extends Schema.Class<OursEntry>("OursEntry")({
   }
 }
 
+// Our text, based on an upstream skill at `commit`. sync leaves the folder alone;
+// upstream changes since `commit` are ported by review.
+export class ForkEntry extends Schema.Class<ForkEntry>("ForkEntry")({
+  bucket: Bucket,
+  commit: Schema.String.check(Schema.isPattern(/^[0-9a-f]{40}$/u)),
+  mode: Schema.Literal("fork"),
+  name: Schema.String,
+  path: Schema.String,
+  source: Schema.String,
+}) {
+  get skill() {
+    return `${this.bucket}/${this.name}`;
+  }
+}
+
 // One upstream file vendored into another skill's references/ folder as
 // `references/<name>.md`, frontmatter stripped. sync owns that whole folder.
 export class ReferenceEntry extends Schema.Class<ReferenceEntry>(
@@ -62,10 +77,12 @@ export class ReferenceEntry extends Schema.Class<ReferenceEntry>(
 }
 
 // One entry of upstream/sources.json.
-export type SourceEntry = OursEntry | ReferenceEntry | VendorEntry;
+export type SourceEntry = ForkEntry | OursEntry | ReferenceEntry | VendorEntry;
 
 const Sources = Schema.fromJsonString(
-  Schema.Array(Schema.Union([VendorEntry, OursEntry, ReferenceEntry]))
+  Schema.Array(
+    Schema.Union([VendorEntry, ForkEntry, OursEntry, ReferenceEntry])
+  )
 );
 
 // A regex (matched case-insensitively) that no file under skills/ may contain.

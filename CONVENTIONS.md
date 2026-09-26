@@ -11,6 +11,9 @@ Every skill has one entry in `upstream/sources.json`. The entry's `mode` says wh
 - **vendor**: an upstream copy. `bun run skills sync` builds the folder from the pinned upstream commit, then applies the agent-neutral rules in `src/rules.ts`, the entry's `invocation` override, generated `agents/openai.yaml` when upstream ships none, and `upstream/patches/<name>.patch`. A hand edit alone is lost on the next sync: edit the folder, then run `bun run skills patch <name>` to save the edit as the skill's patch. A rewrite that several skills need belongs in `src/rules.ts` instead.
 - **fork**: our text, based on an upstream skill. Upstream changes are ported by review.
 - **ours**: no upstream.
+- **reference**: one upstream file that sync writes into another skill's `references/` folder, frontmatter stripped. That skill's `SKILL.md` links every file in the folder.
+
+The `ask-anis` router maps every skill by its `/name` label. Adding, renaming or removing a skill means updating the router: `bun run skills check` fails on a skill the router leaves out or a `/name` that is not a skill.
 
 ## Invocation
 
