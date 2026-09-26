@@ -119,6 +119,17 @@ Before you change code you don't know, or when the shape of new code is the hard
 
 Skills distilled from our own work. Most are model-invoked: the agent reaches for them when the situation matches, and you can name them directly.
 
+### Productivity
+
+- **`/technical-pdf`** writes and visually checks a technical PDF (report, spec, runbook, proposal) in Typst.
+- **`/typst-living-devis`** builds a client quote in Typst where rates and days are variables and every price is computed.
+- **`/scratchpad`** keeps throwaway probes, drafts and captured output in a gitignored `.scratchpad/` folder.
+- **`/checkbox-decision-ui`** builds a local checkbox picker for bulk keep/delete decisions over dozens of items, then carries them out.
+- **`/youtube-video-to-skill`** turns a YouTube tutorial into a skill with exact frames matched to each concept (beta).
+- **`/tmview-trademark-search`** checks a word against trademark registers through TMview.
+- **`/macos-complete-app-uninstall`** removes a macOS app and everything it leaves behind.
+- **`/vscode-theme-to-zed`** ports a VS Code, Cursor or Windsurf color theme to Zed.
+
 ### Design
 
 - **`/refactoring-ui`** applies the Refactoring UI rules, scales and review checklist when designing or reviewing web UI.

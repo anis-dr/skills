@@ -1,0 +1,25 @@
+vars: {
+  d2-config: {
+    layout-engine: elk
+    pad: 16
+  }
+}
+direction: right
+classes: {
+  work: {
+    style: {fill: "#eaf2f8"; stroke: "#005f9e"; stroke-width: 2; font-size: 22}
+  }
+  state: {
+    style: {fill: "#fdf2f0"; stroke: "#c53a2f"; stroke-width: 2; font-size: 22}
+  }
+  provider: {
+    style: {fill: "#eef7f1"; stroke: "#1f7a4f"; stroke-width: 2; font-size: 22}
+  }
+}
+request: "Approved request" {class: work}
+attempt: "Recorded attempt" {class: state}
+provider: "Provider" {class: provider}
+outcome: "Recorded outcome" {class: state}
+request -> attempt
+attempt -> provider
+provider -> outcome

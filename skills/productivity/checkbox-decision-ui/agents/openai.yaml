@@ -1,0 +1,3 @@
+interface:
+  display_name: "Checkbox Decision UI"
+  short_description: "Bulk keep/delete choices in a local picker"

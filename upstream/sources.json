@@ -675,5 +675,45 @@
     "name": "verify-css-interaction-states",
     "bucket": "design",
     "mode": "ours"
+  },
+  {
+    "name": "checkbox-decision-ui",
+    "bucket": "productivity",
+    "mode": "ours"
+  },
+  {
+    "name": "macos-complete-app-uninstall",
+    "bucket": "productivity",
+    "mode": "ours"
+  },
+  {
+    "name": "scratchpad",
+    "bucket": "productivity",
+    "mode": "ours"
+  },
+  {
+    "name": "technical-pdf",
+    "bucket": "productivity",
+    "mode": "ours"
+  },
+  {
+    "name": "tmview-trademark-search",
+    "bucket": "productivity",
+    "mode": "ours"
+  },
+  {
+    "name": "typst-living-devis",
+    "bucket": "productivity",
+    "mode": "ours"
+  },
+  {
+    "name": "vscode-theme-to-zed",
+    "bucket": "productivity",
+    "mode": "ours"
+  },
+  {
+    "name": "youtube-video-to-skill",
+    "bucket": "in-progress",
+    "mode": "ours"
   }
 ]

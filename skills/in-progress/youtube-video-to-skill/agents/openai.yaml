@@ -1,0 +1,3 @@
+interface:
+  display_name: "YouTube Video to Skill"
+  short_description: "Turn a video tutorial into a skill with frames"

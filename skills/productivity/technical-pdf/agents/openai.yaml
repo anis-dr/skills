@@ -1,0 +1,3 @@
+interface:
+  display_name: "Technical PDF"
+  short_description: "Typst technical PDFs with verified layout"

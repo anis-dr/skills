@@ -1,0 +1,3 @@
+interface:
+  display_name: "Scratchpad"
+  short_description: "Throwaway work in a gitignored folder"

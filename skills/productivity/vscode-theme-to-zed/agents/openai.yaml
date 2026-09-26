@@ -1,0 +1,3 @@
+interface:
+  display_name: "VS Code Theme to Zed"
+  short_description: "Port a VS Code color theme to Zed"

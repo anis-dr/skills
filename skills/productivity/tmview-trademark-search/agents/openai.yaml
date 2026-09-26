@@ -1,0 +1,3 @@
+interface:
+  display_name: "TMview Trademark Search"
+  short_description: "Search trademark registers through TMview"

@@ -1,0 +1,3 @@
+interface:
+  display_name: "Typst Living Devis"
+  short_description: "Client quotes in Typst with computed prices"
