@@ -115,13 +115,22 @@ const syncVendored = Effect.fn("syncVendored")(function* (entry: VendorEntry) {
 // upstream file with its frontmatter stripped and the rules applied.
 const syncReferences = Effect.fn("syncReferences")(function* (
   skill: string,
-  entries: ReadonlyArray<ReferenceEntry>
+  entries: ReadonlyArray<ReferenceEntry>,
+  ours: ReadonlyArray<string>
 ) {
   const fs = yield* FileSystem.FileSystem;
   const path = yield* Path.Path;
   const upstream = yield* Upstream;
+  const tree = yield* SkillTree;
   const dir = yield* fs.makeTempDirectoryScoped();
   const used = new Set<string>();
+  // Our own reference files are the source; carry them over unchanged.
+  for (const name of ours) {
+    const file = path.join(tree.skillDir(skill), "references", `${name}.md`);
+    if (yield* fs.exists(file)) {
+      yield* fs.copyFile(file, path.join(dir, `${name}.md`));
+    }
+  }
   for (const entry of entries) {
     const checkout = yield* upstream.fetchPinned(entry.source, entry.commit);
     const from = path.join(checkout, entry.path);
@@ -139,7 +148,7 @@ const syncReferences = Effect.fn("syncReferences")(function* (
     }
     yield* fs.writeFileString(path.join(dir, `${entry.name}.md`), result.text);
   }
-  yield* (yield* SkillTree).writeFolder(`${skill}/references`, dir);
+  yield* tree.writeFolder(`${skill}/references`, dir);
   return used;
 }, Effect.scoped);
 
@@ -163,7 +172,15 @@ export const sync = Effect.fn("sync")(function* (
     }
   }
   for (const [skill, group] of references) {
-    for (const name of yield* syncReferences(skill, group)) {
+    const ours = entries
+      .filter(
+        (entry) =>
+          entry.mode === "ours" &&
+          entry.skill === skill &&
+          entry.into !== undefined
+      )
+      .map((entry) => entry.name);
+    for (const name of yield* syncReferences(skill, group, ours)) {
       used.add(name);
     }
   }

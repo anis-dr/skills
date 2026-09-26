@@ -622,6 +622,12 @@
     "commit": "ecc249f1e306fc64ddf83c7bed16cacf7c2239db"
   },
   {
+    "name": "one-codec-per-concept",
+    "bucket": "engineering",
+    "mode": "ours",
+    "into": "principles"
+  },
+  {
     "name": "deslop",
     "bucket": "engineering",
     "mode": "vendor",

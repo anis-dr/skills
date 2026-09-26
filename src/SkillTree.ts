@@ -46,14 +46,16 @@ export class VendorEntry extends Schema.Class<VendorEntry>("VendorEntry")({
   }
 }
 
-// A skill with no upstream; its folder is the source.
+// A skill with no upstream; its folder is the source. With `into`, it is one of
+// our files in that skill's references/ folder instead, kept by sync.
 export class OursEntry extends Schema.Class<OursEntry>("OursEntry")({
   name: Schema.String,
   bucket: Bucket,
   mode: Schema.Literal("ours"),
+  into: Schema.optional(Schema.String),
 }) {
   get skill() {
-    return `${this.bucket}/${this.name}`;
+    return `${this.bucket}/${this.into ?? this.name}`;
   }
 }
 

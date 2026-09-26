@@ -1,6 +1,6 @@
 ---
 name: principles
-description: "Required before any engineering decision: load this index, then read every principle that matches. Use at the start of designing, planning, implementing, refactoring, debugging, writing or changing tests, delegating to subagents, and before declaring work done; also when sizing a diff, adding an abstraction, choosing types, or handling boundaries, retries or shared state."
+description: "Required before any engineering decision: load this index, then read every principle that matches. Use at the start of designing, planning, implementing, refactoring, debugging, writing or changing tests, delegating to subagents, and before declaring work done; also when sizing a diff, adding an abstraction, choosing types or schemas, or handling boundaries, retries or shared state."
 ---
 
 # Principles
@@ -32,6 +32,7 @@ Read only the references whose lines match; the rest stay unread. Done when ever
 - [Model the Domain](references/model-the-domain.md). Writing stateful logic, or code that branches a lot or repeats a shape assumption across files. Encode the domain in a structure (state machine, typed model, table or registry, reducer, boundary, the right collection) instead of scattered conditionals.
 - [Boundary Discipline](references/boundary-discipline.md). Wiring validation, error handling, or framework adapters. Guards at system boundaries, trust internal types, keep business logic pure.
 - [Type System Discipline](references/type-system-discipline.md). Designing types or a signature in any typed language. Make illegal states unrepresentable, brand primitives, parse external data at boundaries.
+- [One Codec per Concept](references/one-codec-per-concept.md). Defining a type that crosses a wire, a database, a form or config. One schema decodes and encodes it; types, validators and interop formats derive from it.
 - [Make Operations Idempotent](references/make-operations-idempotent.md). Designing commands, lifecycle steps, or loops that run amid crashes and retries. Converge to the same end state.
 - [Migrate Callers Then Delete Legacy APIs](references/migrate-callers-then-delete-legacy-apis.md). Introducing a new internal API while old callers exist. Migrate and delete in one wave.
 - [Separate Before Serializing Shared State](references/separate-before-serializing-shared-state.md). Concurrent actors might write the same file, branch, key, or object. Eliminate the sharing first.

@@ -3,7 +3,12 @@ import { assert, layer } from "@effect/vitest";
 import { Effect, FileSystem, Layer, Path } from "effect";
 import * as Context from "effect/Context";
 
-import { ReferenceEntry, SkillTree, VendorEntry } from "../src/SkillTree.ts";
+import {
+  OursEntry,
+  ReferenceEntry,
+  SkillTree,
+  VendorEntry,
+} from "../src/SkillTree.ts";
 import { writePatch, sync } from "../src/sync.ts";
 import { git, Upstream } from "../src/Upstream.ts";
 
@@ -318,5 +323,33 @@ layer(fixtureLayer)("sync of reference entries", (it) => {
           ]
         );
       })
+  );
+});
+
+layer(fixtureLayer)("sync of references next to our own reference", (it) => {
+  it.effect("keeps our reference file and still drops stale ones", () =>
+    Effect.gen(function* () {
+      const { lever, root } = yield* Fixture;
+      yield* writeFiles(root, [
+        ["skills/engineering/principles/SKILL.md", "Our index.\n"],
+        ["skills/engineering/principles/references/one-codec.md", "# Ours\n"],
+        ["skills/engineering/principles/references/old.md", "Dropped.\n"],
+      ]);
+      const ours = new OursEntry({
+        bucket: "engineering",
+        into: "principles",
+        mode: "ours",
+        name: "one-codec",
+      });
+
+      yield* sync([lever, ours]);
+
+      assert.deepStrictEqual(
+        (yield* readTree(`${root}/skills/engineering/principles`)).map(
+          ([file]) => file
+        ),
+        ["SKILL.md", "references/build-the-lever.md", "references/one-codec.md"]
+      );
+    })
   );
 });
