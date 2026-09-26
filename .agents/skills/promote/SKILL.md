@@ -25,7 +25,7 @@ Give each candidate exactly one verdict:
 - **public**: useful to anyone with the same stack or task. Examples, hosts and names can be made neutral without losing the lesson.
 - **project**: only makes sense inside one private project (its services, its data, its design file). It belongs in that project's `.agents/skills/`, not here.
 - **personal**: tied to the user's own accounts, clients, reports or creative projects. A tool's quirks (a DAW's API, a design tool's CLI) are public even when the user found them on a personal project.
-- **drop**: stale, or superseded by a newer candidate.
+- **drop**: stale, superseded by a newer candidate, or built to copy another company's site, store, brand or product (`CONVENTIONS.md`, "Public repo").
 
 A name or text that matches a pattern in `upstream/private-terms.json` points to project or personal. It stays public when the private name only appears in examples and the lesson holds without it.
 
