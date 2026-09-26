@@ -36,6 +36,23 @@ export class MissingUpstreamPath extends Schema.TaggedError<MissingUpstreamPath>
 
 const Sources = Schema.fromJsonString(Schema.Array(SourceEntry));
 
+// A regex (matched case-insensitively) that no file under skills/ may contain.
+export class BannedTerm extends Schema.Class<BannedTerm>("BannedTerm")({
+  pattern: Schema.String,
+  reason: Schema.String,
+}) {}
+
+const BannedTerms = Schema.fromJsonString(Schema.Array(BannedTerm));
+
+export class PrivateTermsMissing extends Schema.TaggedError<PrivateTermsMissing>()(
+  "PrivateTermsMissing",
+  { path: Schema.String }
+) {
+  override get message() {
+    return `${this.path} is missing. It lists private names and stays out of git; CI writes it from the SKILLS_PRIVATE_TERMS secret.`;
+  }
+}
+
 export class SkillTree extends Context.Service<
   SkillTree,
   {
@@ -50,6 +67,15 @@ export class SkillTree extends Context.Service<
     ) => Effect.Effect<void, MissingUpstreamPath | PlatformError>;
     // Every "<bucket>/<name>" folder under skills/, sorted.
     readonly listSkills: Effect.Effect<ReadonlyArray<string>, PlatformError>;
+    // Every file of a skill as [path relative to the skill folder, content], sorted by path.
+    readonly readSkillFiles: (
+      skill: string
+    ) => Effect.Effect<ReadonlyArray<readonly [string, string]>, PlatformError>;
+    // upstream/banned-terms.json plus the gitignored upstream/private-terms.json.
+    readonly readBannedTerms: Effect.Effect<
+      ReadonlyArray<BannedTerm>,
+      PrivateTermsMissing | PlatformError | Schema.SchemaError
+    >;
   }
 >()("skills/SkillTree") {
   static readonly layer = (root: string) =>
@@ -109,7 +135,48 @@ export class SkillTree extends Context.Service<
           return skills.sort();
         }).pipe(Effect.withSpan("SkillTree.listSkills"));
 
-        return SkillTree.of({ listSkills, readSources, writeSkill });
+        const readSkillFiles = Effect.fn("SkillTree.readSkillFiles")(function* (
+          skill: string
+        ) {
+          const dir = path.join(skillsDir, skill);
+          const files: Array<readonly [string, string]> = [];
+          for (const file of (yield* fs.readDirectory(dir, {
+            recursive: true,
+          })).sort()) {
+            const info = yield* fs.stat(path.join(dir, file));
+            if (info.type === "File") {
+              files.push([
+                file,
+                yield* fs.readFileString(path.join(dir, file)),
+              ]);
+            }
+          }
+          return files;
+        });
+
+        const readBannedTerms = Effect.gen(function* () {
+          const publicTerms = yield* Schema.decodeEffect(BannedTerms)(
+            yield* fs.readFileString(
+              path.join(root, "upstream", "banned-terms.json")
+            )
+          );
+          const privatePath = path.join(root, "upstream", "private-terms.json");
+          if (!(yield* fs.exists(privatePath))) {
+            return yield* new PrivateTermsMissing({ path: privatePath });
+          }
+          const privateTerms = yield* Schema.decodeEffect(BannedTerms)(
+            yield* fs.readFileString(privatePath)
+          );
+          return [...publicTerms, ...privateTerms];
+        }).pipe(Effect.withSpan("SkillTree.readBannedTerms"));
+
+        return SkillTree.of({
+          listSkills,
+          readBannedTerms,
+          readSkillFiles,
+          readSources,
+          writeSkill,
+        });
       })
     );
 }

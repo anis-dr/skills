@@ -130,8 +130,12 @@ layer(fixtureLayer)("sync with a wrong upstream path", (it) => {
         "Kept.\n"
       );
       const moved = new SourceEntry({
-        ...entry,
+        bucket: entry.bucket,
+        commit: entry.commit,
+        mode: entry.mode,
+        name: entry.name,
         path: "skills/engineering/renamed",
+        source: entry.source,
       });
 
       const error = yield* Effect.flip(sync([moved]));

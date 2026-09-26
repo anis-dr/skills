@@ -32,7 +32,9 @@ const checkCommand = Command.make("check", {}, () =>
   Effect.gen(function* () {
     const findings = yield* check(yield* (yield* SkillTree).readSources);
     for (const finding of findings) {
-      yield* Console.log(`${finding.skill}: ${finding.rule}`);
+      yield* Console.log(
+        `${finding.skill}: ${finding.rule}: ${finding.detail}`
+      );
     }
     if (findings.length > 0) {
       return yield* new CheckFailed({ findings: findings.length });

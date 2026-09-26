@@ -1,2 +1,4 @@
 node_modules/
 .upstream/
+# Private names for the banned-term check; CI writes it from a secret.
+upstream/private-terms.json

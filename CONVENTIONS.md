@@ -40,7 +40,7 @@ A skill outside this repo is a recommended skill. Name it with its install comma
 
 ## Public repo
 
-This repo is public. Skills name no private project, host or account; examples use neutral names such as `acme-api` and `example.com`.
+This repo is public. Skills name no private project, host or account; examples use neutral names such as `acme-api` and `example.com`. `bun run skills check` fails on any pattern in `upstream/banned-terms.json` (harness-only terms) or in `upstream/private-terms.json` (private names). The private file stays out of git: keep a local copy, and CI writes it from the `SKILLS_PRIVATE_TERMS` secret.
 
 ## Prose
 
