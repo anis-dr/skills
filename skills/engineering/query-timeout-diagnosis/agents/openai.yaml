@@ -1,0 +1,3 @@
+interface:
+  display_name: "Query Timeout Diagnosis"
+  short_description: "Query timeouts while the database is healthy"

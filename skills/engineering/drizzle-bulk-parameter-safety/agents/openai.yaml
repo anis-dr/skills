@@ -1,3 +1,0 @@
-interface:
-  display_name: "Drizzle Bulk Parameter Safety"
-  short_description: "Safe array parameters in Drizzle bulk updates"

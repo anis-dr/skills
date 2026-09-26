@@ -1,0 +1,3 @@
+interface:
+  display_name: "Stacked PRs"
+  short_description: "Create, verify and unblock GitHub stacked PRs"

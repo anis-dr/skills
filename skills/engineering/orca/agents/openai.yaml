@@ -1,0 +1,3 @@
+interface:
+  display_name: "Orca"
+  short_description: "Verify UI and hand off tickets inside Orca"

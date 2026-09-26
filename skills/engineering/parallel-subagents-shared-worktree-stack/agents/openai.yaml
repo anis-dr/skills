@@ -1,3 +1,0 @@
-interface:
-  display_name: "Parallel Subagents Shared Worktree Stack"
-  short_description: "Parallel subagents in one worktree to a gh stack"

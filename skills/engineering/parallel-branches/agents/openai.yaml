@@ -1,0 +1,3 @@
+interface:
+  display_name: "Parallel Branches"
+  short_description: "Parallel subagents in one worktree to a gh stack"

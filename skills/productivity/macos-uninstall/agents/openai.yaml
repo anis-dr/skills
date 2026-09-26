@@ -1,0 +1,3 @@
+interface:
+  display_name: "Macos Uninstall"
+  short_description: "Remove a macOS app and all its leftovers"

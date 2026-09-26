@@ -1,0 +1,3 @@
+interface:
+  display_name: "Tanstack Start Middleware"
+  short_description: "Server-only imports in TanStack Start middleware"

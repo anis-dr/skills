@@ -1,0 +1,3 @@
+interface:
+  display_name: "Typst Quote"
+  short_description: "Client quotes in Typst with computed prices"

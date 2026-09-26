@@ -1,3 +1,0 @@
-interface:
-  display_name: "Orca Parallel Ticket Handoff"
-  short_description: "Hand a ticket to another agent tab in Orca"

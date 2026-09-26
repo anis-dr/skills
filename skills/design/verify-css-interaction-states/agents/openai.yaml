@@ -1,3 +1,0 @@
-interface:
-  display_name: "Verify CSS Interaction States"
-  short_description: "Prove hover, focus and overflow by measuring"

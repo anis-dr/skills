@@ -53,51 +53,45 @@ Add `-g` to install into your user folder instead of the current project. Not su
 **Model-invoked**
 
 - [agent-sources](skills/engineering/agent-sources/SKILL.md): Read a dependency's source at the installed version
-- [anti-slop-typescript-migration](skills/engineering/anti-slop-typescript-migration/SKILL.md): Fix anti-slop lint findings without type laundering
+- [anti-slop-migration](skills/engineering/anti-slop-migration/SKILL.md): Fix anti-slop lint findings without type laundering
 - [avoid-feature-creep](skills/engineering/avoid-feature-creep/SKILL.md): Keep scope tight: MVPs, backlogs, one-more-feature
-- [bun-catalog-publish-safety](skills/engineering/bun-catalog-publish-safety/SKILL.md): Adopt Bun catalogs without publishing catalog:
-- [bun-existing-patch-safety](skills/engineering/bun-existing-patch-safety/SKILL.md): Extend a Bun patch without losing hunks
-- [changesets-bun-publish-output](skills/engineering/changesets-bun-publish-output/SKILL.md): Get tags and releases from Changesets with Bun
+- [bun-monorepo](skills/engineering/bun-monorepo/SKILL.md): Bun catalogs, patches and Changesets publishing
 - [code-review](skills/engineering/code-review/SKILL.md): Review a diff on standards and spec
 - [codebase-design](skills/engineering/codebase-design/SKILL.md): Vocabulary for deep-module design
 - [control-cli](skills/engineering/control-cli/SKILL.md): Build or adapt a local harness to drive, inspect, and profile an interactive CLI or TUI without external services.
 - [control-ui](skills/engineering/control-ui/SKILL.md): Build or adapt a local browser/CDP harness to drive and inspect a web, IDE, or Electron UI.
-- [dependabot-batch-pr](skills/engineering/dependabot-batch-pr/SKILL.md): Merge a Dependabot backlog into one verified PR
+- [dependabot-backlog](skills/engineering/dependabot-backlog/SKILL.md): Merge a Dependabot backlog into one verified PR
 - [deslop](skills/engineering/deslop/SKILL.md): Remove AI-generated code slop and clean up code style
 - [diagnosing-bugs](skills/engineering/diagnosing-bugs/SKILL.md): Diagnose hard bugs and regressions
 - [domain-modeling](skills/engineering/domain-modeling/SKILL.md): Build and sharpen a domain model
-- [drizzle-bulk-parameter-safety](skills/engineering/drizzle-bulk-parameter-safety/SKILL.md): Safe array parameters in Drizzle bulk updates
-- [drizzle-migration-tail-resequence](skills/engineering/drizzle-migration-tail-resequence/SKILL.md): Re-sequence migrations after a diverged merge
-- [drizzle-snapshot-baseline-repair](skills/engineering/drizzle-snapshot-baseline-repair/SKILL.md): Repair a stale Drizzle snapshot baseline safely
-- [effect-pragmatic-patterns](skills/engineering/effect-pragmatic-patterns/SKILL.md): Keep Effect code simple and practical
-- [extracting-aws-rds-postgres-snapshots](skills/engineering/extracting-aws-rds-postgres-snapshots/SKILL.md): Portable pg_dump from an RDS Postgres snapshot
+- [drizzle](skills/engineering/drizzle/SKILL.md): Drizzle bulk params, migration merges, baselines
 - [get-pr-comments](skills/engineering/get-pr-comments/SKILL.md): Fetch and summarize review comments from the active pull request
 - [git-split-amended-followup](skills/engineering/git-split-amended-followup/SKILL.md): Split an amended fix into its own follow-up commit
-- [github-gh-stack](skills/engineering/github-gh-stack/SKILL.md): Create and verify official GitHub Stacked PRs
-- [github-pr-loc-breakdown](skills/engineering/github-pr-loc-breakdown/SKILL.md): Honest LOC breakdown for a large GitHub PR
-- [github-stack-phantom-conflict](skills/engineering/github-stack-phantom-conflict/SKILL.md): Clear a stacked PR's false merge conflict
 - [how](skills/engineering/how/SKILL.md): Use for "how does X work", code walkthroughs before changing something, and placement / ownership / layering questions ("where should this live", "which package owns this", "is this the right layer").
 - [likec4-postcss-isolation](skills/engineering/likec4-postcss-isolation/SKILL.md): Stop root PostCSS config breaking likec4 serve
 - [loop-on-ci](skills/engineering/loop-on-ci/SKILL.md): Monitor PR checks and fix failures until green.
 - [make-pr-easy-to-review](skills/engineering/make-pr-easy-to-review/SKILL.md): Prepare PRs for review by cleaning noisy history, improving PR descriptions, and adding reviewer guidance without changing code behavior.
-- [orca-browser-ui-verification](skills/engineering/orca-browser-ui-verification/SKILL.md): Prove UI changes in Orca's built-in browser
-- [orca-parallel-ticket-handoff](skills/engineering/orca-parallel-ticket-handoff/SKILL.md): Hand a ticket to another agent tab in Orca
-- [parallel-subagents-shared-worktree-stack](skills/engineering/parallel-subagents-shared-worktree-stack/SKILL.md): Parallel subagents in one worktree to a gh stack
-- [phantom-db-query-timeout-diagnosis](skills/engineering/phantom-db-query-timeout-diagnosis/SKILL.md): Query timeouts while the database is healthy
+- [orca](skills/engineering/orca/SKILL.md): Verify UI and hand off tickets inside Orca
+- [parallel-branches](skills/engineering/parallel-branches/SKILL.md): Parallel subagents in one worktree to a gh stack
+- [pr-size-breakdown](skills/engineering/pr-size-breakdown/SKILL.md): Honest LOC breakdown for a large GitHub PR
+- [pragmatic-effect](skills/engineering/pragmatic-effect/SKILL.md): Keep Effect code simple and practical
 - [principles](skills/engineering/principles/SKILL.md): Engineering principles, one per decision
 - [prototype](skills/engineering/prototype/SKILL.md): Prototype to answer a design question
+- [query-timeout-diagnosis](skills/engineering/query-timeout-diagnosis/SKILL.md): Query timeouts while the database is healthy
+- [rds-snapshot-dump](skills/engineering/rds-snapshot-dump/SKILL.md): Portable pg_dump from an RDS Postgres snapshot
 - [research](skills/engineering/research/SKILL.md): Research from high-trust sources
 - [resolving-merge-conflicts](skills/engineering/resolving-merge-conflicts/SKILL.md): Resolve merge and rebase conflicts
 - [setup-effect-toolchain](skills/engineering/setup-effect-toolchain/SKILL.md): Set up tsgo, Oxlint and oxfmt for Effect repos
 - [spec-port-diverged-branch](skills/engineering/spec-port-diverged-branch/SKILL.md): Port a commit across diverged branches as a spec
+- [stacked-prs](skills/engineering/stacked-prs/SKILL.md): Create, verify and unblock GitHub stacked PRs
 - [system-flow-plan](skills/engineering/system-flow-plan/SKILL.md): Executor-ready plans as flows, not pasted code
-- [tanstack-start-server-middleware-import-safety](skills/engineering/tanstack-start-server-middleware-import-safety/SKILL.md): Server-only imports in TanStack Start middleware
+- [tanstack-start-middleware](skills/engineering/tanstack-start-middleware/SKILL.md): Server-only imports in TanStack Start middleware
 - [tdd](skills/engineering/tdd/SKILL.md): Test-driven red-green-refactor
 - [transcripts](skills/engineering/transcripts/SKILL.md): Find session transcripts per harness
 - [typescript-best-practices](skills/engineering/typescript-best-practices/SKILL.md): TypeScript best practices.
-- [verify-api-shape-before-trusting-fixtures](skills/engineering/verify-api-shape-before-trusting-fixtures/SKILL.md): Check live API responses before trusting fixtures
+- [verify-api-shape](skills/engineering/verify-api-shape/SKILL.md): Check live API responses before trusting fixtures
 - [verify-this](skills/engineering/verify-this/SKILL.md): Verify a claim with fresh local evidence: restate it falsifiably, capture baseline and treatment, compare artifacts, and return VERIFIED, NOT VERIFIED, or INCONCLUSIVE.
-- [wayfinder-reversal-and-map-close](skills/engineering/wayfinder-reversal-and-map-close/SKILL.md): Handle wayfinder reversals and close the map
+- [wayfinder-reversal](skills/engineering/wayfinder-reversal/SKILL.md): Handle wayfinder reversals and close the map
 - [why](skills/engineering/why/SKILL.md): Use for 'why does X work this way', 'why we picked Y', design rationale, regressions, postmortems, or data-backed thresholds.
 - [wizard](skills/engineering/wizard/SKILL.md): Generate an interactive setup wizard
 
@@ -114,13 +108,13 @@ Add `-g` to install into your user folder instead of the current project. Not su
 
 **Model-invoked**
 
-- [checkbox-decision-ui](skills/productivity/checkbox-decision-ui/SKILL.md): Bulk keep/delete choices in a local picker
+- [checkbox-picker](skills/productivity/checkbox-picker/SKILL.md): Bulk keep/delete choices in a local picker
 - [grilling](skills/productivity/grilling/SKILL.md): Stress-test thinking a round of questions at a time
-- [macos-complete-app-uninstall](skills/productivity/macos-complete-app-uninstall/SKILL.md): Remove a macOS app and all its leftovers
+- [macos-uninstall](skills/productivity/macos-uninstall/SKILL.md): Remove a macOS app and all its leftovers
 - [scratchpad](skills/productivity/scratchpad/SKILL.md): Throwaway work in a gitignored folder
 - [technical-pdf](skills/productivity/technical-pdf/SKILL.md): Typst technical PDFs with verified layout
-- [tmview-trademark-search](skills/productivity/tmview-trademark-search/SKILL.md): Search trademark registers through TMview
-- [typst-living-devis](skills/productivity/typst-living-devis/SKILL.md): Client quotes in Typst with computed prices
+- [trademark-search](skills/productivity/trademark-search/SKILL.md): Search trademark registers through TMview
+- [typst-quote](skills/productivity/typst-quote/SKILL.md): Client quotes in Typst with computed prices
 - [unslop](skills/productivity/unslop/SKILL.md): Cut AI tells from any writing.
 - [vscode-theme-to-zed](skills/productivity/vscode-theme-to-zed/SKILL.md): Port a VS Code color theme to Zed
 - [writing-for-agents](skills/productivity/writing-for-agents/SKILL.md): Write documents agents consume
@@ -129,14 +123,11 @@ Add `-g` to install into your user folder instead of the current project. Not su
 
 **Model-invoked**
 
-- [logo-candidates-on-surfaces-board](skills/design/logo-candidates-on-surfaces-board/SKILL.md): Judge logo marks on favicon, tile and nav
-- [pen-design-token-migration](skills/design/pen-design-token-migration/SKILL.md): Migrate .pen tokens and dark mode safely
-- [pen-dev-designer-iteration](skills/design/pen-dev-designer-iteration/SKILL.md): Drive the pen.dev designer with Mobbin evidence
-- [pen-dev-gated-iteration](skills/design/pen-dev-gated-iteration/SKILL.md): Gate pen.dev designer runs with frame diffs
+- [logo-surface-board](skills/design/logo-surface-board/SKILL.md): Judge logo marks on favicon, tile and nav
+- [measure-ui](skills/design/measure-ui/SKILL.md): Prove UI fidelity and states by measuring
+- [pen-dev](skills/design/pen-dev/SKILL.md): Design, gate and migrate tokens in pen.dev files
+- [redesign-inventory](skills/design/redesign-inventory/SKILL.md): Redesign a UI without dropping any control
 - [refactoring-ui](skills/design/refactoring-ui/SKILL.md): Refactoring UI rules, scales and review checklist
-- [ui-fidelity-verification](skills/design/ui-fidelity-verification/SKILL.md): Measure reference vs build, not screenshots
-- [ui-redesign-function-conservation](skills/design/ui-redesign-function-conservation/SKILL.md): Redesign a UI without dropping any control
-- [verify-css-interaction-states](skills/design/verify-css-interaction-states/SKILL.md): Prove hover, focus and overflow by measuring
 
 ### In progress (beta)
 

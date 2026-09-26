@@ -6,6 +6,8 @@ How a skill in this repo is written. Every skill must run unchanged on omp, Clau
 
 A skill lives at `skills/<bucket>/<name>/SKILL.md`, with buckets `engineering`, `productivity`, `design` and `in-progress`. Its frontmatter `name` equals the folder name, and its `description` stays within 1024 characters.
 
+Name a skill after its job in one to three words, the way the user would ask for it (`drizzle`, `measure-ui`, `stacked-prs`). Leave out filler (`-safety`, `-patterns`, `-verification`) and jargon. One tool or topic is one skill: when a new lesson belongs to a topic that already has a skill, it becomes a branch there, with its procedure in `references/<branch>.md` and one pointer line in `SKILL.md`.
+
 Every skill has one entry in `upstream/sources.json`. The entry's `mode` says who owns the text:
 
 - **vendor**: an upstream copy. `bun run skills sync` builds the folder from the pinned upstream commit, then applies the agent-neutral rules in `src/rules.ts`, the entry's `invocation` override, generated `agents/openai.yaml` when upstream ships none, and `upstream/patches/<name>.patch`. A hand edit alone is lost on the next sync: edit the folder, then run `bun run skills patch <name>` to save the edit as the skill's patch. A rewrite that several skills need belongs in `src/rules.ts` instead.

@@ -122,61 +122,57 @@ Skills distilled from our own work. Most are model-invoked: the agent reaches fo
 ### Effect and TypeScript
 
 - **`/setup-effect-toolchain`** sets up an Effect v4 repo's toolchain (TypeScript 7 with `@effect/tsgo`, Oxlint with the Effect, code-shape and anti-slop plugins, oxfmt) and proves every layer runs.
-- **`/effect-pragmatic-patterns`** keeps Effect code pragmatic: Effect where it buys typed effects, lifecycle or dependency boundaries, plain helpers everywhere else.
-- **`/anti-slop-typescript-migration`** takes an existing TypeScript codebase to zero anti-slop findings without laundering types.
-- **`/tanstack-start-server-middleware-import-safety`** registers server-only middleware in TanStack Start without dynamic imports or client import-protection failures.
+- **`/pragmatic-effect`** keeps Effect code pragmatic: Effect where it buys typed effects, lifecycle or dependency boundaries, plain helpers everywhere else.
+- **`/anti-slop-migration`** takes an existing TypeScript codebase to zero anti-slop findings without laundering types.
+- **`/tanstack-start-middleware`** registers server-only middleware in TanStack Start without dynamic imports or client import-protection failures.
 - **`/agent-sources`** reads a dependency's upstream source at the installed version when types and docs leave a question open.
 
 ### Data and infrastructure
 
-- **`/drizzle-bulk-parameter-safety`** writes Drizzle PostgreSQL bulk updates that pass row changes as one `jsonb` parameter.
-- **`/drizzle-migration-tail-resequence`** moves a diverged branch's Drizzle migrations after the ones that landed first, with journal guards.
-- **`/drizzle-snapshot-baseline-repair`** repairs a migration history whose latest snapshot predates hand-written SQL, so `generate` stops proposing unrelated DDL.
-- **`/extracting-aws-rds-postgres-snapshots`** turns an RDS Postgres snapshot into a portable `pg_dump`.
-- **`/phantom-db-query-timeout-diagnosis`** finds the client-side cause of query timeouts while the database is healthy.
+- **`/drizzle`** handles Drizzle on PostgreSQL: bulk updates as one `jsonb` parameter, re-sequencing a diverged branch's migrations, and repairing a stale snapshot so `generate` stops proposing unrelated DDL.
+- **`/rds-snapshot-dump`** turns an RDS Postgres snapshot into a portable `pg_dump`.
+- **`/query-timeout-diagnosis`** finds the client-side cause of query timeouts while the database is healthy.
 - **`/likec4-postcss-isolation`** fixes `likec4 serve` failing on a monorepo's root PostCSS config.
 
 ### Packages and releases
 
-- **`/bun-catalog-publish-safety`** adopts Bun workspace catalogs in a publishing monorepo without shipping literal `catalog:` specifiers.
-- **`/bun-existing-patch-safety`** extends an existing Bun patch without losing earlier hunks.
-- **`/changesets-bun-publish-output`** makes a Bun publish script under Changesets create Git tags and GitHub releases.
-- **`/dependabot-batch-pr`** folds a Dependabot backlog into one verified PR and groups future updates.
+- **`/bun-monorepo`** handles a Bun workspace's dependencies and releases: catalogs without publishing literal `catalog:` specifiers, extending an existing patch safely, and tags and GitHub releases from Changesets with a Bun publish script.
+- **`/dependabot-backlog`** folds a Dependabot backlog into one verified PR and groups future updates.
 
 ### Git, GitHub and parallel work
 
 - **`/git-split-amended-followup`** splits a fix that was amended into a commit back out as its own follow-up commit.
 - **`/spec-port-diverged-branch`** ports a commit across diverged branches by treating it as a spec instead of fighting the cherry-pick.
-- **`/github-gh-stack`** creates, adopts, submits and syncs GitHub Stacked PRs with `gh-stack`; **`/github-stack-phantom-conflict`** clears a stacked PR that GitHub calls conflicting while git merges cleanly.
-- **`/github-pr-loc-breakdown`** breaks a large PR's line count into generated files, docs, lockfiles, tests and code.
-- **`/parallel-subagents-shared-worktree-stack`** runs parallel subagents in one worktree, each on its own branch, then joins them into one stack.
-- **`/orca-parallel-ticket-handoff`** hands a ticket to another agent tab in the same Orca worktree, and **`/orca-browser-ui-verification`** proves a web UI change in Orca's built-in browser.
+- **`/stacked-prs`** creates, adopts, submits and syncs GitHub Stacked PRs with `gh-stack`, and clears a stacked PR that GitHub calls conflicting while git merges cleanly.
+- **`/pr-size-breakdown`** breaks a large PR's line count into generated files, docs, lockfiles, tests and code.
+- **`/parallel-branches`** runs parallel subagents in one worktree, each on its own branch, then joins them into one stack.
+- **`/orca`** works inside Orca: proves a web UI change in its built-in browser, and hands a ticket to another agent tab in the same worktree.
 
 ### Planning and checks
 
 - **`/system-flow-plan`** writes plans another agent can execute: flows, call trees and behaviour assertions instead of pasted code.
 - **`/avoid-feature-creep`** keeps scope tight while planning features, MVPs and backlogs.
-- **`/verify-api-shape-before-trusting-fixtures`** checks a third-party API's live response shape before trusting fixtures or claims about it.
-- **`/wayfinder-reversal-and-map-close`** records a decision that reverses a closed wayfinder ticket and gets the map ready for `/to-spec`.
+- **`/verify-api-shape`** checks a third-party API's live response shape before trusting fixtures or claims about it.
+- **`/wayfinder-reversal`** records a decision that reverses a closed wayfinder ticket and gets the map ready for `/to-spec`.
 
 ### Productivity
 
 - **`/technical-pdf`** writes and visually checks a technical PDF (report, spec, runbook, proposal) in Typst.
-- **`/typst-living-devis`** builds a client quote in Typst where rates and days are variables and every price is computed.
+- **`/typst-quote`** builds a client quote in Typst where rates and days are variables and every price is computed.
 - **`/scratchpad`** keeps throwaway probes, drafts and captured output in a gitignored `.scratchpad/` folder.
-- **`/checkbox-decision-ui`** builds a local checkbox picker for bulk keep/delete decisions over dozens of items, then carries them out.
+- **`/checkbox-picker`** builds a local checkbox picker for bulk keep/delete decisions over dozens of items, then carries them out.
 - **`/youtube-video-to-skill`** turns a YouTube tutorial into a skill with exact frames matched to each concept (beta).
-- **`/tmview-trademark-search`** checks a word against trademark registers through TMview.
-- **`/macos-complete-app-uninstall`** removes a macOS app and everything it leaves behind.
+- **`/trademark-search`** checks a word against trademark registers through TMview.
+- **`/macos-uninstall`** removes a macOS app and everything it leaves behind.
 - **`/vscode-theme-to-zed`** ports a VS Code, Cursor or Windsurf color theme to Zed.
 
 ### Design
 
 - **`/refactoring-ui`** applies the Refactoring UI rules, scales and review checklist when designing or reviewing web UI.
-- **`/ui-fidelity-verification`** and **`/verify-css-interaction-states`** prove a build matches its design, a layout fix or hover, focus and animation behaviour by measuring in a live browser instead of eyeballing screenshots.
-- **`/ui-redesign-function-conservation`** inventories every control before a redesign so none is silently dropped.
-- **`/logo-candidates-on-surfaces-board`** judges logo candidates on favicon, reversed, app tile and nav surfaces in one HTML board.
-- **`/pen-dev-designer-iteration`** designs screens in a pen.dev file with the CLI designer, grounded in Mobbin evidence; **`/pen-dev-gated-iteration`** gates each run to the frames you allowed; **`/pen-design-token-migration`** migrates or renames the file's design tokens without breaking overrides.
+- **`/measure-ui`** proves a build matches its design, a layout fix, or hover, focus and animation behaviour by measuring in a live browser instead of eyeballing screenshots.
+- **`/redesign-inventory`** inventories every control before a redesign so none is silently dropped.
+- **`/logo-surface-board`** judges logo candidates on favicon, reversed, app tile and nav surfaces in one HTML board.
+- **`/pen-dev`** designs screens in a pen.dev file with the CLI designer, gates each run to the frames you allowed, and migrates or renames the file's design tokens without breaking overrides.
 
 ## Standalone
 

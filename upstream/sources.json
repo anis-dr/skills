@@ -637,22 +637,12 @@
     "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
   },
   {
-    "name": "logo-candidates-on-surfaces-board",
+    "name": "logo-surface-board",
     "bucket": "design",
     "mode": "ours"
   },
   {
-    "name": "pen-design-token-migration",
-    "bucket": "design",
-    "mode": "ours"
-  },
-  {
-    "name": "pen-dev-designer-iteration",
-    "bucket": "design",
-    "mode": "ours"
-  },
-  {
-    "name": "pen-dev-gated-iteration",
+    "name": "pen-dev",
     "bucket": "design",
     "mode": "ours"
   },
@@ -662,17 +652,12 @@
     "mode": "ours"
   },
   {
-    "name": "ui-fidelity-verification",
+    "name": "measure-ui",
     "bucket": "design",
     "mode": "ours"
   },
   {
-    "name": "ui-redesign-function-conservation",
-    "bucket": "design",
-    "mode": "ours"
-  },
-  {
-    "name": "verify-css-interaction-states",
+    "name": "redesign-inventory",
     "bucket": "design",
     "mode": "ours"
   },
@@ -682,7 +667,7 @@
     "mode": "ours"
   },
   {
-    "name": "anti-slop-typescript-migration",
+    "name": "anti-slop-migration",
     "bucket": "engineering",
     "mode": "ours"
   },
@@ -692,47 +677,27 @@
     "mode": "ours"
   },
   {
-    "name": "bun-catalog-publish-safety",
+    "name": "bun-monorepo",
     "bucket": "engineering",
     "mode": "ours"
   },
   {
-    "name": "bun-existing-patch-safety",
+    "name": "dependabot-backlog",
     "bucket": "engineering",
     "mode": "ours"
   },
   {
-    "name": "changesets-bun-publish-output",
+    "name": "drizzle",
     "bucket": "engineering",
     "mode": "ours"
   },
   {
-    "name": "dependabot-batch-pr",
+    "name": "pragmatic-effect",
     "bucket": "engineering",
     "mode": "ours"
   },
   {
-    "name": "drizzle-bulk-parameter-safety",
-    "bucket": "engineering",
-    "mode": "ours"
-  },
-  {
-    "name": "drizzle-migration-tail-resequence",
-    "bucket": "engineering",
-    "mode": "ours"
-  },
-  {
-    "name": "drizzle-snapshot-baseline-repair",
-    "bucket": "engineering",
-    "mode": "ours"
-  },
-  {
-    "name": "effect-pragmatic-patterns",
-    "bucket": "engineering",
-    "mode": "ours"
-  },
-  {
-    "name": "extracting-aws-rds-postgres-snapshots",
+    "name": "rds-snapshot-dump",
     "bucket": "engineering",
     "mode": "ours"
   },
@@ -742,17 +707,12 @@
     "mode": "ours"
   },
   {
-    "name": "github-gh-stack",
+    "name": "stacked-prs",
     "bucket": "engineering",
     "mode": "ours"
   },
   {
-    "name": "github-pr-loc-breakdown",
-    "bucket": "engineering",
-    "mode": "ours"
-  },
-  {
-    "name": "github-stack-phantom-conflict",
+    "name": "pr-size-breakdown",
     "bucket": "engineering",
     "mode": "ours"
   },
@@ -762,22 +722,17 @@
     "mode": "ours"
   },
   {
-    "name": "orca-browser-ui-verification",
+    "name": "orca",
     "bucket": "engineering",
     "mode": "ours"
   },
   {
-    "name": "orca-parallel-ticket-handoff",
+    "name": "parallel-branches",
     "bucket": "engineering",
     "mode": "ours"
   },
   {
-    "name": "parallel-subagents-shared-worktree-stack",
-    "bucket": "engineering",
-    "mode": "ours"
-  },
-  {
-    "name": "phantom-db-query-timeout-diagnosis",
+    "name": "query-timeout-diagnosis",
     "bucket": "engineering",
     "mode": "ours"
   },
@@ -797,27 +752,27 @@
     "mode": "ours"
   },
   {
-    "name": "tanstack-start-server-middleware-import-safety",
+    "name": "tanstack-start-middleware",
     "bucket": "engineering",
     "mode": "ours"
   },
   {
-    "name": "verify-api-shape-before-trusting-fixtures",
+    "name": "verify-api-shape",
     "bucket": "engineering",
     "mode": "ours"
   },
   {
-    "name": "wayfinder-reversal-and-map-close",
+    "name": "wayfinder-reversal",
     "bucket": "engineering",
     "mode": "ours"
   },
   {
-    "name": "checkbox-decision-ui",
+    "name": "checkbox-picker",
     "bucket": "productivity",
     "mode": "ours"
   },
   {
-    "name": "macos-complete-app-uninstall",
+    "name": "macos-uninstall",
     "bucket": "productivity",
     "mode": "ours"
   },
@@ -832,12 +787,12 @@
     "mode": "ours"
   },
   {
-    "name": "tmview-trademark-search",
+    "name": "trademark-search",
     "bucket": "productivity",
     "mode": "ours"
   },
   {
-    "name": "typst-living-devis",
+    "name": "typst-quote",
     "bucket": "productivity",
     "mode": "ours"
   },

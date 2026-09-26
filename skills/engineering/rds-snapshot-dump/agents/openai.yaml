@@ -1,0 +1,3 @@
+interface:
+  display_name: "Rds Snapshot Dump"
+  short_description: "Portable pg_dump from an RDS Postgres snapshot"

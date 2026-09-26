@@ -36,13 +36,14 @@ List the repo's skills (`upstream/sources.json` and `skills/*/*/SKILL.md`). For 
 - Same job as an **ours** skill (same name, or descriptions that describe one task): compare the bodies. When the repo skill already carries every gotcha, command and branch of the candidate (it was promoted before, possibly scrubbed or merged), the action is **drop, covered by** it. When the candidate has something the repo skill lacks, **merge into** it and name what is new in the Reason column.
 - Same job as a **vendor**, **fork** or **reference** skill: **drop, covered by** it. Upstream owns that text; a gotcha it lacks goes to the user as a note, not into the vendored folder.
 - Several candidates with one job: **add as one** ours skill merged from all of them, named after the shared job (reuse the most general candidate's name when one fits).
-- Otherwise: **add** as a new ours skill. Its bucket is `engineering`, `productivity` or `design` by subject, or `in-progress` when its steps have not been proven on real work more than once.
+- Same tool or topic as an **ours** skill but a different job: **merge into** it as a new branch (`CONVENTIONS.md`, "Layout and ownership").
+- Otherwise: **add** as a new ours skill, named per `CONVENTIONS.md`. Its bucket is `engineering`, `productivity` or `design` by subject, or `in-progress` when its steps have not been proven on real work more than once.
 
 Print one table and stop here on a dry run:
 
 | Candidate | Verdict | Action | Reason |
 |---|---|---|---|
-| drizzle-stale-baseline | public | merge into `drizzle-snapshot-baseline-repair` | same failure, new branch for stale snapshots |
+| drizzle-stale-baseline | public | merge into `drizzle` | new branch for stale snapshots |
 | acme-deploy-canary | project | skip: acme's `.agents/skills/` | calls acme's staging hosts |
 
 Done when every candidate has a row, and the row counts per action are stated under the table.

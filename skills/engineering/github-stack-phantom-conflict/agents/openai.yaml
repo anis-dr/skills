@@ -1,3 +1,0 @@
-interface:
-  display_name: "GitHub Stack Phantom Conflict"
-  short_description: "Clear a stacked PR's false merge conflict"

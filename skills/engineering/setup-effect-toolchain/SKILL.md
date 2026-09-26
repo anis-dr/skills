@@ -93,7 +93,7 @@ Done when every control reported its rule, the control files are gone, and all t
 
 ### 8. Existing code
 
-Report findings by rule and count. Fix each at its root cause. For anti-slop and Effect-preset type findings, call the Skill tool with "anti-slop-typescript-migration". Keep every rule at its configured severity and write no disable comments or `as` casts to get to zero; a finding that needs a product decision goes in the reply with its file and line.
+Report findings by rule and count. Fix each at its root cause. For anti-slop and Effect-preset type findings, call the Skill tool with "anti-slop-migration". Keep every rule at its configured severity and write no disable comments or `as` casts to get to zero; a finding that needs a product decision goes in the reply with its file and line.
 
 Done when `lint` and `typecheck` exit 0, or the reply lists each remaining finding with the decision it waits on.
 

@@ -1,0 +1,3 @@
+interface:
+  display_name: "Measure UI"
+  short_description: "Prove UI fidelity and states by measuring"

@@ -1,0 +1,3 @@
+interface:
+  display_name: "Dependabot Backlog"
+  short_description: "Merge a Dependabot backlog into one verified PR"

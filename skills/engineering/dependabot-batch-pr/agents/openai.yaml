@@ -1,3 +1,0 @@
-interface:
-  display_name: "Dependabot Batch PR"
-  short_description: "Merge a Dependabot backlog into one verified PR"

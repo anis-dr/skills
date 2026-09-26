@@ -1,3 +1,0 @@
-interface:
-  display_name: "Drizzle Migration Tail Resequence"
-  short_description: "Re-sequence migrations after a diverged merge"

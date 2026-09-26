@@ -1,3 +1,0 @@
-interface:
-  display_name: "Extracting AWS RDS Postgres Snapshots"
-  short_description: "Portable pg_dump from an RDS Postgres snapshot"

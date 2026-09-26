@@ -1,0 +1,3 @@
+interface:
+  display_name: "Pen Dev"
+  short_description: "Design, gate and migrate tokens in pen.dev files"

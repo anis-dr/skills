@@ -1,0 +1,3 @@
+interface:
+  display_name: "Wayfinder Reversal"
+  short_description: "Handle wayfinder reversals and close the map"

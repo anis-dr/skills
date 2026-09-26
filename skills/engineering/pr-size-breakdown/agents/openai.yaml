@@ -1,0 +1,3 @@
+interface:
+  display_name: "Pr Size Breakdown"
+  short_description: "Honest LOC breakdown for a large GitHub PR"
