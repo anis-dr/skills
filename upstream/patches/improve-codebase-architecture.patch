@@ -1,0 +1,25 @@
+diff --git a/HTML-REPORT.md b/HTML-REPORT.md
+index e39e825..09e818a 100644
+--- a/HTML-REPORT.md
++++ b/HTML-REPORT.md
+@@ -1,6 +1,6 @@
+ # HTML Report Format
+ 
+-The architectural review is rendered as a single self-contained HTML file in the OS temp directory. Tailwind and Mermaid both come from CDNs. Mermaid handles graph-shaped diagrams reliably; hand-built divs and inline SVG handle the more editorial visuals (mass diagrams, cross-sections). Mix the two: don't lean on Mermaid for everything, it'll start to look generic.
++The architectural review is rendered as a single self-contained HTML file in the repo's gitignored `.scratchpad/architecture-review/` folder. Tailwind and Mermaid both come from CDNs. Mermaid handles graph-shaped diagrams reliably; hand-built divs and inline SVG handle the more editorial visuals (mass diagrams, cross-sections). Mix the two: don't lean on Mermaid for everything, it'll start to look generic.
+ 
+ ## Scaffold
+ 
+diff --git a/SKILL.md b/SKILL.md
+index a578dd0..32062b6 100644
+--- a/SKILL.md
++++ b/SKILL.md
+@@ -36,7 +36,7 @@ Apply the **deletion test** to anything you suspect is shallow: would deleting i
+ 
+ ### 2. Present candidates as an HTML report
+ 
+-Write a self-contained HTML file to the OS temp directory so nothing lands in the repo. Resolve the temp dir from `$TMPDIR`, falling back to `/tmp` (or `%TEMP%` on Windows), and write to `<tmpdir>/architecture-review-<timestamp>.html` so each run gets a fresh file. Open it for the user (`xdg-open <path>` on Linux, `open <path>` on macOS, `start <path>` on Windows) and tell them the absolute path.
++Write a self-contained HTML file to the repo's gitignored `.scratchpad/` folder (call the Skill tool with "scratchpad"), so nothing lands in a commit and the user can reopen it later. Write to `.scratchpad/architecture-review/<timestamp>.html` so each run gets a fresh file. Open it for the user (`xdg-open <path>` on Linux, `open <path>` on macOS, `start <path>` on Windows) and tell them the absolute path.
+ 
+ The report uses **Tailwind via CDN** for layout and styling, and **Mermaid via CDN** for diagrams where a graph/flow/sequence reliably communicates the structure. Mix Mermaid with hand-crafted CSS/SVG visuals: use Mermaid when relationships are graph-shaped (call graphs, dependencies, sequences), and hand-built divs/SVG when you want something more editorial (mass diagrams, cross-sections, collapse animations). Each candidate gets a **before/after visualisation**. Be visual.
+ 

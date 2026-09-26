@@ -14,12 +14,12 @@ Pick the first row that matches.
 
 | The file is | It goes |
 |---|---|
-| A location a skill names for its own output (a Matt Pocock skill's OS temp folder, an issue tracker, a worktree) | Where that skill says. Its location wins. |
-| Durable: meant to be committed or kept | Matt Pocock's structure: `CONTEXT.md` for domain language, `docs/adr/` for decisions, `docs/agents/` for agent setup, the configured issue tracker for specs and tickets (GitHub, or `.scratch/<feature>/` when the repo uses the local-markdown tracker), and the code, tests and docs themselves. |
+| A location a skill names for its own output (an issue tracker, a worktree, an isolated folder outside the repo) | Where that skill says. Its location wins. |
+| Durable: meant to be committed or kept | Matt Pocock's structure: `CONTEXT.md` for domain language, `docs/adr/` for decisions, `docs/agents/` for agent setup, the configured issue tracker for specs and tickets (GitHub, or `.issues/<feature>/` when the repo uses the local-markdown tracker), and the code, tests and docs themselves. |
 | Temporary, and the user may want to see, read or change it | `.scratchpad/<task>/` |
 | Temporary plumbing only the agent touches (a swap file, a git index, a large download it deletes, a working directory that must sit outside the repo) | The OS temp folder |
 
-`.scratchpad/` is not Matt's `.scratch/`. `.scratch/` is a committed local issue tracker; `.scratchpad/` is never committed.
+`.issues/` holds tickets and specs you track; `.scratchpad/` holds temporary files and is never committed. (Matt Pocock's skills call the tracker folder `.scratch/`; this repo renames it to `.issues/`.)
 
 ## Steps
 

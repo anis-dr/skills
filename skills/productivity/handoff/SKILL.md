@@ -5,7 +5,7 @@ argument-hint: "What will the next session be used for?"
 disable-model-invocation: true
 ---
 
-Write a handoff document summarising the current conversation so a fresh agent can continue the work. Save to the temporary directory of the user's OS - not the current workspace.
+Write a handoff document summarising the current conversation so a fresh agent can continue the work. Save it to `.scratchpad/handoff/<timestamp>-<slug>.md` in the current repo (call the Skill tool with "scratchpad"), where the user can read and edit it before the next session starts. Git ignores the folder, so it never lands in a commit. Give the user its absolute path, which works from any folder or harness.
 
 Include a "suggested skills" section in the document, naming which skills the next agent should call the Skill tool for.
 

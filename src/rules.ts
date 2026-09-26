@@ -77,6 +77,12 @@ const rules: ReadonlyArray<Rule> = [
     ],
   },
   {
+    // Matt Pocock's local-markdown issue tracker folder. `.scratch/` would read as
+    // temporary files, which live in `.scratchpad/` here (the scratchpad skill).
+    name: "issuesFolder",
+    rewrites: [[/\.scratch\//gu, ".issues/"]],
+  },
+  {
     // Cursor's project and user skill folders; `.agents/skills/` is the shared one.
     name: "skillsFolder",
     rewrites: [[/\.cursor\/skills\//gu, ".agents/skills/"]],

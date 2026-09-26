@@ -60,6 +60,16 @@ const cases: ReadonlyArray<readonly [string, string, string]> = [
     "- Short call chains. If tracing the flow needs more than three files, flatten the hierarchy, per the **laziness-protocol** and **minimize-reader-load** principles from the principles skill.\n",
   ],
   [
+    "issuesFolder",
+    "- Implementation issues are one file per ticket at `.scratch/<feature-slug>/issues/<NN>-<slug>.md`, numbered from `01`, never a single combined tickets file\n",
+    "- Implementation issues are one file per ticket at `.issues/<feature-slug>/issues/<NN>-<slug>.md`, numbered from `01`, never a single combined tickets file\n",
+  ],
+  [
+    "issuesFolder",
+    "3. A spec file under `docs/`, `specs/`, or `.scratch/` matching the branch name or feature.\n",
+    "3. A spec file under `docs/`, `specs/`, or `.issues/` matching the branch name or feature.\n",
+  ],
+  [
     "skillsFolder",
     "the project-local skill whose body has launch/drive sections and a feature map (usually `.cursor/skills/verify-*/`).\n",
     "the project-local skill whose body has launch/drive sections and a feature map (usually `.agents/skills/verify-*/`).\n",
