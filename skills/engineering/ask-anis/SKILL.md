@@ -162,8 +162,7 @@ Skills distilled from our own work. Most are model-invoked: the agent reaches fo
 
 ### Productivity
 
-- **`/technical-pdf`** writes and visually checks a technical PDF (report, spec, runbook, proposal) in Typst.
-- **`/typst-quote`** builds a client quote in Typst where rates and days are variables and every price is computed.
+- **`/technical-pdf`** writes and visually checks a technical PDF (report, spec, runbook, proposal) in Typst, including client quotes whose prices compute from a day rate.
 - **`/scratchpad`** keeps throwaway probes, drafts and captured output in a gitignored `.scratchpad/` folder.
 - **`/checkbox-picker`** builds a local checkbox picker for bulk keep/delete decisions over dozens of items, then carries them out.
 - **`/youtube-video-to-skill`** turns a YouTube tutorial into a skill with exact frames matched to each concept (beta).

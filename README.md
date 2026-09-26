@@ -119,7 +119,6 @@ Add `-g` to install into your user folder instead of the current project. Not su
 - [scratchpad](skills/productivity/scratchpad/SKILL.md): Throwaway work in a gitignored folder
 - [technical-pdf](skills/productivity/technical-pdf/SKILL.md): Typst technical PDFs with verified layout
 - [trademark-search](skills/productivity/trademark-search/SKILL.md): Search trademark registers through TMview
-- [typst-quote](skills/productivity/typst-quote/SKILL.md): Client quotes in Typst with computed prices
 - [unslop](skills/productivity/unslop/SKILL.md): Cut AI tells from any writing.
 - [vscode-theme-to-zed](skills/productivity/vscode-theme-to-zed/SKILL.md): Port a VS Code color theme to Zed
 - [writing-for-agents](skills/productivity/writing-for-agents/SKILL.md): Write documents agents consume

@@ -855,11 +855,6 @@
     "mode": "ours"
   },
   {
-    "name": "typst-quote",
-    "bucket": "productivity",
-    "mode": "ours"
-  },
-  {
     "name": "vscode-theme-to-zed",
     "bucket": "productivity",
     "mode": "ours"

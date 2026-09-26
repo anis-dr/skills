@@ -1,12 +1,16 @@
 ---
 name: technical-pdf
-description: "Write and visually verify a technical PDF (report, spec, design review, runbook, proposal, investigation write-up) in Typst using the established serif Metropole report style, with evidence-backed diagrams, tables and recommendations. Use when the user wants a technical document delivered as a PDF."
+description: "Write and visually verify a technical PDF (report, spec, design review, runbook, proposal, investigation write-up) in Typst using the established serif Metropole report style, with evidence-backed diagrams, tables and recommendations. Use when the user wants a technical document delivered as a PDF, or a client quote, estimate or commercial proposal whose prices compute from a day rate and a module list."
 ---
 
 
 # Technical PDFs
 
 Create a clear technical PDF in Typst (a report, spec, design review, runbook or proposal; this skill calls all of them a report) that helps its audience understand evidence, make a decision, or take the next action. Synthesize the work instead of copying a conversation chronologically.
+
+## Client quotes
+
+A quote, estimate or commercial proposal is a report whose prices compute themselves: read [the client-quote branch](references/client-quote.md) for its data model, pricing tables and content checklist, then follow the workflow below.
 
 ## Visual baseline
 
