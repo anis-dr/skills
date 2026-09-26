@@ -9,31 +9,47 @@ const Bucket = Schema.Literals([
   "in-progress",
 ]);
 
+const Commit = Schema.String.check(Schema.isPattern(/^[0-9a-f]{40}$/u));
+
+// Field order is the key order `writeSources` writes to upstream/sources.json.
+
 // An upstream copy that sync writes (CONVENTIONS.md, "Layout and ownership").
 export class VendorEntry extends Schema.Class<VendorEntry>("VendorEntry")({
-  bucket: Bucket,
-  // Full SHA: git fetches a pinned commit only by its full id.
-  commit: Schema.String.check(Schema.isPattern(/^[0-9a-f]{40}$/u)),
-  // Makes a skill that upstream marks user-invoked model-invoked.
-  invocation: Schema.optionalKey(Schema.Literal("model")),
-  mode: Schema.Literal("vendor"),
   name: Schema.String,
-  // Folder inside the upstream repo.
-  path: Schema.String,
+  bucket: Bucket,
+  mode: Schema.Literal("vendor"),
+  // Makes a skill that upstream marks user-invoked model-invoked.
+  invocation: Schema.optional(Schema.Literal("model")),
   // Git remote URL or local path.
   source: Schema.String,
+  // Folder inside the upstream repo.
+  path: Schema.String,
+  // Full SHA: git fetches a pinned commit only by its full id.
+  commit: Commit,
 }) {
   // "<bucket>/<name>", the skill's folder under skills/.
   get skill() {
     return `${this.bucket}/${this.name}`;
   }
+
+  withCommit(commit: string) {
+    return new VendorEntry({
+      bucket: this.bucket,
+      commit,
+      invocation: this.invocation,
+      mode: this.mode,
+      name: this.name,
+      path: this.path,
+      source: this.source,
+    });
+  }
 }
 
 // A skill with no upstream; its folder is the source.
 export class OursEntry extends Schema.Class<OursEntry>("OursEntry")({
+  name: Schema.String,
   bucket: Bucket,
   mode: Schema.Literal("ours"),
-  name: Schema.String,
 }) {
   get skill() {
     return `${this.bucket}/${this.name}`;
@@ -43,12 +59,12 @@ export class OursEntry extends Schema.Class<OursEntry>("OursEntry")({
 // Our text, based on an upstream skill at `commit`. sync leaves the folder alone;
 // upstream changes since `commit` are ported by review.
 export class ForkEntry extends Schema.Class<ForkEntry>("ForkEntry")({
-  bucket: Bucket,
-  commit: Schema.String.check(Schema.isPattern(/^[0-9a-f]{40}$/u)),
-  mode: Schema.Literal("fork"),
   name: Schema.String,
-  path: Schema.String,
+  bucket: Bucket,
+  mode: Schema.Literal("fork"),
   source: Schema.String,
+  path: Schema.String,
+  commit: Commit,
 }) {
   get skill() {
     return `${this.bucket}/${this.name}`;
@@ -60,30 +76,41 @@ export class ForkEntry extends Schema.Class<ForkEntry>("ForkEntry")({
 export class ReferenceEntry extends Schema.Class<ReferenceEntry>(
   "ReferenceEntry"
 )({
+  name: Schema.String,
   bucket: Bucket,
-  commit: Schema.String.check(Schema.isPattern(/^[0-9a-f]{40}$/u)),
+  mode: Schema.Literal("reference"),
   // The skill that indexes the file.
   into: Schema.String,
-  mode: Schema.Literal("reference"),
-  name: Schema.String,
+  source: Schema.String,
   // File inside the upstream repo.
   path: Schema.String,
-  source: Schema.String,
+  commit: Commit,
 }) {
   // The owning skill's folder, "<bucket>/<into>".
   get skill() {
     return `${this.bucket}/${this.into}`;
+  }
+
+  withCommit(commit: string) {
+    return new ReferenceEntry({
+      bucket: this.bucket,
+      commit,
+      into: this.into,
+      mode: this.mode,
+      name: this.name,
+      path: this.path,
+      source: this.source,
+    });
   }
 }
 
 // One entry of upstream/sources.json.
 export type SourceEntry = ForkEntry | OursEntry | ReferenceEntry | VendorEntry;
 
-const Sources = Schema.fromJsonString(
-  Schema.Array(
-    Schema.Union([VendorEntry, ForkEntry, OursEntry, ReferenceEntry])
-  )
+const Entries = Schema.Array(
+  Schema.Union([VendorEntry, ForkEntry, OursEntry, ReferenceEntry])
 );
+const Sources = Schema.fromJsonString(Entries, { space: 2 });
 
 // A regex (matched case-insensitively) that no file under skills/ may contain.
 export class BannedTerm extends Schema.Class<BannedTerm>("BannedTerm")({
@@ -111,6 +138,14 @@ export class SkillTree extends Context.Service<
       ReadonlyArray<SourceEntry>,
       PlatformError | Schema.SchemaError
     >;
+    // Rewrites upstream/sources.json, two-space indented, keys in field order.
+    readonly writeSources: (
+      entries: ReadonlyArray<SourceEntry>
+    ) => Effect.Effect<void, PlatformError | Schema.SchemaError>;
+    // Writes upstream/DRIFT.md.
+    readonly writeDrift: (
+      markdown: string
+    ) => Effect.Effect<void, PlatformError>;
     // Replaces a folder under skills/ ("<bucket>/<name>", or a subfolder of it) with a copy of `from`.
     readonly writeFolder: (
       folder: string,
@@ -147,6 +182,18 @@ export class SkillTree extends Context.Service<
           );
           return yield* Schema.decodeEffect(Sources)(text);
         }).pipe(Effect.withSpan("SkillTree.readSources"));
+
+        const writeSources = Effect.fn("SkillTree.writeSources")(function* (
+          entries: ReadonlyArray<SourceEntry>
+        ) {
+          yield* fs.writeFileString(
+            path.join(root, "upstream", "sources.json"),
+            `${yield* Schema.encodeEffect(Sources)(entries)}\n`
+          );
+        });
+
+        const writeDrift = (markdown: string) =>
+          fs.writeFileString(path.join(root, "upstream", "DRIFT.md"), markdown);
 
         const writeFolder = Effect.fn("SkillTree.writeFolder")(function* (
           folder: string,
@@ -229,6 +276,8 @@ export class SkillTree extends Context.Service<
           readBannedTerms,
           readSkillFiles,
           readSources,
+          writeDrift,
+          writeSources,
           skillDir: (skill) => path.join(skillsDir, skill),
           writeFolder,
         });

@@ -1,4 +1,5 @@
 import { Effect, FileSystem, Layer, Path, Schema, Stream } from "effect";
+import type { Scope } from "effect";
 import * as Context from "effect/Context";
 import { ChildProcess, ChildProcessSpawner } from "effect/unstable/process";
 
@@ -53,6 +54,25 @@ export class Upstream extends Context.Service<
       source: string,
       commit: string
     ) => Effect.Effect<string, UpstreamFetchError>;
+    // The upstream's current HEAD commit.
+    readonly head: (
+      source: string
+    ) => Effect.Effect<string, UpstreamFetchError>;
+    // [sha, subject] of every commit after `from`, up to HEAD, that touches `path`, newest first.
+    readonly commitsSince: (
+      source: string,
+      from: string,
+      path: string
+    ) => Effect.Effect<
+      ReadonlyArray<readonly [string, string]>,
+      UpstreamFetchError
+    >;
+    // `git diff --stat` of `path` from `from` to HEAD.
+    readonly diffStat: (
+      source: string,
+      from: string,
+      path: string
+    ) => Effect.Effect<string, UpstreamFetchError>;
   }
 >()("skills/Upstream") {
   static readonly layer = (cacheDir: string) =>
@@ -62,13 +82,38 @@ export class Upstream extends Context.Service<
         const fs = yield* FileSystem.FileSystem;
         const path = yield* Path.Path;
         const spawner = yield* ChildProcessSpawner.ChildProcessSpawner;
+        const slug = (source: string) =>
+          source
+            .replace(/^[a-z]+:\/\//u, "")
+            .replaceAll(/[^A-Za-z0-9]+/gu, "-");
+        const failWith =
+          (source: string, commit: string) =>
+          <A, E extends { readonly message: string }>(
+            effect: Effect.Effect<
+              A,
+              E,
+              ChildProcessSpawner.ChildProcessSpawner | Scope.Scope
+            >
+          ) =>
+            effect.pipe(
+              Effect.scoped,
+              Effect.provideService(
+                ChildProcessSpawner.ChildProcessSpawner,
+                spawner
+              ),
+              Effect.mapError(
+                (error) =>
+                  new UpstreamFetchError({
+                    commit,
+                    reason: error.message,
+                    source,
+                  })
+              )
+            );
 
         const fetchPinned = Effect.fn("Upstream.fetchPinned")(
           function* (source: string, commit: string) {
-            const slug = source
-              .replace(/^[a-z]+:\/\//u, "")
-              .replaceAll(/[^A-Za-z0-9]+/gu, "-");
-            const checkout = path.join(cacheDir, `${slug}@${commit}`);
+            const checkout = path.join(cacheDir, `${slug(source)}@${commit}`);
             if (yield* fs.exists(checkout)) {
               return checkout;
             }
@@ -86,25 +131,79 @@ export class Upstream extends Context.Service<
             yield* fs.rename(temp, checkout);
             return checkout;
           },
-          (effect, source, commit) =>
-            effect.pipe(
-              Effect.scoped,
-              Effect.provideService(
-                ChildProcessSpawner.ChildProcessSpawner,
-                spawner
-              ),
-              Effect.mapError(
-                (error) =>
-                  new UpstreamFetchError({
-                    commit,
-                    reason: error.message,
-                    source,
-                  })
-              )
-            )
+          (effect, source, commit) => failWith(source, commit)(effect)
         );
 
-        return Upstream.of({ fetchPinned });
+        // A blobless mirror with full history, fetched once per run.
+        const fetched = new Set<string>();
+        const mirror = Effect.fn("Upstream.mirror")(function* (source: string) {
+          const dir = path.resolve(cacheDir, `${slug(source)}.git`);
+          if (fetched.has(source)) {
+            return dir;
+          }
+          if (yield* fs.exists(dir)) {
+            yield* git(dir, ["fetch", "-q", "--prune", "origin"]);
+          } else {
+            yield* fs.makeDirectory(cacheDir, { recursive: true });
+            yield* git(cacheDir, [
+              "clone",
+              "-q",
+              "--mirror",
+              "--filter=blob:none",
+              source,
+              dir,
+            ]);
+          }
+          fetched.add(source);
+          return dir;
+        });
+
+        const head = Effect.fn("Upstream.head")(
+          function* (source: string) {
+            const out = yield* git(yield* mirror(source), [
+              "rev-parse",
+              "HEAD",
+            ]);
+            return out.trim();
+          },
+          (effect, source) => failWith(source, "HEAD")(effect)
+        );
+
+        const commitsSince = Effect.fn("Upstream.commitsSince")(
+          function* (source: string, from: string, dir: string) {
+            const out = yield* git(yield* mirror(source), [
+              "log",
+              "--format=%H%x09%s",
+              `${from}..HEAD`,
+              "--",
+              dir,
+            ]);
+            return out
+              .split("\n")
+              .filter((line) => line !== "")
+              .map((line): readonly [string, string] => [
+                line.slice(0, line.indexOf("\t")),
+                line.slice(line.indexOf("\t") + 1),
+              ]);
+          },
+          (effect, source, from) => failWith(source, from)(effect)
+        );
+
+        const diffStat = Effect.fn("Upstream.diffStat")(
+          function* (source: string, from: string, dir: string) {
+            return yield* git(yield* mirror(source), [
+              "diff",
+              "--stat",
+              from,
+              "HEAD",
+              "--",
+              dir,
+            ]);
+          },
+          (effect, source, from) => failWith(source, from)(effect)
+        );
+
+        return Upstream.of({ commitsSince, diffStat, fetchPinned, head });
       })
     );
 }

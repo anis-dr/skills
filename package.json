@@ -6,8 +6,8 @@
   "scripts": {
     "format": "oxfmt --check .",
     "format:fix": "oxfmt .",
-    "lint": "ultracite check --type-aware .",
-    "lint:fix": "ultracite fix --type-aware .",
+    "lint": "ultracite check --type-aware --disable-nested-config .",
+    "lint:fix": "ultracite fix --type-aware --disable-nested-config .",
     "prepare": "effect-tsgo patch",
     "skills": "bun src/cli.ts",
     "test": "vitest run",

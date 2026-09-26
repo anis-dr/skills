@@ -1,9 +1,10 @@
 import * as BunRuntime from "@effect/platform-bun/BunRuntime";
 import * as BunServices from "@effect/platform-bun/BunServices";
 import { Console, Effect, Layer, Schema } from "effect";
-import { Argument, Command } from "effect/unstable/cli";
+import { Argument, Command, Flag } from "effect/unstable/cli";
 
 import { check } from "./check.ts";
+import { findDrift, renderDrift, updatePins } from "./drift.ts";
 import { SkillTree } from "./SkillTree.ts";
 import { writePatch, sync } from "./sync.ts";
 import { Upstream } from "./Upstream.ts";
@@ -32,15 +33,44 @@ class UnknownSkill extends Schema.TaggedError<UnknownSkill>()("UnknownSkill", {
   }
 }
 
-const syncCommand = Command.make("sync", {}, () =>
-  Effect.gen(function* () {
-    const entries = yield* (yield* SkillTree).readSources;
-    const deadRules = yield* sync(entries);
-    yield* Console.log(`synced ${entries.length} sources.json entries`);
-    if (deadRules.length > 0) {
-      return yield* new DeadRules({ rules: deadRules });
-    }
-  })
+const syncCommand = Command.make(
+  "sync",
+  {
+    report: Flag.Boolean("report").pipe(
+      Flag.withDefault(false),
+      Flag.withDescription(
+        "Only write upstream/DRIFT.md: upstream commits after each pin that touch the skill"
+      )
+    ),
+    update: Flag.Boolean("update").pipe(
+      Flag.withDefault(false),
+      Flag.withDescription(
+        "Write upstream/DRIFT.md, move drifted vendored skills and references to upstream HEAD, then sync"
+      )
+    ),
+  },
+  ({ report, update }) =>
+    Effect.gen(function* () {
+      const tree = yield* SkillTree;
+      let entries = yield* tree.readSources;
+      if (report || update) {
+        const drift = yield* findDrift(entries);
+        yield* tree.writeDrift(renderDrift(drift));
+        yield* Console.log(
+          `wrote upstream/DRIFT.md: ${drift.length} entries drifted`
+        );
+        if (report) {
+          return;
+        }
+        entries = updatePins(entries, drift);
+        yield* tree.writeSources(entries);
+      }
+      const deadRules = yield* sync(entries);
+      yield* Console.log(`synced ${entries.length} sources.json entries`);
+      if (deadRules.length > 0) {
+        return yield* new DeadRules({ rules: deadRules });
+      }
+    })
 ).pipe(
   Command.withDescription(
     "Write every vendored skill in upstream/sources.json from its pinned upstream commit"
