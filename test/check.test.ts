@@ -298,3 +298,73 @@ layer(rootLayer)("check on the ask-anis router", (it) => {
       })
   );
 });
+
+const readmeTree: Files = [
+  publicTerms,
+  privateTerms,
+  ...skill(
+    "alpha",
+    "name: alpha\ndescription: Use when alpha things happen. Longer detail.\n",
+    "Body.\n",
+    'interface:\n  display_name: "Alpha"\n  short_description: "Does alpha"\n'
+  ),
+  ...skill(
+    "beta",
+    "name: beta\ndescription: Typed by a human. More detail.\ndisable-model-invocation: true\n",
+    "Body.\n",
+    userPolicy
+  ),
+];
+
+const readmeEntries = ["alpha", "beta"].map(
+  (name) => new OursEntry({ bucket: "engineering", mode: "ours", name })
+);
+
+const currentReadme = `# Skills
+
+<!-- skills:start -->
+### Engineering
+
+**User-invoked**
+
+- [beta](skills/engineering/beta/SKILL.md): Typed by a human.
+
+**Model-invoked**
+
+- [alpha](skills/engineering/alpha/SKILL.md): Does alpha
+
+<!-- skills:end -->
+
+Footer.
+`;
+
+layer(rootLayer)(
+  "check on a README whose skill list matches the tree",
+  (it) => {
+    it.effect("reports nothing", () =>
+      Effect.gen(function* () {
+        yield* writeFiles([...readmeTree, ["README.md", currentReadme]]);
+
+        assert.deepStrictEqual(yield* check(readmeEntries), []);
+      })
+    );
+  }
+);
+
+layer(rootLayer)("check on a README with a stale skill list", (it) => {
+  it.effect("reports the README", () =>
+    Effect.gen(function* () {
+      yield* writeFiles([
+        ...readmeTree,
+        ["README.md", currentReadme.replace("Does alpha", "Did alpha once")],
+      ]);
+
+      const findings = yield* check(readmeEntries);
+
+      assert.deepStrictEqual(
+        findings.map(({ rule, skill }) => [skill, rule]),
+        [["README.md", "readme"]]
+      );
+    })
+  );
+});

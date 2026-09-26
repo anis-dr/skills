@@ -1,4 +1,4 @@
-import { Effect, FileSystem, Layer, Path, Schema } from "effect";
+import { Effect, FileSystem, Layer, Option, Path, Schema } from "effect";
 import * as Context from "effect/Context";
 import type { PlatformError } from "effect/PlatformError";
 
@@ -142,9 +142,13 @@ export class SkillTree extends Context.Service<
     readonly writeSources: (
       entries: ReadonlyArray<SourceEntry>
     ) => Effect.Effect<void, PlatformError | Schema.SchemaError>;
-    // Writes upstream/DRIFT.md.
-    readonly writeDrift: (
-      markdown: string
+    // A text file relative to the repo root (README.md, upstream/DRIFT.md), if it exists.
+    readonly readText: (
+      file: string
+    ) => Effect.Effect<Option.Option<string>, PlatformError>;
+    readonly writeText: (
+      file: string,
+      text: string
     ) => Effect.Effect<void, PlatformError>;
     // Replaces a folder under skills/ ("<bucket>/<name>", or a subfolder of it) with a copy of `from`.
     readonly writeFolder: (
@@ -192,8 +196,18 @@ export class SkillTree extends Context.Service<
           );
         });
 
-        const writeDrift = (markdown: string) =>
-          fs.writeFileString(path.join(root, "upstream", "DRIFT.md"), markdown);
+        const readText = Effect.fn("SkillTree.readText")(function* (
+          file: string
+        ) {
+          const full = path.join(root, file);
+          if (!(yield* fs.exists(full))) {
+            return Option.none<string>();
+          }
+          return Option.some(yield* fs.readFileString(full));
+        });
+
+        const writeText = (file: string, text: string) =>
+          fs.writeFileString(path.join(root, file), text);
 
         const writeFolder = Effect.fn("SkillTree.writeFolder")(function* (
           folder: string,
@@ -276,7 +290,8 @@ export class SkillTree extends Context.Service<
           readBannedTerms,
           readSkillFiles,
           readSources,
-          writeDrift,
+          readText,
+          writeText,
           writeSources,
           skillDir: (skill) => path.join(skillsDir, skill),
           writeFolder,

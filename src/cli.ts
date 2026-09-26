@@ -1,10 +1,11 @@
 import * as BunRuntime from "@effect/platform-bun/BunRuntime";
 import * as BunServices from "@effect/platform-bun/BunServices";
-import { Console, Effect, Layer, Schema } from "effect";
+import { Console, Effect, Layer, Option, Schema } from "effect";
 import { Argument, Command, Flag } from "effect/unstable/cli";
 
-import { check } from "./check.ts";
+import { check, loadSkills, summarize } from "./check.ts";
 import { findDrift, renderDrift, updatePins } from "./drift.ts";
+import { renderSkillList, withSkillList } from "./readme.ts";
 import { SkillTree } from "./SkillTree.ts";
 import { writePatch, sync } from "./sync.ts";
 import { Upstream } from "./Upstream.ts";
@@ -55,7 +56,7 @@ const syncCommand = Command.make(
       let entries = yield* tree.readSources;
       if (report || update) {
         const drift = yield* findDrift(entries);
-        yield* tree.writeDrift(renderDrift(drift));
+        yield* tree.writeText("upstream/DRIFT.md", renderDrift(drift));
         yield* Console.log(
           `wrote upstream/DRIFT.md: ${drift.length} entries drifted`
         );
@@ -116,12 +117,36 @@ const checkCommand = Command.make("check", {}, () =>
   })
 ).pipe(
   Command.withDescription(
-    "Report skill folders and sources.json entries that disagree"
+    "Check skill folders, sources.json, invocation, skill calls, banned terms, the router and README.md"
+  )
+);
+
+const readmeCommand = Command.make("readme", {}, () =>
+  Effect.gen(function* () {
+    const tree = yield* SkillTree;
+    const readme = Option.getOrElse(
+      yield* tree.readText("README.md"),
+      () => ""
+    );
+    yield* tree.writeText(
+      "README.md",
+      withSkillList(readme, renderSkillList(summarize(yield* loadSkills)))
+    );
+    yield* Console.log("wrote the skill list in README.md");
+  })
+).pipe(
+  Command.withDescription(
+    "Regenerate the skill list in README.md from the skill folders"
   )
 );
 
 const app = Command.make("skills").pipe(
-  Command.withSubcommands([syncCommand, checkCommand, patchCommand])
+  Command.withSubcommands([
+    syncCommand,
+    checkCommand,
+    patchCommand,
+    readmeCommand,
+  ])
 );
 
 // `bun run skills` runs from the repo root.

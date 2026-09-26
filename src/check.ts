@@ -1,6 +1,8 @@
-import { Effect, Result, Schema } from "effect";
+import { Effect, Option, Result, Schema } from "effect";
 import { parse } from "yaml";
 
+import type { SkillSummary } from "./readme.ts";
+import { renderSkillList, skillListOf } from "./readme.ts";
 import type { BannedTerm, SourceEntry } from "./SkillTree.ts";
 import { SkillTree } from "./SkillTree.ts";
 
@@ -14,6 +16,7 @@ export interface Finding {
     | "invocation"
     | "missing-folder"
     | "orphan-folder"
+    | "readme"
     | "reference-index"
     | "router"
     | "skill-call";
@@ -28,6 +31,9 @@ const Frontmatter = Schema.Struct({
 });
 
 const CodexMetadata = Schema.Struct({
+  interface: Schema.optionalKey(
+    Schema.Struct({ short_description: Schema.optionalKey(Schema.String) })
+  ),
   policy: Schema.optionalKey(
     Schema.Struct({
       allow_implicit_invocation: Schema.optionalKey(Schema.Boolean),
@@ -162,6 +168,26 @@ function routerFindings(
   ];
 }
 
+// README.md, when present, carries the generated skill list unchanged.
+function readmeFindings(
+  readme: Option.Option<string>,
+  skillList: string
+): Array<Finding> {
+  if (
+    Option.isNone(readme) ||
+    Option.exists(skillListOf(readme.value), (current) => current === skillList)
+  ) {
+    return [];
+  }
+  return [
+    finding(
+      "readme",
+      "README.md",
+      "the skill list is stale: run `bun run skills readme`"
+    ),
+  ];
+}
+
 function frontmatterFindings({
   frontmatter,
   name,
@@ -288,13 +314,10 @@ function bannedTermFindings(
 }
 
 // Findings sorted by skill, then rule; the CLI exits 1 when there is any.
-export const check = Effect.fn("check")(function* (
-  entries: ReadonlyArray<SourceEntry>
-) {
+// Every skill folder under skills/ with its files and parsed frontmatter.
+export const loadSkills = Effect.gen(function* () {
   const tree = yield* SkillTree;
-  const folders = yield* tree.listSkills;
-  const terms = yield* tree.readBannedTerms;
-  const skills = yield* Effect.forEach(folders, (skill) =>
+  return yield* Effect.forEach(yield* tree.listSkills, (skill) =>
     Effect.map(tree.readSkillFiles(skill), (files): LoadedSkill => ({
       files,
       frontmatter: readFrontmatter(files),
@@ -302,6 +325,46 @@ export const check = Effect.fn("check")(function* (
       skill,
     }))
   );
+}).pipe(Effect.withSpan("loadSkills"));
+
+// The README line of each skill with valid frontmatter: its Codex short
+// description, else the first sentence of its description.
+export const summarize = (skills: ReadonlyArray<LoadedSkill>) => {
+  const summaries: Array<SkillSummary> = [];
+  for (const { files, frontmatter, name, skill } of skills) {
+    if (Result.isSuccess(frontmatter)) {
+      const codex = decodeYaml(
+        CodexMetadata,
+        files.find(([file]) => file === "agents/openai.yaml")?.[1] ?? ""
+      );
+      const { description } = frontmatter.success;
+      const summary = Result.getSuccess(codex).pipe(
+        Option.flatMap((metadata) =>
+          Option.fromNullishOr(metadata.interface?.short_description)
+        ),
+        Option.getOrElse(
+          () => /^.*?\.(?=\s|$)/u.exec(description)?.[0] ?? description
+        )
+      );
+      summaries.push({
+        bucket: skill.slice(0, skill.indexOf("/")),
+        name,
+        summary,
+        userInvoked: frontmatter.success["disable-model-invocation"] === true,
+      });
+    }
+  }
+  return summaries;
+};
+
+export const check = Effect.fn("check")(function* (
+  entries: ReadonlyArray<SourceEntry>
+) {
+  const tree = yield* SkillTree;
+  const folders = yield* tree.listSkills;
+  const terms = yield* tree.readBannedTerms;
+  const skills = yield* loadSkills;
+  const readme = yield* tree.readText("README.md");
   const repoSkills = new Set(skills.map((each) => each.name));
   const userInvoked = new Set(
     skills
@@ -318,6 +381,7 @@ export const check = Effect.fn("check")(function* (
       .map((entry) => entry.skill)
   );
   const findings = [
+    ...readmeFindings(readme, renderSkillList(summarize(skills))),
     ...sourcesFindings(entries, folders),
     ...skills
       .filter((each) => indexes.has(each.skill))
