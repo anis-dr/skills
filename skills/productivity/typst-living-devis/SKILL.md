@@ -34,7 +34,7 @@ Phase table generated from data:
   let rows = modules.filter(m => m.phase == p)
   table(columns: (1fr, auto, auto),
     table.header[Module][Jours][Montant HT],
-    ..rows.map(m => ([#m.nom], align(right)[#m.jours], align(right)[#tnd(m.jours * taux-jour)])).flatten(),
+    ..rows.map(m => ([#m.nom], align(right)[#m.jours], align(right)[#money(m.jours * taux-jour)])).flatten(),
   )
 }
 ```
