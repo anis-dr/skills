@@ -84,9 +84,9 @@ Add `-g` to install into your user folder instead of the current project. Not su
 - [setup-effect-toolchain](skills/engineering/setup-effect-toolchain/SKILL.md): Set up tsgo, Oxlint and oxfmt for Effect repos
 - [spec-port-diverged-branch](skills/engineering/spec-port-diverged-branch/SKILL.md): Port a commit across diverged branches as a spec
 - [stacked-prs](skills/engineering/stacked-prs/SKILL.md): Create, verify and unblock GitHub stacked PRs
-- [system-flow-plan](skills/engineering/system-flow-plan/SKILL.md): Executor-ready plans as flows, not pasted code
 - [tanstack-start-middleware](skills/engineering/tanstack-start-middleware/SKILL.md): Server-only imports in TanStack Start middleware
 - [tdd](skills/engineering/tdd/SKILL.md): Test-driven red-green-refactor
+- [to-plan](skills/engineering/to-plan/SKILL.md): Executor-ready plans as flows, not pasted code
 - [transcripts](skills/engineering/transcripts/SKILL.md): Find session transcripts per harness
 - [typescript-best-practices](skills/engineering/typescript-best-practices/SKILL.md): TypeScript best practices.
 - [verify-api-shape](skills/engineering/verify-api-shape/SKILL.md): Check live API responses before trusting fixtures

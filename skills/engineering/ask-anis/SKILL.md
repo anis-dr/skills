@@ -150,7 +150,7 @@ Skills distilled from our own work. Most are model-invoked: the agent reaches fo
 
 ### Planning and checks
 
-- **`/system-flow-plan`** writes plans another agent can execute: flows, call trees and behaviour assertions instead of pasted code.
+- **`/to-plan`** writes plans another agent can execute: flows, call trees and behaviour assertions instead of pasted code.
 - **`/avoid-feature-creep`** keeps scope tight while planning features, MVPs and backlogs.
 - **`/verify-api-shape`** checks a third-party API's live response shape before trusting fixtures or claims about it.
 - **`/wayfinder-reversal`** records a decision that reverses a closed wayfinder ticket and gets the map ready for `/to-spec`.

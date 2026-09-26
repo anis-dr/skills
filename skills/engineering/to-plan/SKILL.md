@@ -1,9 +1,9 @@
 ---
-name: system-flow-plan
+name: to-plan
 description: Use when writing implementation plans, architecture plans, refactor plans, task breakdowns, roadmap steps, or any plan that another agent or a future session will execute.
 ---
 
-# System flow plan
+# To plan
 
 Write plans as executable understanding, not executable code. A good plan shows flows, boundaries, composition, and call trees so the executor extends the existing system instead of copying new code into it.
 
