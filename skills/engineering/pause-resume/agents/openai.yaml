@@ -1,0 +1,3 @@
+interface:
+  display_name: "Pause Resume"
+  short_description: "Pause work safely or pick up a prior session"

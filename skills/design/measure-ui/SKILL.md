@@ -1,6 +1,6 @@
 ---
 name: measure-ui
-description: "Prove UI fidelity and interaction behaviour by measuring computed styles, rects and hit tests in a live browser instead of trusting screenshots. Use when matching a build against its design reference, when debugging layout, overflow, dropdown, animation or Tailwind-variant bugs, or before claiming a hover, focus, overlay, drawer or animation change works."
+description: "Prove UI fidelity and interaction behaviour by measuring computed styles, rects and hit tests in a live browser instead of trusting screenshots. Use when matching a build against its design reference, when debugging layout, overflow, dropdown, animation or Tailwind-variant bugs, before claiming a hover, focus, overlay, drawer or animation change works, or when a migration or reimplementation must stay pixel-identical to a baseline."
 ---
 
 # Measure UI
@@ -11,6 +11,7 @@ Screenshots produce confident wrong conclusions, both false passes and false fai
 
 - [Fidelity](references/fidelity.md): you have a design reference (a mockup, a design file, or your own earlier build) and an implementation, and need to prove they match or find why they differ.
 - [Interaction states](references/interaction-states.md): a dropdown, overlay, drawer or CSS animation looks broken, or you are about to claim an interactive change works.
+- [Visual parity](references/visual-parity.md): a styling-system migration or a reimplementation must not move a pixel; a frozen screenshot baseline and a zero image diff decide.
 
 Matching a design usually needs both: fidelity for the static layout, then interaction states for every menu and animation.
 

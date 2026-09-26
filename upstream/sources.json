@@ -301,6 +301,7 @@
     "name": "show-me-your-work",
     "bucket": "engineering",
     "mode": "vendor",
+    "invocation": "model",
     "source": "https://github.com/cursor/plugins",
     "path": "pstack/skills/show-me-your-work",
     "commit": "ecc249f1e306fc64ddf83c7bed16cacf7c2239db"
@@ -637,6 +638,60 @@
     "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
   },
   {
+    "name": "babysit",
+    "bucket": "engineering",
+    "mode": "fork",
+    "source": "https://github.com/cursor/plugins",
+    "path": [
+      "pstack/skills/poteto-mode/playbooks/babysit.md",
+      "pstack/skills/poteto-mode/playbooks/shipping.md",
+      "pstack/skills/poteto-mode/references/bugbot-triage.md",
+      "pstack/skills/poteto-mode/scripts/watch-pr",
+      "pstack/skills/poteto-mode/scripts/bootstrap.ts",
+      "pstack/skills/poteto-mode/scripts/package.json",
+      "pstack/skills/poteto-mode/scripts/bun.lock"
+    ],
+    "commit": "ecc249f1e306fc64ddf83c7bed16cacf7c2239db"
+  },
+  {
+    "name": "autonomous-run",
+    "bucket": "engineering",
+    "mode": "fork",
+    "source": "https://github.com/cursor/plugins",
+    "path": "pstack/skills/poteto-mode/playbooks/autonomous-run.md",
+    "commit": "ecc249f1e306fc64ddf83c7bed16cacf7c2239db"
+  },
+  {
+    "name": "pause-resume",
+    "bucket": "engineering",
+    "mode": "fork",
+    "source": "https://github.com/cursor/plugins",
+    "path": [
+      "pstack/skills/poteto-mode/playbooks/pause-safely.md",
+      "pstack/skills/poteto-mode/playbooks/session-pickup.md"
+    ],
+    "commit": "ecc249f1e306fc64ddf83c7bed16cacf7c2239db"
+  },
+  {
+    "name": "performance",
+    "bucket": "engineering",
+    "mode": "fork",
+    "source": "https://github.com/cursor/plugins",
+    "path": [
+      "pstack/skills/poteto-mode/playbooks/perf-issue.md",
+      "pstack/skills/poteto-mode/playbooks/hillclimb.md"
+    ],
+    "commit": "ecc249f1e306fc64ddf83c7bed16cacf7c2239db"
+  },
+  {
+    "name": "eval",
+    "bucket": "engineering",
+    "mode": "fork",
+    "source": "https://github.com/cursor/plugins",
+    "path": "pstack/skills/poteto-mode/playbooks/eval.md",
+    "commit": "ecc249f1e306fc64ddf83c7bed16cacf7c2239db"
+  },
+  {
     "name": "logo-surface-board",
     "bucket": "design",
     "mode": "ours"
@@ -654,7 +709,10 @@
   {
     "name": "measure-ui",
     "bucket": "design",
-    "mode": "ours"
+    "mode": "fork",
+    "source": "https://github.com/cursor/plugins",
+    "path": "pstack/skills/poteto-mode/playbooks/visual-parity.md",
+    "commit": "ecc249f1e306fc64ddf83c7bed16cacf7c2239db"
   },
   {
     "name": "redesign-inventory",

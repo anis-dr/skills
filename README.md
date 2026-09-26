@@ -35,8 +35,10 @@ Add `-g` to install into your user folder instead of the current project. Not su
 - [arena](skills/engineering/arena/SKILL.md): Spawn N parallel candidates at the same task, pick a base, graft the strongest parts of the losers into it.
 - [ask-anis](skills/engineering/ask-anis/SKILL.md): Find the right skill or workflow
 - [automate-me](skills/engineering/automate-me/SKILL.md): Use for "automate me", "create/update/refresh my -mode skill", "turn/capture my preferences or working style into a skill", or wanting agents to follow how the user works.
+- [babysit](skills/engineering/babysit/SKILL.md): Drive a GitHub PR or stack to merge-ready
 - [blast-radius](skills/engineering/blast-radius/SKILL.md): Find what a change could break somewhere else before it ships, beyond the diff, and prove the one fact it's safe because of by running real code instead of writing it up.
 - [create-verification-skill](skills/engineering/create-verification-skill/SKILL.md): Generate a project-local verification skill that drives your app the way a user does — any language, framework, or platform.
+- [eval](skills/engineering/eval/SKILL.md): Blind test a skill or prompt change across models
 - [grill-with-docs](skills/engineering/grill-with-docs/SKILL.md): Grill a design and write its docs
 - [implement](skills/engineering/implement/SKILL.md): Build work from a spec or tickets
 - [improve-codebase-architecture](skills/engineering/improve-codebase-architecture/SKILL.md): Find and grill architecture improvements
@@ -44,7 +46,6 @@ Add `-g` to install into your user folder instead of the current project. Not su
 - [maintain-verification-skill](skills/engineering/maintain-verification-skill/SKILL.md): Periodic pass that keeps a project's verification skill and feature map honest: parallel source readers per feature, one live session driving every feature, at most one PR of proven corrections.
 - [recall](skills/engineering/recall/SKILL.md): Reconstruct your recent working context from your own chat history, live state, and the shared record (user reports, prior fixes, incidents), then hand back a tight current-state brief.
 - [setup-matt-pocock-skills](skills/engineering/setup-matt-pocock-skills/SKILL.md): Configure a repo for the skills
-- [show-me-your-work](skills/engineering/show-me-your-work/SKILL.md): Keep a reviewable decision trail for long-running or unattended work: a TSV log with one row per decision (what, why, evidence, result).
 - [to-spec](skills/engineering/to-spec/SKILL.md): Turn a conversation into a spec
 - [to-tickets](skills/engineering/to-tickets/SKILL.md): Split a plan into tracer-bullet tickets
 - [triage](skills/engineering/triage/SKILL.md): Move issues through triage roles
@@ -54,6 +55,7 @@ Add `-g` to install into your user folder instead of the current project. Not su
 
 - [agent-sources](skills/engineering/agent-sources/SKILL.md): Read a dependency's source at the installed version
 - [anti-slop-migration](skills/engineering/anti-slop-migration/SKILL.md): Fix anti-slop lint findings without type laundering
+- [autonomous-run](skills/engineering/autonomous-run/SKILL.md): Drive a long task to a checkable exit predicate
 - [avoid-feature-creep](skills/engineering/avoid-feature-creep/SKILL.md): Keep scope tight: MVPs, backlogs, one-more-feature
 - [bun-monorepo](skills/engineering/bun-monorepo/SKILL.md): Bun catalogs, patches and Changesets publishing
 - [code-review](skills/engineering/code-review/SKILL.md): Review a diff on standards and spec
@@ -73,6 +75,8 @@ Add `-g` to install into your user folder instead of the current project. Not su
 - [make-pr-easy-to-review](skills/engineering/make-pr-easy-to-review/SKILL.md): Prepare PRs for review by cleaning noisy history, improving PR descriptions, and adding reviewer guidance without changing code behavior.
 - [orca](skills/engineering/orca/SKILL.md): Verify UI and hand off tickets inside Orca
 - [parallel-branches](skills/engineering/parallel-branches/SKILL.md): Parallel subagents in one worktree to a gh stack
+- [pause-resume](skills/engineering/pause-resume/SKILL.md): Pause work safely or pick up a prior session
+- [performance](skills/engineering/performance/SKILL.md): Trace, fix and hillclimb against a measured baseline
 - [pr-size-breakdown](skills/engineering/pr-size-breakdown/SKILL.md): Honest LOC breakdown for a large GitHub PR
 - [pragmatic-effect](skills/engineering/pragmatic-effect/SKILL.md): Keep Effect code simple and practical
 - [principles](skills/engineering/principles/SKILL.md): Engineering principles, one per decision
@@ -82,6 +86,7 @@ Add `-g` to install into your user folder instead of the current project. Not su
 - [research](skills/engineering/research/SKILL.md): Research from high-trust sources
 - [resolving-merge-conflicts](skills/engineering/resolving-merge-conflicts/SKILL.md): Resolve merge and rebase conflicts
 - [setup-effect-toolchain](skills/engineering/setup-effect-toolchain/SKILL.md): Set up tsgo, Oxlint and oxfmt for Effect repos
+- [show-me-your-work](skills/engineering/show-me-your-work/SKILL.md): Keep a reviewable decision trail for long-running or unattended work: a TSV log with one row per decision (what, why, evidence, result).
 - [spec-port-diverged-branch](skills/engineering/spec-port-diverged-branch/SKILL.md): Port a commit across diverged branches as a spec
 - [stacked-prs](skills/engineering/stacked-prs/SKILL.md): Create, verify and unblock GitHub stacked PRs
 - [tanstack-start-middleware](skills/engineering/tanstack-start-middleware/SKILL.md): Server-only imports in TanStack Start middleware

@@ -11,7 +11,7 @@ Name a skill after its job in one to three words, the way the user would ask for
 Every skill has one entry in `upstream/sources.json`. The entry's `mode` says who owns the text:
 
 - **vendor**: an upstream copy. `bun run skills sync` builds the folder from the pinned upstream commit, then applies the agent-neutral rules in `src/rules.ts`, the entry's `invocation` override, generated `agents/openai.yaml` when upstream ships none, and `upstream/patches/<name>.patch`. A hand edit alone is lost on the next sync: edit the folder, then run `bun run skills patch <name>` to save the edit as the skill's patch. A rewrite that several skills need belongs in `src/rules.ts` instead.
-- **fork**: our text, based on an upstream skill. Upstream changes are ported by review.
+- **fork**: our text, based on upstream text at a pinned commit; `path` lists one upstream path or several. `bun run skills sync --report` reports upstream changes to any of them, and they are ported by review.
 - **ours**: no upstream.
 - **reference**: one upstream file that sync writes into another skill's `references/` folder, frontmatter stripped. That skill's `SKILL.md` links every file in the folder.
 

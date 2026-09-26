@@ -91,17 +91,22 @@ Before you change code you don't know, or when the shape of new code is the hard
 
 - **`/verify-this`** checks one claim with fresh local evidence: baseline, treatment, and a VERIFIED, NOT VERIFIED or INCONCLUSIVE verdict.
 - **`/control-ui`** and **`/control-cli`** build or reuse a local harness that drives a web, IDE or Electron UI, or an interactive CLI, and captures the evidence.
+- **`/performance`** makes code faster against a measured baseline: one traced slowness fixed and proven, or one metric hillclimbed toward a target.
+- **`/eval`** tests how a skill, structure or prompt change affects agent behaviour, with blinded runs on several model families and a blinded judge.
 - **`/create-verification-skill`** writes a project-local skill that drives your app the way a user does; **`/maintain-verification-skill`** keeps that skill and its feature map honest as the app changes.
 
 ## Pull requests
 
 - **`/pr`** writes the PR body (beta).
 - **`/make-pr-easy-to-review`** cleans noisy history, improves the description and adds reviewer guidance without changing behaviour.
+- **`/babysit`** drives a GitHub PR or stack to merge-ready: conflicts, then review threads, then CI, with skeptical review-bot triage. It lands the verified run only when you explicitly ask it to ship.
 - **`/loop-on-ci`** watches the PR's checks and fixes failures until they pass.
 - **`/get-pr-comments`** fetches and summarizes the review comments on the current PR.
 
 ## Long runs and memory
 
+- **`/autonomous-run`** drives a long task to a checkable exit predicate without stopping: the smallest evidence-backed change per iteration, reverts for what did not help, a checkpoint row each time.
+- **`/pause-resume`** pauses work at a safe boundary with a `wip:` commit and a resume note, or picks up one prior session from its transcript, branch or note without redoing it.
 - **`/recall`** rebuilds your recent working context from past chats, live state and the shared record, then hands back a brief. Use it before resuming work after a break.
 - **`/show-me-your-work`** keeps a decision log for long or unattended runs, so a reviewer can trust the result.
 - **`/transcripts`** knows where each harness stores session transcripts. Model-invoked: `/recall`, `/show-me-your-work` and `/automate-me` use it.
@@ -170,7 +175,7 @@ Skills distilled from our own work. Most are model-invoked: the agent reaches fo
 
 - **`/refactoring-ui`** applies the Refactoring UI rules, scales and review checklist when designing or reviewing web UI.
 - **`/design-references`** finds references on Mobbin for the screens, flows or sections you are designing and gives you a catalog to pick from.
-- **`/measure-ui`** proves a build matches its design, a layout fix, or hover, focus and animation behaviour by measuring in a live browser instead of eyeballing screenshots.
+- **`/measure-ui`** proves a build matches its design, a layout fix, hover, focus and animation behaviour, or that a migration stayed pixel-identical by measuring in a live browser instead of eyeballing screenshots.
 - **`/redesign-inventory`** inventories every control before a redesign so none is silently dropped.
 - **`/logo-surface-board`** judges logo candidates on favicon, reversed, app tile and nav surfaces in one HTML board.
 - **`/pen-dev`** designs screens in a pen.dev file with the CLI designer, gates each run to the frames you allowed, and migrates or renames the file's design tokens without breaking overrides.

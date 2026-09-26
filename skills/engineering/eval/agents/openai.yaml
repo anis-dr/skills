@@ -1,0 +1,5 @@
+interface:
+  display_name: "Eval"
+  short_description: "Blind test a skill or prompt change across models"
+policy:
+  allow_implicit_invocation: false

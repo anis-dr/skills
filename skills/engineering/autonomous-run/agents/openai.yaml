@@ -1,0 +1,3 @@
+interface:
+  display_name: "Autonomous Run"
+  short_description: "Drive a long task to a checkable exit predicate"
