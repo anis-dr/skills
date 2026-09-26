@@ -1,0 +1,3 @@
+interface:
+  display_name: "GitHub gh Stack"
+  short_description: "Create and verify official GitHub Stacked PRs"

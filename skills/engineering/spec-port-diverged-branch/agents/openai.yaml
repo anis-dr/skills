@@ -1,0 +1,3 @@
+interface:
+  display_name: "Spec Port Diverged Branch"
+  short_description: "Port a commit across diverged branches as a spec"

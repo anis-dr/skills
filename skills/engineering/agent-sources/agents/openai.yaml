@@ -1,0 +1,3 @@
+interface:
+  display_name: "Agent Sources"
+  short_description: "Read a dependency's source at the installed version"

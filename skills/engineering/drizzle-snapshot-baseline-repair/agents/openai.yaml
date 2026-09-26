@@ -1,0 +1,3 @@
+interface:
+  display_name: "Drizzle Snapshot Baseline Repair"
+  short_description: "Repair a stale Drizzle snapshot baseline safely"

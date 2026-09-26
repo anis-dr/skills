@@ -1,0 +1,3 @@
+interface:
+  display_name: "Verify API Shape Before Trusting Fixtures"
+  short_description: "Check live API responses before trusting fixtures"

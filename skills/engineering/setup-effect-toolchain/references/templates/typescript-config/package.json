@@ -1,0 +1,11 @@
+{
+  "name": "@SCOPE/typescript-config",
+  "version": "0.0.0",
+  "private": true,
+  "exports": {
+    "./base.json": "./base.json",
+    "./browser.json": "./browser.json",
+    "./bun.json": "./bun.json",
+    "./test.json": "./test.json"
+  }
+}

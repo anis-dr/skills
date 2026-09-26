@@ -119,6 +119,46 @@ Before you change code you don't know, or when the shape of new code is the hard
 
 Skills distilled from our own work. Most are model-invoked: the agent reaches for them when the situation matches, and you can name them directly.
 
+### Effect and TypeScript
+
+- **`/setup-effect-toolchain`** sets up an Effect v4 repo's toolchain (TypeScript 7 with `@effect/tsgo`, Oxlint with the Effect, code-shape and anti-slop plugins, oxfmt) and proves every layer runs.
+- **`/effect-pragmatic-patterns`** keeps Effect code pragmatic: Effect where it buys typed effects, lifecycle or dependency boundaries, plain helpers everywhere else.
+- **`/anti-slop-typescript-migration`** takes an existing TypeScript codebase to zero anti-slop findings without laundering types.
+- **`/tanstack-start-server-middleware-import-safety`** registers server-only middleware in TanStack Start without dynamic imports or client import-protection failures.
+- **`/agent-sources`** reads a dependency's upstream source at the installed version when types and docs leave a question open.
+
+### Data and infrastructure
+
+- **`/drizzle-bulk-parameter-safety`** writes Drizzle PostgreSQL bulk updates that pass row changes as one `jsonb` parameter.
+- **`/drizzle-migration-tail-resequence`** moves a diverged branch's Drizzle migrations after the ones that landed first, with journal guards.
+- **`/drizzle-snapshot-baseline-repair`** repairs a migration history whose latest snapshot predates hand-written SQL, so `generate` stops proposing unrelated DDL.
+- **`/extracting-aws-rds-postgres-snapshots`** turns an RDS Postgres snapshot into a portable `pg_dump`.
+- **`/phantom-db-query-timeout-diagnosis`** finds the client-side cause of query timeouts while the database is healthy.
+- **`/likec4-postcss-isolation`** fixes `likec4 serve` failing on a monorepo's root PostCSS config.
+
+### Packages and releases
+
+- **`/bun-catalog-publish-safety`** adopts Bun workspace catalogs in a publishing monorepo without shipping literal `catalog:` specifiers.
+- **`/bun-existing-patch-safety`** extends an existing Bun patch without losing earlier hunks.
+- **`/changesets-bun-publish-output`** makes a Bun publish script under Changesets create Git tags and GitHub releases.
+- **`/dependabot-batch-pr`** folds a Dependabot backlog into one verified PR and groups future updates.
+
+### Git, GitHub and parallel work
+
+- **`/git-split-amended-followup`** splits a fix that was amended into a commit back out as its own follow-up commit.
+- **`/spec-port-diverged-branch`** ports a commit across diverged branches by treating it as a spec instead of fighting the cherry-pick.
+- **`/github-gh-stack`** creates, adopts, submits and syncs GitHub Stacked PRs with `gh-stack`; **`/github-stack-phantom-conflict`** clears a stacked PR that GitHub calls conflicting while git merges cleanly.
+- **`/github-pr-loc-breakdown`** breaks a large PR's line count into generated files, docs, lockfiles, tests and code.
+- **`/parallel-subagents-shared-worktree-stack`** runs parallel subagents in one worktree, each on its own branch, then joins them into one stack.
+- **`/orca-parallel-ticket-handoff`** hands a ticket to another agent tab in the same Orca worktree, and **`/orca-browser-ui-verification`** proves a web UI change in Orca's built-in browser.
+
+### Planning and checks
+
+- **`/system-flow-plan`** writes plans another agent can execute: flows, call trees and behaviour assertions instead of pasted code.
+- **`/avoid-feature-creep`** keeps scope tight while planning features, MVPs and backlogs.
+- **`/verify-api-shape-before-trusting-fixtures`** checks a third-party API's live response shape before trusting fixtures or claims about it.
+- **`/wayfinder-reversal-and-map-close`** records a decision that reverses a closed wayfinder ticket and gets the map ready for `/to-spec`.
+
 ### Productivity
 
 - **`/technical-pdf`** writes and visually checks a technical PDF (report, spec, runbook, proposal) in Typst.

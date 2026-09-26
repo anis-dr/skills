@@ -1,0 +1,3 @@
+interface:
+  display_name: "Git Split Amended Followup"
+  short_description: "Split an amended fix into its own follow-up commit"

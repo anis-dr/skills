@@ -1,0 +1,3 @@
+interface:
+  display_name: "LikeC4 PostCSS Isolation"
+  short_description: "Stop root PostCSS config breaking likec4 serve"

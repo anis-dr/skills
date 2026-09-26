@@ -1,0 +1,3 @@
+interface:
+  display_name: "System Flow Plan"
+  short_description: "Executor-ready plans as flows, not pasted code"

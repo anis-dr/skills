@@ -1,0 +1,7 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Effect-TS/tsgo/refs/heads/main/schema.json",
+  "extends": "./bun.json",
+  "compilerOptions": {
+    "noEmit": true
+  }
+}

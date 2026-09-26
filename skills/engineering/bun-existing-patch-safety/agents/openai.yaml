@@ -1,0 +1,3 @@
+interface:
+  display_name: "Bun Existing Patch Safety"
+  short_description: "Extend a Bun patch without losing hunks"

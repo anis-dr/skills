@@ -1,0 +1,3 @@
+interface:
+  display_name: "Changesets Bun Publish Output"
+  short_description: "Get tags and releases from Changesets with Bun"

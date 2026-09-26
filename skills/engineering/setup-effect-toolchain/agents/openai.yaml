@@ -1,0 +1,3 @@
+interface:
+  display_name: "Setup Effect Toolchain"
+  short_description: "Set up tsgo, Oxlint and oxfmt for Effect repos"

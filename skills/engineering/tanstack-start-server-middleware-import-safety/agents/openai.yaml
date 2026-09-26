@@ -1,0 +1,3 @@
+interface:
+  display_name: "TanStack Start Server Middleware Import Safety"
+  short_description: "Server-only imports in TanStack Start middleware"

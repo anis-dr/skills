@@ -1,0 +1,3 @@
+interface:
+  display_name: "Orca Browser UI Verification"
+  short_description: "Prove UI changes in Orca's built-in browser"

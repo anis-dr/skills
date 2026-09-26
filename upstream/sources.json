@@ -677,6 +677,141 @@
     "mode": "ours"
   },
   {
+    "name": "agent-sources",
+    "bucket": "engineering",
+    "mode": "ours"
+  },
+  {
+    "name": "anti-slop-typescript-migration",
+    "bucket": "engineering",
+    "mode": "ours"
+  },
+  {
+    "name": "avoid-feature-creep",
+    "bucket": "engineering",
+    "mode": "ours"
+  },
+  {
+    "name": "bun-catalog-publish-safety",
+    "bucket": "engineering",
+    "mode": "ours"
+  },
+  {
+    "name": "bun-existing-patch-safety",
+    "bucket": "engineering",
+    "mode": "ours"
+  },
+  {
+    "name": "changesets-bun-publish-output",
+    "bucket": "engineering",
+    "mode": "ours"
+  },
+  {
+    "name": "dependabot-batch-pr",
+    "bucket": "engineering",
+    "mode": "ours"
+  },
+  {
+    "name": "drizzle-bulk-parameter-safety",
+    "bucket": "engineering",
+    "mode": "ours"
+  },
+  {
+    "name": "drizzle-migration-tail-resequence",
+    "bucket": "engineering",
+    "mode": "ours"
+  },
+  {
+    "name": "drizzle-snapshot-baseline-repair",
+    "bucket": "engineering",
+    "mode": "ours"
+  },
+  {
+    "name": "effect-pragmatic-patterns",
+    "bucket": "engineering",
+    "mode": "ours"
+  },
+  {
+    "name": "extracting-aws-rds-postgres-snapshots",
+    "bucket": "engineering",
+    "mode": "ours"
+  },
+  {
+    "name": "git-split-amended-followup",
+    "bucket": "engineering",
+    "mode": "ours"
+  },
+  {
+    "name": "github-gh-stack",
+    "bucket": "engineering",
+    "mode": "ours"
+  },
+  {
+    "name": "github-pr-loc-breakdown",
+    "bucket": "engineering",
+    "mode": "ours"
+  },
+  {
+    "name": "github-stack-phantom-conflict",
+    "bucket": "engineering",
+    "mode": "ours"
+  },
+  {
+    "name": "likec4-postcss-isolation",
+    "bucket": "engineering",
+    "mode": "ours"
+  },
+  {
+    "name": "orca-browser-ui-verification",
+    "bucket": "engineering",
+    "mode": "ours"
+  },
+  {
+    "name": "orca-parallel-ticket-handoff",
+    "bucket": "engineering",
+    "mode": "ours"
+  },
+  {
+    "name": "parallel-subagents-shared-worktree-stack",
+    "bucket": "engineering",
+    "mode": "ours"
+  },
+  {
+    "name": "phantom-db-query-timeout-diagnosis",
+    "bucket": "engineering",
+    "mode": "ours"
+  },
+  {
+    "name": "setup-effect-toolchain",
+    "bucket": "engineering",
+    "mode": "ours"
+  },
+  {
+    "name": "spec-port-diverged-branch",
+    "bucket": "engineering",
+    "mode": "ours"
+  },
+  {
+    "name": "system-flow-plan",
+    "bucket": "engineering",
+    "mode": "ours"
+  },
+  {
+    "name": "tanstack-start-server-middleware-import-safety",
+    "bucket": "engineering",
+    "mode": "ours"
+  },
+  {
+    "name": "verify-api-shape-before-trusting-fixtures",
+    "bucket": "engineering",
+    "mode": "ours"
+  },
+  {
+    "name": "wayfinder-reversal-and-map-close",
+    "bucket": "engineering",
+    "mode": "ours"
+  },
+  {
     "name": "checkbox-decision-ui",
     "bucket": "productivity",
     "mode": "ours"

@@ -1,0 +1,10 @@
+{
+  "extends": "@SCOPE/typescript-config/bun.json",
+  "compilerOptions": {
+    "emitDeclarationOnly": true,
+    "outDir": "./.tsbuild",
+    "rootDir": "./src",
+    "tsBuildInfoFile": "./.tsbuild/tsconfig.tsbuildinfo"
+  },
+  "include": ["src/**/*.ts"]
+}

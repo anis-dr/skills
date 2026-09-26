@@ -1,0 +1,3 @@
+interface:
+  display_name: "Avoid Feature Creep"
+  short_description: "Keep scope tight: MVPs, backlogs, one-more-feature"
