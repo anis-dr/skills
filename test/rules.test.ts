@@ -52,12 +52,12 @@ const cases: ReadonlyArray<readonly [string, string, string]> = [
   [
     "principles",
     "Apply the **type-system-discipline** principle skill first.\n",
-    "Apply the **type-system-discipline** principle from the principles skill first.\n",
+    'Apply the **type-system-discipline** principle (call the Skill tool with "principles" and read its reference) first.\n',
   ],
   [
     "principles",
     "- Short call chains. If tracing the flow needs more than three files, flatten the hierarchy, per the **laziness-protocol** and **minimize-reader-load** principle skills.\n",
-    "- Short call chains. If tracing the flow needs more than three files, flatten the hierarchy, per the **laziness-protocol** and **minimize-reader-load** principles from the principles skill.\n",
+    '- Short call chains. If tracing the flow needs more than three files, flatten the hierarchy, per the **laziness-protocol** and **minimize-reader-load** principles (call the Skill tool with "principles" and read their references).\n',
   ],
   [
     "issuesFolder",

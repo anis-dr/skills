@@ -78,7 +78,7 @@ Before you change code you don't know, or when the shape of new code is the hard
 - **`/why`** finds out why code is the way it is, from source control, tickets, docs, chat and error tracking, one investigator per source.
 - **`/architect`** sketches types, signatures and module structure before code, then stays in the loop while implementation fills in. It hands two steps back to you: run `/arena` for the design sketch and `/interrogate` for pressure on it.
 - **`/arena`** runs N candidates at the same task on different models, picks a base, and grafts the strongest parts of the others into it. Use it when one attempt would lock in the wrong shape.
-- **`/principles`** is the set of engineering principles a decision can cite (laziness, foundational thinking, boundaries, idempotence, proving work). Model-invoked: the other skills pull it in.
+- **`/principles`** is the set of engineering principles every design, plan, implementation, debugging session and review loads first (laziness, foundational thinking, boundaries, idempotence, proving work). Model-invoked: the workflow skills call it.
 - **`/typescript-best-practices`** loads whenever you read or edit `.ts` or `.tsx` files.
 
 ## Review

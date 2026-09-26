@@ -34,6 +34,7 @@ Plans must not contain copy-pastable implementation or test code. Wherever a con
 
 ## Companion skills
 
+- Every plan, before the first task: call the Skill tool with "principles" and read every principle that matches the work. Cite the ones that shaped a task in that task's caption.
 - High-stakes architecture, service boundaries, API or data model design, scaling, reliability, or unclear trade-offs: call the Skill tool with "system-design" first to shape the architecture, then use this skill to turn that design into an executor-ready plan. If "system-design" isn't installed, ask the user to run npx skills add wondelai/skills --skill system-design, then continue.
 - A task moves module boundaries or shapes a new interface rather than extending an obvious seam: call the Skill tool with "codebase-design" to place the seam first.
 - The plan introduces symbols or settles terminology: before drawing anything, call the Skill tool with "domain-modeling" to fix canonical terms and split overloaded concepts, then call the Skill tool with "naming-analyzer" to check proposed names against codebase context and conventions. If "naming-analyzer" isn't installed, ask the user to run npx skills add softaworks/agent-toolkit --skill naming-analyzer, then continue.

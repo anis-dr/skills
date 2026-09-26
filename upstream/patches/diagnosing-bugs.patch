@@ -1,8 +1,8 @@
 diff --git a/SKILL.md b/SKILL.md
-index 061c25a..e5f74eb 100644
+index 061c25a..829acae 100644
 --- a/SKILL.md
 +++ b/SKILL.md
-@@ -1,6 +1,6 @@
+@@ -1,12 +1,14 @@
  ---
  name: diagnosing-bugs
 -description: Diagnosis loop for hard bugs and performance regressions. Use when the user says "diagnose"/"debug this", or reports something broken/throwing/failing/slow.
@@ -10,7 +10,15 @@ index 061c25a..e5f74eb 100644
  ---
  
  # Diagnosing Bugs
-@@ -109,7 +109,7 @@ Tool preference:
+ 
+ A discipline for hard bugs. Skip phases only when explicitly justified.
+ 
++Before Phase 1, call the Skill tool with "principles" and read the ones that match, at least **Fix Root Causes**. Before declaring the bug fixed, read **Prove It Works**.
++
+ When exploring the codebase, read `CONTEXT.md` (if it exists) to get a clear mental model of the relevant modules, and check ADRs in the area you're touching.
+ 
+ ## Redact
+@@ -109,7 +111,7 @@ Tool preference:
  
  **Tag every debug log** with a unique prefix, e.g. `[DEBUG-a4f2]`. Cleanup at the end becomes a single grep. Untagged logs survive; tagged logs die.
  

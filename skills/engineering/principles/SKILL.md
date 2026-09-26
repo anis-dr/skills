@@ -1,11 +1,18 @@
 ---
 name: principles
-description: Engineering principles for design, implementation, verification and delegation decisions, one reference file each. Use when sizing a diff or adding an abstraction, choosing types or data structures, handling boundaries, retries or shared state, debugging, writing tests, declaring work done, planning multi-step or parallel work, or noticing a repeated instruction.
+description: "Required before any engineering decision: load this index, then read every principle that matches. Use at the start of designing, planning, implementing, refactoring, debugging, writing or changing tests, delegating to subagents, and before declaring work done; also when sizing a diff, adding an abstraction, choosing types, or handling boundaries, retries or shared state."
 ---
 
 # Principles
 
-Each line names when a principle applies. Read the matching reference in full before you apply it, and name the principle that changed a decision in your reply. Read only principles you apply.
+These principles govern every engineering decision. Loading this index is not optional; skipping it is how work drifts.
+
+1. **Load it at the start** of any design, plan, implementation, refactor, debugging session, test change or delegation, and again before you declare work done.
+2. **Match every line.** Each line below names when a principle applies. Check all of them against the task, not just the first that fits.
+3. **Read each matching reference in full** before acting on it. The one-line summary here is a trigger, not the principle.
+4. **Name the principles** that shaped a decision in your reply ("per Subtract Before You Add, I deleted…").
+
+Read only the references whose lines match; the rest stay unread. Done when every matching reference has been read and applied, and the reply names them.
 
 **Core**
 

@@ -1,0 +1,13 @@
+diff --git a/SKILL.md b/SKILL.md
+index 55b93ba..4e2f3bd 100644
+--- a/SKILL.md
++++ b/SKILL.md
+@@ -35,6 +35,8 @@ Look for the originating spec, in this order:
+ 
+ Anything in the repo that documents how code should be written, such as `CODING_STANDARDS.md` or `CONTRIBUTING.md`.
+ 
++Also call the Skill tool with "principles", pick the principles that bear on this diff, and pass their reference text to the Standards sub-agent. They rank like the smell baseline below: judgement calls that a documented repo standard overrides.
++
+ On top of whatever the repo documents, the Standards axis always carries the **smell baseline** below: a fixed set of Fowler code smells (_Refactoring_, ch.3) that applies even when a repo documents nothing. Two rules bind it:
+ 
+ - **The repo overrides.** A documented repo standard always wins; where it endorses something the baseline would flag, suppress the smell.

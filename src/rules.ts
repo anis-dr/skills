@@ -68,11 +68,11 @@ const rules: ReadonlyArray<Rule> = [
       [/\]\(\.\.\/principle-([\w-]+)\/SKILL\.md\)/gu, "]($1.md)"],
       [
         /(\*\*[\w-]+\*\*) principle skills\b/gu,
-        "$1 principles from the principles skill",
+        '$1 principles (call the Skill tool with "principles" and read their references)',
       ],
       [
         /(\*\*[\w-]+\*\*) principle skill\b/gu,
-        "$1 principle from the principles skill",
+        '$1 principle (call the Skill tool with "principles" and read its reference)',
       ],
     ],
   },
