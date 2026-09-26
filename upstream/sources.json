@@ -1,10 +1,10 @@
 [
   {
-    "name": "tdd",
+    "name": "code-review",
     "bucket": "engineering",
     "mode": "vendor",
     "source": "https://github.com/mattpocock/skills",
-    "path": "skills/engineering/tdd",
+    "path": "skills/engineering/code-review",
     "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
   },
   {
@@ -13,6 +13,230 @@
     "mode": "vendor",
     "source": "https://github.com/mattpocock/skills",
     "path": "skills/engineering/codebase-design",
+    "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
+  },
+  {
+    "name": "diagnosing-bugs",
+    "bucket": "engineering",
+    "mode": "vendor",
+    "source": "https://github.com/mattpocock/skills",
+    "path": "skills/engineering/diagnosing-bugs",
+    "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
+  },
+  {
+    "name": "domain-modeling",
+    "bucket": "engineering",
+    "mode": "vendor",
+    "source": "https://github.com/mattpocock/skills",
+    "path": "skills/engineering/domain-modeling",
+    "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
+  },
+  {
+    "name": "grill-with-docs",
+    "bucket": "engineering",
+    "mode": "vendor",
+    "source": "https://github.com/mattpocock/skills",
+    "path": "skills/engineering/grill-with-docs",
+    "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
+  },
+  {
+    "name": "implement",
+    "bucket": "engineering",
+    "mode": "vendor",
+    "source": "https://github.com/mattpocock/skills",
+    "path": "skills/engineering/implement",
+    "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
+  },
+  {
+    "name": "improve-codebase-architecture",
+    "bucket": "engineering",
+    "mode": "vendor",
+    "source": "https://github.com/mattpocock/skills",
+    "path": "skills/engineering/improve-codebase-architecture",
+    "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
+  },
+  {
+    "name": "prototype",
+    "bucket": "engineering",
+    "mode": "vendor",
+    "source": "https://github.com/mattpocock/skills",
+    "path": "skills/engineering/prototype",
+    "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
+  },
+  {
+    "name": "research",
+    "bucket": "engineering",
+    "mode": "vendor",
+    "source": "https://github.com/mattpocock/skills",
+    "path": "skills/engineering/research",
+    "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
+  },
+  {
+    "name": "resolving-merge-conflicts",
+    "bucket": "engineering",
+    "mode": "vendor",
+    "source": "https://github.com/mattpocock/skills",
+    "path": "skills/engineering/resolving-merge-conflicts",
+    "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
+  },
+  {
+    "name": "setup-matt-pocock-skills",
+    "bucket": "engineering",
+    "mode": "vendor",
+    "source": "https://github.com/mattpocock/skills",
+    "path": "skills/engineering/setup-matt-pocock-skills",
+    "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
+  },
+  {
+    "name": "tdd",
+    "bucket": "engineering",
+    "mode": "vendor",
+    "source": "https://github.com/mattpocock/skills",
+    "path": "skills/engineering/tdd",
+    "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
+  },
+  {
+    "name": "to-spec",
+    "bucket": "engineering",
+    "mode": "vendor",
+    "source": "https://github.com/mattpocock/skills",
+    "path": "skills/engineering/to-spec",
+    "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
+  },
+  {
+    "name": "to-tickets",
+    "bucket": "engineering",
+    "mode": "vendor",
+    "source": "https://github.com/mattpocock/skills",
+    "path": "skills/engineering/to-tickets",
+    "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
+  },
+  {
+    "name": "triage",
+    "bucket": "engineering",
+    "mode": "vendor",
+    "source": "https://github.com/mattpocock/skills",
+    "path": "skills/engineering/triage",
+    "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
+  },
+  {
+    "name": "wayfinder",
+    "bucket": "engineering",
+    "mode": "vendor",
+    "source": "https://github.com/mattpocock/skills",
+    "path": "skills/engineering/wayfinder",
+    "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
+  },
+  {
+    "name": "wizard",
+    "bucket": "engineering",
+    "mode": "vendor",
+    "source": "https://github.com/mattpocock/skills",
+    "path": "skills/engineering/wizard",
+    "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
+  },
+  {
+    "name": "grill-me",
+    "bucket": "productivity",
+    "mode": "vendor",
+    "source": "https://github.com/mattpocock/skills",
+    "path": "skills/productivity/grill-me",
+    "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
+  },
+  {
+    "name": "grilling",
+    "bucket": "productivity",
+    "mode": "vendor",
+    "source": "https://github.com/mattpocock/skills",
+    "path": "skills/productivity/grilling",
+    "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
+  },
+  {
+    "name": "handoff",
+    "bucket": "productivity",
+    "mode": "vendor",
+    "source": "https://github.com/mattpocock/skills",
+    "path": "skills/productivity/handoff",
+    "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
+  },
+  {
+    "name": "teach",
+    "bucket": "productivity",
+    "mode": "vendor",
+    "source": "https://github.com/mattpocock/skills",
+    "path": "skills/productivity/teach",
+    "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
+  },
+  {
+    "name": "to-questionnaire",
+    "bucket": "productivity",
+    "mode": "vendor",
+    "source": "https://github.com/mattpocock/skills",
+    "path": "skills/productivity/to-questionnaire",
+    "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
+  },
+  {
+    "name": "wait-what",
+    "bucket": "productivity",
+    "mode": "vendor",
+    "source": "https://github.com/mattpocock/skills",
+    "path": "skills/productivity/wait-what",
+    "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
+  },
+  {
+    "name": "writing-for-agents",
+    "bucket": "productivity",
+    "mode": "vendor",
+    "source": "https://github.com/mattpocock/skills",
+    "path": "skills/productivity/writing-for-agents",
+    "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
+  },
+  {
+    "name": "pr",
+    "bucket": "in-progress",
+    "mode": "vendor",
+    "source": "https://github.com/mattpocock/skills",
+    "path": "skills/in-progress/pr",
+    "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
+  },
+  {
+    "name": "retro",
+    "bucket": "in-progress",
+    "mode": "vendor",
+    "source": "https://github.com/mattpocock/skills",
+    "path": "skills/in-progress/retro",
+    "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
+  },
+  {
+    "name": "implement-spec",
+    "bucket": "in-progress",
+    "mode": "vendor",
+    "source": "https://github.com/mattpocock/skills",
+    "path": "skills/in-progress/implement-spec",
+    "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
+  },
+  {
+    "name": "writing-beats",
+    "bucket": "in-progress",
+    "mode": "vendor",
+    "source": "https://github.com/mattpocock/skills",
+    "path": "skills/in-progress/writing-beats",
+    "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
+  },
+  {
+    "name": "writing-fragments",
+    "bucket": "in-progress",
+    "mode": "vendor",
+    "source": "https://github.com/mattpocock/skills",
+    "path": "skills/in-progress/writing-fragments",
+    "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
+  },
+  {
+    "name": "writing-shape",
+    "bucket": "in-progress",
+    "mode": "vendor",
+    "source": "https://github.com/mattpocock/skills",
+    "path": "skills/in-progress/writing-shape",
     "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
   }
 ]
