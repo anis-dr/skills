@@ -3,7 +3,7 @@ name: redesign-inventory
 description: "Redesign an existing UI surface without silently dropping functionality: inventory every reachable control from the running app first, then re-audit programmatically after. Use when restructuring a dialog, page or panel that users already depend on."
 ---
 
-# Conserving function through a UI redesign
+# Redesign inventory
 
 A redesign silently deletes features. Not through carelessness, but through
 **misreading what a control is**. Screenshots and code-reading both fail in
@@ -83,8 +83,10 @@ requests before the click and again after. The extra request is the proof.
 These hold for most drivers:
 
 - A ref-based or coordinate click may not land (offscreen or coordinate
-  issues). A DOM click through the driver's evaluate is reliable:
-  `button.click()`.
+  issues). Scroll the element into view, measure its centre, click there with
+  real input and hit-test it (call the Skill tool with "measure-ui" for the
+  rules). A DOM `button.click()` through evaluate only sets up state; it does
+  not prove a user can reach the control.
 - Element refs from an accessibility snapshot are invalidated by navigation,
   reload and tab switch. Re-snapshot after each, and never reuse a ref across a
   reload.
@@ -99,8 +101,8 @@ run npx skills add stablyai/orca --skill orca-cli, then continue):
 
 - `orca snapshot --json` gives the accessibility tree; `orca network --limit 100 --json`
   before and after a click gives the request count for step 5.
-- `orca click --element @eN` may not land; `button.click()` through `orca eval`
-  is reliable. `orca scroll` targets the window, not the hovered element.
+- `orca click --element @eN` may not land; click the measured centre with real
+  input instead, as above. `orca scroll` targets the window, not the hovered element.
 - `orca screenshot --json` returns **base64 in `result.data`**, not a path.
   Decode it to a file before reading it as an image.
 

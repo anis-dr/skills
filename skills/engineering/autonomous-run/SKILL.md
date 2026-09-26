@@ -17,8 +17,7 @@ You own the exit condition. Define done, then drive to it without stopping.
 4. **Own mid-run discoveries.** Fix what you find along the way yourself, each through the skill that owns that kind of work:
    - A broken skill: `Call the Skill tool with "writing-for-agents"` and fix it.
    - A related bug, a flaky verifier, or a tooling failure: `Call the Skill tool with "diagnosing-bugs"`.
-   - Red CI: `Call the Skill tool with "loop-on-ci"`.
-   - Review noise and bot comments: `Call the Skill tool with "get-pr-comments"` and answer each on its merits.
+   - Red CI, review noise and bot comments on a PR: call the Skill tool with "babysit" in `drive` mode. Its rules (no rebase or retarget, one fresh build for a flake, conflicts go to the branch owner) apply inside this run too, and it never merges.
    - Orphaned follow-ups and fixable drift: finish them with the skill that matches the work.
 
    Put each out-of-band fix in its own PR: `Call the Skill tool with "pr"` for the body, then `gh pr create`. Keep reversible work moving without asking the user or parking it for them. Surface only an irreversible action, a genuine product or preference call that no experiment can settle, or a real dead end. The predicate stays the main drive, so go back to it after each side fix.

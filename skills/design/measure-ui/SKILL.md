@@ -15,6 +15,16 @@ Screenshots produce confident wrong conclusions, both false passes and false fai
 
 Matching a design usually needs both: fidelity for the static layout, then interaction states for every menu and animation.
 
+## Who does what
+
+Proving a UI claim takes three skills, each owning one part:
+
+- **verify-this** frames the claim and gives the verdict (VERIFIED, NOT VERIFIED or INCONCLUSIVE).
+- **This skill** sets the evidence rules for anything visual or interactive: what to measure, how to actuate, what counts as proof.
+- **A driver** only runs the browser: call the Skill tool with "control-ui" for a local browser or Electron app, or "orca" inside the Orca IDE.
+
+Drivers locate elements by role, label or a stable `data-*` selector, then exercise them with real input at the element's measured position, then hit-test. A DOM `element.click()` through evaluate is fine for setting up state, never as the proof that a user can click it.
+
 ## Rules for every measurement
 
 - **Actuate for real.** Move the mouse with real pointer events (`page.mouse.move(x, y)`) to the trigger's measured centre. A driver's `hover()` followed by anything that moves the pointer leaves a stale position, and a working hover looks broken.

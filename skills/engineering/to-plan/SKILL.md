@@ -1,11 +1,15 @@
 ---
 name: to-plan
-description: Use when writing implementation plans, architecture plans, refactor plans, task breakdowns, roadmap steps, or any plan that another agent or a future session will execute.
+description: "Write an executor plan: file-anchored tasks with call trees, flow diagrams and test-first steps that another agent or a later session follows. Use when asked for an implementation, refactor or migration plan, or to turn a settled spec or ticket into step-by-step work. Not for specs, tickets or decision maps."
 ---
 
 # To plan
 
 Write plans as executable understanding, not executable code. A good plan shows flows, boundaries, composition, and call trees so the executor extends the existing system instead of copying new code into it.
+
+## Where this fits
+
+This plan is the last step before code. The artifacts before it have their own owners and formats, which this skill does not impose on: a requirements spec is `/to-spec`, build tickets are `/to-tickets`, and open decisions are a `/wayfinder` map. Those deliberately leave out file paths; this plan adds them. When the requirements or the split into tickets are not settled yet, tell the user to settle them with those commands first, then plan the work of one spec or one ticket here.
 
 ## Display belongs to `show-me`
 

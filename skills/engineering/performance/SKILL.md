@@ -23,11 +23,11 @@ Every branch follows these.
 - [Perf issue](references/perf-issue.md): one measured slowness to trace, fix once, and prove against a baseline.
 - [Hillclimb](references/hillclimb.md): sustained improvement of one metric toward a target, looping one hypothesis at a time with a decision log and one commit per kept win.
 
-A defect that is not about speed is a bug: call the Skill tool with "diagnosing-bugs".
+This skill owns speed: anything that is slow, a latency or throughput regression, or a timeout on a healthy dependency. A defect that is not about speed is a bug: call the Skill tool with "diagnosing-bugs". When the slowness first needs a reliable repro, build it the way diagnosing-bugs builds its feedback loop (one command that shows the problem every time), then measure here. A Node and PostgreSQL query timeout while the database is healthy has its own playbook: call the Skill tool with "query-timeout-diagnosis", and still prove the fix with a before and after measurement.
 
 ## Reply
 
 Every claim carries its evidence or its label in the same sentence: measured, inferred, or guess. Link each PR as `https://github.com/<owner>/<repo>/pull/<number>`.
 
 - **Perf issue.** The baseline number, the post-fix number, the delta, and the artifact path.
-- **Hillclimb.** The metric and target, baseline to final with the percent delta, iterations run (kept and reverted), each accepted fix on one line, the `decision.tsv` path, and the best idea you would try next if pushed further.
+- **Hillclimb.** The metric and target, baseline to final with the percent delta, iterations run (kept and reverted), each accepted fix on one line, the decision log path, and the best idea you would try next if pushed further.

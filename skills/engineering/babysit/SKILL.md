@@ -1,14 +1,13 @@
 ---
 name: babysit
-description: Drive a GitHub PR or stack to merge-ready (conflicts, review threads, CI, review bots), and land it only when you ask to ship.
-disable-model-invocation: true
+description: "Drive a GitHub PR or stack to merge-ready: conflicts, review threads, CI failures and review-bot comments, one PR at a time from the bottom of the stack. Use when asked to babysit a PR, get it green, fix failing CI, address or summarize review comments, check whether a PR is ready, or when a longer run needs its PR green. Merging happens only on an explicit request to ship, land or merge."
 ---
 
 # Babysit
 
 **You own the merge frontier. Declare a mode, clear one PR at a time, stop where the human's call begins.**
 
-Babysitting starts when the user asks for it, normally once a phase or a whole stack is built, never because a PR opened. Finish the stack, get it green here, then land it through the ship branch. GitHub only, through `gh`.
+Babysitting starts when the user asks for it, or when a longer run (such as autonomous-run) needs its PR green; normally once a phase or a whole stack is built, never just because a PR opened. It never merges on its own: only an explicit request to ship, land or merge loads the ship branch. Finish the stack, get it green here, then land it through the ship branch. GitHub only, through `gh`.
 
 ## Branches
 
@@ -35,7 +34,7 @@ It installs its own dependencies on first run. It emits JSON (NDJSON while polli
 
 ## Steps
 
-1. **Declare the mode before any poll.** `drive` runs the loop to merge-ready, for "babysit this", "get it green", "merge-ready". `background` triages without blocking. It is the mode for a plan still executing, because `drive` inside a phase agent stops that agent finishing its turn. `threads-only` answers review comments and touches nothing else, for "address the review-bot comments". `check` is one status pass and a report, for "check on X", "anything outstanding on X", "is it green". Undeclared defaults to `drive`. Small or docs-only PRs get `check`, not `drive`. Never require Graphite (`gt`).
+1. **Declare the mode before any poll.** `drive` runs the loop to merge-ready, for "babysit this", "get it green", "merge-ready". `background` triages without blocking. It is the mode for a plan still executing, because `drive` inside a phase agent stops that agent finishing its turn. `threads-only` answers review comments and touches nothing else, for "address the review-bot comments". `check` is one status pass and a report, for "check on X", "anything outstanding on X", "is it green", "what did reviewers say": it lists the PR state plus the unresolved review and discussion comments, grouped by severity and actionability, as a prioritized action list, and changes nothing. "Fix the failing CI" is `drive` limited to CI. Undeclared defaults to `drive`. Small or docs-only PRs get `check`, not `drive`. Never require Graphite (`gt`).
 2. **Work the merge frontier and nothing above it.** The lowest unmerged PR is the only one that matters until it merges. Read upstack threads and batch them. Never fix them at the cost of restarting the frontier's checks. If you catch yourself upstack while the frontier is red, stop and go back down.
 3. **One babysitter per stack.** Before starting, check that no other agent or session is already on it.
 4. **Never mutate stack topology.** No base retarget, rebase, stack-wide submit, or force-push from inside a babysit. Fix on the owning branch, report anything rebase-shaped upward, and let the branch owner do it. When you are that owner (you built the branch and the user handed you its rebases), rebase your own branch and publish it with `git push --force-with-lease`. The one sanctioned creation: when a fix's owning PR has already merged, the fix becomes a new PR on top of the remaining stack, never a rewrite of merged history. It is the only case where step 6's frozen queue list changes.

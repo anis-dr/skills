@@ -1,5 +1,3 @@
 interface:
   display_name: "Babysit"
   short_description: "Drive a GitHub PR or stack to merge-ready"
-policy:
-  allow_implicit_invocation: false

@@ -1,6 +1,6 @@
 # Design red flags
 
-Screen every candidate before synthesis. A red flag is a reason to revise or reject the shape.
+Screen every candidate before synthesis. A red flag is a reason to revise or reject the shape. The terms here (module, interface, depth, seam) are defined by the codebase-design skill; where the two differ, codebase-design wins.
 
 ## Shallow module
 

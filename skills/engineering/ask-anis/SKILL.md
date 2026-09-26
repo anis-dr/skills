@@ -99,9 +99,7 @@ Before you change code you don't know, or when the shape of new code is the hard
 
 - **`/pr`** writes the PR body (beta).
 - **`/make-pr-easy-to-review`** cleans noisy history, improves the description and adds reviewer guidance without changing behaviour.
-- **`/babysit`** drives a GitHub PR or stack to merge-ready: conflicts, then review threads, then CI, with skeptical review-bot triage. It lands the verified run only when you explicitly ask it to ship.
-- **`/loop-on-ci`** watches the PR's checks and fixes failures until they pass.
-- **`/get-pr-comments`** fetches and summarizes the review comments on the current PR.
+- **`/babysit`** drives a GitHub PR or stack to merge-ready: conflicts, then review threads, then CI, with skeptical review-bot triage. It also fixes just the failing CI, or reports what reviewers said. It lands the verified run only when you explicitly ask it to ship.
 
 ## Long runs and memory
 

@@ -29,7 +29,7 @@ Do not use this for vague claims like "the code is cleaner". Ask for a measurabl
 
 - Code behavior: focused unit/integration tests or a minimal repro script.
 - CLI/TUI behavior: `control-cli`, terminal transcript, or demo recording.
-- UI behavior: `control-ui`, screenshots, accessibility snapshots, or browser traces.
+- UI behavior: `control-ui` to drive the browser, with the evidence rules of the measure-ui skill (computed styles, rects, real input, hit tests; screenshots only as supporting evidence).
 - API behavior: local HTTP/RPC request and response diff.
 - Performance: same-machine baseline/treatment timings or CPU profiles.
 - Memory: heap snapshots before and after the suspected operation.

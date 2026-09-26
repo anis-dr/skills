@@ -48,6 +48,8 @@ Scroll, sleep about 1s, then screenshot. Repeat to walk a long page.
 
 ## Measure, do not eyeball
 
+The rules for what to measure and how to actuate belong to measure-ui: call the Skill tool with "measure-ui". This section only shows how to run those measurements in Orca.
+
 Assert computed values rather than trusting a screenshot:
 
 ```javascript

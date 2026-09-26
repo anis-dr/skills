@@ -28,9 +28,11 @@ Skip Phase A only when the work is genuinely greenfield with no surrounding syst
 
 ## Phase B: Sketch
 
+Call the Skill tool with "codebase-design" first. It owns the vocabulary this phase uses (module, interface, depth, seam, adapter, leverage, locality) and the depth rules; name everything in the sketch with it.
+
 The arena skill is user-invoked, so hand this step to the user: tell them to run `/arena` with the design-sketch task, the Phase A grounding artifacts, and `references/runner-prompt.md` as each runner's prompt, and give them the paths of those files and of this skill's `SKILL.md`. Wait for arena's result before going on. Each candidate produces a design package shaped per `references/rationale-template.md`.
 
-Design it twice. Require at least two structurally distinct candidates before synthesis, even when the first looks sufficient. This is the **exhaust-the-design-space** principle from the principles skill made concrete. Whole-shape alternatives, not point fixes inside one shape.
+Design it twice. Require at least two structurally distinct candidates before synthesis, even when the first looks sufficient. Arena gives every runner the same prompt, so its candidates differ by model; to get structurally different shapes, add one constraint per runner the way codebase-design's design-it-twice brief does (minimize the interface, maximize flexibility, optimize the common caller, ports and adapters). This is the **exhaust-the-design-space** principle from the principles skill made concrete. Whole-shape alternatives, not point fixes inside one shape.
 
 Screen every candidate against [`references/design-red-flags.md`](references/design-red-flags.md) before synthesis. Reject or revise shallow modules, information leakage, temporal decomposition, and pass-through methods.
 

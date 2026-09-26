@@ -614,22 +614,6 @@
     "commit": "ecc249f1e306fc64ddf83c7bed16cacf7c2239db"
   },
   {
-    "name": "loop-on-ci",
-    "bucket": "engineering",
-    "mode": "vendor",
-    "source": "https://github.com/cursor/plugins",
-    "path": "cursor-team-kit/skills/loop-on-ci",
-    "commit": "ecc249f1e306fc64ddf83c7bed16cacf7c2239db"
-  },
-  {
-    "name": "get-pr-comments",
-    "bucket": "engineering",
-    "mode": "vendor",
-    "source": "https://github.com/cursor/plugins",
-    "path": "cursor-team-kit/skills/get-pr-comments",
-    "commit": "ecc249f1e306fc64ddf83c7bed16cacf7c2239db"
-  },
-  {
     "name": "ask-anis",
     "bucket": "engineering",
     "mode": "fork",

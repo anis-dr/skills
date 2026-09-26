@@ -1,0 +1,21 @@
+diff --git a/SKILL.md b/SKILL.md
+index 061c25a..e5f74eb 100644
+--- a/SKILL.md
++++ b/SKILL.md
+@@ -1,6 +1,6 @@
+ ---
+ name: diagnosing-bugs
+-description: Diagnosis loop for hard bugs and performance regressions. Use when the user says "diagnose"/"debug this", or reports something broken/throwing/failing/slow.
++description: Diagnosis loop for hard bugs. Use when the user says "diagnose"/"debug this", or reports something broken/throwing/failing. Slowness belongs to the performance skill.
+ ---
+ 
+ # Diagnosing Bugs
+@@ -109,7 +109,7 @@ Tool preference:
+ 
+ **Tag every debug log** with a unique prefix, e.g. `[DEBUG-a4f2]`. Cleanup at the end becomes a single grep. Untagged logs survive; tagged logs die.
+ 
+-**Perf branch.** For performance regressions, logs are usually wrong. Instead: establish a baseline measurement (timing harness, `performance.now()`, profiler, query plan), then bisect. Measure first, fix second.
++**Perf branch.** A pure performance regression belongs to the performance skill: call the Skill tool with "performance". When slowness shows up inside a bug you are already diagnosing, logs are usually wrong. Instead: establish a baseline measurement (timing harness, `performance.now()`, profiler, query plan), then bisect. Measure first, fix second.
+ 
+ ## Phase 5: Fix + regression test
+ 

@@ -22,7 +22,7 @@ Use local browser automation to verify UI behavior with evidence. First reuse th
 3. For a web app, connect to the local URL with the existing browser tooling.
 4. For Electron/Chromium, enable a remote debugging port when supported.
 5. Select the correct page by stable app markers, not by tab order alone.
-6. Prefer accessibility roles, labels, and stable `data-*` selectors over coordinates.
+6. Locate elements by accessibility role, label or a stable `data-*` selector, then exercise them with real input at their measured position. What counts as proof of a UI claim (measurements, hit tests) belongs to the measure-ui skill.
 
 ## Generic Web Harness
 

@@ -35,7 +35,6 @@ Add `-g` to install into your user folder instead of the current project. Not su
 - [arena](skills/engineering/arena/SKILL.md): Spawn N parallel candidates at the same task, pick a base, graft the strongest parts of the losers into it.
 - [ask-anis](skills/engineering/ask-anis/SKILL.md): Find the right skill or workflow
 - [automate-me](skills/engineering/automate-me/SKILL.md): Use for "automate me", "create/update/refresh my -mode skill", "turn/capture my preferences or working style into a skill", or wanting agents to follow how the user works.
-- [babysit](skills/engineering/babysit/SKILL.md): Drive a GitHub PR or stack to merge-ready
 - [blast-radius](skills/engineering/blast-radius/SKILL.md): Find what a change could break somewhere else before it ships, beyond the diff, and prove the one fact it's safe because of by running real code instead of writing it up.
 - [create-verification-skill](skills/engineering/create-verification-skill/SKILL.md): Generate a project-local verification skill that drives your app the way a user does — any language, framework, or platform.
 - [eval](skills/engineering/eval/SKILL.md): Blind test a skill or prompt change across models
@@ -57,6 +56,7 @@ Add `-g` to install into your user folder instead of the current project. Not su
 - [anti-slop-migration](skills/engineering/anti-slop-migration/SKILL.md): Fix anti-slop lint findings without type laundering
 - [autonomous-run](skills/engineering/autonomous-run/SKILL.md): Drive a long task to a checkable exit predicate
 - [avoid-feature-creep](skills/engineering/avoid-feature-creep/SKILL.md): Keep scope tight: MVPs, backlogs, one-more-feature
+- [babysit](skills/engineering/babysit/SKILL.md): Drive a GitHub PR or stack to merge-ready
 - [bun-monorepo](skills/engineering/bun-monorepo/SKILL.md): Bun catalogs, patches and Changesets publishing
 - [code-review](skills/engineering/code-review/SKILL.md): Review a diff on standards and spec
 - [codebase-design](skills/engineering/codebase-design/SKILL.md): Vocabulary for deep-module design
@@ -67,11 +67,9 @@ Add `-g` to install into your user folder instead of the current project. Not su
 - [diagnosing-bugs](skills/engineering/diagnosing-bugs/SKILL.md): Diagnose hard bugs and regressions
 - [domain-modeling](skills/engineering/domain-modeling/SKILL.md): Build and sharpen a domain model
 - [drizzle-postgres](skills/engineering/drizzle-postgres/SKILL.md): Drizzle bulk params, migration merges, baselines
-- [get-pr-comments](skills/engineering/get-pr-comments/SKILL.md): Fetch and summarize review comments from the active pull request
 - [git-split-amended-followup](skills/engineering/git-split-amended-followup/SKILL.md): Split an amended fix into its own follow-up commit
 - [how](skills/engineering/how/SKILL.md): Use for "how does X work", code walkthroughs before changing something, and placement / ownership / layering questions ("where should this live", "which package owns this", "is this the right layer").
 - [likec4-postcss-isolation](skills/engineering/likec4-postcss-isolation/SKILL.md): Stop root PostCSS config breaking likec4 serve
-- [loop-on-ci](skills/engineering/loop-on-ci/SKILL.md): Monitor PR checks and fix failures until green.
 - [make-pr-easy-to-review](skills/engineering/make-pr-easy-to-review/SKILL.md): Prepare PRs for review by cleaning noisy history, improving PR descriptions, and adding reviewer guidance without changing code behavior.
 - [orca](skills/engineering/orca/SKILL.md): Verify UI and hand off tickets inside Orca
 - [parallel-branches](skills/engineering/parallel-branches/SKILL.md): Parallel subagents in one worktree to a gh stack

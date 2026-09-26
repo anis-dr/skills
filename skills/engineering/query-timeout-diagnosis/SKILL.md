@@ -3,7 +3,9 @@ name: query-timeout-diagnosis
 description: "Use when a Node/pg app reports 'Query read timeout' or slow-query errors while the database is demonstrably healthy. Separates client event-loop stalls, per-row WAN loops and pool starvation from real DB slowness, especially on constrained workers (for example Trigger.dev micro machines)."
 ---
 
-# Phantom DB query timeout diagnosis
+# Query timeout diagnosis
+
+A specific playbook under the performance skill: its measured before and after still applies.
 
 Use when a Node/pg app reports query timeouts (`Query read timeout`, bounded-operation deadline errors) but DB metrics look healthy.
 
