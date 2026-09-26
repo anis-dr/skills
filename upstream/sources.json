@@ -662,6 +662,11 @@
     "mode": "ours"
   },
   {
+    "name": "design-references",
+    "bucket": "design",
+    "mode": "ours"
+  },
+  {
     "name": "agent-sources",
     "bucket": "engineering",
     "mode": "ours"

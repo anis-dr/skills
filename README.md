@@ -123,6 +123,7 @@ Add `-g` to install into your user folder instead of the current project. Not su
 
 **Model-invoked**
 
+- [design-references](skills/design/design-references/SKILL.md): Mobbin references as a catalog to pick from
 - [logo-surface-board](skills/design/logo-surface-board/SKILL.md): Judge logo marks on favicon, tile and nav
 - [measure-ui](skills/design/measure-ui/SKILL.md): Prove UI fidelity and states by measuring
 - [pen-dev](skills/design/pen-dev/SKILL.md): Design, gate and migrate tokens in pen.dev files

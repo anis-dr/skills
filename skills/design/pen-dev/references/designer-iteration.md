@@ -19,7 +19,7 @@ Generate 3 structurally different direction images with Higgsfield's `gpt_image_
 
 ## Evidence before structure
 
-Before any structural decision, and before each iteration, pull Mobbin evidence with the Mobbin MCP server's `search_screens` tool: `platform` is required (`web` for web apps), `mode: "deep"`, `limit` 4 to 8, a concrete one-screen query, and the same `task_intent` on every call. Look at the images and name what 3 or more shipped products agree on. Cite the `mobbin_url` for every pattern you adopt: owners reject uncited choices as "invented".
+When the owner should choose the references, call the Skill tool with "design-references" first and build from their picks. Before any structural decision, and before each iteration, pull Mobbin evidence with the Mobbin MCP server's `search_screens` tool: `platform` is required (`web` for web apps), `mode: "deep"`, `limit` 4 to 8, a concrete one-screen query, and the same `task_intent` on every call. Look at the images and name what 3 or more shipped products agree on. Cite the `mobbin_url` for every pattern you adopt: owners reject uncited choices as "invented".
 
 ## Running the designer
 

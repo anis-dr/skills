@@ -169,6 +169,7 @@ Skills distilled from our own work. Most are model-invoked: the agent reaches fo
 ### Design
 
 - **`/refactoring-ui`** applies the Refactoring UI rules, scales and review checklist when designing or reviewing web UI.
+- **`/design-references`** finds references on Mobbin for the screens, flows or sections you are designing and gives you a catalog to pick from.
 - **`/measure-ui`** proves a build matches its design, a layout fix, or hover, focus and animation behaviour by measuring in a live browser instead of eyeballing screenshots.
 - **`/redesign-inventory`** inventories every control before a redesign so none is silently dropped.
 - **`/logo-surface-board`** judges logo candidates on favicon, reversed, app tile and nav surfaces in one HTML board.
