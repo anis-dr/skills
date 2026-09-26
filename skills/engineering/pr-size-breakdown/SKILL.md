@@ -3,7 +3,7 @@ name: pr-size-breakdown
 description: "Use when calculating, auditing, or explaining lines changed in a large GitHub pull request, especially when generated files, documentation, lockfiles, or API file-list limits may distort the headline LOC."
 ---
 
-# GitHub PR LOC breakdown
+# PR size breakdown
 
 ## Goal
 

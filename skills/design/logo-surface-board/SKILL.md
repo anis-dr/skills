@@ -3,7 +3,7 @@ name: logo-surface-board
 description: "Judge AI-generated logo candidates by rendering them on the surfaces that decide a mark (favicon sizes, reversed, app tile, nav lockup, mock product pages) in a switchable HTML board, rather than on the generator's 2K canvas. Use when a user must pick between generated logo marks."
 ---
 
-# Logo candidates on surfaces board
+# Logo surface board
 
 The generator's 2K preview flatters every candidate; small-size and reversed rendering is what kills marks.
 

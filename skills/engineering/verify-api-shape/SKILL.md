@@ -3,7 +3,7 @@ name: verify-api-shape
 description: "Use when code reads fields off a third-party API, when tests pass but a path never works in production, when a plan or PR claims what an API returns, or before marking such work done. Verifies the live response shape before trusting hand-written fixtures."
 ---
 
-# Verify API shape before trusting fixtures
+# Verify API shape
 
 A green test suite proves nothing about an external API when the fixtures were hand-written. Fabricated fixtures encode a contract the API does not implement, so every guard passes in CI and the path refuses (or misbehaves) in production forever.
 

@@ -3,7 +3,7 @@ name: trademark-search
 description: "Search trademark registers (INNORPI Tunisia, INPI France, EUIPO, Madrid) for a word and Nice classes through TMview. Use when the user wants a trademark or name-availability check and the national sites are unreachable."
 ---
 
-# Trademark search via TMview
+# Trademark search
 
 National sites often block scripts (INNORPI times out, data.inpi.fr returns 403). TMview indexes their data: office codes TN (INNORPI), FR (INPI), EM (EUIPO), WO (Madrid).
 

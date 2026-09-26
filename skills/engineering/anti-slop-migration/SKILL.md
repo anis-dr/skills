@@ -3,7 +3,7 @@ name: anti-slop-migration
 description: Migrate an existing TypeScript codebase to zero anti-slop Oxlint findings without type laundering or behavior regressions. Use after installing the anti-slop plugin into a repo with findings, when fixing one rule category, or when migrating no-unknown-parameters and unsafe dictionary findings at dynamic boundaries.
 ---
 
-# Anti-slop TypeScript migration
+# Anti-slop migration
 
 Use after the anti-slop Oxlint plugin is installed and the repo has existing findings. Completion means zero configured lint diagnostics, reached by fixing contracts at their root. A finding is never fixed by a semantic loophole, an unsafe cast, `any`, a suppression, or a weaker severity.
 

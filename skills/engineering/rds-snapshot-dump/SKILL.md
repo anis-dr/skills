@@ -3,7 +3,7 @@ name: rds-snapshot-dump
 description: "Use when someone needs to download, retain, export, restore, or create a portable pg_dump from an Amazon RDS for PostgreSQL snapshot, especially when the snapshot is automated, encrypted, private, or pg_dump connectivity fails."
 ---
 
-# Extracting AWS RDS PostgreSQL snapshots
+# RDS snapshot dump
 
 ## Overview
 

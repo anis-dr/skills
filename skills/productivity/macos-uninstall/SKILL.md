@@ -3,7 +3,7 @@ name: macos-uninstall
 description: "Completely uninstall a macOS app (Homebrew cask or manual install), including support dirs, caches, prefs and the stray CLI symlinks that brew leaves behind. Use when the user wants an app fully removed from a Mac, not just its bundle."
 ---
 
-# Complete macOS app uninstall
+# macOS uninstall
 
 Goal: remove every artifact of an app, not just the bundle. `brew uninstall --cask` is **not** sufficient unless the cask declares a `zap` stanza.
 

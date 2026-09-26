@@ -3,7 +3,7 @@ name: checkbox-picker
 description: "Generate a local HTML checkbox picker so the user can bulk keep/delete/install items (skills, plugins, MCP servers, dependencies), then read their decisions back as JSON and execute. Use when a choice spans dozens of items and listing them in chat would be inaccurate."
 ---
 
-# Checkbox decision UI
+# Checkbox picker
 
 When the user must choose over many items (100+ skills, plugins, MCP servers), don't negotiate the list in chat. Build a picker they click through, then execute from the exported JSON.
 

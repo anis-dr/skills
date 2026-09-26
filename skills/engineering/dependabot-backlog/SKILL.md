@@ -3,7 +3,7 @@ name: dependabot-backlog
 description: Use when a repo has a backlog of open Dependabot PRs to consolidate into one verified batch PR, and to configure grouped updates so the backlog does not come back.
 ---
 
-# Dependabot batch PR
+# Dependabot backlog
 
 Use when a repo has accumulated many open Dependabot PRs and the user wants them consolidated.
 

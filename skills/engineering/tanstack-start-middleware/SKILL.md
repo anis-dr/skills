@@ -3,7 +3,7 @@ name: tanstack-start-middleware
 description: Use when TanStack Start global middleware needs server-only implementation imports without dynamic import or client import-protection failures.
 ---
 
-# TanStack Start server-only middleware import safety
+# TanStack Start middleware
 
 Use this pattern when a shared `src/start.ts` must register request middleware whose implementation imports Node-only modules.
 

@@ -3,7 +3,7 @@ name: wayfinder-reversal
 description: "Use on a GitHub-tracked wayfinder map when a decision reverses an earlier closed ticket, when the owner rejects a resolution after close, or when the last driveable ticket closes. Records the reversal, runs a contradiction check across all resolutions, and prepares the map for /to-spec."
 ---
 
-# Wayfinder reversals and map close
+# Wayfinder reversal
 
 This builds on a wayfinder map. If there is no map yet, tell the user to run `/wayfinder` to chart one.
 

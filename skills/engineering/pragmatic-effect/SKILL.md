@@ -3,7 +3,7 @@ name: pragmatic-effect
 description: "Use when the user asks to use Effect, write or refactor Effect code, simplify overcomplicated Effect abstractions, or keep Effect code pragmatic. Trigger on Effect, effect-smol, Effect.gen, Context.Service, Layer, Schema, runtime bridges, services, scoped state, or comments like 'we are complicating this'. Focuses on practical Effect v4 patterns that keep synchronous/domain logic plain while preserving typed effects, lifecycle, resource safety, and testable dependency boundaries."
 ---
 
-# Effect pragmatic patterns
+# Pragmatic Effect
 
 Use this as a simplification lens alongside the other Effect skills. Pragmatic Effect code is not "avoid Effect"; it is "use Effect where it buys typed effects, dependency boundaries, lifecycle, resource safety, retries, concurrency, or schemas; keep everything else plain."
 

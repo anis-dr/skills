@@ -3,7 +3,7 @@ name: parallel-branches
 description: "Use when fanning out independent code slices to parallel subagents that share one git worktree, where each slice lands on its own branch off a common base without checkouts and the branches become a linear gh stack."
 ---
 
-# Parallel subagents in one shared worktree, then a gh stack
+# Parallel branches
 
 Use when dispatching 2+ subagents to edit disjoint files in the same checkout and each slice must become its own stacked PR.
 
