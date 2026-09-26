@@ -1,0 +1,44 @@
+# Weekly: move vendored skills to upstream HEAD and open one PR whose body is
+# upstream/DRIFT.md. Forks listed there need the upstream-review skill.
+name: upstream
+
+on:
+  schedule:
+    - cron: "0 6 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.3.14
+      - run: bun install --frozen-lockfile
+      - name: Write the private banned terms
+        env:
+          SKILLS_PRIVATE_TERMS: ${{ secrets.SKILLS_PRIVATE_TERMS }}
+        run: |
+          if [ -z "$SKILLS_PRIVATE_TERMS" ]; then
+            echo "Set the SKILLS_PRIVATE_TERMS secret to the contents of upstream/private-terms.json" >&2
+            exit 1
+          fi
+          printf '%s' "$SKILLS_PRIVATE_TERMS" > upstream/private-terms.json
+      - run: bun run skills sync --update
+      - run: bun run skills readme
+      - run: bun run skills check
+      - uses: peter-evans/create-pull-request@v8
+        with:
+          branch: upstream-sync
+          title: "chore: sync upstream skills"
+          commit-message: "chore: sync upstream skills"
+          body-path: upstream/DRIFT.md
+          add-paths: |
+            README.md
+            skills
+            upstream
