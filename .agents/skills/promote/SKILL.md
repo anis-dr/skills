@@ -43,7 +43,7 @@ Print one table and stop here on a dry run:
 
 | Candidate | Verdict | Action | Reason |
 |---|---|---|---|
-| drizzle-stale-baseline | public | merge into `drizzle` | new branch for stale snapshots |
+| drizzle-stale-baseline | public | merge into `drizzle-postgres` | new branch for stale snapshots |
 | acme-deploy-canary | project | skip: acme's `.agents/skills/` | calls acme's staging hosts |
 
 Done when every candidate has a row, and the row counts per action are stated under the table.

@@ -692,7 +692,7 @@
     "mode": "ours"
   },
   {
-    "name": "drizzle",
+    "name": "drizzle-postgres",
     "bucket": "engineering",
     "mode": "ours"
   },

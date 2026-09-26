@@ -129,7 +129,7 @@ Skills distilled from our own work. Most are model-invoked: the agent reaches fo
 
 ### Data and infrastructure
 
-- **`/drizzle`** handles Drizzle on PostgreSQL: bulk updates as one `jsonb` parameter, re-sequencing a diverged branch's migrations, and repairing a stale snapshot so `generate` stops proposing unrelated DDL.
+- **`/drizzle-postgres`** handles Drizzle on PostgreSQL: bulk updates as one `jsonb` parameter, re-sequencing a diverged branch's migrations, and repairing a stale snapshot so `generate` stops proposing unrelated DDL.
 - **`/rds-snapshot-dump`** turns an RDS Postgres snapshot into a portable `pg_dump`.
 - **`/query-timeout-diagnosis`** finds the client-side cause of query timeouts while the database is healthy.
 - **`/likec4-postcss-isolation`** fixes `likec4 serve` failing on a monorepo's root PostCSS config.

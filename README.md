@@ -64,7 +64,7 @@ Add `-g` to install into your user folder instead of the current project. Not su
 - [deslop](skills/engineering/deslop/SKILL.md): Remove AI-generated code slop and clean up code style
 - [diagnosing-bugs](skills/engineering/diagnosing-bugs/SKILL.md): Diagnose hard bugs and regressions
 - [domain-modeling](skills/engineering/domain-modeling/SKILL.md): Build and sharpen a domain model
-- [drizzle](skills/engineering/drizzle/SKILL.md): Drizzle bulk params, migration merges, baselines
+- [drizzle-postgres](skills/engineering/drizzle-postgres/SKILL.md): Drizzle bulk params, migration merges, baselines
 - [get-pr-comments](skills/engineering/get-pr-comments/SKILL.md): Fetch and summarize review comments from the active pull request
 - [git-split-amended-followup](skills/engineering/git-split-amended-followup/SKILL.md): Split an amended fix into its own follow-up commit
 - [how](skills/engineering/how/SKILL.md): Use for "how does X work", code walkthroughs before changing something, and placement / ownership / layering questions ("where should this live", "which package owns this", "is this the right layer").

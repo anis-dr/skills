@@ -1,9 +1,9 @@
 ---
-name: drizzle
+name: drizzle-postgres
 description: Drizzle ORM on PostgreSQL. Use when writing or reviewing bulk updates that interpolate JavaScript arrays or set-based row changes; when merging a diverged branch whose migration timestamps interleave with the base branch's; or when drizzle-kit generate emits broad unrelated DDL (tables, enums, constraints, rename prompts) because the latest snapshot predates later hand-written SQL migrations.
 ---
 
-# Drizzle
+# Drizzle on PostgreSQL
 
 Three Drizzle-on-PostgreSQL problems. Pick the branch from the symptom, then read its reference file in full before acting.
 
