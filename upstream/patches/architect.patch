@@ -1,5 +1,5 @@
 diff --git a/SKILL.md b/SKILL.md
-index 1fd76b2..0d637d6 100644
+index bc05aa8..e03f9bb 100644
 --- a/SKILL.md
 +++ b/SKILL.md
 @@ -28,9 +28,7 @@ Skip Phase A only when the work is genuinely greenfield with no surrounding syst
@@ -11,21 +11,21 @@ index 1fd76b2..0d637d6 100644
 -Take the runners from the `architect runners` line in the `pstack-models.mdc` rule, in place of the `arena runners` line. If the rule or that line is missing, use `claude-opus-5-5-max`, `gpt-5.6-sol-max`, `grok-4.7-xhigh-fast`. Alias and rejected entries follow the runner rules in the **arena** skill's Phase A.
 +The arena skill is user-invoked, so hand this step to the user: tell them to run `/arena` with the design-sketch task, the Phase A grounding artifacts, and `references/runner-prompt.md` as each runner's prompt, and give them the paths of those files and of this skill's `SKILL.md`. Wait for arena's result before going on. Each candidate produces a design package shaped per `references/rationale-template.md`.
  
- Design it twice. Require at least two structurally distinct candidates before synthesis, even when the first looks sufficient. This is the **exhaust-the-design-space** principle skill made concrete. Whole-shape alternatives, not point fixes inside one shape.
+ Design it twice. Require at least two structurally distinct candidates before synthesis, even when the first looks sufficient. This is the **exhaust-the-design-space** principle from the principles skill made concrete. Whole-shape alternatives, not point fixes inside one shape.
  
 @@ -46,7 +44,7 @@ Default: proceed directly to implementation with the synthesized design. No huma
  
  Opt in to a checkpoint when the invoker explicitly asks: "/architect with checkpoint," "stop and show me before implementing," or similar. Then surface the synthesized design and pause for sign-off.
  
--The synthesis can ship as its own commit either way, as the "scaffold first" mode of the **foundational-thinking** principle skill. Planned and scoped breakage during fill-in is fine, per the **outcome-oriented-execution** principle skill. For adversarial pressure on the design before implementing, call the Skill tool with "interrogate" and run it on the synthesized sketch.
-+The synthesis can ship as its own commit either way, as the "scaffold first" mode of the **foundational-thinking** principle skill. Planned and scoped breakage during fill-in is fine, per the **outcome-oriented-execution** principle skill. For adversarial pressure on the design before implementing, tell the user to run `/interrogate` on the synthesized sketch (interrogate is user-invoked) and wait for its report.
+-The synthesis can ship as its own commit either way, as the "scaffold first" mode of the **foundational-thinking** principle from the principles skill. Planned and scoped breakage during fill-in is fine, per the **outcome-oriented-execution** principle from the principles skill. For adversarial pressure on the design before implementing, call the Skill tool with "interrogate" and run it on the synthesized sketch.
++The synthesis can ship as its own commit either way, as the "scaffold first" mode of the **foundational-thinking** principle from the principles skill. Planned and scoped breakage during fill-in is fine, per the **outcome-oriented-execution** principle from the principles skill. For adversarial pressure on the design before implementing, tell the user to run `/interrogate` on the synthesized sketch (interrogate is user-invoked) and wait for its report.
  
  If the human pushes back on the shape (in a checkpoint or after the fact), treat that as Phase A evidence. Re-ground and re-run Phase B before writing more code.
  
 @@ -76,7 +74,7 @@ When you scrap:
  1. Call the Skill tool with "how" again and run it over what's been built.
  2. Redesign as if the new constraints had been day-one assumptions, per redesign-from-first-principles.
- 3. Subtract before adding, per the **subtract-before-you-add** principle skill. The new sketch should be smaller than the old one before it grows.
+ 3. Subtract before adding, per the **subtract-before-you-add** principle from the principles skill. The new sketch should be smaller than the old one before it grows.
 -4. Return to Phase B and re-run arena.
 +4. Return to Phase B and have the user re-run arena.
  
@@ -45,7 +45,7 @@ index a10f77f..0faa453 100644
  ## Tradeoffs accepted
  
 diff --git a/references/runner-prompt.md b/references/runner-prompt.md
-index 580ec47..4205f5a 100644
+index 68521d9..829c84f 100644
 --- a/references/runner-prompt.md
 +++ b/references/runner-prompt.md
 @@ -2,7 +2,7 @@

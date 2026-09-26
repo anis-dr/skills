@@ -40,11 +40,32 @@ export class OursEntry extends Schema.Class<OursEntry>("OursEntry")({
   }
 }
 
+// One upstream file vendored into another skill's references/ folder as
+// `references/<name>.md`, frontmatter stripped. sync owns that whole folder.
+export class ReferenceEntry extends Schema.Class<ReferenceEntry>(
+  "ReferenceEntry"
+)({
+  bucket: Bucket,
+  commit: Schema.String.check(Schema.isPattern(/^[0-9a-f]{40}$/u)),
+  // The skill that indexes the file.
+  into: Schema.String,
+  mode: Schema.Literal("reference"),
+  name: Schema.String,
+  // File inside the upstream repo.
+  path: Schema.String,
+  source: Schema.String,
+}) {
+  // The owning skill's folder, "<bucket>/<into>".
+  get skill() {
+    return `${this.bucket}/${this.into}`;
+  }
+}
+
 // One entry of upstream/sources.json.
-export type SourceEntry = OursEntry | VendorEntry;
+export type SourceEntry = OursEntry | ReferenceEntry | VendorEntry;
 
 const Sources = Schema.fromJsonString(
-  Schema.Array(Schema.Union([VendorEntry, OursEntry]))
+  Schema.Array(Schema.Union([VendorEntry, OursEntry, ReferenceEntry]))
 );
 
 // A regex (matched case-insensitively) that no file under skills/ may contain.
@@ -73,9 +94,9 @@ export class SkillTree extends Context.Service<
       ReadonlyArray<SourceEntry>,
       PlatformError | Schema.SchemaError
     >;
-    // Replaces the skill's folder with a copy of `from`.
-    readonly writeSkill: (
-      entry: SourceEntry,
+    // Replaces a folder under skills/ ("<bucket>/<name>", or a subfolder of it) with a copy of `from`.
+    readonly writeFolder: (
+      folder: string,
       from: string
     ) => Effect.Effect<void, PlatformError>;
     // Absolute path of a skill folder ("<bucket>/<name>").
@@ -110,11 +131,11 @@ export class SkillTree extends Context.Service<
           return yield* Schema.decodeEffect(Sources)(text);
         }).pipe(Effect.withSpan("SkillTree.readSources"));
 
-        const writeSkill = Effect.fn("SkillTree.writeSkill")(function* (
-          entry: SourceEntry,
+        const writeFolder = Effect.fn("SkillTree.writeFolder")(function* (
+          folder: string,
           from: string
         ) {
-          const dest = path.join(skillsDir, entry.skill);
+          const dest = path.join(skillsDir, folder);
           yield* fs.remove(dest, { force: true, recursive: true });
           yield* fs.makeDirectory(path.dirname(dest), { recursive: true });
           yield* fs.copy(from, dest);
@@ -192,7 +213,7 @@ export class SkillTree extends Context.Service<
           readSkillFiles,
           readSources,
           skillDir: (skill) => path.join(skillsDir, skill),
-          writeSkill,
+          writeFolder,
         });
       })
     );

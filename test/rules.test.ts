@@ -45,6 +45,21 @@ const cases: ReadonlyArray<readonly [string, string, string]> = [
     '- Call the Skill tool with "unslop" and apply it to every doc this skill touches.\n',
   ],
   [
+    "principles",
+    "**Balance:** The bar is triviality, not repetition. A one-off still earns a lever when the lever is what makes the work checkable. Per the [Laziness Protocol](../principle-laziness-protocol/SKILL.md), build the smallest script that does or proves the job, never a framework.\n",
+    "**Balance:** The bar is triviality, not repetition. A one-off still earns a lever when the lever is what makes the work checkable. Per the [Laziness Protocol](laziness-protocol.md), build the smallest script that does or proves the job, never a framework.\n",
+  ],
+  [
+    "principles",
+    "Apply the **type-system-discipline** principle skill first.\n",
+    "Apply the **type-system-discipline** principle from the principles skill first.\n",
+  ],
+  [
+    "principles",
+    "- Short call chains. If tracing the flow needs more than three files, flatten the hierarchy, per the **laziness-protocol** and **minimize-reader-load** principle skills.\n",
+    "- Short call chains. If tracing the flow needs more than three files, flatten the hierarchy, per the **laziness-protocol** and **minimize-reader-load** principles from the principles skill.\n",
+  ],
+  [
     "skillsFolder",
     "the project-local skill whose body has launch/drive sections and a feature map (usually `.cursor/skills/verify-*/`).\n",
     "the project-local skill whose body has launch/drive sections and a feature map (usually `.agents/skills/verify-*/`).\n",

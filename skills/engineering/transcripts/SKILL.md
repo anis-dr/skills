@@ -15,7 +15,7 @@ Each harness writes one JSONL file per session, one message or event per line. U
 | omp | `~/.omp/agent/sessions/<slug>/` | `<time>_<session-id>.jsonl` |
 | pi | `~/.pi/agent/sessions/<slug>/` | `<time>_<session-id>.jsonl` |
 
-`<slug>` encodes the workspace path with `/` turned into `-`, and each harness adds its own prefix and suffix: `/Users/you/app` becomes `-Users-you-app` in Claude Code (which also turns `.` into `-`), `Users-you-app` in Cursor, and `--Users-you-app--` in pi. omp drops the home folder, so `~/app` becomes `-app`. List the sessions folder and pick the entry that encodes the current workspace. Codex keeps no per-workspace folder: the first line of each file is a `session_meta` event whose `cwd` names the workspace.
+`<slug>` encodes the workspace path with `/` turned into `-`, and each harness adds its own prefix and suffix: `/Users/you/app` becomes `-Users-you-app` in Claude Code (which also turns `.` into `-`), `Users-you-app` in Cursor, and `--Users-you-app--` in pi. omp drops the home folder, so `~/app` becomes `-app`, and wraps paths outside it like pi (`/tmp/app` becomes `--tmp-app--`). List the sessions folder and pick the entry that encodes the current workspace. Codex keeps no per-workspace folder: the first line of each file is a `session_meta` event whose `cwd` names the workspace.
 
 ## The current session
 

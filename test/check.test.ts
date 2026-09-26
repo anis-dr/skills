@@ -4,7 +4,12 @@ import { Effect, FileSystem, Layer, Path } from "effect";
 import * as Context from "effect/Context";
 
 import { check } from "../src/check.ts";
-import { OursEntry, SkillTree, VendorEntry } from "../src/SkillTree.ts";
+import {
+  OursEntry,
+  ReferenceEntry,
+  SkillTree,
+  VendorEntry,
+} from "../src/SkillTree.ts";
 
 type Files = ReadonlyArray<readonly [string, string]>;
 
@@ -141,7 +146,36 @@ const tree: Files = [
     "Deploy acme secret to prod.\n"
   ),
   ...skill("orphan", "name: orphan\ndescription: No entry.\n", "Body.\n"),
+  // Skills whose references/ holds vendored files, indexed from SKILL.md.
+  ...skill(
+    "index-clean",
+    "name: index-clean\ndescription: Indexes a.\n",
+    "- [A](references/a.md): when A applies.\n"
+  ),
+  ["skills/engineering/index-clean/references/a.md", "# A\n"],
+  ...skill(
+    "index-unlisted",
+    "name: index-unlisted\ndescription: Forgets c.\n",
+    "No lines.\n"
+  ),
+  ["skills/engineering/index-unlisted/references/c.md", "# C\n"],
+  ...skill(
+    "index-dangling",
+    "name: index-dangling\ndescription: Points at a missing b.\n",
+    "- [B](references/b.md): when B applies.\n"
+  ),
 ];
+
+const reference = (into: string, name: string) =>
+  new ReferenceEntry({
+    bucket: "engineering",
+    commit: "0000000000000000000000000000000000000000",
+    into,
+    mode: "reference",
+    name,
+    path: `principles/${name}/SKILL.md`,
+    source: "https://example.com/upstream.git",
+  });
 
 const entries = [
   ...[
@@ -160,7 +194,12 @@ const entries = [
     "cursor-term",
     "private-term",
   ].map((name) => entry("engineering", name)),
-  new OursEntry({ bucket: "engineering", mode: "ours", name: "clean-target" }),
+  ...["clean-target", "index-clean", "index-unlisted", "index-dangling"].map(
+    (name) => new OursEntry({ bucket: "engineering", mode: "ours", name })
+  ),
+  reference("index-clean", "a"),
+  reference("index-unlisted", "c"),
+  reference("index-dangling", "b"),
   entry("productivity", "missing"),
 ];
 
@@ -179,6 +218,8 @@ layer(rootLayer)("check on a tree with one broken skill per rule", (it) => {
             ["engineering/bad-yaml", "frontmatter"],
             ["engineering/calls-user", "skill-call"],
             ["engineering/cursor-term", "banned-term"],
+            ["engineering/index-dangling", "reference-index"],
+            ["engineering/index-unlisted", "reference-index"],
             ["engineering/long-description", "frontmatter"],
             ["engineering/no-description", "frontmatter"],
             ["engineering/no-openai", "invocation"],

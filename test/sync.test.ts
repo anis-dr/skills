@@ -3,7 +3,7 @@ import { assert, layer } from "@effect/vitest";
 import { Effect, FileSystem, Layer, Path } from "effect";
 import * as Context from "effect/Context";
 
-import { SkillTree, VendorEntry } from "../src/SkillTree.ts";
+import { ReferenceEntry, SkillTree, VendorEntry } from "../src/SkillTree.ts";
 import { writePatch, sync } from "../src/sync.ts";
 import { git, Upstream } from "../src/Upstream.ts";
 
@@ -69,6 +69,7 @@ class Fixture extends Context.Service<
   {
     readonly arena: VendorEntry;
     readonly how: VendorEntry;
+    readonly lever: ReferenceEntry;
     readonly root: string;
     readonly tdd: VendorEntry;
   }
@@ -90,6 +91,10 @@ const fixtureLayer = Layer.unwrap(
       [
         "pstack/skills/arena/SKILL.md",
         "---\nname: arena\ndescription: Run candidates.\ndisable-model-invocation: true\n---\n\nBody.\n",
+      ],
+      [
+        "pstack/skills/principle-build-the-lever/SKILL.md",
+        "---\nname: principle-build-the-lever\ndescription: Apply to any non-trivial work.\n---\n\n# Build the Lever\n\nPer the [Laziness Protocol](../principle-laziness-protocol/SKILL.md), build the smallest script.\n",
       ],
     ]);
     yield* commitFiles(upstream, [
@@ -123,6 +128,15 @@ const fixtureLayer = Layer.unwrap(
         Fixture.of({
           arena: vendor("arena", "pstack/skills/arena"),
           how,
+          lever: new ReferenceEntry({
+            bucket: "engineering",
+            commit,
+            into: "principles",
+            mode: "reference",
+            name: "build-the-lever",
+            path: "pstack/skills/principle-build-the-lever/SKILL.md",
+            source: upstream,
+          }),
           root,
           tdd: vendor("tdd", "skills/engineering/tdd"),
         })
@@ -277,5 +291,32 @@ layer(fixtureLayer)("a patch that no longer applies", (it) => {
         [["SKILL.md", "Kept.\n"]]
       );
     })
+  );
+});
+
+layer(fixtureLayer)("sync of reference entries", (it) => {
+  it.effect(
+    "replaces the owner's references/ with the files, frontmatter stripped and rules applied",
+    () =>
+      Effect.gen(function* () {
+        const { lever, root } = yield* Fixture;
+        yield* writeFiles(root, [
+          ["skills/engineering/principles/SKILL.md", "Our index.\n"],
+          ["skills/engineering/principles/references/old.md", "Dropped.\n"],
+        ]);
+
+        yield* sync([lever]);
+
+        assert.deepStrictEqual(
+          yield* readTree(`${root}/skills/engineering/principles`),
+          [
+            ["SKILL.md", "Our index.\n"],
+            [
+              "references/build-the-lever.md",
+              "# Build the Lever\n\nPer the [Laziness Protocol](laziness-protocol.md), build the smallest script.\n",
+            ],
+          ]
+        );
+      })
   );
 });

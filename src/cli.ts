@@ -36,7 +36,7 @@ const syncCommand = Command.make("sync", {}, () =>
   Effect.gen(function* () {
     const entries = yield* (yield* SkillTree).readSources;
     const deadRules = yield* sync(entries);
-    yield* Console.log(`synced ${entries.length} skills`);
+    yield* Console.log(`synced ${entries.length} sources.json entries`);
     if (deadRules.length > 0) {
       return yield* new DeadRules({ rules: deadRules });
     }

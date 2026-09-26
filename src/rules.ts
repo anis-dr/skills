@@ -62,6 +62,21 @@ const rules: ReadonlyArray<Rule> = [
     ],
   },
   {
+    // pstack's principle skills are reference files in the principles skill here.
+    name: "principles",
+    rewrites: [
+      [/\]\(\.\.\/principle-([\w-]+)\/SKILL\.md\)/gu, "]($1.md)"],
+      [
+        /(\*\*[\w-]+\*\*) principle skills\b/gu,
+        "$1 principles from the principles skill",
+      ],
+      [
+        /(\*\*[\w-]+\*\*) principle skill\b/gu,
+        "$1 principle from the principles skill",
+      ],
+    ],
+  },
+  {
     // Cursor's project and user skill folders; `.agents/skills/` is the shared one.
     name: "skillsFolder",
     rewrites: [[/\.cursor\/skills\//gu, ".agents/skills/"]],

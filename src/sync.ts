@@ -1,7 +1,7 @@
 import { Effect, FileSystem, Path, Schema } from "effect";
 
 import { applyRules, ruleNames } from "./rules.ts";
-import type { SourceEntry, VendorEntry } from "./SkillTree.ts";
+import type { ReferenceEntry, SourceEntry, VendorEntry } from "./SkillTree.ts";
 import { SkillTree } from "./SkillTree.ts";
 import { git, Upstream } from "./Upstream.ts";
 
@@ -107,21 +107,64 @@ const stage = Effect.fn("stage")(function* (
 // Stages one vendored skill and writes it into the tree; its temp folder closes after.
 const syncVendored = Effect.fn("syncVendored")(function* (entry: VendorEntry) {
   const staged = yield* stage(entry, true);
-  yield* (yield* SkillTree).writeSkill(entry, staged.dir);
+  yield* (yield* SkillTree).writeFolder(entry.skill, staged.dir);
   return staged.used;
 }, Effect.scoped);
 
-// Writes every vendored skill from its pinned upstream commit. Returns the rules
-// that matched no vendored text: dead rules the CLI reports.
+// Rebuilds one skill's references/ folder from its reference entries: each
+// upstream file with its frontmatter stripped and the rules applied.
+const syncReferences = Effect.fn("syncReferences")(function* (
+  skill: string,
+  entries: ReadonlyArray<ReferenceEntry>
+) {
+  const fs = yield* FileSystem.FileSystem;
+  const path = yield* Path.Path;
+  const upstream = yield* Upstream;
+  const dir = yield* fs.makeTempDirectoryScoped();
+  const used = new Set<string>();
+  for (const entry of entries) {
+    const checkout = yield* upstream.fetchPinned(entry.source, entry.commit);
+    const from = path.join(checkout, entry.path);
+    if (!(yield* fs.exists(from))) {
+      return yield* new MissingUpstreamPath({ from, skill });
+    }
+    const result = applyRules(
+      (yield* fs.readFileString(from)).replace(
+        /^---\r?\n[\s\S]*?\r?\n---\r?\n(?:\r?\n)?/u,
+        ""
+      )
+    );
+    for (const name of result.used) {
+      used.add(name);
+    }
+    yield* fs.writeFileString(path.join(dir, `${entry.name}.md`), result.text);
+  }
+  yield* (yield* SkillTree).writeFolder(`${skill}/references`, dir);
+  return used;
+}, Effect.scoped);
+
+// Writes every vendored skill and reference from its pinned upstream commit.
+// Returns the rules that matched no vendored text: dead rules the CLI reports.
 export const sync = Effect.fn("sync")(function* (
   entries: ReadonlyArray<SourceEntry>
 ) {
   const used = new Set<string>();
+  const references = new Map<string, Array<ReferenceEntry>>();
   for (const entry of entries) {
     if (entry.mode === "vendor") {
       for (const name of yield* syncVendored(entry)) {
         used.add(name);
       }
+    } else if (entry.mode === "reference") {
+      references.set(entry.skill, [
+        ...(references.get(entry.skill) ?? []),
+        entry,
+      ]);
+    }
+  }
+  for (const [skill, group] of references) {
+    for (const name of yield* syncReferences(skill, group)) {
+      used.add(name);
     }
   }
   return ruleNames.filter((name) => !used.has(name));

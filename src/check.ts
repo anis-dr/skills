@@ -14,6 +14,7 @@ export interface Finding {
     | "invocation"
     | "missing-folder"
     | "orphan-folder"
+    | "reference-index"
     | "skill-call";
   // "<bucket>/<name>"
   readonly skill: string;
@@ -77,7 +78,11 @@ function sourcesFindings(
   entries: ReadonlyArray<SourceEntry>,
   folders: ReadonlyArray<string>
 ): Array<Finding> {
-  const declared = new Set(entries.map((entry) => entry.skill));
+  const declared = new Set(
+    entries
+      .filter((entry) => entry.mode !== "reference")
+      .map((entry) => entry.skill)
+  );
   const present = new Set(folders);
   return [
     ...folders
@@ -89,6 +94,40 @@ function sourcesFindings(
       .filter((skill) => !present.has(skill))
       .map((skill) =>
         finding("missing-folder", skill, "sources.json entry has no folder")
+      ),
+  ];
+}
+
+// In a skill that owns reference entries, SKILL.md links every file in
+// references/, and every references/ link points at a file that exists.
+function referenceIndexFindings({ files, skill }: LoadedSkill): Array<Finding> {
+  const skillMd = files.find(([file]) => file === "SKILL.md")?.[1] ?? "";
+  const linked = new Set(
+    [...skillMd.matchAll(/\]\((references\/[^)#\s]+)\)/gu)].map(
+      (match) => match[1]
+    )
+  );
+  const present = new Set(
+    files.map(([file]) => file).filter((file) => file.startsWith("references/"))
+  );
+  return [
+    ...[...present]
+      .filter((file) => !linked.has(file))
+      .map((file) =>
+        finding(
+          "reference-index",
+          skill,
+          `${file} has no index line in SKILL.md`
+        )
+      ),
+    ...[...linked]
+      .filter((file) => file !== undefined && !present.has(file))
+      .map((file) =>
+        finding(
+          "reference-index",
+          skill,
+          `SKILL.md links ${file}, which does not exist`
+        )
       ),
   ];
 }
@@ -243,8 +282,16 @@ export const check = Effect.fn("check")(function* (
       )
       .map((each) => each.name)
   );
+  const indexes = new Set(
+    entries
+      .filter((entry) => entry.mode === "reference")
+      .map((entry) => entry.skill)
+  );
   const findings = [
     ...sourcesFindings(entries, folders),
+    ...skills
+      .filter((each) => indexes.has(each.skill))
+      .flatMap(referenceIndexFindings),
     ...skills.flatMap((each) => [
       ...frontmatterFindings(each),
       ...invocationFindings(each),

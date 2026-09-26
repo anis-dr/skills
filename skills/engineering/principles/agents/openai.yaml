@@ -1,0 +1,3 @@
+interface:
+  display_name: "Principles"
+  short_description: "Engineering principles, one per decision"
