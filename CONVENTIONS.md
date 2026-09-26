@@ -36,6 +36,10 @@ Reference material shared by several skills lives inside the skill that owns it.
 
 A skill outside this repo is a recommended skill. Name it with its install command, and tell the agent what to do when it is missing: `If "install-anti-slop" isn't installed, ask the user to run npx skills add dmmulroy/anti-slop --skill install-anti-slop, then continue.`
 
+## Where files go
+
+The scratchpad skill owns the rule. Durable output follows Matt Pocock's structure (`CONTEXT.md`, `docs/adr/`, `docs/agents/`, the issue tracker). Temporary files the user may want to see, read or change go in `.scratchpad/<task>/`, and our skills write them there. Temporary plumbing only the agent touches goes in the OS temp folder. Matt's vendored skills keep their own locations.
+
 ## Harness-neutral wording
 
 - Describe a subagent by its role and constraints ("a read-only research subagent", "a subagent that runs in the background"), never by one harness's tool parameters.

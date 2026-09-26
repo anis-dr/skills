@@ -12,7 +12,7 @@ When the user must choose over many items (100+ skills, plugins, MCP servers), d
 1. Collect items programmatically from the real sources (directories, config JSON, GitHub API), never hand-typed. For skills, parse the SKILL.md frontmatter `description`. Record a stable id per item with a source prefix (`agent:`, `skill:`, `plugin:`, `mcp:`, `pack:`).
 2. Group items (by source, then by cluster) and pre-check each checkbox with your recommendation. Semantics: checked = keep/install, unchecked = delete/skip. Color rows green/red so the state is scannable.
 3. Include per-group "keep all"/"delete all" buttons, a name filter input, and a sticky footer with live counts plus a **Download decisions** button that saves `{generated, keep: [ids], delete: [ids]}` (or install/skip) as JSON via a Blob download.
-4. Write the HTML to `~/Desktop/<topic>.html` and `open` it. The user downloads the decisions file to `~/Downloads/`; read it from there and execute.
+4. Write the HTML to `.scratchpad/<topic>/picker.html` (call the Skill tool with "scratchpad") and `open` it. The user downloads the decisions file to `~/Downloads/`; read it from there and execute.
 5. Reuse the previous HTML as a template for round 2: swap the `const ITEMS = ...` JSON, retitle, and rename the download filename so decision files don't collide.
 
 ## Execution gotchas (from a real skills cleanup)

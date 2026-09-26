@@ -44,5 +44,5 @@ Carry these into the `/to-spec` run:
 
 - Read the codebase seams first (test app, database tests, i18n and router tests). Propose new seams only at external parties and time (provider, gateway, mailer, clock), and get a yes before writing.
 - Create the `ready-for-agent` label if the repo lacks it (`gh label create ready-for-agent --color 0E8A16`).
-- Write the spec to a temp file, `gh issue create --label ready-for-agent --body-file <file>`, then comment on the map: "Destination reached. Spec published as #<n>."
+- Write the spec to `.scratchpad/<map>/spec.md` so the owner can read it first, then `gh issue create --label ready-for-agent --body-file .scratchpad/<map>/spec.md`, then comment on the map: "Destination reached. Spec published as #<n>."
 - Say in the spec that the latest comment on a ticket wins, and that whoever picks it up should delete any superseded plan file.

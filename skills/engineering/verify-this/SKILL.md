@@ -39,7 +39,7 @@ Do not use this for vague claims like "the code is cleaner". Ask for a measurabl
 When safe to write artifacts:
 
 ```text
-/tmp/verify-this/<claim-slug>/
+.scratchpad/verify-this-<claim-slug>/
 ├── claim.md
 ├── timeline.md
 ├── baseline/

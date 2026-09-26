@@ -16,7 +16,7 @@ The other session may own the worktree's active browser tab.
 
 - `orca tab create --url <url> --json`, and save the `browserPageId`.
 - Pass `--page <id>` on every `orca goto`, `wait`, `eval` and `screenshot` call. The rest of the loop is in [browser-verification.md](browser-verification.md).
-- Serve throwaway boards with `python3 -m http.server <port> --bind 127.0.0.1 --directory <dir>` as a background process, and stop it when done.
+- Serve throwaway boards with `python3 -m http.server <port> --bind 127.0.0.1 --directory .scratchpad/<board>/` as a background process, and stop it when done.
 
 ## Prototype capture
 

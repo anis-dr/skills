@@ -1,5 +1,5 @@
 diff --git a/SKILL.md b/SKILL.md
-index 54bcf49..276fe27 100644
+index 54bcf49..0f60778 100644
 --- a/SKILL.md
 +++ b/SKILL.md
 @@ -29,7 +29,7 @@ Do not use this for vague claims like "the code is cleaner". Ask for a measurabl
@@ -11,3 +11,12 @@ index 54bcf49..276fe27 100644
  - API behavior: local HTTP/RPC request and response diff.
  - Performance: same-machine baseline/treatment timings or CPU profiles.
  - Memory: heap snapshots before and after the suspected operation.
+@@ -39,7 +39,7 @@ Do not use this for vague claims like "the code is cleaner". Ask for a measurabl
+ When safe to write artifacts:
+ 
+ ```text
+-/tmp/verify-this/<claim-slug>/
++.scratchpad/verify-this-<claim-slug>/
+ ├── claim.md
+ ├── timeline.md
+ ├── baseline/

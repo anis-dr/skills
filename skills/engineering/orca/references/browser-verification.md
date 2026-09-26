@@ -21,12 +21,12 @@ When another session may own the worktree's active browser tab, work in your own
 orca screenshot --json | python3 -c "
 import sys,json,base64,pathlib
 d=json.load(sys.stdin)
-pathlib.Path('/tmp/shot.png').write_bytes(base64.b64decode(d['result']['data']))
+pathlib.Path('.scratchpad/orca-check/shot.png').write_bytes(base64.b64decode(d['result']['data']))
 print('ok')
 "
 ```
 
-Then open `/tmp/shot.png` with your file-reading tool, which shows images.
+Then open `.scratchpad/orca-check/shot.png` with your file-reading tool, which shows images.
 
 ## App shells own their scroll container
 

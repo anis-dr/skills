@@ -1,12 +1,25 @@
 ---
 name: scratchpad
 description: >-
-  Keep throwaway work in the repository's gitignored `.scratchpad/` folder. Use before writing a probe script, spike, draft, captured output, screenshot, or subagent hand-off that is not meant to be committed.
+  Decide where a file goes and keep temporary files the user may want to read or edit in the repository's gitignored `.scratchpad/` folder. Use before writing a report, draft, screenshot, captured output, decision log, resume note, hand-off, or probe script that is not meant to be committed.
 ---
 
 # Scratchpad
 
-Throwaway work lives in `.scratchpad/` at the repository root. Git ignores the folder, so nothing in it reaches a commit. Unlike `/tmp`, it sits beside the code, survives a reboot, and a reviewer can open it.
+`.scratchpad/` at the repository root holds temporary files **that are useful for the user to see, read or modify**: a report to review, a draft to edit, evidence to check, a probe to rerun. Git ignores the folder. Unlike the OS temp folder, it sits beside the code, survives a reboot, and the user can open it from their editor.
+
+## Where a file goes
+
+Pick the first row that matches.
+
+| The file is | It goes |
+|---|---|
+| A location a skill names for its own output (a Matt Pocock skill's OS temp folder, an issue tracker, a worktree) | Where that skill says. Its location wins. |
+| Durable: meant to be committed or kept | Matt Pocock's structure: `CONTEXT.md` for domain language, `docs/adr/` for decisions, `docs/agents/` for agent setup, the configured issue tracker for specs and tickets (GitHub, or `.scratch/<feature>/` when the repo uses the local-markdown tracker), and the code, tests and docs themselves. |
+| Temporary, and the user may want to see, read or change it | `.scratchpad/<task>/` |
+| Temporary plumbing only the agent touches (a swap file, a git index, a large download it deletes, a working directory that must sit outside the repo) | The OS temp folder |
+
+`.scratchpad/` is not Matt's `.scratch/`. `.scratch/` is a committed local issue tracker; `.scratchpad/` is never committed.
 
 ## Steps
 
@@ -14,17 +27,18 @@ Throwaway work lives in `.scratchpad/` at the repository root. Git ignores the f
 2. **Make one folder per task.** Name it for the task, such as `.scratchpad/slug-collision-probe/` or `.scratchpad/issue-42/`. Put every file from that task inside it.
 3. **Name files for what they show.** `drizzle-check-output.sql` beats `test2.sql`. A reader should know what a file shows without opening it.
 4. **Record how to rerun it.** Each probe carries the command that runs it, in a comment at the top or in a `README.md` in the task folder.
-5. **Promote what lasts.** When a result has to outlive the task, move it into tracked files: a test, a doc, an ADR, a comment in the code. The scratch copy then goes.
-6. **Clean up when the work lands.** Delete the task folder once its change is merged and nobody needs its evidence. Keep a folder only while someone still has to review it.
+5. **Tell the user the path** of anything they should look at.
+6. **Promote what lasts.** When a result has to outlive the task, move it to its durable place from the table above. The scratch copy then goes.
+7. **Clean up when the work lands.** Delete the task folder once its change is merged and nobody needs its evidence. Keep a folder only while someone still has to review it.
 
 ## What belongs here
 
-- Probe scripts that check how a library or query behaves.
-- Spike code and throwaway prototypes.
-- Design drafts, candidate sketches, and comparison notes.
-- Captured output: logs, generated SQL, API responses.
-- Screenshots and recordings from manual checks.
-- Hand-off files between agents.
+- Reports, catalogs and pickers the user reviews in a browser.
+- Drafts the user may edit before they are published, such as a spec or a PR body.
+- Evidence: screenshots, recordings, captured logs, API responses, generated SQL, measurements.
+- Decision logs and resume notes from long runs.
+- Probe scripts, spikes and throwaway prototypes.
+- Hand-off files between agents in the same workspace.
 
 ## Rules
 

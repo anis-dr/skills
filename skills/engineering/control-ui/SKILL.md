@@ -35,7 +35,7 @@ const browser = await chromium.launch();
 const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
 await page.goto("http://127.0.0.1:<port>");
 await page.getByRole("button", { name: /submit/i }).click();
-await page.screenshot({ path: "/tmp/ui-harness-after.png", fullPage: true });
+await page.screenshot({ path: ".scratchpad/ui-harness/after.png", fullPage: true });
 await browser.close();
 ```
 
@@ -66,7 +66,7 @@ if (!page) {
   throw new Error("No matching app page found");
 }
 
-await page.screenshot({ path: "/tmp/ui-harness-cdp.png", fullPage: true });
+await page.screenshot({ path: ".scratchpad/ui-harness/cdp.png", fullPage: true });
 await browser.close();
 ```
 

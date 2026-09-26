@@ -1,5 +1,5 @@
 diff --git a/SKILL.md b/SKILL.md
-index 68484fd..43f8e43 100644
+index 68484fd..52b4e6c 100644
 --- a/SKILL.md
 +++ b/SKILL.md
 @@ -22,7 +22,7 @@ Use local browser automation to verify UI behavior with evidence. First reuse th
@@ -10,4 +10,22 @@ index 68484fd..43f8e43 100644
 +6. Locate elements by accessibility role, label or a stable `data-*` selector, then exercise them with real input at their measured position. What counts as proof of a UI claim (measurements, hit tests) belongs to the measure-ui skill.
  
  ## Generic Web Harness
+ 
+@@ -35,7 +35,7 @@ const browser = await chromium.launch();
+ const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
+ await page.goto("http://127.0.0.1:<port>");
+ await page.getByRole("button", { name: /submit/i }).click();
+-await page.screenshot({ path: "/tmp/ui-harness-after.png", fullPage: true });
++await page.screenshot({ path: ".scratchpad/ui-harness/after.png", fullPage: true });
+ await browser.close();
+ ```
+ 
+@@ -66,7 +66,7 @@ if (!page) {
+   throw new Error("No matching app page found");
+ }
+ 
+-await page.screenshot({ path: "/tmp/ui-harness-cdp.png", fullPage: true });
++await page.screenshot({ path: ".scratchpad/ui-harness/cdp.png", fullPage: true });
+ await browser.close();
+ ```
  

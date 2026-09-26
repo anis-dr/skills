@@ -2,7 +2,7 @@
 
 One measured slowness, traced and fixed once against a baseline. For sustained improvement of a metric toward a target, use [Hillclimb](hillclimb.md) instead.
 
-1. **Capture a baseline trace** on the surface where the user sees the slowness. For a web or Electron UI, call the Skill tool with "control-ui". For a CLI or TUI, call the Skill tool with "control-cli". Record the number and the artifact path.
+1. **Capture a baseline trace** into `.scratchpad/<task>/`, where the post-fix trace and the comparison also go, on the surface where the user sees the slowness. For a web or Electron UI, call the Skill tool with "control-ui". For a CLI or TUI, call the Skill tool with "control-cli". Record the number and the artifact path.
 2. **Ground the hypotheses.** Call the Skill tool with "how" over the slow path so each hypothesis names a real mechanism. Run it before you claim a ceiling.
 
    Most fixes come from the eight strategy families below. They generate hypotheses; they are not a checklist. A family earns an attempt only when the trace shows the signal it names.
