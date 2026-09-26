@@ -1,0 +1,34 @@
+{
+  "name": "skills",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "format": "oxfmt --check .",
+    "format:fix": "oxfmt .",
+    "lint": "ultracite check --type-aware .",
+    "lint:fix": "ultracite fix --type-aware .",
+    "prepare": "effect-tsgo patch",
+    "skills": "bun src/cli.ts",
+    "test": "vitest run",
+    "typecheck": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "@effect/platform-bun": "4.0.0-rc.117",
+    "effect": "4.0.0-rc.117"
+  },
+  "devDependencies": {
+    "@effect/tsgo": "0.46.0",
+    "@effect/vitest": "4.0.0-rc.117",
+    "@oxlint/plugins": "1.85.0",
+    "@shekohex/oxc-effect": "0.2.1",
+    "@types/bun": "1.4.2",
+    "oxfmt": "0.70.0",
+    "oxlint": "1.85.0",
+    "oxlint-plugin-effect": "0.12.1",
+    "oxlint-tsgolint": "7.0.2003",
+    "typescript": "7.0.2",
+    "ultracite": "7.12.0",
+    "vitest": "5.0.2"
+  }
+}
