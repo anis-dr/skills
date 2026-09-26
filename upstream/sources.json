@@ -240,6 +240,62 @@
     "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
   },
   {
+    "name": "claude-handoff",
+    "bucket": "in-progress",
+    "mode": "vendor",
+    "source": "https://github.com/mattpocock/skills",
+    "path": "skills/in-progress/claude-handoff",
+    "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
+  },
+  {
+    "name": "loop-me",
+    "bucket": "in-progress",
+    "mode": "vendor",
+    "source": "https://github.com/mattpocock/skills",
+    "path": "skills/in-progress/loop-me",
+    "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
+  },
+  {
+    "name": "setup-ts-deep-modules",
+    "bucket": "in-progress",
+    "mode": "vendor",
+    "source": "https://github.com/mattpocock/skills",
+    "path": "skills/in-progress/setup-ts-deep-modules",
+    "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
+  },
+  {
+    "name": "git-guardrails-claude-code",
+    "bucket": "misc",
+    "mode": "vendor",
+    "source": "https://github.com/mattpocock/skills",
+    "path": "skills/misc/git-guardrails-claude-code",
+    "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
+  },
+  {
+    "name": "migrate-to-shoehorn",
+    "bucket": "misc",
+    "mode": "vendor",
+    "source": "https://github.com/mattpocock/skills",
+    "path": "skills/misc/migrate-to-shoehorn",
+    "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
+  },
+  {
+    "name": "scaffold-exercises",
+    "bucket": "misc",
+    "mode": "vendor",
+    "source": "https://github.com/mattpocock/skills",
+    "path": "skills/misc/scaffold-exercises",
+    "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
+  },
+  {
+    "name": "setup-pre-commit",
+    "bucket": "misc",
+    "mode": "vendor",
+    "source": "https://github.com/mattpocock/skills",
+    "path": "skills/misc/setup-pre-commit",
+    "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
+  },
+  {
     "name": "how",
     "bucket": "engineering",
     "mode": "vendor",

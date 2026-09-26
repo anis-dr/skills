@@ -118,6 +118,16 @@ Before you change code you don't know, or when the shape of new code is the hard
 - **`/unslop`** cuts AI tells from any prose. Model-invoked: writing skills apply it to their output.
 - **`/writing-fragments`**, then **`/writing-shape`** or **`/writing-beats`** (beta): mine raw fragments with no structure, then shape them into an article paragraph by paragraph, or into a journey of beats.
 
+## More from Matt (beta and rarely used)
+
+- **`/loop-me`** grills you into implementable workflow specs over several sessions, using the current folder as a stateful workspace (beta).
+- **`/setup-ts-deep-modules`** wires dependency-cruiser into a TypeScript repo so each package is a deep module, reachable only through its entry files (beta).
+- **`/claude-handoff`** hands the conversation to a fresh Claude Code background agent (`claude --bg`) that starts right away. Claude Code only; elsewhere use `/handoff` (beta).
+- **`/git-guardrails-claude-code`** sets up Claude Code hooks that block dangerous git commands (push, `reset --hard`, `clean`, `branch -D`) before they run.
+- **`/setup-pre-commit`** adds Husky pre-commit hooks with lint-staged, type checking and tests.
+- **`/migrate-to-shoehorn`** moves test files from `as` assertions to `@total-typescript/shoehorn` for partial test data.
+- **`/scaffold-exercises`** creates course exercise folders (sections, problems, solutions, explainers) that pass linting.
+
 ## Our skills
 
 Skills distilled from our own work. Most are model-invoked: the agent reaches for them when the situation matches, and you can name them directly.

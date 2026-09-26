@@ -136,8 +136,11 @@ Add `-g` to install into your user folder instead of the current project. Not su
 
 **User-invoked**
 
+- [claude-handoff](skills/in-progress/claude-handoff/SKILL.md): Hand off to a background agent
 - [implement-spec](skills/in-progress/implement-spec/SKILL.md): Implement a whole spec as one PR
+- [loop-me](skills/in-progress/loop-me/SKILL.md): Spec the workflows you want to build
 - [retro](skills/in-progress/retro/SKILL.md): Conduct a retrospective on a coding session.
+- [setup-ts-deep-modules](skills/in-progress/setup-ts-deep-modules/SKILL.md): Enforce deep TypeScript modules
 - [writing-beats](skills/in-progress/writing-beats/SKILL.md): Assemble raw material into beats
 - [writing-fragments](skills/in-progress/writing-fragments/SKILL.md): Mine raw writing fragments
 - [writing-shape](skills/in-progress/writing-shape/SKILL.md): Shape raw material into an article
@@ -146,6 +149,15 @@ Add `-g` to install into your user folder instead of the current project. Not su
 
 - [pr](skills/in-progress/pr/SKILL.md): Write a PR body that's fast to review
 - [youtube-video-to-skill](skills/in-progress/youtube-video-to-skill/SKILL.md): Turn a video tutorial into a skill with frames
+
+### Misc (rarely used)
+
+**Model-invoked**
+
+- [git-guardrails-claude-code](skills/misc/git-guardrails-claude-code/SKILL.md): Block dangerous git commands
+- [migrate-to-shoehorn](skills/misc/migrate-to-shoehorn/SKILL.md): Replace test assertions with shoehorn
+- [scaffold-exercises](skills/misc/scaffold-exercises/SKILL.md): Scaffold lint-ready course exercises
+- [setup-pre-commit](skills/misc/setup-pre-commit/SKILL.md): Add pre-commit quality checks
 
 <!-- skills:end -->
 

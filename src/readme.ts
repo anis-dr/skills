@@ -14,6 +14,7 @@ const buckets: ReadonlyArray<readonly [string, string]> = [
   ["productivity", "Productivity"],
   ["design", "Design"],
   ["in-progress", "In progress (beta)"],
+  ["misc", "Misc (rarely used)"],
 ];
 
 const start = "<!-- skills:start -->";
