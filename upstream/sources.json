@@ -240,14 +240,6 @@
     "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
   },
   {
-    "name": "claude-handoff",
-    "bucket": "in-progress",
-    "mode": "vendor",
-    "source": "https://github.com/mattpocock/skills",
-    "path": "skills/in-progress/claude-handoff",
-    "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
-  },
-  {
     "name": "loop-me",
     "bucket": "in-progress",
     "mode": "vendor",

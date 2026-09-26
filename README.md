@@ -136,7 +136,6 @@ Add `-g` to install into your user folder instead of the current project. Not su
 
 **User-invoked**
 
-- [claude-handoff](skills/in-progress/claude-handoff/SKILL.md): Hand off to a background agent
 - [implement-spec](skills/in-progress/implement-spec/SKILL.md): Implement a whole spec as one PR
 - [loop-me](skills/in-progress/loop-me/SKILL.md): Spec the workflows you want to build
 - [retro](skills/in-progress/retro/SKILL.md): Conduct a retrospective on a coding session.
