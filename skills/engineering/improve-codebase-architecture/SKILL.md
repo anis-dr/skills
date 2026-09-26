@@ -1,6 +1,6 @@
 ---
 name: improve-codebase-architecture
-description: Scan a codebase for deepening opportunities, present them as a visual HTML report, then grill through whichever one you pick.
+description: Scan a codebase for deepening opportunities, present them visually with show-me, then grill through whichever one you pick.
 disable-model-invocation: true
 ---
 
@@ -34,30 +34,26 @@ Then spawn a sub-agent to walk the codebase. Don't follow rigid heuristics; expl
 
 Apply the **deletion test** to anything you suspect is shallow: would deleting it concentrate complexity, or just move it? A "yes, concentrates" is the signal you want.
 
-### 2. Present candidates as an HTML report
+### 2. Present candidates
 
-Write a self-contained HTML file to the repo's gitignored `.scratchpad/` folder (call the Skill tool with "scratchpad"), so nothing lands in a commit and the user can reopen it later. Write to `.scratchpad/architecture-review/<timestamp>.html` so each run gets a fresh file. Open it for the user (`xdg-open <path>` on Linux, `open <path>` on macOS, `start <path>` on Windows) and tell them the absolute path.
+Call the Skill tool with "show-me" and present the candidates in whatever form it picks (Markdown in the reply, or a focused HTML file it opens for the user). If "show-me" isn't installed, ask the user to run npx skills add humanlayer/skills --skill show-me, then continue. When show-me writes a file, it goes in `.scratchpad/architecture-review/` (call the Skill tool with "scratchpad"); tell the user the path. Be visual: each candidate gets a **before/after view**.
 
-The report uses **Tailwind via CDN** for layout and styling, and **Mermaid via CDN** for diagrams where a graph/flow/sequence reliably communicates the structure. Mix Mermaid with hand-crafted CSS/SVG visuals: use Mermaid when relationships are graph-shaped (call graphs, dependencies, sequences), and hand-built divs/SVG when you want something more editorial (mass diagrams, cross-sections, collapse animations). Each candidate gets a **before/after visualisation**. Be visual.
-
-For each candidate, render a card with:
+For each candidate, show:
 
 - **Files**: which files/modules are involved
 - **Problem**: why the current architecture is causing friction
 - **Solution**: plain English description of what would change
 - **Benefits**: explained in terms of locality and leverage, and how tests would improve
-- **Before / After diagram**: side-by-side, custom-drawn, illustrating the shallowness and the deepening
-- **Recommendation strength**: one of `Strong`, `Worth exploring`, `Speculative`, rendered as a badge
+- **Before / After view**: illustrating the shallowness and the deepening
+- **Recommendation strength**: one of `Strong`, `Worth exploring`, `Speculative`
 
 End the report with a **Top recommendation** section: which candidate you'd tackle first and why.
 
 **Use CONTEXT.md vocabulary for the domain, and the `/codebase-design` vocabulary for the architecture.** If `CONTEXT.md` defines "Order," talk about "the Order intake module," not "the FooBarHandler," and not "the Order service."
 
-**ADR conflicts**: if a candidate contradicts an existing ADR, only surface it when the friction is real enough to warrant revisiting the ADR. Mark it clearly in the card (e.g. a warning callout: _"contradicts ADR-0007, but worth reopening because…"_). Don't list every theoretical refactor an ADR forbids.
+**ADR conflicts**: if a candidate contradicts an existing ADR, only surface it when the friction is real enough to warrant revisiting the ADR. Mark it clearly on the candidate (e.g. a warning callout: _"contradicts ADR-0007, but worth reopening because…"_). Don't list every theoretical refactor an ADR forbids.
 
-See [HTML-REPORT.md](HTML-REPORT.md) for the full HTML scaffold, diagram patterns, and styling guidance.
-
-Do NOT propose interfaces yet. After the file is written, ask the user: "Which of these would you like to explore?"
+Do NOT propose interfaces yet. After presenting, ask the user: "Which of these would you like to explore?"
 
 ### 3. Grilling loop
 
@@ -69,3 +65,7 @@ Side effects happen inline as decisions crystallize; call the Skill tool with "d
 - **Sharpening a fuzzy term during the conversation?** Update `CONTEXT.md` right there.
 - **User rejects the candidate with a load-bearing reason?** Offer an ADR, framed as: _"Want me to record this as an ADR so future architecture reviews don't re-suggest it?"_ Only offer when the reason would actually be needed by a future explorer to avoid re-suggesting the same thing; skip ephemeral reasons ("not worth it right now") and self-evident ones.
 - **Want to explore alternative interfaces for the deepened module?** Call the Skill tool with "codebase-design" and use its design-it-twice parallel sub-agent pattern.
+
+### 4. Plan the work
+
+When the grilling settles the deepened module and the user wants to build it, call the Skill tool with "to-plan" and turn the decision into an executor plan.
