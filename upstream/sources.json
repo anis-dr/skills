@@ -635,5 +635,45 @@
     "source": "https://github.com/mattpocock/skills",
     "path": "skills/engineering/ask-matt",
     "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
+  },
+  {
+    "name": "logo-candidates-on-surfaces-board",
+    "bucket": "design",
+    "mode": "ours"
+  },
+  {
+    "name": "pen-design-token-migration",
+    "bucket": "design",
+    "mode": "ours"
+  },
+  {
+    "name": "pen-dev-designer-iteration",
+    "bucket": "design",
+    "mode": "ours"
+  },
+  {
+    "name": "pen-dev-gated-iteration",
+    "bucket": "design",
+    "mode": "ours"
+  },
+  {
+    "name": "refactoring-ui",
+    "bucket": "design",
+    "mode": "ours"
+  },
+  {
+    "name": "ui-fidelity-verification",
+    "bucket": "design",
+    "mode": "ours"
+  },
+  {
+    "name": "ui-redesign-function-conservation",
+    "bucket": "design",
+    "mode": "ours"
+  },
+  {
+    "name": "verify-css-interaction-states",
+    "bucket": "design",
+    "mode": "ours"
   }
 ]

@@ -1,0 +1,3 @@
+interface:
+  display_name: "UI Fidelity Verification"
+  short_description: "Measure reference vs build, not screenshots"

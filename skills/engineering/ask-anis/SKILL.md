@@ -115,6 +115,18 @@ Before you change code you don't know, or when the shape of new code is the hard
 - **`/unslop`** cuts AI tells from any prose. Model-invoked: writing skills apply it to their output.
 - **`/writing-fragments`**, then **`/writing-shape`** or **`/writing-beats`** (beta): mine raw fragments with no structure, then shape them into an article paragraph by paragraph, or into a journey of beats.
 
+## Our skills
+
+Skills distilled from our own work. Most are model-invoked: the agent reaches for them when the situation matches, and you can name them directly.
+
+### Design
+
+- **`/refactoring-ui`** applies the Refactoring UI rules, scales and review checklist when designing or reviewing web UI.
+- **`/ui-fidelity-verification`** and **`/verify-css-interaction-states`** prove a build matches its design, a layout fix or hover, focus and animation behaviour by measuring in a live browser instead of eyeballing screenshots.
+- **`/ui-redesign-function-conservation`** inventories every control before a redesign so none is silently dropped.
+- **`/logo-candidates-on-surfaces-board`** judges logo candidates on favicon, reversed, app tile and nav surfaces in one HTML board.
+- **`/pen-dev-designer-iteration`** designs screens in a pen.dev file with the CLI designer, grounded in Mobbin evidence; **`/pen-dev-gated-iteration`** gates each run to the frames you allowed; **`/pen-design-token-migration`** migrates or renames the file's design tokens without breaking overrides.
+
 ## Standalone
 
 Off the main flow entirely.

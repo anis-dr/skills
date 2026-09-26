@@ -1,0 +1,3 @@
+interface:
+  display_name: "Pen Design Token Migration"
+  short_description: "Migrate .pen tokens and dark mode safely"

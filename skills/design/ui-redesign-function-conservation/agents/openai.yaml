@@ -1,0 +1,3 @@
+interface:
+  display_name: "UI Redesign Function Conservation"
+  short_description: "Redesign a UI without dropping any control"

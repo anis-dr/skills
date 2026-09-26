@@ -1,0 +1,3 @@
+interface:
+  display_name: "Pen Dev Gated Iteration"
+  short_description: "Gate pen.dev designer runs with frame diffs"
