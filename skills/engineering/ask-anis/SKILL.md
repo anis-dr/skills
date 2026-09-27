@@ -152,6 +152,10 @@ Skills distilled from our own work. Most are model-invoked: the agent reaches fo
 - **`/tanstack-start-middleware`** registers server-only middleware in TanStack Start without dynamic imports or client import-protection failures.
 - **`/agent-sources`** reads a dependency's upstream source at the installed version when types and docs leave a question open.
 
+### Web platform (Google Chrome's skill)
+
+- **`/modern-web-guidance`** searches Chrome's guides for current HTML, CSS and client-side JavaScript practice (dialogs, popovers, anchor positioning, container queries, view transitions, forms and autofill, Core Web Vitals) and returns the matching guide. Model-invoked: it runs before any HTML, CSS or client-side work.
+
 ### React and Vercel (Vercel's skills)
 
 - **`/vercel-react-best-practices`** is Vercel's React and Next.js performance guide; **`/vercel-composition-patterns`** covers React composition that scales (compound components, no boolean-prop sprawl); **`/vercel-react-view-transitions`** covers animations with React's View Transition API.
