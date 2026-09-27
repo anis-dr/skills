@@ -13,7 +13,7 @@ Before implementing Effect-heavy code:
 
 1. Inspect nearby code in the target repo.
 2. Read project rules such as `AGENTS.md`, `CLAUDE.md`, package rules, or local Effect skills when present.
-3. Prefer current Effect v4/effect-smol APIs and checked-in examples over old Effect v2/v3 memory.
+3. Prefer current Effect v4/effect-smol APIs and checked-in examples over old Effect v2/v3 memory. Call the Skill tool with "effect-v4" for the API reference and migration notes.
 4. If a source file referenced by instructions is missing, say so and continue with available local examples.
 
 ## Simplification rule

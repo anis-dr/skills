@@ -7,3 +7,6 @@ This repo redistributes skills from the sources below, each under the MIT Licens
 | [mattpocock/skills](https://github.com/mattpocock/skills) | Copyright (c) 2026 Matt Pocock |
 | [cursor/plugins `pstack/`](https://github.com/cursor/plugins/tree/main/pstack) | Copyright (c) 2026 Lauren Tan |
 | [cursor/plugins `cursor-team-kit/`](https://github.com/cursor/plugins/tree/main/cursor-team-kit) | Copyright (c) 2026 Cursor |
+| [teeverc/effect-ts](https://github.com/teeverc/effect-ts) | Copyright (c) 2026 Teever |
+| [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills) | Copyright (c) Vercel, Inc. (MIT per the repository README) |
+| [coreyhaines31/marketingskills](https://github.com/coreyhaines31/marketingskills) | Copyright (c) 2025 Corey Haines |

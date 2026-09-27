@@ -4,6 +4,7 @@ Agent skills for engineering, writing and design work, in one repo that installs
 
 - Matt Pocock's [skills](https://github.com/mattpocock/skills), vendored unchanged.
 - Lauren Tan's [pstack](https://github.com/cursor/plugins/tree/main/pstack) and Cursor's [cursor-team-kit](https://github.com/cursor/plugins/tree/main/cursor-team-kit) skills, rewritten so they run outside Cursor.
+- Corey Haines' [marketing skills](https://github.com/coreyhaines31/marketingskills), Vercel's [agent skills](https://github.com/vercel-labs/agent-skills) and Teever's [Effect skills](https://github.com/teeverc/effect-ts), vendored unchanged.
 - Our own skills, distilled from day-to-day work.
 
 A weekly job pulls upstream changes into a pull request, so vendored skills stay current.
@@ -63,10 +64,13 @@ Add `-g` to install into your user folder instead of the current project. Not su
 - [control-cli](skills/engineering/control-cli/SKILL.md): Build or adapt a local harness to drive, inspect, and profile an interactive CLI or TUI without external services.
 - [control-ui](skills/engineering/control-ui/SKILL.md): Build or adapt a local browser/CDP harness to drive and inspect a web, IDE, or Electron UI.
 - [dependabot-backlog](skills/engineering/dependabot-backlog/SKILL.md): Merge a Dependabot backlog into one verified PR
+- [deploy-to-vercel](skills/engineering/deploy-to-vercel/SKILL.md): Deploy applications and websites to Vercel.
 - [deslop](skills/engineering/deslop/SKILL.md): Remove AI-generated code slop and clean up code style
 - [diagnosing-bugs](skills/engineering/diagnosing-bugs/SKILL.md): Diagnose hard bugs and regressions
 - [domain-modeling](skills/engineering/domain-modeling/SKILL.md): Build and sharpen a domain model
 - [drizzle-postgres](skills/engineering/drizzle-postgres/SKILL.md): Drizzle bulk params, migration merges, baselines
+- [effect-ts](skills/engineering/effect-ts/SKILL.md): Effect v3 (stable) guidance for TypeScript; for an Effect v4 project use effect-v4 instead.
+- [effect-v4](skills/engineering/effect-v4/SKILL.md): Effect v4 (beta) development and v3 → v4 migration guidance.
 - [git-split-amended-followup](skills/engineering/git-split-amended-followup/SKILL.md): Split an amended fix into its own follow-up commit
 - [how](skills/engineering/how/SKILL.md): Use for "how does X work", code walkthroughs before changing something, and placement / ownership / layering questions ("where should this live", "which package owns this", "is this the right layer").
 - [likec4-postcss-isolation](skills/engineering/likec4-postcss-isolation/SKILL.md): Stop root PostCSS config breaking likec4 serve
@@ -92,6 +96,12 @@ Add `-g` to install into your user folder instead of the current project. Not su
 - [to-plan](skills/engineering/to-plan/SKILL.md): Executor-ready plans as flows, not pasted code
 - [transcripts](skills/engineering/transcripts/SKILL.md): Find session transcripts per harness
 - [typescript-best-practices](skills/engineering/typescript-best-practices/SKILL.md): TypeScript best practices.
+- [vercel-cli-with-tokens](skills/engineering/vercel-cli-with-tokens/SKILL.md): Deploy and manage projects on Vercel using token-based authentication.
+- [vercel-composition-patterns](skills/engineering/vercel-composition-patterns/SKILL.md): React composition patterns that scale.
+- [vercel-optimize](skills/engineering/vercel-optimize/SKILL.md): Use for Vercel cost and performance optimization on deployed projects, especially Next.js, SvelteKit, Nuxt, and limited Astro apps.
+- [vercel-react-best-practices](skills/engineering/vercel-react-best-practices/SKILL.md): React and Next.js performance optimization guidelines from Vercel Engineering.
+- [vercel-react-native-skills](skills/engineering/vercel-react-native-skills/SKILL.md): React Native and Expo best practices for building performant mobile apps.
+- [vercel-react-view-transitions](skills/engineering/vercel-react-view-transitions/SKILL.md): Guide for implementing smooth, native-feeling animations using React's View Transition API (`<ViewTransition>` component, `addTransitionType`, and CSS view transition pseudo-elements).
 - [verify-api-shape](skills/engineering/verify-api-shape/SKILL.md): Check live API responses before trusting fixtures
 - [verify-this](skills/engineering/verify-this/SKILL.md): Verify a claim with fresh local evidence: restate it falsifiably, capture baseline and treatment, compare artifacts, and return VERIFIED, NOT VERIFIED, or INCONCLUSIVE.
 - [wayfinder-reversal](skills/engineering/wayfinder-reversal/SKILL.md): Handle wayfinder reversals and close the map
@@ -120,6 +130,7 @@ Add `-g` to install into your user folder instead of the current project. Not su
 - [unslop](skills/productivity/unslop/SKILL.md): Cut AI tells from any writing.
 - [vscode-theme-to-zed](skills/productivity/vscode-theme-to-zed/SKILL.md): Port a VS Code color theme to Zed
 - [writing-for-agents](skills/productivity/writing-for-agents/SKILL.md): Write documents agents consume
+- [writing-guidelines](skills/productivity/writing-guidelines/SKILL.md): Review docs/prose for Writing Guidelines compliance.
 
 ### Design
 
@@ -131,6 +142,7 @@ Add `-g` to install into your user folder instead of the current project. Not su
 - [pen-dev](skills/design/pen-dev/SKILL.md): Design, gate and migrate tokens in pen.dev files
 - [redesign-inventory](skills/design/redesign-inventory/SKILL.md): Redesign a UI without dropping any control
 - [refactoring-ui](skills/design/refactoring-ui/SKILL.md): Refactoring UI rules, scales and review checklist
+- [web-design-guidelines](skills/design/web-design-guidelines/SKILL.md): Review UI code for Web Interface Guidelines compliance.
 
 ### In progress (beta)
 
@@ -148,6 +160,61 @@ Add `-g` to install into your user folder instead of the current project. Not su
 
 - [pr](skills/in-progress/pr/SKILL.md): Write a PR body that's fast to review
 - [youtube-video-to-skill](skills/in-progress/youtube-video-to-skill/SKILL.md): Turn a video tutorial into a skill with frames
+
+### Marketing
+
+**Model-invoked**
+
+- [ab-testing](skills/marketing/ab-testing/SKILL.md): When the user wants to plan, design, or implement an A/B test or experiment, or build a growth experimentation program.
+- [ad-creative](skills/marketing/ad-creative/SKILL.md): When the user wants to generate, iterate, or scale ad creative — headlines, descriptions, primary text, or full ad variations — for any paid advertising platform.
+- [ads](skills/marketing/ads/SKILL.md): When the user wants help with paid advertising campaigns on Google Ads, Meta (Facebook/Instagram), LinkedIn, Twitter/X, or other ad platforms.
+- [ai-seo](skills/marketing/ai-seo/SKILL.md): When the user wants to optimize content for AI search engines, get cited by LLMs, or appear in AI-generated answers.
+- [analytics](skills/marketing/analytics/SKILL.md): When the user wants to set up, improve, or audit analytics tracking and measurement.
+- [aso](skills/marketing/aso/SKILL.md): When the user wants to audit or optimize an App Store or Google Play listing.
+- [attribution](skills/marketing/attribution/SKILL.md): When the user wants to figure out which marketing actually drives conversions and revenue, choose or interpret an attribution model, or reconcile conflicting numbers across tools.
+- [churn-prevention](skills/marketing/churn-prevention/SKILL.md): When the user wants to reduce churn, build cancellation flows, set up save offers, recover failed payments, or implement retention strategies.
+- [co-marketing](skills/marketing/co-marketing/SKILL.md): When the user wants to find co-marketing partners, plan joint campaigns, or brainstorm partnership opportunities.
+- [cold-email](skills/marketing/cold-email/SKILL.md): Write B2B cold emails and follow-up sequences that get replies.
+- [community-marketing](skills/marketing/community-marketing/SKILL.md): Build and leverage online communities to drive product growth and brand loyalty.
+- [competitor-profiling](skills/marketing/competitor-profiling/SKILL.md): When the user wants to research, profile, or analyze competitors from their URLs.
+- [competitors](skills/marketing/competitors/SKILL.md): When the user wants to create competitor comparison or alternative pages for SEO and sales enablement.
+- [content-strategy](skills/marketing/content-strategy/SKILL.md): When the user wants to plan a content strategy, decide what content to create, or figure out what topics to cover.
+- [copy-editing](skills/marketing/copy-editing/SKILL.md): When the user wants to edit, review, or improve existing marketing copy, or refresh outdated content.
+- [copywriting](skills/marketing/copywriting/SKILL.md): When the user wants to write, rewrite, or improve marketing copy for any page — including homepage, landing pages, pricing pages, feature pages, about pages, or product pages.
+- [cro](skills/marketing/cro/SKILL.md): When the user wants to optimize, improve, or increase conversions on any marketing page or form — including homepage, landing pages, pricing pages, feature pages, lead capture forms, or contact forms.
+- [customer-research](skills/marketing/customer-research/SKILL.md): When the user wants to conduct, analyze, or synthesize customer research.
+- [directory-submissions](skills/marketing/directory-submissions/SKILL.md): When the user wants to submit their product to startup, SaaS, AI, agent, MCP, no-code, or review directories for backlinks, domain rating, and discovery.
+- [emails](skills/marketing/emails/SKILL.md): When the user wants to create or optimize an email sequence, drip campaign, automated email flow, or lifecycle email program.
+- [events](skills/marketing/events/SKILL.md): When the user wants to plan, run, sponsor, speak at, or get pipeline from events — webinars, conferences, trade shows, meetups, dinners, workshops, virtual summits, or user conferences.
+- [free-tools](skills/marketing/free-tools/SKILL.md): When the user wants to plan, evaluate, or build a free tool for marketing purposes — lead generation, SEO value, or brand awareness.
+- [image](skills/marketing/image/SKILL.md): When the user wants to create, generate, edit, or optimize images for marketing — blog heroes, social graphics, product mockups, profile banners, listing visuals, or brand assets.
+- [influencer-marketing](skills/marketing/influencer-marketing/SKILL.md): When the user wants to run influencer, creator, or ambassador partnerships to promote their product — finding and vetting partners, structuring deals, briefing creators, disclosure compliance, and measuring ROI.
+- [launch](skills/marketing/launch/SKILL.md): When the user wants to plan a product launch, feature announcement, or release strategy.
+- [lead-magnets](skills/marketing/lead-magnets/SKILL.md): When the user wants to create, plan, or optimize a lead magnet for email capture or lead generation.
+- [marketing-council](skills/marketing/marketing-council/SKILL.md): When the user wants multiple expert perspectives on a marketing question — a simulated board of advisors staffed by legendary marketers (Seth Godin, David Ogilvy, Eugene Schwartz, April Dunford, Rory Sutherland, Alex Hormozi, Byron Sharp, and more).
+- [marketing-ideas](skills/marketing/marketing-ideas/SKILL.md): When the user needs marketing ideas, inspiration, or strategies for their SaaS or software product.
+- [marketing-loops](skills/marketing/marketing-loops/SKILL.md): When the user wants to set up a recurring, self-running marketing workflow — a repeatable loop an AI agent runs on a cadence (weekly, daily, on a trigger) rather than a one-off task.
+- [marketing-plan](skills/marketing/marketing-plan/SKILL.md): When the user needs a comprehensive marketing plan for a client, a company they advise, or their own product.
+- [marketing-psychology](skills/marketing/marketing-psychology/SKILL.md): When the user wants to apply psychological principles, mental models, or behavioral science to marketing.
+- [offers](skills/marketing/offers/SKILL.md): When the user wants to design, construct, or improve an offer — the thing they actually sell — including value framing, bonus stacking, guarantee design, scarcity/urgency, naming, and payment structure.
+- [onboarding](skills/marketing/onboarding/SKILL.md): When the user wants to optimize post-signup onboarding, user activation, first-run experience, or time-to-value.
+- [paywalls](skills/marketing/paywalls/SKILL.md): When the user wants to create or optimize in-app paywalls, upgrade screens, upsell modals, or feature gates.
+- [popups](skills/marketing/popups/SKILL.md): When the user wants to create or optimize popups, modals, overlays, slide-ins, or banners for conversion purposes.
+- [pricing](skills/marketing/pricing/SKILL.md): When the user wants help with pricing decisions, packaging, or monetization strategy.
+- [product-marketing](skills/marketing/product-marketing/SKILL.md): When the user wants to create or update their product marketing context document.
+- [programmatic-seo](skills/marketing/programmatic-seo/SKILL.md): When the user wants to create SEO-driven pages at scale using templates and data.
+- [prospecting](skills/marketing/prospecting/SKILL.md): When the user wants to find, qualify, and build a list of prospects to reach out to — across B2B SaaS, general B2B, or local small businesses.
+- [public-relations](skills/marketing/public-relations/SKILL.md): When the user wants help with public relations, earned media, press coverage, journalist outreach, or media strategy (not pull requests).
+- [referrals](skills/marketing/referrals/SKILL.md): When the user wants to create, optimize, or analyze a referral program, affiliate program, or word-of-mouth strategy.
+- [revops](skills/marketing/revops/SKILL.md): When the user wants help with revenue operations, lead lifecycle management, or marketing-to-sales handoff processes.
+- [sales-enablement](skills/marketing/sales-enablement/SKILL.md): When the user wants to create sales collateral, pitch decks, one-pagers, objection handling docs, or demo scripts.
+- [schema](skills/marketing/schema/SKILL.md): When the user wants to add, fix, or optimize schema markup and structured data on their site.
+- [seo-audit](skills/marketing/seo-audit/SKILL.md): When the user wants to audit, review, or diagnose SEO issues on their site.
+- [signup](skills/marketing/signup/SKILL.md): When the user wants to optimize signup, registration, account creation, or trial activation flows.
+- [site-architecture](skills/marketing/site-architecture/SKILL.md): When the user wants to plan, map, or restructure their website's page hierarchy, navigation, URL structure, or internal linking.
+- [sms](skills/marketing/sms/SKILL.md): When the user wants to plan, build, or optimize SMS or MMS marketing — including welcome flows, abandoned cart texts, post-purchase, win-back, promotional sends, or transactional/auth SMS.
+- [social](skills/marketing/social/SKILL.md): When the user wants help creating, scheduling, or optimizing social media content for LinkedIn, Twitter/X, Instagram, TikTok, Facebook, or other platforms, or wants to do social listening and engagement triage.
+- [video](skills/marketing/video/SKILL.md): When the user wants to create, generate, or produce video content using AI tools or programmatic frameworks.
 
 ### Misc (rarely used)
 

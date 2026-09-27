@@ -127,17 +127,38 @@ Before you change code you don't know, or when the shape of new code is the hard
 - **`/migrate-to-shoehorn`** moves test files from `as` assertions to `@total-typescript/shoehorn` for partial test data.
 - **`/scaffold-exercises`** creates course exercise folders (sections, problems, solutions, explainers) that pass linting.
 
+## Marketing (Corey Haines' skills)
+
+Start with **`/product-marketing`**: it writes the product marketing context file (`.agents/product-marketing.md`) that every other marketing skill reads first. Not sure where to start? **`/marketing-ideas`** lists strategies, **`/marketing-plan`** builds a full plan, and **`/marketing-council`** puts a question to a panel of famous marketers.
+
+- **Strategy and positioning:** **`/marketing-psychology`**, **`/customer-research`**, **`/competitor-profiling`**, **`/offers`**, **`/pricing`**, **`/launch`**, **`/marketing-loops`** (recurring workflows an agent runs on a schedule).
+- **Copy and content:** **`/copywriting`**, **`/copy-editing`**, **`/content-strategy`**, **`/lead-magnets`**, **`/free-tools`**, **`/image`**, **`/video`**, **`/social`**.
+- **Conversion:** **`/cro`** for pages and forms, **`/signup`**, **`/onboarding`**, **`/popups`**, **`/paywalls`**, **`/ab-testing`**, **`/churn-prevention`**.
+- **Search:** **`/seo-audit`**, **`/ai-seo`** for AI search engines, **`/programmatic-seo`**, **`/site-architecture`**, **`/schema`** markup, **`/competitors`** comparison pages, **`/directory-submissions`**, **`/aso`** for app stores.
+- **Paid and measurement:** **`/ads`**, **`/ad-creative`**, **`/analytics`**, **`/attribution`**.
+- **Email and messaging:** **`/emails`** for sequences, **`/cold-email`**, **`/sms`**.
+- **Sales and partnerships:** **`/prospecting`**, **`/sales-enablement`**, **`/revops`**, **`/referrals`**, **`/co-marketing`**, **`/influencer-marketing`**, **`/community-marketing`**, **`/public-relations`**, **`/events`**.
+
 ## Our skills
 
 Skills distilled from our own work. Most are model-invoked: the agent reaches for them when the situation matches, and you can name them directly.
 
 ### Effect and TypeScript
 
+- **`/effect-v4`** is the Effect v4 API reference and v3-to-v4 migration guide: services, layers, errors, schema codecs, streams, testing. **`/effect-ts`** is the same for Effect v3. Both check out against the installed Effect source; the source wins.
 - **`/setup-effect-toolchain`** sets up an Effect v4 repo's toolchain (TypeScript 7 with `@effect/tsgo`, Oxlint with the Effect, code-shape and anti-slop plugins, oxfmt) and proves every layer runs.
 - **`/pragmatic-effect`** keeps Effect code pragmatic: Effect where it buys typed effects, lifecycle or dependency boundaries, plain helpers everywhere else.
 - **`/anti-slop-migration`** takes an existing TypeScript codebase to zero anti-slop findings without laundering types.
 - **`/tanstack-start-middleware`** registers server-only middleware in TanStack Start without dynamic imports or client import-protection failures.
 - **`/agent-sources`** reads a dependency's upstream source at the installed version when types and docs leave a question open.
+
+### React and Vercel (Vercel's skills)
+
+- **`/vercel-react-best-practices`** is Vercel's React and Next.js performance guide; **`/vercel-composition-patterns`** covers React composition that scales (compound components, no boolean-prop sprawl); **`/vercel-react-view-transitions`** covers animations with React's View Transition API.
+- **`/vercel-react-native-skills`** is the React Native and Expo guide.
+- **`/deploy-to-vercel`** deploys an app and returns the link; **`/vercel-cli-with-tokens`** does it with an access token instead of a login; **`/vercel-optimize`** cuts cost and speeds up a deployed project from its metrics.
+- **`/web-design-guidelines`** reviews UI code against Vercel's Web Interface Guidelines (accessibility, UX, performance).
+- **`/writing-guidelines`** reviews docs and prose against Vercel's writing guidelines.
 
 ### Data and infrastructure
 

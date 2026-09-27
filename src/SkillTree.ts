@@ -8,6 +8,7 @@ const Bucket = Schema.Literals([
   "design",
   "in-progress",
   "misc",
+  "marketing",
 ]);
 
 const Commit = Schema.String.check(Schema.isPattern(/^[0-9a-f]{40}$/u));

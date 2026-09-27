@@ -40,7 +40,7 @@ Plans must not contain copy-pastable implementation or test code. Wherever a con
 - The plan introduces symbols or settles terminology: before drawing anything, call the Skill tool with "domain-modeling" to fix canonical terms and split overloaded concepts, then call the Skill tool with "naming-analyzer" to check proposed names against codebase context and conventions. If "naming-analyzer" isn't installed, ask the user to run npx skills add softaworks/agent-toolkit --skill naming-analyzer, then continue.
 - All plan prose: call the Skill tool with "unslop". Captions, headers, and assertions follow its rules.
 - Every plan: call the Skill tool with "tdd". Plans follow its loop: vertical slices, red before green, one seam per cycle, seams confirmed with the user before tests are planned against them.
-- Effect-related code: call the Skill tool with "effect-index" to select the relevant Effect skills and patterns before writing the plan, and shape services, layers, errors, and streams with those concepts where they apply. If "effect-index" isn't installed, ask the user to run npx skills add mepuka/effect-ontology --skill effect-index, then continue.
+- Effect-related code: call the Skill tool with "effect-v4" (or "effect-ts" for an Effect v3 project) and read the references that match before writing the plan, and shape services, layers, errors, and streams with those concepts where they apply.
 
 ## Rules
 

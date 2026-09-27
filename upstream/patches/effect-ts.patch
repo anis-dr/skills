@@ -1,0 +1,12 @@
+diff --git a/SKILL.md b/SKILL.md
+index d01a4c7..0365a20 100644
+--- a/SKILL.md
++++ b/SKILL.md
+@@ -1,6 +1,6 @@
+ ---
+ name: effect-ts
+-description: "Effect-TS (Effect) guidance for TypeScript. Use when building, refactoring, reviewing, or explaining Effect code, especially for: typed error modeling (expected errors vs defects), Context/Layer/Effect.Service dependency wiring, Scope/resource lifecycles, runtime execution boundaries, schema-based decoding, concurrency/scheduling/streams, @effect/platform APIs, Effect AI workflows, and Promise/async migration."
++description: "Effect v3 (stable) guidance for TypeScript; for an Effect v4 project use effect-v4 instead. Use when building, refactoring, reviewing, or explaining Effect code, especially for: typed error modeling (expected errors vs defects), Context/Layer/Effect.Service dependency wiring, Scope/resource lifecycles, runtime execution boundaries, schema-based decoding, concurrency/scheduling/streams, @effect/platform APIs, Effect AI workflows, and Promise/async migration."
+ ---
+ 
+ # Effect-TS

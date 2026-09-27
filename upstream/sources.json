@@ -901,5 +901,493 @@
     "name": "youtube-video-to-skill",
     "bucket": "in-progress",
     "mode": "ours"
+  },
+  {
+    "name": "effect-v4",
+    "bucket": "engineering",
+    "mode": "vendor",
+    "source": "https://github.com/teeverc/effect-ts",
+    "path": "skills/effect-v4",
+    "commit": "2d77eb8e9f2acc00a0f16e5e5b0c37be9a4c779f"
+  },
+  {
+    "name": "effect-ts",
+    "bucket": "engineering",
+    "mode": "vendor",
+    "source": "https://github.com/teeverc/effect-ts",
+    "path": "skills/effect-ts",
+    "commit": "2d77eb8e9f2acc00a0f16e5e5b0c37be9a4c779f"
+  },
+  {
+    "name": "vercel-composition-patterns",
+    "bucket": "engineering",
+    "mode": "vendor",
+    "source": "https://github.com/vercel-labs/agent-skills",
+    "path": "skills/composition-patterns",
+    "commit": "063bee94c3f4df8453406c830b0a7df0f2860278"
+  },
+  {
+    "name": "vercel-react-best-practices",
+    "bucket": "engineering",
+    "mode": "vendor",
+    "source": "https://github.com/vercel-labs/agent-skills",
+    "path": "skills/react-best-practices",
+    "commit": "063bee94c3f4df8453406c830b0a7df0f2860278"
+  },
+  {
+    "name": "vercel-react-native-skills",
+    "bucket": "engineering",
+    "mode": "vendor",
+    "source": "https://github.com/vercel-labs/agent-skills",
+    "path": "skills/react-native-skills",
+    "commit": "063bee94c3f4df8453406c830b0a7df0f2860278"
+  },
+  {
+    "name": "vercel-react-view-transitions",
+    "bucket": "engineering",
+    "mode": "vendor",
+    "source": "https://github.com/vercel-labs/agent-skills",
+    "path": "skills/react-view-transitions",
+    "commit": "063bee94c3f4df8453406c830b0a7df0f2860278"
+  },
+  {
+    "name": "deploy-to-vercel",
+    "bucket": "engineering",
+    "mode": "vendor",
+    "source": "https://github.com/vercel-labs/agent-skills",
+    "path": "skills/deploy-to-vercel",
+    "commit": "063bee94c3f4df8453406c830b0a7df0f2860278"
+  },
+  {
+    "name": "vercel-cli-with-tokens",
+    "bucket": "engineering",
+    "mode": "vendor",
+    "source": "https://github.com/vercel-labs/agent-skills",
+    "path": "skills/vercel-cli-with-tokens",
+    "commit": "063bee94c3f4df8453406c830b0a7df0f2860278"
+  },
+  {
+    "name": "vercel-optimize",
+    "bucket": "engineering",
+    "mode": "vendor",
+    "source": "https://github.com/vercel-labs/agent-skills",
+    "path": "skills/vercel-optimize",
+    "commit": "063bee94c3f4df8453406c830b0a7df0f2860278"
+  },
+  {
+    "name": "web-design-guidelines",
+    "bucket": "design",
+    "mode": "vendor",
+    "source": "https://github.com/vercel-labs/agent-skills",
+    "path": "skills/web-design-guidelines",
+    "commit": "063bee94c3f4df8453406c830b0a7df0f2860278"
+  },
+  {
+    "name": "writing-guidelines",
+    "bucket": "productivity",
+    "mode": "vendor",
+    "source": "https://github.com/vercel-labs/agent-skills",
+    "path": "skills/writing-guidelines",
+    "commit": "063bee94c3f4df8453406c830b0a7df0f2860278"
+  },
+  {
+    "name": "ab-testing",
+    "bucket": "marketing",
+    "mode": "vendor",
+    "source": "https://github.com/coreyhaines31/marketingskills",
+    "path": "skills/ab-testing",
+    "commit": "5b2c0007766c6a1cf1d53fd8fc73e979e0821022"
+  },
+  {
+    "name": "ad-creative",
+    "bucket": "marketing",
+    "mode": "vendor",
+    "source": "https://github.com/coreyhaines31/marketingskills",
+    "path": "skills/ad-creative",
+    "commit": "5b2c0007766c6a1cf1d53fd8fc73e979e0821022"
+  },
+  {
+    "name": "ads",
+    "bucket": "marketing",
+    "mode": "vendor",
+    "source": "https://github.com/coreyhaines31/marketingskills",
+    "path": "skills/ads",
+    "commit": "5b2c0007766c6a1cf1d53fd8fc73e979e0821022"
+  },
+  {
+    "name": "ai-seo",
+    "bucket": "marketing",
+    "mode": "vendor",
+    "source": "https://github.com/coreyhaines31/marketingskills",
+    "path": "skills/ai-seo",
+    "commit": "5b2c0007766c6a1cf1d53fd8fc73e979e0821022"
+  },
+  {
+    "name": "analytics",
+    "bucket": "marketing",
+    "mode": "vendor",
+    "source": "https://github.com/coreyhaines31/marketingskills",
+    "path": "skills/analytics",
+    "commit": "5b2c0007766c6a1cf1d53fd8fc73e979e0821022"
+  },
+  {
+    "name": "aso",
+    "bucket": "marketing",
+    "mode": "vendor",
+    "source": "https://github.com/coreyhaines31/marketingskills",
+    "path": "skills/aso",
+    "commit": "5b2c0007766c6a1cf1d53fd8fc73e979e0821022"
+  },
+  {
+    "name": "attribution",
+    "bucket": "marketing",
+    "mode": "vendor",
+    "source": "https://github.com/coreyhaines31/marketingskills",
+    "path": "skills/attribution",
+    "commit": "5b2c0007766c6a1cf1d53fd8fc73e979e0821022"
+  },
+  {
+    "name": "churn-prevention",
+    "bucket": "marketing",
+    "mode": "vendor",
+    "source": "https://github.com/coreyhaines31/marketingskills",
+    "path": "skills/churn-prevention",
+    "commit": "5b2c0007766c6a1cf1d53fd8fc73e979e0821022"
+  },
+  {
+    "name": "co-marketing",
+    "bucket": "marketing",
+    "mode": "vendor",
+    "source": "https://github.com/coreyhaines31/marketingskills",
+    "path": "skills/co-marketing",
+    "commit": "5b2c0007766c6a1cf1d53fd8fc73e979e0821022"
+  },
+  {
+    "name": "cold-email",
+    "bucket": "marketing",
+    "mode": "vendor",
+    "source": "https://github.com/coreyhaines31/marketingskills",
+    "path": "skills/cold-email",
+    "commit": "5b2c0007766c6a1cf1d53fd8fc73e979e0821022"
+  },
+  {
+    "name": "community-marketing",
+    "bucket": "marketing",
+    "mode": "vendor",
+    "source": "https://github.com/coreyhaines31/marketingskills",
+    "path": "skills/community-marketing",
+    "commit": "5b2c0007766c6a1cf1d53fd8fc73e979e0821022"
+  },
+  {
+    "name": "competitor-profiling",
+    "bucket": "marketing",
+    "mode": "vendor",
+    "source": "https://github.com/coreyhaines31/marketingskills",
+    "path": "skills/competitor-profiling",
+    "commit": "5b2c0007766c6a1cf1d53fd8fc73e979e0821022"
+  },
+  {
+    "name": "competitors",
+    "bucket": "marketing",
+    "mode": "vendor",
+    "source": "https://github.com/coreyhaines31/marketingskills",
+    "path": "skills/competitors",
+    "commit": "5b2c0007766c6a1cf1d53fd8fc73e979e0821022"
+  },
+  {
+    "name": "content-strategy",
+    "bucket": "marketing",
+    "mode": "vendor",
+    "source": "https://github.com/coreyhaines31/marketingskills",
+    "path": "skills/content-strategy",
+    "commit": "5b2c0007766c6a1cf1d53fd8fc73e979e0821022"
+  },
+  {
+    "name": "copy-editing",
+    "bucket": "marketing",
+    "mode": "vendor",
+    "source": "https://github.com/coreyhaines31/marketingskills",
+    "path": "skills/copy-editing",
+    "commit": "5b2c0007766c6a1cf1d53fd8fc73e979e0821022"
+  },
+  {
+    "name": "copywriting",
+    "bucket": "marketing",
+    "mode": "vendor",
+    "source": "https://github.com/coreyhaines31/marketingskills",
+    "path": "skills/copywriting",
+    "commit": "5b2c0007766c6a1cf1d53fd8fc73e979e0821022"
+  },
+  {
+    "name": "cro",
+    "bucket": "marketing",
+    "mode": "vendor",
+    "source": "https://github.com/coreyhaines31/marketingskills",
+    "path": "skills/cro",
+    "commit": "5b2c0007766c6a1cf1d53fd8fc73e979e0821022"
+  },
+  {
+    "name": "customer-research",
+    "bucket": "marketing",
+    "mode": "vendor",
+    "source": "https://github.com/coreyhaines31/marketingskills",
+    "path": "skills/customer-research",
+    "commit": "5b2c0007766c6a1cf1d53fd8fc73e979e0821022"
+  },
+  {
+    "name": "directory-submissions",
+    "bucket": "marketing",
+    "mode": "vendor",
+    "source": "https://github.com/coreyhaines31/marketingskills",
+    "path": "skills/directory-submissions",
+    "commit": "5b2c0007766c6a1cf1d53fd8fc73e979e0821022"
+  },
+  {
+    "name": "emails",
+    "bucket": "marketing",
+    "mode": "vendor",
+    "source": "https://github.com/coreyhaines31/marketingskills",
+    "path": "skills/emails",
+    "commit": "5b2c0007766c6a1cf1d53fd8fc73e979e0821022"
+  },
+  {
+    "name": "events",
+    "bucket": "marketing",
+    "mode": "vendor",
+    "source": "https://github.com/coreyhaines31/marketingskills",
+    "path": "skills/events",
+    "commit": "5b2c0007766c6a1cf1d53fd8fc73e979e0821022"
+  },
+  {
+    "name": "free-tools",
+    "bucket": "marketing",
+    "mode": "vendor",
+    "source": "https://github.com/coreyhaines31/marketingskills",
+    "path": "skills/free-tools",
+    "commit": "5b2c0007766c6a1cf1d53fd8fc73e979e0821022"
+  },
+  {
+    "name": "image",
+    "bucket": "marketing",
+    "mode": "vendor",
+    "source": "https://github.com/coreyhaines31/marketingskills",
+    "path": "skills/image",
+    "commit": "5b2c0007766c6a1cf1d53fd8fc73e979e0821022"
+  },
+  {
+    "name": "influencer-marketing",
+    "bucket": "marketing",
+    "mode": "vendor",
+    "source": "https://github.com/coreyhaines31/marketingskills",
+    "path": "skills/influencer-marketing",
+    "commit": "5b2c0007766c6a1cf1d53fd8fc73e979e0821022"
+  },
+  {
+    "name": "launch",
+    "bucket": "marketing",
+    "mode": "vendor",
+    "source": "https://github.com/coreyhaines31/marketingskills",
+    "path": "skills/launch",
+    "commit": "5b2c0007766c6a1cf1d53fd8fc73e979e0821022"
+  },
+  {
+    "name": "lead-magnets",
+    "bucket": "marketing",
+    "mode": "vendor",
+    "source": "https://github.com/coreyhaines31/marketingskills",
+    "path": "skills/lead-magnets",
+    "commit": "5b2c0007766c6a1cf1d53fd8fc73e979e0821022"
+  },
+  {
+    "name": "marketing-council",
+    "bucket": "marketing",
+    "mode": "vendor",
+    "source": "https://github.com/coreyhaines31/marketingskills",
+    "path": "skills/marketing-council",
+    "commit": "5b2c0007766c6a1cf1d53fd8fc73e979e0821022"
+  },
+  {
+    "name": "marketing-ideas",
+    "bucket": "marketing",
+    "mode": "vendor",
+    "source": "https://github.com/coreyhaines31/marketingskills",
+    "path": "skills/marketing-ideas",
+    "commit": "5b2c0007766c6a1cf1d53fd8fc73e979e0821022"
+  },
+  {
+    "name": "marketing-loops",
+    "bucket": "marketing",
+    "mode": "vendor",
+    "source": "https://github.com/coreyhaines31/marketingskills",
+    "path": "skills/marketing-loops",
+    "commit": "5b2c0007766c6a1cf1d53fd8fc73e979e0821022"
+  },
+  {
+    "name": "marketing-plan",
+    "bucket": "marketing",
+    "mode": "vendor",
+    "source": "https://github.com/coreyhaines31/marketingskills",
+    "path": "skills/marketing-plan",
+    "commit": "5b2c0007766c6a1cf1d53fd8fc73e979e0821022"
+  },
+  {
+    "name": "marketing-psychology",
+    "bucket": "marketing",
+    "mode": "vendor",
+    "source": "https://github.com/coreyhaines31/marketingskills",
+    "path": "skills/marketing-psychology",
+    "commit": "5b2c0007766c6a1cf1d53fd8fc73e979e0821022"
+  },
+  {
+    "name": "offers",
+    "bucket": "marketing",
+    "mode": "vendor",
+    "source": "https://github.com/coreyhaines31/marketingskills",
+    "path": "skills/offers",
+    "commit": "5b2c0007766c6a1cf1d53fd8fc73e979e0821022"
+  },
+  {
+    "name": "onboarding",
+    "bucket": "marketing",
+    "mode": "vendor",
+    "source": "https://github.com/coreyhaines31/marketingskills",
+    "path": "skills/onboarding",
+    "commit": "5b2c0007766c6a1cf1d53fd8fc73e979e0821022"
+  },
+  {
+    "name": "paywalls",
+    "bucket": "marketing",
+    "mode": "vendor",
+    "source": "https://github.com/coreyhaines31/marketingskills",
+    "path": "skills/paywalls",
+    "commit": "5b2c0007766c6a1cf1d53fd8fc73e979e0821022"
+  },
+  {
+    "name": "popups",
+    "bucket": "marketing",
+    "mode": "vendor",
+    "source": "https://github.com/coreyhaines31/marketingskills",
+    "path": "skills/popups",
+    "commit": "5b2c0007766c6a1cf1d53fd8fc73e979e0821022"
+  },
+  {
+    "name": "pricing",
+    "bucket": "marketing",
+    "mode": "vendor",
+    "source": "https://github.com/coreyhaines31/marketingskills",
+    "path": "skills/pricing",
+    "commit": "5b2c0007766c6a1cf1d53fd8fc73e979e0821022"
+  },
+  {
+    "name": "product-marketing",
+    "bucket": "marketing",
+    "mode": "vendor",
+    "source": "https://github.com/coreyhaines31/marketingskills",
+    "path": "skills/product-marketing",
+    "commit": "5b2c0007766c6a1cf1d53fd8fc73e979e0821022"
+  },
+  {
+    "name": "programmatic-seo",
+    "bucket": "marketing",
+    "mode": "vendor",
+    "source": "https://github.com/coreyhaines31/marketingskills",
+    "path": "skills/programmatic-seo",
+    "commit": "5b2c0007766c6a1cf1d53fd8fc73e979e0821022"
+  },
+  {
+    "name": "prospecting",
+    "bucket": "marketing",
+    "mode": "vendor",
+    "source": "https://github.com/coreyhaines31/marketingskills",
+    "path": "skills/prospecting",
+    "commit": "5b2c0007766c6a1cf1d53fd8fc73e979e0821022"
+  },
+  {
+    "name": "public-relations",
+    "bucket": "marketing",
+    "mode": "vendor",
+    "source": "https://github.com/coreyhaines31/marketingskills",
+    "path": "skills/public-relations",
+    "commit": "5b2c0007766c6a1cf1d53fd8fc73e979e0821022"
+  },
+  {
+    "name": "referrals",
+    "bucket": "marketing",
+    "mode": "vendor",
+    "source": "https://github.com/coreyhaines31/marketingskills",
+    "path": "skills/referrals",
+    "commit": "5b2c0007766c6a1cf1d53fd8fc73e979e0821022"
+  },
+  {
+    "name": "revops",
+    "bucket": "marketing",
+    "mode": "vendor",
+    "source": "https://github.com/coreyhaines31/marketingskills",
+    "path": "skills/revops",
+    "commit": "5b2c0007766c6a1cf1d53fd8fc73e979e0821022"
+  },
+  {
+    "name": "sales-enablement",
+    "bucket": "marketing",
+    "mode": "vendor",
+    "source": "https://github.com/coreyhaines31/marketingskills",
+    "path": "skills/sales-enablement",
+    "commit": "5b2c0007766c6a1cf1d53fd8fc73e979e0821022"
+  },
+  {
+    "name": "schema",
+    "bucket": "marketing",
+    "mode": "vendor",
+    "source": "https://github.com/coreyhaines31/marketingskills",
+    "path": "skills/schema",
+    "commit": "5b2c0007766c6a1cf1d53fd8fc73e979e0821022"
+  },
+  {
+    "name": "seo-audit",
+    "bucket": "marketing",
+    "mode": "vendor",
+    "source": "https://github.com/coreyhaines31/marketingskills",
+    "path": "skills/seo-audit",
+    "commit": "5b2c0007766c6a1cf1d53fd8fc73e979e0821022"
+  },
+  {
+    "name": "signup",
+    "bucket": "marketing",
+    "mode": "vendor",
+    "source": "https://github.com/coreyhaines31/marketingskills",
+    "path": "skills/signup",
+    "commit": "5b2c0007766c6a1cf1d53fd8fc73e979e0821022"
+  },
+  {
+    "name": "site-architecture",
+    "bucket": "marketing",
+    "mode": "vendor",
+    "source": "https://github.com/coreyhaines31/marketingskills",
+    "path": "skills/site-architecture",
+    "commit": "5b2c0007766c6a1cf1d53fd8fc73e979e0821022"
+  },
+  {
+    "name": "sms",
+    "bucket": "marketing",
+    "mode": "vendor",
+    "source": "https://github.com/coreyhaines31/marketingskills",
+    "path": "skills/sms",
+    "commit": "5b2c0007766c6a1cf1d53fd8fc73e979e0821022"
+  },
+  {
+    "name": "social",
+    "bucket": "marketing",
+    "mode": "vendor",
+    "source": "https://github.com/coreyhaines31/marketingskills",
+    "path": "skills/social",
+    "commit": "5b2c0007766c6a1cf1d53fd8fc73e979e0821022"
+  },
+  {
+    "name": "video",
+    "bucket": "marketing",
+    "mode": "vendor",
+    "source": "https://github.com/coreyhaines31/marketingskills",
+    "path": "skills/video",
+    "commit": "5b2c0007766c6a1cf1d53fd8fc73e979e0821022"
   }
 ]

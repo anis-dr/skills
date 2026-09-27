@@ -4,7 +4,7 @@ How a skill in this repo is written. Every skill must run unchanged on omp, Clau
 
 ## Layout and ownership
 
-A skill lives at `skills/<bucket>/<name>/SKILL.md`, with buckets `engineering`, `productivity`, `design`, `in-progress` (beta) and `misc` (kept around, rarely used). Vendored skills keep the bucket their upstream gives them. Its frontmatter `name` equals the folder name, and its `description` stays within 1024 characters.
+A skill lives at `skills/<bucket>/<name>/SKILL.md`, with buckets `engineering`, `productivity`, `design`, `in-progress` (beta), `marketing` and `misc` (kept around, rarely used). Vendored skills keep the bucket their upstream gives them. Its frontmatter `name` equals the folder name, and its `description` stays within 1024 characters.
 
 Name a skill after its job in one to three words, the way the user would ask for it (`drizzle-postgres`, `measure-ui`, `stacked-prs`). Leave out filler (`-safety`, `-patterns`, `-verification`) and jargon. One tool or topic is one skill: when a new lesson belongs to a topic that already has a skill, it becomes a branch there, with its procedure in `references/<branch>.md` and one pointer line in `SKILL.md`.
 

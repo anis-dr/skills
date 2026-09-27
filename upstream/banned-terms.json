@@ -18,7 +18,8 @@
   },
   {
     "pattern": "\\b(?:claude|gpt|grok|gemini|composer)-(?:\\d|opus|sonnet|haiku)[\\w.-]*",
-    "reason": "model id; name models by role"
+    "reason": "model id; name models by role (ad-creative names image and speech APIs, not agent models)",
+    "allowIn": ["marketing/ad-creative"]
   },
   {
     "pattern": "skill://",
