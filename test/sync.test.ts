@@ -94,6 +94,10 @@ const fixtureLayer = Layer.unwrap(
         "---\nname: how\ndescription: Explain code.\ndisable-model-invocation: true\n---\n\nSpawn one Task subagent that explores.\n",
       ],
       [
+        "pstack/skills/how/agents/openai.yaml",
+        "policy:\n  allow_implicit_invocation: false\n",
+      ],
+      [
         "pstack/skills/arena/SKILL.md",
         "---\nname: arena\ndescription: Run candidates.\ndisable-model-invocation: true\n---\n\nBody.\n",
       ],
@@ -213,7 +217,7 @@ layer(fixtureLayer)("sync run twice", (it) => {
 
 layer(fixtureLayer)("sync of a skill without Codex metadata", (it) => {
   it.effect(
-    "rewrites harness wording, applies the invocation override and writes openai.yaml",
+    "rewrites harness wording, applies the invocation override to both invocation flags, and writes openai.yaml when upstream has none",
     () =>
       Effect.gen(function* () {
         const { arena, how, root } = yield* Fixture;

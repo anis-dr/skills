@@ -81,6 +81,18 @@ const stage = Effect.fn("stage")(function* (
     yield* fs.writeFileString(skillMd, text);
   }
   const codex = path.join(dir, "agents", "openai.yaml");
+  if (entry.invocation === "model" && (yield* fs.exists(codex))) {
+    // Upstream's own metadata blocks implicit invocation; the override lifts that too.
+    const lifted = (yield* fs.readFileString(codex)).replace(
+      /^policy:\r?\n {2}allow_implicit_invocation: false\r?\n/mu,
+      ""
+    );
+    if (lifted.trim() === "") {
+      yield* fs.remove(codex);
+    } else {
+      yield* fs.writeFileString(codex, lifted);
+    }
+  }
   if (!(yield* fs.exists(codex))) {
     yield* fs.makeDirectory(path.dirname(codex), { recursive: true });
     yield* fs.writeFileString(
