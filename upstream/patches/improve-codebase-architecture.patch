@@ -128,7 +128,7 @@ index e39e825..0000000
 -
 -No hedging, no throat-clearing, no "it's worth noting that…". If a sentence could be a bullet, make it a bullet. If a bullet could be cut, cut it. If a term isn't in the `/codebase-design` glossary, reach for one that is before inventing a new one.
 diff --git a/SKILL.md b/SKILL.md
-index a578dd0..c68d0c7 100644
+index a578dd0..ac468a7 100644
 --- a/SKILL.md
 +++ b/SKILL.md
 @@ -1,6 +1,6 @@
@@ -147,7 +147,7 @@ index a578dd0..c68d0c7 100644
 +### 2. Present candidates
  
 -Write a self-contained HTML file to the OS temp directory so nothing lands in the repo. Resolve the temp dir from `$TMPDIR`, falling back to `/tmp` (or `%TEMP%` on Windows), and write to `<tmpdir>/architecture-review-<timestamp>.html` so each run gets a fresh file. Open it for the user (`xdg-open <path>` on Linux, `open <path>` on macOS, `start <path>` on Windows) and tell them the absolute path.
-+Call the Skill tool with "show-me" and present the candidates in whatever form it picks (Markdown in the reply, or a focused HTML file it opens for the user). If "show-me" isn't installed, ask the user to run npx skills add humanlayer/skills --skill show-me, then continue. When show-me writes a file, it goes in `.scratchpad/architecture-review/` (call the Skill tool with "scratchpad"); tell the user the path. Be visual: each candidate gets a **before/after view**.
++Call the Skill tool with "show-me" and present the candidates in whatever form it picks (Markdown in the reply, or a focused HTML file it opens for the user). When show-me writes a file, it goes in `.scratchpad/architecture-review/` (call the Skill tool with "scratchpad"); tell the user the path. Be visual: each candidate gets a **before/after view**.
  
 -The report uses **Tailwind via CDN** for layout and styling, and **Mermaid via CDN** for diagrams where a graph/flow/sequence reliably communicates the structure. Mix Mermaid with hand-crafted CSS/SVG visuals: use Mermaid when relationships are graph-shaped (call graphs, dependencies, sequences), and hand-built divs/SVG when you want something more editorial (mass diagrams, cross-sections, collapse animations). Each candidate gets a **before/after visualisation**. Be visual.
 -

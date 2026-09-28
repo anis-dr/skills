@@ -126,6 +126,7 @@ Add `-g` to install into your user folder instead of the current project. Not su
 - [grilling](skills/productivity/grilling/SKILL.md): Stress-test thinking a round of questions at a time
 - [macos-uninstall](skills/productivity/macos-uninstall/SKILL.md): Remove a macOS app and all its leftovers
 - [scratchpad](skills/productivity/scratchpad/SKILL.md): Where files go; temp files you can read and edit
+- [show-me](skills/productivity/show-me/SKILL.md): Help the user understand the current topic visually with concise diagrams, code-shape sketches, and focused HTML artifacts.
 - [technical-pdf](skills/productivity/technical-pdf/SKILL.md): Typst technical PDFs with verified layout
 - [trademark-search](skills/productivity/trademark-search/SKILL.md): Search trademark registers through TMview
 - [unslop](skills/productivity/unslop/SKILL.md): Cut AI tells from any writing.

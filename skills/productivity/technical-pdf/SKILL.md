@@ -31,7 +31,6 @@ Load these before starting. Call the Skill tool once for each of "show-me", "doc
 
 If one of these isn't installed, ask the user to run the matching command, then continue:
 
-- `npx skills add humanlayer/skills --skill show-me`
 - `npx skills add github/awesome-copilot --skill documentation-writer`
 - `npx skills add lucifer1004/claude-skill-typst --skill typst`
 - `npx skills add apcamargo/typst-skills --skill typst-author`

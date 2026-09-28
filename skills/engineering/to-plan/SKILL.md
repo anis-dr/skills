@@ -13,7 +13,7 @@ This plan is the last step before code. The artifacts before it have their own o
 
 ## Display belongs to `show-me`
 
-Call the Skill tool with "show-me" before drawing anything. If "show-me" isn't installed, ask the user to run npx skills add humanlayer/skills --skill show-me, then continue. It owns every visual decision: picking the smallest view, call trees, component trees, file trees, pseudocode, Mermaid, and diffs for changes. Use its forms freely. This skill adds no labels, sigils, or drawing conventions of its own.
+Call the Skill tool with "show-me" before drawing anything. It owns every visual decision: picking the smallest view, call trees, component trees, file trees, pseudocode, Mermaid, and diffs for changes. Use its forms freely. This skill adds no labels, sigils, or drawing conventions of its own.
 
 ## Plan skeleton
 

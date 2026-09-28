@@ -36,7 +36,7 @@ Apply the **deletion test** to anything you suspect is shallow: would deleting i
 
 ### 2. Present candidates
 
-Call the Skill tool with "show-me" and present the candidates in whatever form it picks (Markdown in the reply, or a focused HTML file it opens for the user). If "show-me" isn't installed, ask the user to run npx skills add humanlayer/skills --skill show-me, then continue. When show-me writes a file, it goes in `.scratchpad/architecture-review/` (call the Skill tool with "scratchpad"); tell the user the path. Be visual: each candidate gets a **before/after view**.
+Call the Skill tool with "show-me" and present the candidates in whatever form it picks (Markdown in the reply, or a focused HTML file it opens for the user). When show-me writes a file, it goes in `.scratchpad/architecture-review/` (call the Skill tool with "scratchpad"); tell the user the path. Be visual: each candidate gets a **before/after view**.
 
 For each candidate, show:
 

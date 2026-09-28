@@ -999,6 +999,15 @@
     "commit": "22ab18dfb50a5d7e3bdcf471c14076a5534eae4e"
   },
   {
+    "name": "show-me",
+    "bucket": "productivity",
+    "mode": "vendor",
+    "invocation": "model",
+    "source": "https://github.com/humanlayer/skills",
+    "path": "plugins/show-me/skills/show-me",
+    "commit": "ca7c8088db69e315a8b2deea43820270457f8f3c"
+  },
+  {
     "name": "ab-testing",
     "bucket": "marketing",
     "mode": "vendor",
