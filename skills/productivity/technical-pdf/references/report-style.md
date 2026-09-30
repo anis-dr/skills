@@ -79,7 +79,7 @@ Use native Typst tables with the template's blue header and light alternating ro
 
 Split a crowded table into related groups or additional pages. Do not reduce it to tiny type to meet an arbitrary page budget. Keep rows together when practical and repeat headers across pages.
 
-Use Zebraw for code, call trees and structural diffs, with line numbers off unless referenced. Use Lovelace for procedural logic. Do not flatten either into screenshots or redraw text trees as diagrams.
+Use Zebraw for code, call trees and structural diffs, with line numbers off unless referenced. Use Lovelace for procedural logic, steps and rules: a bare ```` ```text ```` fence for logic is a defect, and so is dropping the import. Do not flatten either into screenshots or redraw text trees as diagrams.
 
 Use native pagination controls rather than changing type size. `#set table.cell(breakable: false)` keeps short table rows intact; wrap a short Zebraw block in `#block(breakable: false)[...]` so a call tree does not split between pages. If a heading is stranded at a page bottom, `#show heading: it => block(sticky: true)[#it]` preserves the template treatment while keeping it with following content. Inspect the result; a block taller than one page must still be split.
 

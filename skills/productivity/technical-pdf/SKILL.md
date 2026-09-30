@@ -111,7 +111,7 @@ Choose the output by meaning:
 | Structured comparison or measurements | Native Typst table |
 | Dense visual UI or HTML artifact | Rendered high-resolution image |
 
-Textual trees, pseudocode, code, diffs, and tables keep their native forms. Use several forms only when each answers a different question.
+Every report keeps both imports and uses them: procedural logic, steps and rules are a Lovelace `pseudocode-list` (numbered, indented, `*if*`/`*then*`/`*else*` in italics), never a bare code fence; code, trees and diffs are Zebraw blocks, never a bare fence either. A bare ```` ``` ```` fence in the body is a defect. Textual trees, pseudocode, code, diffs, and tables keep their native forms. Use several forms only when each answers a different question.
 
 Completion check: every planned visual has a claim, source, report location, and output format.
 
@@ -260,6 +260,7 @@ Use the PDF skill's renderer when direct Typst PNG output is unsuitable. Inspect
 - the template's own line height and the gap above and below every heading (compare a page against `report-example.pdf`: if lines sit tighter or headings sit closer to the body, a preamble rule replaced the template's);
 - inline code slightly smaller than body text, in its grey box;
 - code and pseudocode wrapping;
+- no bare code fence: every logic block renders as a Lovelace numbered list, every code block with the Zebraw frame (grep the `.typ` for a fence not wrapped in `zebra.zebraw`);
 - table widths and row breaks;
 - image resolution, captions, and attribution;
 - citations and bibliography output;
