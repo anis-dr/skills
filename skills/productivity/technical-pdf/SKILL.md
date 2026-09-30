@@ -8,6 +8,10 @@ description: "Write and visually verify a technical PDF (report, spec, design re
 
 Create a clear technical PDF in Typst (a report, spec, design review, runbook or proposal; this skill calls all of them a report) that helps its audience understand evidence, make a decision, or take the next action. Synthesize the work instead of copying a conversation chronologically.
 
+## Diagrams
+
+Before any diagram, call the Skill tool with "diagram-rules" and apply it: whether to draw, which kind, what goes in a node, how much fits.
+
 ## Client quotes
 
 A quote, estimate or commercial proposal is a report whose prices compute themselves: read [the client-quote branch](references/client-quote.md) for its data model, pricing tables and content checklist, then follow the workflow below.

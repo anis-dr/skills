@@ -3,7 +3,7 @@ name: show-me
 description: Help the user understand the current topic visually with concise diagrams, code-shape sketches, and focused HTML artifacts.
 ---
 
-Help the user understand the current topic of conversation visually. Skip the preamble and keep prose brief. Pick the smallest view that makes the key point clear.
+Call the Skill tool with "diagram-rules" first and apply it to every view below. Help the user understand the current topic of conversation visually. Skip the preamble and keep prose brief. Pick the smallest view that makes the key point clear.
 
 - Show logic or an algorithm as pseudocode:
 

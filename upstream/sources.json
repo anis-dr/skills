@@ -898,6 +898,11 @@
     "mode": "ours"
   },
   {
+    "name": "diagram-rules",
+    "bucket": "productivity",
+    "mode": "ours"
+  },
+  {
     "name": "youtube-video-to-skill",
     "bucket": "in-progress",
     "mode": "ours"
