@@ -1013,6 +1013,14 @@
     "commit": "ca7c8088db69e315a8b2deea43820270457f8f3c"
   },
   {
+    "name": "humanizer",
+    "bucket": "productivity",
+    "mode": "vendor",
+    "source": "https://github.com/blader/humanizer",
+    "path": ".",
+    "commit": "225a6f39ac85f76ee48dbad772ea4abe4ed6c9d8"
+  },
+  {
     "name": "ab-testing",
     "bucket": "marketing",
     "mode": "vendor",

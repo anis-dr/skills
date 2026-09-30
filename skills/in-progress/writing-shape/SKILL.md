@@ -77,3 +77,7 @@ Append to the article file as each block is agreed. Re-read the file from disk b
 - Publishing, formatting for a specific platform, or adding frontmatter the user didn't ask for.
 
 </supporting-info>
+
+## Final pass
+
+Call the Skill tool with "humanizer" on the final text, keeping this skill's structure and voice.

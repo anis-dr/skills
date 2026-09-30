@@ -47,6 +47,10 @@ The scratchpad skill owns the rule. Durable output follows Matt Pocock's structu
 - An explanation or idea is shown with show-me, in Markdown or HTML as it decides.
 - Prototypes, pickers, catalogs and boards the user clicks through are HTML files in `.scratchpad/`.
 
+## Prose passes
+
+Text a person reads (docs, reports, PR bodies, articles, emails) gets `humanizer` as its final pass. Text an agent reads (skills, AGENTS.md, plans, briefs, logs) gets `unslop`. A skill calls the one that matches its output.
+
 ## Harness-neutral wording
 
 - Describe a subagent by its role and constraints ("a read-only research subagent", "a subagent that runs in the background"), never by one harness's tool parameters.

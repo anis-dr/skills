@@ -8,6 +8,10 @@ description: "Write and visually verify a technical PDF (report, spec, design re
 
 Create a clear technical PDF in Typst (a report, spec, design review, runbook or proposal; this skill calls all of them a report) that helps its audience understand evidence, make a decision, or take the next action. Synthesize the work instead of copying a conversation chronologically.
 
+## Prose
+
+Before rendering, call the Skill tool with "humanizer" on every paragraph of body text, keeping the report structure. A report is read by people; `unslop` is for text agents read.
+
 ## Diagrams
 
 Before any diagram, call the Skill tool with "diagram-rules" and apply it: whether to draw, which kind, what goes in a node, how much fits.
@@ -24,11 +28,11 @@ Keep words intact across lines. Always apply `#set text(hyphenate: false)` after
 
 ## Required sibling skills
 
-Load these before starting. Call the Skill tool once for each of "show-me", "documentation-writer", "unslop", "typst", "typst-author", "pdf" and "naming-analyzer":
+Load these before starting. Call the Skill tool once for each of "show-me", "documentation-writer", "humanizer", "typst", "typst-author", "pdf" and "naming-analyzer":
 
 - "show-me" to choose the smallest visual that makes each point clear.
 - "documentation-writer" to identify the audience, goal, document type, and scope.
-- "unslop" to write direct prose without canned language or filler.
+- "humanizer" to write prose that reads like the author, without AI tells.
 - "typst" and "typst-author" for current Typst syntax, CLI use, formatting, and compilation.
 - "pdf" for rendered-output inspection.
 - "naming-analyzer" before finalizing report terminology and visual labels.

@@ -77,3 +77,7 @@ Before every write: re-read the file from disk. The user may have edited, reorde
 The user can say "cut the last one", "rewrite that one sharper", "merge those two" at any time. Treat those as first-class instructions.
 
 </supporting-info>
+
+## Final pass
+
+Call the Skill tool with "humanizer" on the final text, keeping this skill's structure and voice.

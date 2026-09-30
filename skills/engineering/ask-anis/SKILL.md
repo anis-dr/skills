@@ -116,7 +116,7 @@ Before you change code you don't know, or when the shape of new code is the hard
 
 - **`/show-me`** explains the current topic visually with the smallest view that makes the point: pseudocode, call trees, file trees, Mermaid, diffs, or a focused HTML file. Model-invoked: `/to-plan`, `/technical-pdf` and `/improve-codebase-architecture` use it for every visual.
 - **`/technical-writing`** is the layered standard for docs, RFCs, READMEs, PR descriptions and commit messages.
-- **`/unslop`** cuts AI tells from any prose. Model-invoked: writing skills apply it to their output.
+- **`/humanizer`** rewrites text a person will read so it sounds like the writer, ranking 26 AI patterns by strength; the writing skills run it as their final pass. **`/unslop`** is the lighter pass for text an agent reads (skills, plans, logs).
 - **`/writing-fragments`**, then **`/writing-shape`** or **`/writing-beats`** (beta): mine raw fragments with no structure, then shape them into an article paragraph by paragraph, or into a journey of beats.
 
 ## More from Matt (beta and rarely used)

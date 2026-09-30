@@ -125,6 +125,7 @@ Add `-g` to install into your user folder instead of the current project. Not su
 - [checkbox-picker](skills/productivity/checkbox-picker/SKILL.md): Bulk keep/delete choices in a local picker
 - [diagram-rules](skills/productivity/diagram-rules/SKILL.md): Judgement for any diagram, before the tool
 - [grilling](skills/productivity/grilling/SKILL.md): Stress-test thinking a round of questions at a time
+- [humanizer](skills/productivity/humanizer/SKILL.md): Make AI-written text sound like the writer
 - [macos-uninstall](skills/productivity/macos-uninstall/SKILL.md): Remove a macOS app and all its leftovers
 - [scratchpad](skills/productivity/scratchpad/SKILL.md): Where files go; temp files you can read and edit
 - [show-me](skills/productivity/show-me/SKILL.md): Help the user understand the current topic visually with concise diagrams, code-shape sketches, and focused HTML artifacts.
