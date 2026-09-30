@@ -62,6 +62,8 @@ const stage = Effect.fn("stage")(function* (
   }
   const dir = path.join(yield* fs.makeTempDirectoryScoped(), entry.name);
   yield* fs.copy(from, dir);
+  // A whole-repo path ("." ) brings the checkout's own .git along; it is not part of the skill.
+  yield* fs.remove(path.join(dir, ".git"), { force: true, recursive: true });
 
   const used = new Set<string>();
   for (const file of yield* fs.readDirectory(dir, { recursive: true })) {
