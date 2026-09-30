@@ -15,9 +15,13 @@
   raw-font: "JetBrains Mono",
 )
 
-#set text(hyphenate: false)
 #show regex("[\\p{L}\\p{N}]+(?:[-‐][\\p{L}\\p{N}]+)+"): it => box(it)
+#show heading: set block(sticky: true)
+#set table.cell(breakable: false)
+#show table: set par(justify: false)
+#show figure.caption: set par(justify: false)
 #show bibliography: set par(justify: false)
+#show ref: it => text(fill: metro-blue, weight: "semibold", it)
 
 #outline(depth: 2)
 #pagebreak()

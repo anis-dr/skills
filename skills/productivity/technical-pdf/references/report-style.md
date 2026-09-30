@@ -24,17 +24,21 @@ Use `@preview/metropole-report:0.1.0` with this configuration, replacing only re
   raw-font: "JetBrains Mono",
 )
 
-#set text(hyphenate: false)
+// The template owns typography. Everything below only sets a sub-property
+// or styles one element; nothing replaces `par`, `text`, `heading` or `raw`.
 #show regex("[\\p{L}\\p{N}]+(?:[-‐][\\p{L}\\p{N}]+)+"): it => box(it)
+#show heading: set block(sticky: true)
+#set table.cell(breakable: false)
+#show table: set par(justify: false)
+#show figure.caption: set par(justify: false)
 #show bibliography: set par(justify: false)
-// Cross-references (@figure-name, @table-name, @section) stand out from body text.
 #show ref: it => text(fill: metro-blue, weight: "semibold", it)
 
 #outline(depth: 2)
 #pagebreak()
 ```
 
-Keep the template defaults for font size, leading, margins, heading hierarchy, header and footer. In this template the body is 11 pt, the leading ratio is 1.75, and spacing/margins follow its baseline grid. The generous spacing is intentional. Page count follows content rather than determining font size.
+Keep the template defaults for font size, leading, margins, heading hierarchy, header and footer. They come from the template's own `set par` and `set text`, and any later `#set par(...)`, `#set text(size: ...)`, `#show heading: it => block(...)[it]` or `#show raw.where(block: false): ...` replaces them and visibly changes the page: leading drops, the space above and below headings disappears, inline code grows to body size. The preamble above is the whole allowed set of additions; add a rule only as `#show <element>: set <sub-property>` or a `#show` on one element, and never `hyphenate: false` (it makes justified lines gappy; the compound-word `box` rule already keeps words intact). In this template the body is 11 pt, the leading ratio is 1.75, and spacing/margins follow its baseline grid. The generous spacing is intentional. Page count follows content rather than determining font size.
 
 Use `typst fonts` before compiling. Confirm all three families are available. If any is missing, obtain the font or ask for an explicit alternative; do not silently substitute Inter, Arial, another all-sans pairing, or unavailable default font names. When supported, verify final embedded fonts with `pdffonts`.
 
@@ -42,9 +46,9 @@ An explicit user-selected style overrides this baseline. Otherwise keep it consi
 
 ### Keep words intact
 
-Always disable automatic hyphenation with `#set text(hyphenate: false)` after the template setup and before the outline or body. This overrides the hyphenation that justified paragraphs otherwise enable. Words such as “examined” must move whole to the next line, never appear as “exam-” followed by “ined”.
+Leave the template's hyphenation on. Turning it off makes justified lines gappy, which reads worse than an occasional break.
 
-The show rule in the setup keeps authored hyphenated compounds such as “durable-state” together in an inline box without changing their spelling. Apply both rules to every report, including headings, prose, table cells and captions. Avoid manual soft hyphens and forced breaks inside words.
+The show rule in the setup keeps authored hyphenated compounds such as “durable-state” together in an inline box without changing their spelling. Apply that rule to every report, including headings, prose, table cells and captions. Avoid manual soft hyphens and forced breaks inside words.
 
 Keep the existing type size and spacing. Resolve overflow by changing available width or layout, not by restoring hyphenation or shrinking the text. Long URLs and code may wrap at meaningful separators when needed; do not box an entire long URL or path. Inspect the PDF for both split words and any new overflow after these rules are applied.
 

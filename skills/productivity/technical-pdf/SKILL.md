@@ -24,7 +24,7 @@ A quote, estimate or commercial proposal is a report whose prices compute themse
 
 Before authoring, read [the report style reference](references/report-style.md) and inspect [the neutral example source](references/report-example.typ) with its [compiled PDF](references/report-example.pdf). That reference owns the typography, cover, contents page, spacing, tables and diagram palette. Apply it unless the user explicitly requests another style. Do not substitute an all-sans layout or shrink the report to fit a page budget.
 
-Keep words intact across lines. Always apply `#set text(hyphenate: false)` after the template setup and before any content, plus the compound-word rule in the style reference. This applies to prose, headings, tables and captions. Never enable word splitting to improve justification or fit a page; reflow the layout instead.
+Keep words intact across lines with the compound-word `box` rule from the style reference. Do not turn hyphenation off, and do not add any `set par`, `set text` or heading wrapper after the template line: the template owns leading, spacing and sizes, and those rules replace them.
 
 ## Required sibling skills
 
@@ -257,6 +257,8 @@ Use the PDF skill's renderer when direct Typst PNG output is unsuitable. Inspect
 - system boundaries, responsibilities, and data-flow direction when System Design applies;
 - every diagram edge and label, including orthogonal routing and crossings;
 - whole words and hyphenated compounds staying intact across lines;
+- the template's own line height and the gap above and below every heading (compare a page against `report-example.pdf`: if lines sit tighter or headings sit closer to the body, a preamble rule replaced the template's);
+- inline code slightly smaller than body text, in its grey box;
 - code and pseudocode wrapping;
 - table widths and row breaks;
 - image resolution, captions, and attribution;
