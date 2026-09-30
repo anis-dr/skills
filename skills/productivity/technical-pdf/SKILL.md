@@ -104,7 +104,7 @@ Choose the output by meaning:
 | Call tree or request tree | Zebraw `text` block |
 | Component tree | Zebraw `tsx` or `text` block |
 | File tree | Zebraw `text` block |
-| State, control-flow, or structural diff | Zebraw `diff` block |
+| State, control-flow, or structural diff | Zebraw `diff` block: Typst colours removed lines red and added lines green, so the diff carries the before/after without prose. Pad the name and the explanation into two aligned columns so the block reads as a table, and keep a context line for what does not change. |
 | Source, shell, SQL, configuration, or logs | Zebraw with the correct language |
 | Existing Mermaid sequence or flow | Faithful D2 recreation |
 | New sequence, architecture, state, relationship, or data flow | D2 |
@@ -167,7 +167,19 @@ Use Lovelace for pseudocode:
 ]
 ```
 
-Use Zebraw for code and text-shaped technical visuals:
+Use Zebraw for code and text-shaped technical visuals. For a structural diff, keep the `diff` language so lines colour, pass `lang: false` to drop the tag, and align the columns:
+
+```typst
+#block(breakable: false)[#zebra.zebraw(numbering: false, lang: false, ```diff
+ analyze-report, per grid point
+-  ranking call          GPT picks IDs, copies addresses; 13 to 41 s
+-  recoverBrandIds       rules repair empty output
++  string search         finds brand-list names, with offsets
++  askJev                one request; question per name, per address
+   persist               unchanged: rankings, mentions, metrics
+```)]
+```
+
 
 ````typst
 #zebra.zebraw(
