@@ -123,6 +123,7 @@ Add `-g` to install into your user folder instead of the current project. Not su
 **Model-invoked**
 
 - [checkbox-picker](skills/productivity/checkbox-picker/SKILL.md): Bulk keep/delete choices in a local picker
+- [diagram-rules](skills/productivity/diagram-rules/SKILL.md): Judgement for any diagram, before the tool
 - [grilling](skills/productivity/grilling/SKILL.md): Stress-test thinking a round of questions at a time
 - [macos-uninstall](skills/productivity/macos-uninstall/SKILL.md): Remove a macOS app and all its leftovers
 - [scratchpad](skills/productivity/scratchpad/SKILL.md): Where files go; temp files you can read and edit
