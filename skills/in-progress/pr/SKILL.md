@@ -157,7 +157,14 @@ You may use one of these, you may use several, it is unlikely you will use all o
 
 Concrete evidence that the change works. Show a before and after.
 
-Screenshots are S-tier - when the environment is set up for it and the change is visual.
+Screenshots are S-tier - when the environment is set up for it and the change is visual. Never commit them. Reference the local files in the body and upload them with `gh` (2.99+, needs push access; private-repo attachments stay private):
+
+```bash
+gh pr create --body-file .scratchpad/pr-body.md --attach .scratchpad/before.png --attach .scratchpad/after.png
+# or on an existing PR: gh pr edit <n> --body-file ... --attach ...
+```
+
+`gh` rewrites each `![alt](.scratchpad/before.png)` in the body to the uploaded URL; unreferenced attachments get appended at the end. Images and video only; not supported on GitHub Enterprise Server.
 
 Execution-based evidence is A-tier. Test results, console output. Show the exact test that now fails and passes, using pseudocode.
 
