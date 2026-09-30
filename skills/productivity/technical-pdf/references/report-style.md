@@ -27,6 +27,8 @@ Use `@preview/metropole-report:0.1.0` with this configuration, replacing only re
 #set text(hyphenate: false)
 #show regex("[\\p{L}\\p{N}]+(?:[-‐][\\p{L}\\p{N}]+)+"): it => box(it)
 #show bibliography: set par(justify: false)
+// Cross-references (@figure-name, @table-name, @section) stand out from body text.
+#show ref: it => text(fill: metro-blue, weight: "semibold", it)
 
 #outline(depth: 2)
 #pagebreak()
