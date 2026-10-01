@@ -13,3 +13,4 @@ This repo redistributes skills from the sources below, each under the MIT Licens
 | [GoogleChrome/modern-web-guidance](https://github.com/GoogleChrome/modern-web-guidance) | Copyright Google LLC, under the Apache License 2.0 ([licenses/Apache-2.0.txt](licenses/Apache-2.0.txt)), not MIT. Vendored unchanged; this repo only adds `agents/openai.yaml`. |
 | [humanlayer/skills](https://github.com/humanlayer/skills) | Copyright (c) 2026 HumanLayer |
 | [blader/humanizer](https://github.com/blader/humanizer) | Copyright (c) 2025 Siqi Chen |
+| [supermemoryai/skills `svg-animations/`](https://github.com/supermemoryai/skills) | Copyright (c) supermemory. The repository has no license file, so no license is granted here; vendored unchanged for personal use, this repo only adds `agents/openai.yaml`, and it is removed on the authors' request. |

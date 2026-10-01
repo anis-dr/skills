@@ -212,6 +212,7 @@ Skills distilled from our own work. Most are model-invoked: the agent reaches fo
 - **`/redesign-inventory`** inventories every control before a redesign so none is silently dropped.
 - **`/logo-surface-board`** judges logo candidates on favicon, reversed, app tile and nav surfaces in one HTML board.
 - **`/pen-dev`** designs screens in a pen.dev file with the CLI designer, gates each run to the frames you allowed, and migrates or renames the file's design tokens without breaking overrides.
+- **`/svg-animations`** (supermemory's skill) handcrafts SVG icons, illustrations, animated logos, spinners, path drawing, morphing and motion-path animations with SMIL or CSS.
 
 ## Standalone
 

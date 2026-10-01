@@ -4,7 +4,7 @@ Agent skills for engineering, writing and design work, in one repo that installs
 
 - Matt Pocock's [skills](https://github.com/mattpocock/skills), vendored unchanged.
 - Lauren Tan's [pstack](https://github.com/cursor/plugins/tree/main/pstack) and Cursor's [cursor-team-kit](https://github.com/cursor/plugins/tree/main/cursor-team-kit) skills, rewritten so they run outside Cursor.
-- Corey Haines' [marketing skills](https://github.com/coreyhaines31/marketingskills), Vercel's [agent skills](https://github.com/vercel-labs/agent-skills) and Teever's [Effect skills](https://github.com/teeverc/effect-ts), vendored unchanged.
+- Corey Haines' [marketing skills](https://github.com/coreyhaines31/marketingskills), Vercel's [agent skills](https://github.com/vercel-labs/agent-skills), Teever's [Effect skills](https://github.com/teeverc/effect-ts) and supermemory's [svg-animations](https://github.com/supermemoryai/skills), vendored unchanged.
 - Our own skills, distilled from day-to-day work.
 
 A weekly job pulls upstream changes into a pull request, so vendored skills stay current.
@@ -146,6 +146,7 @@ Add `-g` to install into your user folder instead of the current project. Not su
 - [pen-dev](skills/design/pen-dev/SKILL.md): Design, gate and migrate tokens in pen.dev files
 - [redesign-inventory](skills/design/redesign-inventory/SKILL.md): Redesign a UI without dropping any control
 - [refactoring-ui](skills/design/refactoring-ui/SKILL.md): Refactoring UI rules, scales and review checklist
+- [svg-animations](skills/design/svg-animations/SKILL.md): Create beautiful, performant SVG animations and illustrations.
 - [web-design-guidelines](skills/design/web-design-guidelines/SKILL.md): Review UI code for Web Interface Guidelines compliance.
 
 ### In progress (beta)

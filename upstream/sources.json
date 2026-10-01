@@ -1419,5 +1419,13 @@
     "source": "https://github.com/coreyhaines31/marketingskills",
     "path": "skills/video",
     "commit": "5b2c0007766c6a1cf1d53fd8fc73e979e0821022"
+  },
+  {
+    "name": "svg-animations",
+    "bucket": "design",
+    "mode": "vendor",
+    "source": "https://github.com/supermemoryai/skills",
+    "path": "svg-animations",
+    "commit": "10d5e16780b446c5ce58968bcde528766699cdf2"
   }
 ]
