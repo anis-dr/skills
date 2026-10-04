@@ -49,7 +49,7 @@ The scratchpad skill owns the rule. Durable output follows Matt Pocock's structu
 
 ## Prose passes
 
-Text a person reads (docs, reports, PR bodies, articles, emails) gets `humanizer` as its final pass. Text an agent reads (skills, AGENTS.md, plans, briefs, logs) gets `unslop`. A skill calls the one that matches its output.
+Text a person reads (docs, reports, PR bodies, articles, emails) gets `humanizer` as its final pass. Text an agent reads (skills, AGENTS.md, plans, briefs, logs) gets `unslop`. A skill calls the one that matches its output. Procedures, warnings and cautions a person follows are written with `simplified-technical-english` and skip the humanizer pass.
 
 ## Harness-neutral wording
 

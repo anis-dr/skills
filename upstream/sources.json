@@ -1427,5 +1427,13 @@
     "source": "https://github.com/supermemoryai/skills",
     "path": "svg-animations",
     "commit": "10d5e16780b446c5ce58968bcde528766699cdf2"
+  },
+  {
+    "name": "simplified-technical-english",
+    "bucket": "productivity",
+    "mode": "vendor",
+    "source": "https://github.com/0xpili/simplified-technical-english",
+    "path": ".",
+    "commit": "1e148d670cba46685ad2b4c3f2354a637a7fdbbe"
   }
 ]

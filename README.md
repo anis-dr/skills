@@ -4,7 +4,7 @@ Agent skills for engineering, writing and design work, in one repo that installs
 
 - Matt Pocock's [skills](https://github.com/mattpocock/skills), vendored unchanged.
 - Lauren Tan's [pstack](https://github.com/cursor/plugins/tree/main/pstack) and Cursor's [cursor-team-kit](https://github.com/cursor/plugins/tree/main/cursor-team-kit) skills, rewritten so they run outside Cursor.
-- Corey Haines' [marketing skills](https://github.com/coreyhaines31/marketingskills), Vercel's [agent skills](https://github.com/vercel-labs/agent-skills), Teever's [Effect skills](https://github.com/teeverc/effect-ts) and supermemory's [svg-animations](https://github.com/supermemoryai/skills), vendored unchanged.
+- Corey Haines' [marketing skills](https://github.com/coreyhaines31/marketingskills), Vercel's [agent skills](https://github.com/vercel-labs/agent-skills), Teever's [Effect skills](https://github.com/teeverc/effect-ts), supermemory's [svg-animations](https://github.com/supermemoryai/skills) and 0xpili's [simplified-technical-english](https://github.com/0xpili/simplified-technical-english), vendored unchanged.
 - Our own skills, distilled from day-to-day work.
 
 A weekly job pulls upstream changes into a pull request, so vendored skills stay current.
@@ -129,6 +129,7 @@ Add `-g` to install into your user folder instead of the current project. Not su
 - [macos-uninstall](skills/productivity/macos-uninstall/SKILL.md): Remove a macOS app and all its leftovers
 - [scratchpad](skills/productivity/scratchpad/SKILL.md): Where files go; temp files you can read and edit
 - [show-me](skills/productivity/show-me/SKILL.md): Help the user understand the current topic visually with concise diagrams, code-shape sketches, and focused HTML artifacts.
+- [simplified-technical-english](skills/productivity/simplified-technical-english/SKILL.md): Writes and rewrites text in Simplified Technical English (ASD-STE100), a controlled language for clear technical documentation.
 - [technical-pdf](skills/productivity/technical-pdf/SKILL.md): Typst technical PDFs with verified layout
 - [trademark-search](skills/productivity/trademark-search/SKILL.md): Search trademark registers through TMview
 - [unslop](skills/productivity/unslop/SKILL.md): Cut AI tells from any writing.

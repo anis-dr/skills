@@ -14,3 +14,4 @@ This repo redistributes skills from the sources below, each under the MIT Licens
 | [humanlayer/skills](https://github.com/humanlayer/skills) | Copyright (c) 2026 HumanLayer |
 | [blader/humanizer](https://github.com/blader/humanizer) | Copyright (c) 2025 Siqi Chen |
 | [supermemoryai/skills `svg-animations/`](https://github.com/supermemoryai/skills) | Copyright (c) supermemory. The repository has no license file, so no license is granted here; vendored unchanged for personal use, this repo only adds `agents/openai.yaml`, and it is removed on the authors' request. |
+| [0xpili/simplified-technical-english](https://github.com/0xpili/simplified-technical-english) | Copyright (c) 2026 0xpili. The word list in `references/word-list.md` shows words from the ASD-STE100 dictionary, which is the property of ASD; see the skill's own `NOTICE.md`. This repo only narrows the `description` trigger and adds `agents/openai.yaml`. |

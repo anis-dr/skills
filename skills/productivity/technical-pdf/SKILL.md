@@ -12,6 +12,8 @@ Create a clear technical PDF in Typst (a report, spec, design review, runbook or
 
 Before rendering, call the Skill tool with "humanizer" on every paragraph of body text, keeping the report structure. A report is read by people; `unslop` is for text agents read.
 
+Runbook steps, procedures, warnings and cautions are the exception: call the Skill tool with "simplified-technical-english" and write them in STE, then leave them out of the humanizer pass.
+
 ## Diagrams
 
 Before any diagram, call the Skill tool with "diagram-rules" and apply it: whether to draw, which kind, what goes in a node, how much fits.
