@@ -172,6 +172,7 @@ Skills distilled from our own work. Most are model-invoked: the agent reaches fo
 - **`/rds-snapshot-dump`** turns an RDS Postgres snapshot into a portable `pg_dump`.
 - **`/query-timeout-diagnosis`** finds the client-side cause of query timeouts while the database is healthy.
 - **`/likec4-postcss-isolation`** fixes `likec4 serve` failing on a monorepo's root PostCSS config.
+- **`/logging-best-practices`** designs application logging as wide events: one structured, high-cardinality record per request with business and environment context, emitted from middleware through a single logger (Boris Tane's skill).
 
 ### Packages and releases
 

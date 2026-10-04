@@ -1435,5 +1435,13 @@
     "source": "https://github.com/0xpili/simplified-technical-english",
     "path": ".",
     "commit": "1e148d670cba46685ad2b4c3f2354a637a7fdbbe"
+  },
+  {
+    "name": "logging-best-practices",
+    "bucket": "engineering",
+    "mode": "vendor",
+    "source": "https://github.com/boristane/agent-skills",
+    "path": "skills/logging-best-practices",
+    "commit": "8aa14dd16a1340a6049e6d7cd58e2ed52333a550"
   }
 ]
