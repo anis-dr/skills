@@ -1001,7 +1001,7 @@
     "mode": "vendor",
     "source": "https://github.com/GoogleChrome/modern-web-guidance",
     "path": "skills/modern-web-guidance",
-    "commit": "22ab18dfb50a5d7e3bdcf471c14076a5534eae4e"
+    "commit": "650eb83619134adb947b1ee8755e6511270bc444"
   },
   {
     "name": "show-me",
