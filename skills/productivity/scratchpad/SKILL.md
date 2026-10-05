@@ -15,7 +15,7 @@ Pick the first row that matches.
 | The file is | It goes |
 |---|---|
 | A location a skill names for its own output (an issue tracker, a worktree, an isolated folder outside the repo) | Where that skill says. Its location wins. |
-| Durable: meant to be committed or kept | Matt Pocock's structure: `CONTEXT.md` for domain language, `docs/adr/` for decisions, `docs/agents/` for agent setup, the configured issue tracker for specs and tickets (GitHub, or `.issues/<feature>/` when the repo uses the local-markdown tracker), and the code, tests and docs themselves. |
+| Durable: meant to be committed or kept | Matt Pocock's structure: `GLOSSARY.md` for domain language, `docs/adr/` for decisions, `docs/agents/` for agent setup, the configured issue tracker for specs and tickets (GitHub, or `.issues/<feature>/` when the repo uses the local-markdown tracker), and the code, tests and docs themselves. |
 | Temporary, and the user may want to see, read or change it | `.scratchpad/<task>/` |
 | Temporary plumbing only the agent touches (a swap file, a git index, a large download it deletes, a working directory that must sit outside the repo) | The OS temp folder |
 

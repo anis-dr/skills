@@ -84,7 +84,7 @@ Use one canonical name for each concept across prose, diagrams, tables, captions
 - Captions and nearby prose carry detail that would crowd a visual.
 - Introduce a required long official name once, then use its established short form.
 
-Use Domain Modeling when a term is new, overloaded, changing, or inconsistent with the project glossary. Distinguish entities, states, events, commands, and derived values when the distinction affects the report. Surface unresolved contradictions. Changes to a project glossary, `CONTEXT.md`, or ADR require separate user approval.
+Use Domain Modeling when a term is new, overloaded, changing, or inconsistent with the project glossary. Distinguish entities, states, events, commands, and derived values when the distinction affects the report. Surface unresolved contradictions. Changes to a project's `GLOSSARY.md` or ADRs require separate user approval.
 
 Use System Design only for a substantial architecture decision. Start with functional and non-functional requirements. Capture known scale, workload, latency, storage, availability, current and proposed architecture, component responsibilities, data flow, bottlenecks, failure modes, recovery, ownership, important tradeoffs, and rejected options. Use measured or supplied inputs for capacity calculations. Mark assumptions and leave unknown scale unknown.
 

@@ -41,10 +41,12 @@ Add `-g` to install into your user folder instead of the current project. Not su
 - [eval](skills/engineering/eval/SKILL.md): Blind test a skill or prompt change across models
 - [grill-with-docs](skills/engineering/grill-with-docs/SKILL.md): Grill a design and write its docs
 - [implement](skills/engineering/implement/SKILL.md): Build work from a spec or tickets
+- [implement-spec](skills/engineering/implement-spec/SKILL.md): Implement the result of /to-spec and /to-tickets in code.
 - [improve-codebase-architecture](skills/engineering/improve-codebase-architecture/SKILL.md): Find and grill architecture improvements
 - [interrogate](skills/engineering/interrogate/SKILL.md): Use for "interrogate", "adversarial review", "multi-model review", "challenge this", "stress test this code", "find blind spots", or "tear this apart".
 - [maintain-verification-skill](skills/engineering/maintain-verification-skill/SKILL.md): Periodic pass that keeps a project's verification skill and feature map honest: parallel source readers per feature, one live session driving every feature, at most one PR of proven corrections.
 - [recall](skills/engineering/recall/SKILL.md): Reconstruct your recent working context from your own chat history, live state, and the shared record (user reports, prior fixes, incidents), then hand back a tight current-state brief.
+- [retro](skills/engineering/retro/SKILL.md): Conduct a retrospective on a coding session.
 - [setup-matt-pocock-skills](skills/engineering/setup-matt-pocock-skills/SKILL.md): Configure a repo for the skills
 - [to-spec](skills/engineering/to-spec/SKILL.md): Turn a conversation into a spec
 - [to-tickets](skills/engineering/to-tickets/SKILL.md): Split a plan into tracer-bullet tickets
@@ -81,6 +83,7 @@ Add `-g` to install into your user folder instead of the current project. Not su
 - [parallel-branches](skills/engineering/parallel-branches/SKILL.md): Parallel subagents in one worktree to a gh stack
 - [pause-resume](skills/engineering/pause-resume/SKILL.md): Pause work safely or pick up a prior session
 - [performance](skills/engineering/performance/SKILL.md): Trace, fix and hillclimb against a measured baseline
+- [pr](skills/engineering/pr/SKILL.md): Write a PR body that's fast to review
 - [pr-size-breakdown](skills/engineering/pr-size-breakdown/SKILL.md): Honest LOC breakdown for a large GitHub PR
 - [pragmatic-effect](skills/engineering/pragmatic-effect/SKILL.md): Keep Effect code simple and practical
 - [principles](skills/engineering/principles/SKILL.md): Engineering principles, one per decision
@@ -88,7 +91,6 @@ Add `-g` to install into your user folder instead of the current project. Not su
 - [query-timeout-diagnosis](skills/engineering/query-timeout-diagnosis/SKILL.md): Query timeouts while the database is healthy
 - [rds-snapshot-dump](skills/engineering/rds-snapshot-dump/SKILL.md): Portable pg_dump from an RDS Postgres snapshot
 - [research](skills/engineering/research/SKILL.md): Research from high-trust sources
-- [resolving-merge-conflicts](skills/engineering/resolving-merge-conflicts/SKILL.md): Resolve merge and rebase conflicts
 - [setup-effect-toolchain](skills/engineering/setup-effect-toolchain/SKILL.md): Set up tsgo, Oxlint and oxfmt for Effect repos
 - [show-me-your-work](skills/engineering/show-me-your-work/SKILL.md): Keep a reviewable decision trail for long-running or unattended work: a TSV log with one row per decision (what, why, evidence, result).
 - [spec-port-diverged-branch](skills/engineering/spec-port-diverged-branch/SKILL.md): Port a commit across diverged branches as a spec
@@ -155,9 +157,7 @@ Add `-g` to install into your user folder instead of the current project. Not su
 
 **User-invoked**
 
-- [implement-spec](skills/in-progress/implement-spec/SKILL.md): Implement a whole spec as one PR
 - [loop-me](skills/in-progress/loop-me/SKILL.md): Spec the workflows you want to build
-- [retro](skills/in-progress/retro/SKILL.md): Conduct a retrospective on a coding session.
 - [setup-ts-deep-modules](skills/in-progress/setup-ts-deep-modules/SKILL.md): Enforce deep TypeScript modules
 - [writing-beats](skills/in-progress/writing-beats/SKILL.md): Assemble raw material into beats
 - [writing-fragments](skills/in-progress/writing-fragments/SKILL.md): Mine raw writing fragments
@@ -165,7 +165,6 @@ Add `-g` to install into your user folder instead of the current project. Not su
 
 **Model-invoked**
 
-- [pr](skills/in-progress/pr/SKILL.md): Write a PR body that's fast to review
 - [youtube-video-to-skill](skills/in-progress/youtube-video-to-skill/SKILL.md): Turn a video tutorial into a skill with frames
 
 ### Marketing
@@ -184,10 +183,10 @@ Add `-g` to install into your user folder instead of the current project. Not su
 - [cold-email](skills/marketing/cold-email/SKILL.md): Write B2B cold emails and follow-up sequences that get replies.
 - [community-marketing](skills/marketing/community-marketing/SKILL.md): Build and leverage online communities to drive product growth and brand loyalty.
 - [competitor-profiling](skills/marketing/competitor-profiling/SKILL.md): When the user wants to research, profile, or analyze competitors from their URLs.
-- [competitors](skills/marketing/competitors/SKILL.md): When the user wants to create competitor comparison or alternative pages for SEO and sales enablement.
+- [competitors](skills/marketing/competitors/SKILL.md): When the user wants to create competitor comparison or alternative pages for SEO and buyer-facing use.
 - [content-strategy](skills/marketing/content-strategy/SKILL.md): When the user wants to plan a content strategy, decide what content to create, or figure out what topics to cover.
 - [copy-editing](skills/marketing/copy-editing/SKILL.md): When the user wants to edit, review, or improve existing marketing copy, or refresh outdated content.
-- [copywriting](skills/marketing/copywriting/SKILL.md): When the user wants to write, rewrite, or improve marketing copy for any page — including homepage, landing pages, pricing pages, feature pages, about pages, or product pages.
+- [copywriting](skills/marketing/copywriting/SKILL.md): When the user wants to write, rewrite, or improve marketing copy for any page, including homepage, landing pages, pricing pages, feature pages, about pages, or product pages.
 - [cro](skills/marketing/cro/SKILL.md): When the user wants to optimize, improve, or increase conversions on any marketing page or form — including homepage, landing pages, pricing pages, feature pages, lead capture forms, or contact forms.
 - [customer-research](skills/marketing/customer-research/SKILL.md): When the user wants to conduct, analyze, or synthesize customer research.
 - [directory-submissions](skills/marketing/directory-submissions/SKILL.md): When the user wants to submit their product to startup, SaaS, AI, agent, MCP, no-code, or review directories for backlinks, domain rating, and discovery.
@@ -219,8 +218,8 @@ Add `-g` to install into your user folder instead of the current project. Not su
 - [seo-audit](skills/marketing/seo-audit/SKILL.md): When the user wants to audit, review, or diagnose SEO issues on their site.
 - [signup](skills/marketing/signup/SKILL.md): When the user wants to optimize signup, registration, account creation, or trial activation flows.
 - [site-architecture](skills/marketing/site-architecture/SKILL.md): When the user wants to plan, map, or restructure their website's page hierarchy, navigation, URL structure, or internal linking.
-- [sms](skills/marketing/sms/SKILL.md): When the user wants to plan, build, or optimize SMS or MMS marketing — including welcome flows, abandoned cart texts, post-purchase, win-back, promotional sends, or transactional/auth SMS.
-- [social](skills/marketing/social/SKILL.md): When the user wants help creating, scheduling, or optimizing social media content for LinkedIn, Twitter/X, Instagram, TikTok, Facebook, or other platforms, or wants to do social listening and engagement triage.
+- [sms](skills/marketing/sms/SKILL.md): When the user wants to plan, build, or optimize SMS, MMS, or WhatsApp marketing — including welcome flows, abandoned cart texts, post-purchase, win-back, promotional sends, or transactional/auth SMS.
+- [social](skills/marketing/social/SKILL.md): When the user wants help creating, scheduling, or optimizing social media content for LinkedIn, Twitter/X, Instagram, TikTok, or Facebook, or wants to do social listening and engagement triage.
 - [video](skills/marketing/video/SKILL.md): When the user wants to create, generate, or produce video content using AI tools or programmatic frameworks.
 
 ### Misc (rarely used)

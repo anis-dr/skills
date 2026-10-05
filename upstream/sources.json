@@ -13,7 +13,7 @@
     "mode": "vendor",
     "source": "https://github.com/mattpocock/skills",
     "path": "skills/engineering/codebase-design",
-    "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
+    "commit": "4588b32ecab9ecc9fc8cc6b6c5e7d675b6004b0d"
   },
   {
     "name": "diagnosing-bugs",
@@ -21,7 +21,7 @@
     "mode": "vendor",
     "source": "https://github.com/mattpocock/skills",
     "path": "skills/engineering/diagnosing-bugs",
-    "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
+    "commit": "4588b32ecab9ecc9fc8cc6b6c5e7d675b6004b0d"
   },
   {
     "name": "domain-modeling",
@@ -29,7 +29,7 @@
     "mode": "vendor",
     "source": "https://github.com/mattpocock/skills",
     "path": "skills/engineering/domain-modeling",
-    "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
+    "commit": "4588b32ecab9ecc9fc8cc6b6c5e7d675b6004b0d"
   },
   {
     "name": "grill-with-docs",
@@ -53,7 +53,7 @@
     "mode": "vendor",
     "source": "https://github.com/mattpocock/skills",
     "path": "skills/engineering/improve-codebase-architecture",
-    "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
+    "commit": "4588b32ecab9ecc9fc8cc6b6c5e7d675b6004b0d"
   },
   {
     "name": "prototype",
@@ -72,20 +72,12 @@
     "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
   },
   {
-    "name": "resolving-merge-conflicts",
-    "bucket": "engineering",
-    "mode": "vendor",
-    "source": "https://github.com/mattpocock/skills",
-    "path": "skills/engineering/resolving-merge-conflicts",
-    "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
-  },
-  {
     "name": "setup-matt-pocock-skills",
     "bucket": "engineering",
     "mode": "vendor",
     "source": "https://github.com/mattpocock/skills",
     "path": "skills/engineering/setup-matt-pocock-skills",
-    "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
+    "commit": "4588b32ecab9ecc9fc8cc6b6c5e7d675b6004b0d"
   },
   {
     "name": "tdd",
@@ -93,7 +85,7 @@
     "mode": "vendor",
     "source": "https://github.com/mattpocock/skills",
     "path": "skills/engineering/tdd",
-    "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
+    "commit": "4588b32ecab9ecc9fc8cc6b6c5e7d675b6004b0d"
   },
   {
     "name": "to-spec",
@@ -117,7 +109,7 @@
     "mode": "vendor",
     "source": "https://github.com/mattpocock/skills",
     "path": "skills/engineering/triage",
-    "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
+    "commit": "4588b32ecab9ecc9fc8cc6b6c5e7d675b6004b0d"
   },
   {
     "name": "wayfinder",
@@ -181,7 +173,7 @@
     "mode": "vendor",
     "source": "https://github.com/mattpocock/skills",
     "path": "skills/productivity/wait-what",
-    "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
+    "commit": "4588b32ecab9ecc9fc8cc6b6c5e7d675b6004b0d"
   },
   {
     "name": "writing-for-agents",
@@ -193,27 +185,27 @@
   },
   {
     "name": "pr",
-    "bucket": "in-progress",
+    "bucket": "engineering",
     "mode": "vendor",
     "source": "https://github.com/mattpocock/skills",
-    "path": "skills/in-progress/pr",
-    "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
+    "path": "skills/engineering/pr",
+    "commit": "4588b32ecab9ecc9fc8cc6b6c5e7d675b6004b0d"
   },
   {
     "name": "retro",
-    "bucket": "in-progress",
+    "bucket": "engineering",
     "mode": "vendor",
     "source": "https://github.com/mattpocock/skills",
-    "path": "skills/in-progress/retro",
-    "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
+    "path": "skills/engineering/retro",
+    "commit": "4588b32ecab9ecc9fc8cc6b6c5e7d675b6004b0d"
   },
   {
     "name": "implement-spec",
-    "bucket": "in-progress",
+    "bucket": "engineering",
     "mode": "vendor",
     "source": "https://github.com/mattpocock/skills",
-    "path": "skills/in-progress/implement-spec",
-    "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
+    "path": "skills/engineering/implement-spec",
+    "commit": "4588b32ecab9ecc9fc8cc6b6c5e7d675b6004b0d"
   },
   {
     "name": "writing-beats",
@@ -673,7 +665,7 @@
     "mode": "fork",
     "source": "https://github.com/mattpocock/skills",
     "path": "skills/engineering/ask-matt",
-    "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
+    "commit": "4588b32ecab9ecc9fc8cc6b6c5e7d675b6004b0d"
   },
   {
     "name": "babysit",

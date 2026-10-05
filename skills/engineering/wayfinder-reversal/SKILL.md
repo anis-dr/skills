@@ -15,7 +15,7 @@ Use when a grilling answer contradicts a closed ticket, when the owner rejects a
 2. Call the Skill tool with "grilling" and grill only the delta. List what survives from the first resolution up front.
 3. Post a new comment headed `## Resolution (second, supersedes the one above)`. Leave the old one unedited.
 4. Rewrite the ticket's line in the map body in place, rather than appending a second one.
-5. Update glossary terms in place (call the Skill tool with "domain-modeling" for the `CONTEXT.md` format), then commit and push `CONTEXT.md`.
+5. Update glossary terms in place (call the Skill tool with "domain-modeling" for the `GLOSSARY.md` format), then commit and push `GLOSSARY.md`.
 
 ## Reversal across tickets (new ticket contradicts old ones)
 

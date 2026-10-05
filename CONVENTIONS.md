@@ -38,7 +38,7 @@ A skill outside this repo is a recommended skill. Name it with its install comma
 
 ## Where files go
 
-The scratchpad skill owns the rule. Durable output follows Matt Pocock's structure (`CONTEXT.md`, `docs/adr/`, `docs/agents/`, the issue tracker). Temporary files the user may want to see, read or change go in `.scratchpad/<task>/`, and our skills write them there. Temporary plumbing only the agent touches goes in the OS temp folder. Vendored skills keep their own locations unless the file is one the user reads, such as Matt's architecture report and handoff note, which are patched to `.scratchpad/`. Matt's local issue tracker folder `.scratch/` is renamed to `.issues/` by a sync rule.
+The scratchpad skill owns the rule. Durable output follows Matt Pocock's structure (`GLOSSARY.md`, `docs/adr/`, `docs/agents/`, the issue tracker). Temporary files the user may want to see, read or change go in `.scratchpad/<task>/`, and our skills write them there. Temporary plumbing only the agent touches goes in the OS temp folder. Vendored skills keep their own locations unless the file is one the user reads, such as Matt's architecture report and handoff note, which are patched to `.scratchpad/`. Matt's local issue tracker folder `.scratch/` is renamed to `.issues/` by a sync rule.
 
 ## Output formats
 
