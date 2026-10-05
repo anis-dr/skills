@@ -34,7 +34,7 @@ The arena skill is user-invoked, so hand this step to the user: tell them to run
 
 Design it twice. Require at least two structurally distinct candidates before synthesis, even when the first looks sufficient. Arena gives every runner the same prompt, so its candidates differ by model; to get structurally different shapes, add one constraint per runner the way codebase-design's design-it-twice brief does (minimize the interface, maximize flexibility, optimize the common caller, ports and adapters). This is the **exhaust-the-design-space** principle (call the Skill tool with "principles" and read its reference) made concrete. Whole-shape alternatives, not point fixes inside one shape.
 
-Screen every candidate against [`references/design-red-flags.md`](references/design-red-flags.md) before synthesis. Reject or revise shallow modules, information leakage, temporal decomposition, and pass-through methods.
+Screen every candidate against [`references/design-red-flags.md`](references/design-red-flags.md) before synthesis. Assume the next contributor is an agent that sees only the files it opened, copies the nearest example, and takes the shortest path that compiles. Prefer the design where a change that looks right from one file is right for the whole repo.
 
 Compare viable candidates on interface depth. Prefer the design that hides more complexity behind a smaller, simpler public surface. A rich interface can keep call chains short by concentrating capability instead of scattering it across layers.
 

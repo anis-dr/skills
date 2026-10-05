@@ -1,5 +1,5 @@
 diff --git a/SKILL.md b/SKILL.md
-index 15e9f0b..6c19f7b 100644
+index 97810d4..8415748 100644
 --- a/SKILL.md
 +++ b/SKILL.md
 @@ -28,11 +28,11 @@ Skip Phase A only when the work is genuinely greenfield with no surrounding syst
@@ -15,7 +15,7 @@ index 15e9f0b..6c19f7b 100644
 -Design it twice. Require at least two structurally distinct candidates before synthesis, even when the first looks sufficient. This is the **exhaust-the-design-space** principle (call the Skill tool with "principles" and read its reference) made concrete. Whole-shape alternatives, not point fixes inside one shape.
 +Design it twice. Require at least two structurally distinct candidates before synthesis, even when the first looks sufficient. Arena gives every runner the same prompt, so its candidates differ by model; to get structurally different shapes, add one constraint per runner the way codebase-design's design-it-twice brief does (minimize the interface, maximize flexibility, optimize the common caller, ports and adapters). This is the **exhaust-the-design-space** principle (call the Skill tool with "principles" and read its reference) made concrete. Whole-shape alternatives, not point fixes inside one shape.
  
- Screen every candidate against [`references/design-red-flags.md`](references/design-red-flags.md) before synthesis. Reject or revise shallow modules, information leakage, temporal decomposition, and pass-through methods.
+ Screen every candidate against [`references/design-red-flags.md`](references/design-red-flags.md) before synthesis. Assume the next contributor is an agent that sees only the files it opened, copies the nearest example, and takes the shortest path that compiles. Prefer the design where a change that looks right from one file is right for the whole repo.
  
 @@ -46,7 +46,7 @@ Default: proceed directly to implementation with the synthesized design. No huma
  
@@ -36,7 +36,7 @@ index 15e9f0b..6c19f7b 100644
  ## Outputs
  
 diff --git a/references/design-red-flags.md b/references/design-red-flags.md
-index 32cb240..49fc48a 100644
+index f8503c9..88eb9d2 100644
 --- a/references/design-red-flags.md
 +++ b/references/design-red-flags.md
 @@ -1,6 +1,6 @@

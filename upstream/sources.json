@@ -311,7 +311,7 @@
     "mode": "vendor",
     "source": "https://github.com/cursor/plugins",
     "path": "pstack/skills/architect",
-    "commit": "ecc249f1e306fc64ddf83c7bed16cacf7c2239db"
+    "commit": "e5a8186d7b43be8d6ac4452440fbead5f1a51c70"
   },
   {
     "name": "arena",
@@ -361,7 +361,7 @@
     "invocation": "model",
     "source": "https://github.com/cursor/plugins",
     "path": "pstack/skills/typescript-best-practices",
-    "commit": "ecc249f1e306fc64ddf83c7bed16cacf7c2239db"
+    "commit": "e5a8186d7b43be8d6ac4452440fbead5f1a51c70"
   },
   {
     "name": "automate-me",
@@ -393,7 +393,7 @@
     "mode": "vendor",
     "source": "https://github.com/cursor/plugins",
     "path": "pstack/skills/technical-writing",
-    "commit": "ecc249f1e306fc64ddf83c7bed16cacf7c2239db"
+    "commit": "e5a8186d7b43be8d6ac4452440fbead5f1a51c70"
   },
   {
     "name": "unslop",
@@ -719,7 +719,7 @@
       "pstack/skills/poteto-mode/playbooks/perf-issue.md",
       "pstack/skills/poteto-mode/playbooks/hillclimb.md"
     ],
-    "commit": "ecc249f1e306fc64ddf83c7bed16cacf7c2239db"
+    "commit": "e5a8186d7b43be8d6ac4452440fbead5f1a51c70"
   },
   {
     "name": "eval",
