@@ -4,7 +4,7 @@ Agent skills for engineering, writing and design work, in one repo that installs
 
 - Matt Pocock's [skills](https://github.com/mattpocock/skills), vendored unchanged.
 - Lauren Tan's [pstack](https://github.com/cursor/plugins/tree/main/pstack) and Cursor's [cursor-team-kit](https://github.com/cursor/plugins/tree/main/cursor-team-kit) skills, rewritten so they run outside Cursor.
-- Corey Haines' [marketing skills](https://github.com/coreyhaines31/marketingskills), Vercel's [agent skills](https://github.com/vercel-labs/agent-skills), Teever's [Effect skills](https://github.com/teeverc/effect-ts), supermemory's [svg-animations](https://github.com/supermemoryai/skills), 0xpili's [simplified-technical-english](https://github.com/0xpili/simplified-technical-english) and Boris Tane's [logging-best-practices](https://github.com/boristane/agent-skills), vendored unchanged.
+- Corey Haines' [marketing skills](https://github.com/coreyhaines31/marketingskills), Vercel's [agent skills](https://github.com/vercel-labs/agent-skills), Teever's [Effect skills](https://github.com/teeverc/effect-ts), supermemory's [svg-animations](https://github.com/supermemoryai/skills), 0xpili's [simplified-technical-english](https://github.com/0xpili/simplified-technical-english), Boris Tane's [logging-best-practices](https://github.com/boristane/agent-skills) and Emil Kowalski's [break-ui and mobile-native](https://github.com/emilkowalski/skills), vendored unchanged.
 - Our own skills, distilled from day-to-day work.
 
 A weekly job pulls upstream changes into a pull request, so vendored skills stay current.
@@ -144,9 +144,11 @@ Add `-g` to install into your user folder instead of the current project. Not su
 
 **Model-invoked**
 
+- [break-ui](skills/design/break-ui/SKILL.md): Try to break a piece of UI by feeding it worst-case data — long names, unbreakable emails, one-letter names, missing fields, huge counts, zero items, long labels, non-Latin text, emoji, extreme numbers — then render it behind a "Demo data / Worst case" toggle and report everything that broke, with the fix for each.
 - [design-references](skills/design/design-references/SKILL.md): Mobbin references as a catalog to pick from
 - [logo-surface-board](skills/design/logo-surface-board/SKILL.md): Judge logo marks on favicon, tile and nav
 - [measure-ui](skills/design/measure-ui/SKILL.md): Prove UI fidelity and states by measuring
+- [mobile-native](skills/design/mobile-native/SKILL.md): Make a web app feel native on a phone — the small CSS and meta-tag fixes that separate "a website in a browser" from something that feels installed.
 - [pen-dev](skills/design/pen-dev/SKILL.md): Design, gate and migrate tokens in pen.dev files
 - [redesign-inventory](skills/design/redesign-inventory/SKILL.md): Redesign a UI without dropping any control
 - [refactoring-ui](skills/design/refactoring-ui/SKILL.md): Refactoring UI rules, scales and review checklist

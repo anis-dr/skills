@@ -219,6 +219,8 @@ Skills distilled from our own work. Most are model-invoked: the agent reaches fo
 - **`/logo-surface-board`** judges logo candidates on favicon, reversed, app tile and nav surfaces in one HTML board.
 - **`/pen-dev`** designs screens in a pen.dev file with the CLI designer, gates each run to the frames you allowed, and migrates or renames the file's design tokens without breaking overrides.
 - **`/svg-animations`** (supermemory's skill) handcrafts SVG icons, illustrations, animated logos, spinners, path drawing, morphing and motion-path animations with SMIL or CSS.
+- **`/break-ui`** (Emil Kowalski's skill) feeds a component worst-case data (long names, unbreakable emails, empty and huge lists, non-Latin text, extreme numbers), puts it behind a dev-only "Demo data / Worst case" toggle, and fixes what breaks.
+- **`/mobile-native`** (Emil Kowalski's skill) removes the tells that make a web app feel like a website on a phone: sticky hover, tap highlights, the `100vh` bug, inputs that zoom the page, content under the notch, pull-to-refresh hijacking scroll.
 
 ## Standalone
 

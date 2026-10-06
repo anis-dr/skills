@@ -1435,5 +1435,21 @@
     "source": "https://github.com/boristane/agent-skills",
     "path": "skills/logging-best-practices",
     "commit": "8aa14dd16a1340a6049e6d7cd58e2ed52333a550"
+  },
+  {
+    "name": "break-ui",
+    "bucket": "design",
+    "mode": "vendor",
+    "source": "https://github.com/emilkowalski/skills",
+    "path": "skills/break-ui",
+    "commit": "e8a175de22ae1e49370fc144c1f3bb9aeedf988d"
+  },
+  {
+    "name": "mobile-native",
+    "bucket": "design",
+    "mode": "vendor",
+    "source": "https://github.com/emilkowalski/skills",
+    "path": "skills/mobile-native",
+    "commit": "e8a175de22ae1e49370fc144c1f3bb9aeedf988d"
   }
 ]
