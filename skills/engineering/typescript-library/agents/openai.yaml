@@ -1,0 +1,3 @@
+interface:
+  display_name: "TypeScript Library"
+  short_description: "Library APIs that infer end to end and reject misuse"

@@ -100,6 +100,7 @@ Add `-g` to install into your user folder instead of the current project. Not su
 - [to-plan](skills/engineering/to-plan/SKILL.md): Executor-ready plans as flows, not pasted code
 - [transcripts](skills/engineering/transcripts/SKILL.md): Find session transcripts per harness
 - [typescript-best-practices](skills/engineering/typescript-best-practices/SKILL.md): TypeScript best practices.
+- [typescript-library](skills/engineering/typescript-library/SKILL.md): Library APIs that infer end to end and reject misuse
 - [vercel-cli-with-tokens](skills/engineering/vercel-cli-with-tokens/SKILL.md): Deploy and manage projects on Vercel using token-based authentication.
 - [vercel-composition-patterns](skills/engineering/vercel-composition-patterns/SKILL.md): React composition patterns that scale.
 - [vercel-optimize](skills/engineering/vercel-optimize/SKILL.md): Use for Vercel cost and performance optimization on deployed projects, especially Next.js, SvelteKit, Nuxt, and limited Astro apps.

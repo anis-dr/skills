@@ -155,6 +155,7 @@ Skills distilled from our own work. Most are model-invoked: the agent reaches fo
 - **`/setup-effect-toolchain`** sets up an Effect v4 repo's toolchain (TypeScript 7 with `@effect/tsgo`, Oxlint with the Effect, code-shape and anti-slop plugins, oxfmt) and proves every layer runs.
 - **`/pragmatic-effect`** keeps Effect code pragmatic: Effect where it buys typed effects, lifecycle or dependency boundaries, plain helpers everywhere else.
 - **`/anti-slop-migration`** takes an existing TypeScript codebase to zero anti-slop findings without laundering types.
+- **`/typescript-library`** designs a library or SDK's public TypeScript surface so types infer end to end and misuse fails to compile, distilled from TanStack Router and Query: call sites first, type tests, packed-output checks with `attw`, type-cost measurement and semver for types. `/typescript-best-practices` stays the rule set for code inside the implementation.
 - **`/tanstack-start-middleware`** registers server-only middleware in TanStack Start without dynamic imports or client import-protection failures.
 - **`/agent-sources`** reads a dependency's upstream source at the installed version when types and docs leave a question open.
 

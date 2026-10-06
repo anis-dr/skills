@@ -714,6 +714,18 @@
     "commit": "e5a8186d7b43be8d6ac4452440fbead5f1a51c70"
   },
   {
+    "name": "typescript-library",
+    "bucket": "engineering",
+    "mode": "fork",
+    "source": "https://github.com/TanStack/router",
+    "path": [
+      "docs/router/guide/type-safety.md",
+      "docs/router/guide/type-utilities.md",
+      "packages/AGENTS.md"
+    ],
+    "commit": "30fc108a5ebbc4eadd48439282bf1c27d55fbb94"
+  },
+  {
     "name": "eval",
     "bucket": "engineering",
     "mode": "fork",
