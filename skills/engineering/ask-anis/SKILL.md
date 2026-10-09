@@ -202,6 +202,7 @@ Skills distilled from our own work. Most are model-invoked: the agent reaches fo
 
 ### Productivity
 
+- **`/i-have-adhd`** shapes replies for a reader with ADHD: next actions first, numbered steps, visible progress and fewer tangents. User-invoked: it stays active until "stop adhd mode" or "normal mode" (Ayoub Ghriss' skill).
 - **`/diagram-rules`** is the judgement for any diagram before the tool: draw or use a table, which kind answers the reader's question, what belongs in a node and on an edge, how much fits, and a check before showing it. Model-invoked: `/show-me` and `/technical-pdf` load it first.
 - **`/technical-pdf`** writes and visually checks a technical PDF (report, spec, runbook, proposal) in Typst, including client quotes whose prices compute from a day rate.
 - **`/scratchpad`** decides where a file goes: durable output in Matt's structure, temporary files you may want to read or edit in the gitignored `.scratchpad/` folder, agent-only plumbing in the OS temp folder.
