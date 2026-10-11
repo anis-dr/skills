@@ -73,6 +73,7 @@ Add `-g` to install into your user folder instead of the current project. Not su
 - [drizzle-postgres](skills/engineering/drizzle-postgres/SKILL.md): Drizzle bulk params, migration merges, baselines
 - [effect-ts](skills/engineering/effect-ts/SKILL.md): Effect v3 (stable) guidance for TypeScript; for an Effect v4 project use effect-v4 instead.
 - [effect-v4](skills/engineering/effect-v4/SKILL.md): Effect v4 (beta) development and v3 → v4 migration guidance.
+- [estimate](skills/engineering/estimate/SKILL.md): Ranged, calibrated estimates for agent runs, tickets and quotes
 - [git-split-amended-followup](skills/engineering/git-split-amended-followup/SKILL.md): Split an amended fix into its own follow-up commit
 - [how](skills/engineering/how/SKILL.md): Use for "how does X work", code walkthroughs before changing something, and placement / ownership / layering questions ("where should this live", "which package owns this", "is this the right layer").
 - [likec4-postcss-isolation](skills/engineering/likec4-postcss-isolation/SKILL.md): Stop root PostCSS config breaking likec4 serve

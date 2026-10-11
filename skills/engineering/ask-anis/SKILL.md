@@ -197,6 +197,7 @@ Skills distilled from our own work. Most are model-invoked: the agent reaches fo
 
 - **`/to-plan`** writes plans another agent can execute: flows, call trees and behaviour assertions instead of pasted code.
 - **`/avoid-feature-creep`** keeps scope tight while planning features, MVPs and backlogs.
+- **`/estimate`** gives a ranged estimate with its basis for an agent run, a ticket, a feature or a client quote, and keeps a calibration log so the next estimate is checked against measured runs.
 - **`/verify-api-shape`** checks a third-party API's live response shape before trusting fixtures or claims about it.
 - **`/wayfinder-reversal`** records a decision that reverses a closed wayfinder ticket and gets the map ready for `/to-spec`.
 

@@ -407,6 +407,11 @@
     "mode": "ours"
   },
   {
+    "name": "estimate",
+    "bucket": "engineering",
+    "mode": "ours"
+  },
+  {
     "name": "attack-the-premise",
     "bucket": "engineering",
     "mode": "reference",

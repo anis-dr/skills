@@ -81,7 +81,7 @@ If the harness has a task or plan tool, use it for multi-step work: one item per
 
 ### 6. Give specific time estimates
 
-Vague estimates fail. Ballpark in concrete units.
+Vague estimates fail. Ballpark in concrete units. Call the Skill tool with "estimate" and use its reply format: a range, the clock (agent or you) and the basis.
 
 Bad: "This will take some work."
 Good: "About 15 minutes if tests already cover this. An afternoon if not."

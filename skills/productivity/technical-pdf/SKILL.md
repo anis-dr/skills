@@ -20,7 +20,7 @@ Before any diagram, call the Skill tool with "diagram-rules" and apply it: wheth
 
 ## Client quotes
 
-A quote, estimate or commercial proposal is a report whose prices compute themselves: read [the client-quote branch](references/client-quote.md) for its data model, pricing tables and content checklist, then follow the workflow below.
+A quote, estimate or commercial proposal is a report whose prices compute themselves. First call the Skill tool with "estimate" for the per-module human effort, with the commitment level (expected, 80% or 90%) the quote uses, before pricing. Then read [the client-quote branch](references/client-quote.md) for its data model, pricing tables and content checklist, and follow the workflow below.
 
 ## Visual baseline
 

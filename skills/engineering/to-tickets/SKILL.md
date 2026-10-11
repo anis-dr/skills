@@ -46,6 +46,7 @@ Present the proposed breakdown as a numbered list. For each ticket, show:
 - **Title**: short descriptive name
 - **Blocked by**: which other tickets (if any) must complete first
 - **What it delivers**: the end-to-end behaviour this ticket makes work
+- **Estimate**: call the Skill tool with "estimate" and use its human dev effort branch for a range and its basis (`~3-5 h, assumed`)
 
 Ask the user:
 

@@ -1,0 +1,3 @@
+interface:
+  display_name: "Estimate"
+  short_description: "Ranged, calibrated estimates for agent runs, tickets and quotes"
