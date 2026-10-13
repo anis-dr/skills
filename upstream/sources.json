@@ -5,7 +5,7 @@
     "mode": "vendor",
     "source": "https://github.com/mattpocock/skills",
     "path": "skills/engineering/code-review",
-    "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
+    "commit": "49dd158d1076134a641b33efb035946536778336"
   },
   {
     "name": "codebase-design",
@@ -21,7 +21,7 @@
     "mode": "vendor",
     "source": "https://github.com/mattpocock/skills",
     "path": "skills/engineering/diagnosing-bugs",
-    "commit": "4588b32ecab9ecc9fc8cc6b6c5e7d675b6004b0d"
+    "commit": "49dd158d1076134a641b33efb035946536778336"
   },
   {
     "name": "domain-modeling",
@@ -45,7 +45,7 @@
     "mode": "vendor",
     "source": "https://github.com/mattpocock/skills",
     "path": "skills/engineering/implement",
-    "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
+    "commit": "49dd158d1076134a641b33efb035946536778336"
   },
   {
     "name": "improve-codebase-architecture",
@@ -77,7 +77,7 @@
     "mode": "vendor",
     "source": "https://github.com/mattpocock/skills",
     "path": "skills/engineering/setup-matt-pocock-skills",
-    "commit": "4588b32ecab9ecc9fc8cc6b6c5e7d675b6004b0d"
+    "commit": "49dd158d1076134a641b33efb035946536778336"
   },
   {
     "name": "tdd",
@@ -85,7 +85,7 @@
     "mode": "vendor",
     "source": "https://github.com/mattpocock/skills",
     "path": "skills/engineering/tdd",
-    "commit": "4588b32ecab9ecc9fc8cc6b6c5e7d675b6004b0d"
+    "commit": "49dd158d1076134a641b33efb035946536778336"
   },
   {
     "name": "to-spec",
@@ -101,7 +101,7 @@
     "mode": "vendor",
     "source": "https://github.com/mattpocock/skills",
     "path": "skills/engineering/to-tickets",
-    "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
+    "commit": "49dd158d1076134a641b33efb035946536778336"
   },
   {
     "name": "triage",
@@ -117,7 +117,7 @@
     "mode": "vendor",
     "source": "https://github.com/mattpocock/skills",
     "path": "skills/engineering/wayfinder",
-    "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
+    "commit": "49dd158d1076134a641b33efb035946536778336"
   },
   {
     "name": "wizard",
@@ -125,7 +125,7 @@
     "mode": "vendor",
     "source": "https://github.com/mattpocock/skills",
     "path": "skills/engineering/wizard",
-    "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
+    "commit": "49dd158d1076134a641b33efb035946536778336"
   },
   {
     "name": "grill-me",
@@ -141,7 +141,7 @@
     "mode": "vendor",
     "source": "https://github.com/mattpocock/skills",
     "path": "skills/productivity/grilling",
-    "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
+    "commit": "49dd158d1076134a641b33efb035946536778336"
   },
   {
     "name": "handoff",
@@ -149,7 +149,7 @@
     "mode": "vendor",
     "source": "https://github.com/mattpocock/skills",
     "path": "skills/productivity/handoff",
-    "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
+    "commit": "49dd158d1076134a641b33efb035946536778336"
   },
   {
     "name": "teach",
@@ -157,7 +157,7 @@
     "mode": "vendor",
     "source": "https://github.com/mattpocock/skills",
     "path": "skills/productivity/teach",
-    "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
+    "commit": "49dd158d1076134a641b33efb035946536778336"
   },
   {
     "name": "to-questionnaire",
@@ -670,7 +670,7 @@
     "mode": "fork",
     "source": "https://github.com/mattpocock/skills",
     "path": "skills/engineering/ask-matt",
-    "commit": "4588b32ecab9ecc9fc8cc6b6c5e7d675b6004b0d"
+    "commit": "49dd158d1076134a641b33efb035946536778336"
   },
   {
     "name": "babysit",
