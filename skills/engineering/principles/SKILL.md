@@ -43,6 +43,7 @@ Read only the references whose lines match; the rest stay unread. Done when ever
 - [Fix Root Causes](references/fix-root-causes.md). Debugging. Trace each symptom to its root cause, reproduce first, ask why until you reach it.
 - [Sequence Work into Verifiable Units](references/sequence-verifiable-units.md). Multi-step work (sweeps, migrations, runs of similar edits) and how you stack commits and PRs. Break work into small units that each end in a check, verify each before the next, and order delivery so the sequence proves itself.
 - [Test Behavior, Not Implementation](references/test-behavior-not-implementation.md). Writing, changing, or keeping a test. Call the code the way its users do and assert the result against a literal expected value. If the test would still pass when every imported function returns `undefined`, rewrite the assertion or delete the test.
+- [Explain the Number](references/explain-the-number.md). Before you trust, report, or act on a number you measured: a speedup, regression, throughput, latency, or eval result. Name what limits it and rule out that it measured something other than the work you think.
 
 **Delegation**
 

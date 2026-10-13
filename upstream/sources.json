@@ -1476,5 +1476,39 @@
     "source": "https://github.com/ayghri/i-have-adhd",
     "path": "skills/i-have-adhd",
     "commit": "723af7d9afaf43eb871dbcce6129e2bf80de90d5"
+  },
+  {
+    "name": "correct",
+    "bucket": "engineering",
+    "mode": "vendor",
+    "source": "https://github.com/cursor/plugins",
+    "path": "pstack/skills/correct",
+    "commit": "56aca546a690ae340eccbe57455d5cb6380024c9"
+  },
+  {
+    "name": "ketchup",
+    "bucket": "productivity",
+    "mode": "vendor",
+    "source": "https://github.com/cursor/plugins",
+    "path": "pstack/skills/ketchup",
+    "commit": "56aca546a690ae340eccbe57455d5cb6380024c9"
+  },
+  {
+    "name": "benchmark-checklist",
+    "bucket": "engineering",
+    "mode": "vendor",
+    "invocation": "model",
+    "source": "https://github.com/cursor/plugins",
+    "path": "pstack/skills/benchmark-checklist",
+    "commit": "56aca546a690ae340eccbe57455d5cb6380024c9"
+  },
+  {
+    "name": "explain-the-number",
+    "bucket": "engineering",
+    "mode": "reference",
+    "into": "principles",
+    "source": "https://github.com/cursor/plugins",
+    "path": "pstack/skills/principle-explain-the-number/SKILL.md",
+    "commit": "56aca546a690ae340eccbe57455d5cb6380024c9"
   }
 ]

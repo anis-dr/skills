@@ -58,6 +58,7 @@ A starting situation that generates work, then merges onto the main flow.
 Not feature work, just upkeep.
 
 - **`/improve-codebase-architecture`** runs whenever you have a spare moment to keep the codebase good for agents to operate in. It surfaces **deepening opportunities**; picking one _generates an idea_ you can take into the main flow at `/grill-with-docs`. It's the survey that finds the candidates; **`/codebase-design`** (below) is the bench you design the chosen one on.
+- **`/correct`** finds the mistakes agents keep repeating in this repo and makes each one impossible: architecture first, then types, a lint whose error names the fix, a test, and docs last, each proven on a real past mistake. Run it each time you correct the agent. User-invoked.
 
 ## Vocabulary underneath
 
@@ -100,6 +101,7 @@ Before you change code you don't know, or when the shape of new code is the hard
 - **`/verify-this`** checks one claim with fresh local evidence: baseline, treatment, and a VERIFIED, NOT VERIFIED or INCONCLUSIVE verdict.
 - **`/control-ui`** and **`/control-cli`** build or reuse a local harness that drives a web, IDE or Electron UI, or an interactive CLI, and captures the evidence.
 - **`/performance`** makes code faster against a measured baseline: one traced slowness fixed and proven, or one metric hillclimbed toward a target.
+- **`/benchmark-checklist`** vets a performance measurement before you report or act on it: what limits it, whether the work really ran, errors, repeatability and relevance. Model-invoked: `/performance` calls it.
 - **`/eval`** tests how a skill, structure or prompt change affects agent behaviour, with blinded runs on several model families and a blinded judge.
 - **`/create-verification-skill`** writes a project-local skill that drives your app the way a user does; **`/maintain-verification-skill`** keeps that skill and its feature map honest as the app changes.
 
@@ -114,6 +116,7 @@ Before you change code you don't know, or when the shape of new code is the hard
 - **`/autonomous-run`** drives a long task to a checkable exit predicate without stopping: the smallest evidence-backed change per iteration, reverts for what did not help, a checkpoint row each time.
 - **`/pause-resume`** pauses work at a safe boundary with a `wip:` commit and a resume note, or picks up one prior session from its transcript, branch or note without redoing it.
 - **`/recall`** rebuilds your recent working context from past chats, live state and the shared record, then hands back a brief. Use it before resuming work after a break.
+- **`/ketchup`** catches you up on everything in the chat since your last message, in plain words, with an executive summary and enough context for each action item. User-invoked.
 - **`/show-me-your-work`** keeps a decision log for long or unattended runs, so a reviewer can trust the result.
 - **`/transcripts`** knows where each harness stores session transcripts. Model-invoked: `/recall`, `/show-me-your-work` and `/automate-me` use it.
 - **`/automate-me`** turns your working conventions, mined from past chats, into a personal `-mode` skill.

@@ -37,6 +37,7 @@ Add `-g` to install into your user folder instead of the current project. Not su
 - [ask-anis](skills/engineering/ask-anis/SKILL.md): Find the right skill or workflow
 - [automate-me](skills/engineering/automate-me/SKILL.md): Use for "automate me", "create/update/refresh my -mode skill", "turn/capture my preferences or working style into a skill", or wanting agents to follow how the user works.
 - [blast-radius](skills/engineering/blast-radius/SKILL.md): Find what a change could break somewhere else before it ships, beyond the diff, and prove the one fact it's safe because of by running real code instead of writing it up.
+- [correct](skills/engineering/correct/SKILL.md): Find the mistakes agents keep repeating in this repo and make each one impossible.
 - [create-verification-skill](skills/engineering/create-verification-skill/SKILL.md): Generate a project-local verification skill that drives your app the way a user does — any language, framework, or platform.
 - [eval](skills/engineering/eval/SKILL.md): Blind test a skill or prompt change across models
 - [grill-with-docs](skills/engineering/grill-with-docs/SKILL.md): Grill a design and write its docs
@@ -60,6 +61,7 @@ Add `-g` to install into your user folder instead of the current project. Not su
 - [autonomous-run](skills/engineering/autonomous-run/SKILL.md): Drive a long task to a checkable exit predicate
 - [avoid-feature-creep](skills/engineering/avoid-feature-creep/SKILL.md): Keep scope tight: MVPs, backlogs, one-more-feature
 - [babysit](skills/engineering/babysit/SKILL.md): Drive a GitHub PR or stack to merge-ready
+- [benchmark-checklist](skills/engineering/benchmark-checklist/SKILL.md): Vet a perf measurement (limiter, tuning, limits, errors, repeatability, relevance, and whether the work happened) before you report or act on it.
 - [bun-monorepo](skills/engineering/bun-monorepo/SKILL.md): Bun catalogs, patches and Changesets publishing
 - [code-review](skills/engineering/code-review/SKILL.md): Review a diff on standards and spec
 - [codebase-design](skills/engineering/codebase-design/SKILL.md): Vocabulary for deep-module design
@@ -121,6 +123,7 @@ Add `-g` to install into your user folder instead of the current project. Not su
 - [grill-me](skills/productivity/grill-me/SKILL.md): Sharpen a plan through interview
 - [handoff](skills/productivity/handoff/SKILL.md): Compact a conversation into a handoff
 - [i-have-adhd](skills/productivity/i-have-adhd/SKILL.md): Action-first output for ADHD readers
+- [ketchup](skills/productivity/ketchup/SKILL.md): Catch the user up on everything in this chat since their last message, in plain words.
 - [teach](skills/productivity/teach/SKILL.md): Learn a concept in a guided workspace
 - [technical-writing](skills/productivity/technical-writing/SKILL.md): Layered technical-writing standard: Diátaxis structure, Google developer style sentences, STE instruction rules, Global English syntax.
 - [to-questionnaire](skills/productivity/to-questionnaire/SKILL.md): Front-load questions into a doc for someone to answer
