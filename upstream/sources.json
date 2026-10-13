@@ -1459,7 +1459,7 @@
     "mode": "vendor",
     "source": "https://github.com/emilkowalski/skills",
     "path": "skills/break-ui",
-    "commit": "e8a175de22ae1e49370fc144c1f3bb9aeedf988d"
+    "commit": "2d228630ba1446365f614a108cb8252f1feda202"
   },
   {
     "name": "mobile-native",
@@ -1467,7 +1467,7 @@
     "mode": "vendor",
     "source": "https://github.com/emilkowalski/skills",
     "path": "skills/mobile-native",
-    "commit": "e8a175de22ae1e49370fc144c1f3bb9aeedf988d"
+    "commit": "2d228630ba1446365f614a108cb8252f1feda202"
   },
   {
     "name": "i-have-adhd",
@@ -1510,5 +1510,101 @@
     "source": "https://github.com/cursor/plugins",
     "path": "pstack/skills/principle-explain-the-number/SKILL.md",
     "commit": "56aca546a690ae340eccbe57455d5cb6380024c9"
+  },
+  {
+    "name": "emil-design-eng",
+    "bucket": "design",
+    "mode": "vendor",
+    "source": "https://github.com/emilkowalski/skills",
+    "path": "skills/emil-design-eng",
+    "commit": "2d228630ba1446365f614a108cb8252f1feda202"
+  },
+  {
+    "name": "animate",
+    "bucket": "design",
+    "mode": "vendor",
+    "source": "https://github.com/emilkowalski/skills",
+    "path": "skills/animate",
+    "commit": "2d228630ba1446365f614a108cb8252f1feda202"
+  },
+  {
+    "name": "review-animations",
+    "bucket": "design",
+    "mode": "vendor",
+    "source": "https://github.com/emilkowalski/skills",
+    "path": "skills/review-animations",
+    "commit": "2d228630ba1446365f614a108cb8252f1feda202"
+  },
+  {
+    "name": "improve-animations",
+    "bucket": "design",
+    "mode": "vendor",
+    "source": "https://github.com/emilkowalski/skills",
+    "path": "skills/improve-animations",
+    "commit": "2d228630ba1446365f614a108cb8252f1feda202"
+  },
+  {
+    "name": "find-animation-opportunities",
+    "bucket": "design",
+    "mode": "vendor",
+    "source": "https://github.com/emilkowalski/skills",
+    "path": "skills/find-animation-opportunities",
+    "commit": "2d228630ba1446365f614a108cb8252f1feda202"
+  },
+  {
+    "name": "animation-performance",
+    "bucket": "design",
+    "mode": "vendor",
+    "source": "https://github.com/emilkowalski/skills",
+    "path": "skills/animation-performance",
+    "commit": "2d228630ba1446365f614a108cb8252f1feda202"
+  },
+  {
+    "name": "animation-vocabulary",
+    "bucket": "design",
+    "mode": "vendor",
+    "source": "https://github.com/emilkowalski/skills",
+    "path": "skills/animation-vocabulary",
+    "commit": "2d228630ba1446365f614a108cb8252f1feda202"
+  },
+  {
+    "name": "apple-design",
+    "bucket": "design",
+    "mode": "vendor",
+    "source": "https://github.com/emilkowalski/skills",
+    "path": "skills/apple-design",
+    "commit": "2d228630ba1446365f614a108cb8252f1feda202"
+  },
+  {
+    "name": "pick-ui-library",
+    "bucket": "design",
+    "mode": "vendor",
+    "source": "https://github.com/emilkowalski/skills",
+    "path": "skills/pick-ui-library",
+    "commit": "2d228630ba1446365f614a108cb8252f1feda202"
+  },
+  {
+    "name": "ask-sonner",
+    "bucket": "design",
+    "mode": "vendor",
+    "source": "https://github.com/emilkowalski/skills",
+    "path": "skills/ask-sonner",
+    "commit": "2d228630ba1446365f614a108cb8252f1feda202"
+  },
+  {
+    "name": "animate-expo",
+    "bucket": "design",
+    "mode": "vendor",
+    "source": "https://github.com/emilkowalski/skills",
+    "path": "skills/animate-expo",
+    "commit": "2d228630ba1446365f614a108cb8252f1feda202"
+  },
+  {
+    "name": "write-swift",
+    "bucket": "engineering",
+    "mode": "vendor",
+    "source": "https://github.com/emilkowalski/skills",
+    "path": "skills/write-swift",
+    "commit": "2d228630ba1446365f614a108cb8252f1feda202"
   }
 ]

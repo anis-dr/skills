@@ -4,7 +4,7 @@ Agent skills for engineering, writing and design work, in one repo that installs
 
 - Matt Pocock's [skills](https://github.com/mattpocock/skills), vendored unchanged.
 - Lauren Tan's [pstack](https://github.com/cursor/plugins/tree/main/pstack) and Cursor's [cursor-team-kit](https://github.com/cursor/plugins/tree/main/cursor-team-kit) skills, rewritten so they run outside Cursor.
-- Corey Haines' [marketing skills](https://github.com/coreyhaines31/marketingskills), Vercel's [agent skills](https://github.com/vercel-labs/agent-skills), Teever's [Effect skills](https://github.com/teeverc/effect-ts), supermemory's [svg-animations](https://github.com/supermemoryai/skills), 0xpili's [simplified-technical-english](https://github.com/0xpili/simplified-technical-english), Boris Tane's [logging-best-practices](https://github.com/boristane/agent-skills), Emil Kowalski's [break-ui and mobile-native](https://github.com/emilkowalski/skills) and Ayoub Ghriss' [i-have-adhd](https://github.com/ayghri/i-have-adhd), vendored unchanged.
+- Corey Haines' [marketing skills](https://github.com/coreyhaines31/marketingskills), Vercel's [agent skills](https://github.com/vercel-labs/agent-skills), Teever's [Effect skills](https://github.com/teeverc/effect-ts), supermemory's [svg-animations](https://github.com/supermemoryai/skills), 0xpili's [simplified-technical-english](https://github.com/0xpili/simplified-technical-english), Boris Tane's [logging-best-practices](https://github.com/boristane/agent-skills), Emil Kowalski's [design, motion and Swift skills](https://github.com/emilkowalski/skills) and Ayoub Ghriss' [i-have-adhd](https://github.com/ayghri/i-have-adhd), vendored unchanged.
 - Our own skills, distilled from day-to-day work.
 
 A weekly job pulls upstream changes into a pull request, so vendored skills stay current.
@@ -115,6 +115,7 @@ Add `-g` to install into your user folder instead of the current project. Not su
 - [wayfinder-reversal](skills/engineering/wayfinder-reversal/SKILL.md): Handle wayfinder reversals and close the map
 - [why](skills/engineering/why/SKILL.md): Use for 'why does X work this way', 'why we picked Y', design rationale, regressions, postmortems, or data-backed thresholds.
 - [wizard](skills/engineering/wizard/SKILL.md): Generate an interactive setup wizard
+- [write-swift](skills/engineering/write-swift/SKILL.md): How to write modern Swift well — modeling with value types, Swift 6 data-race safety and approachable concurrency (@concurrent, main-actor-by-default, actors, task groups), protocols and generics (some vs any), API design, performance and ARC, Swift Testing, macros, and the modern language features agents don't know about yet.
 
 ### Productivity
 
@@ -148,10 +149,24 @@ Add `-g` to install into your user folder instead of the current project. Not su
 
 ### Design
 
+**User-invoked**
+
+- [pick-ui-library](skills/design/pick-ui-library/SKILL.md): Pick the right library for a given frontend task from a curated, opinionated list — numbers, OTP inputs, charts, command menus, virtualization, drag and drop, toasts, state, styling, and more.
+- [review-animations](skills/design/review-animations/SKILL.md): Reviews animation and motion code against a high craft bar derived from Emil Kowalski's design engineering philosophy.
+
 **Model-invoked**
 
+- [animate](skills/design/animate/SKILL.md): Build an animation from scratch, making the decisions in the order that determines whether it feels right — should it animate at all, what purpose, which tool, which properties, which curve and duration, how it interrupts, how it exits.
+- [animate-expo](skills/design/animate-expo/SKILL.md): Build animations in React Native and Expo, making the decisions in the order that determines whether they feel right — should it animate, which thread it runs on, which properties, spring or timing, how the gesture hands off, how it degrades.
+- [animation-performance](skills/design/animation-performance/SKILL.md): Keep web animations inside the frame budget — animate composite-only properties, keep motion off the main thread when the page is busy, and find the cause when an animation drops frames.
+- [animation-vocabulary](skills/design/animation-vocabulary/SKILL.md): Reverse-lookup glossary that turns a vague description of a web animation or motion effect into its exact term ("the bouncy thing when a popover opens" → Pop in; "the iOS rubber-band scroll" → Rubber-banding).
+- [apple-design](skills/design/apple-design/SKILL.md): Apple's approach to interface design and fluid, physical motion, translated for the web.
+- [ask-sonner](skills/design/ask-sonner/SKILL.md): Guide to Sonner, the React toast library — install and wire up the Toaster, pick the right toast() call, promise and loading toasts, updating, dismissing and persisting toasts, styling, theming and icons, positioning and multiple toasters.
 - [break-ui](skills/design/break-ui/SKILL.md): Try to break a piece of UI by feeding it worst-case data — long names, unbreakable emails, one-letter names, missing fields, huge counts, zero items, long labels, non-Latin text, emoji, extreme numbers — then render it behind a "Demo data / Worst case" toggle and report everything that broke, with the fix for each.
 - [design-references](skills/design/design-references/SKILL.md): Mobbin references as a catalog to pick from
+- [emil-design-eng](skills/design/emil-design-eng/SKILL.md): This skill encodes Emil Kowalski's philosophy on UI polish, component design, animation decisions, and the invisible details that make software feel great.
+- [find-animation-opportunities](skills/design/find-animation-opportunities/SKILL.md): Search a codebase or UI for places that don't animate but should, and reject everything that shouldn't.
+- [improve-animations](skills/design/improve-animations/SKILL.md): Survey a codebase's animation and motion code as a senior motion advisor, then produce a prioritized audit and self-contained implementation plans for other agents (or cheaper models) to execute.
 - [logo-surface-board](skills/design/logo-surface-board/SKILL.md): Judge logo marks on favicon, tile and nav
 - [measure-ui](skills/design/measure-ui/SKILL.md): Prove UI fidelity and states by measuring
 - [mobile-native](skills/design/mobile-native/SKILL.md): Make a web app feel native on a phone — the small CSS and meta-tag fixes that separate "a website in a browser" from something that feels installed.

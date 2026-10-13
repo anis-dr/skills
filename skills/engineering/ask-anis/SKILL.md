@@ -229,6 +229,21 @@ Skills distilled from our own work. Most are model-invoked: the agent reaches fo
 - **`/svg-animations`** (supermemory's skill) handcrafts SVG icons, illustrations, animated logos, spinners, path drawing, morphing and motion-path animations with SMIL or CSS.
 - **`/break-ui`** (Emil Kowalski's skill) feeds a component worst-case data (long names, unbreakable emails, empty and huge lists, non-Latin text, extreme numbers), puts it behind a dev-only "Demo data / Worst case" toggle, and fixes what breaks.
 - **`/mobile-native`** (Emil Kowalski's skill) removes the tells that make a web app feel like a website on a phone: sticky hover, tap highlights, the `100vh` bug, inputs that zoom the page, content under the notch, pull-to-refresh hijacking scroll.
+- **`/emil-design-eng`** (Emil Kowalski's skill) applies his UI polish rules: component details, easing, hover and press feedback, and the invisible touches that make an interface feel right.
+- **`/apple-design`** (Emil Kowalski's skill) applies Apple's interaction principles to gestures, springs, sheets and direct manipulation.
+- **`/pick-ui-library`** (Emil Kowalski's skill) picks the right UI library for a task from his curated list. User-invoked: run it yourself.
+- **`/ask-sonner`** (Emil Kowalski's skill) sets up, styles and troubleshoots the Sonner toast library.
+- **`/write-swift`** (Emil Kowalski's skill) writes modern Swift: value types, Swift 6 concurrency and data-race safety, protocols and generics, Swift Testing and macros.
+
+### Motion
+
+- **`/animate`** (Emil Kowalski's skill) builds web animation that passes his craft bar the first time.
+- **`/animate-expo`** (Emil Kowalski's skill) builds animation for Expo and React Native that feels right on a real device.
+- **`/review-animations`** (Emil Kowalski's skill) reviews animation code against his craft bar. User-invoked: run it yourself.
+- **`/improve-animations`** (Emil Kowalski's skill) audits a codebase's animations and writes self-contained fix plans.
+- **`/find-animation-opportunities`** (Emil Kowalski's skill) finds where an interface should animate and where it should not.
+- **`/animation-performance`** (Emil Kowalski's skill) finds why an animation drops frames and makes it smooth.
+- **`/animation-vocabulary`** (Emil Kowalski's skill) names a motion effect you describe so you can ask for it precisely.
 
 ## Standalone
 
