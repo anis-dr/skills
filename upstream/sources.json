@@ -1010,7 +1010,7 @@
     "mode": "vendor",
     "source": "https://github.com/GoogleChrome/modern-web-guidance",
     "path": "skills/modern-web-guidance",
-    "commit": "650eb83619134adb947b1ee8755e6511270bc444"
+    "commit": "b31dc0a43ff5d19bcf386a3476a216f3b39a6f55"
   },
   {
     "name": "show-me",
@@ -1035,7 +1035,7 @@
     "mode": "vendor",
     "source": "https://github.com/coreyhaines31/marketingskills",
     "path": "skills/ab-testing",
-    "commit": "5b2c0007766c6a1cf1d53fd8fc73e979e0821022"
+    "commit": "3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd"
   },
   {
     "name": "ad-creative",
@@ -1043,7 +1043,7 @@
     "mode": "vendor",
     "source": "https://github.com/coreyhaines31/marketingskills",
     "path": "skills/ad-creative",
-    "commit": "dda3841f0b294e01e93b1541486beefbfab0915e"
+    "commit": "3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd"
   },
   {
     "name": "ads",
@@ -1051,7 +1051,7 @@
     "mode": "vendor",
     "source": "https://github.com/coreyhaines31/marketingskills",
     "path": "skills/ads",
-    "commit": "dda3841f0b294e01e93b1541486beefbfab0915e"
+    "commit": "3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd"
   },
   {
     "name": "ai-seo",
@@ -1059,7 +1059,7 @@
     "mode": "vendor",
     "source": "https://github.com/coreyhaines31/marketingskills",
     "path": "skills/ai-seo",
-    "commit": "dda3841f0b294e01e93b1541486beefbfab0915e"
+    "commit": "3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd"
   },
   {
     "name": "analytics",
@@ -1067,7 +1067,7 @@
     "mode": "vendor",
     "source": "https://github.com/coreyhaines31/marketingskills",
     "path": "skills/analytics",
-    "commit": "dda3841f0b294e01e93b1541486beefbfab0915e"
+    "commit": "3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd"
   },
   {
     "name": "aso",
@@ -1075,7 +1075,7 @@
     "mode": "vendor",
     "source": "https://github.com/coreyhaines31/marketingskills",
     "path": "skills/aso",
-    "commit": "5b2c0007766c6a1cf1d53fd8fc73e979e0821022"
+    "commit": "3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd"
   },
   {
     "name": "attribution",
@@ -1083,7 +1083,7 @@
     "mode": "vendor",
     "source": "https://github.com/coreyhaines31/marketingskills",
     "path": "skills/attribution",
-    "commit": "dda3841f0b294e01e93b1541486beefbfab0915e"
+    "commit": "3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd"
   },
   {
     "name": "churn-prevention",
@@ -1091,7 +1091,7 @@
     "mode": "vendor",
     "source": "https://github.com/coreyhaines31/marketingskills",
     "path": "skills/churn-prevention",
-    "commit": "dda3841f0b294e01e93b1541486beefbfab0915e"
+    "commit": "3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd"
   },
   {
     "name": "co-marketing",
@@ -1107,7 +1107,7 @@
     "mode": "vendor",
     "source": "https://github.com/coreyhaines31/marketingskills",
     "path": "skills/cold-email",
-    "commit": "dda3841f0b294e01e93b1541486beefbfab0915e"
+    "commit": "3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd"
   },
   {
     "name": "community-marketing",
@@ -1123,7 +1123,7 @@
     "mode": "vendor",
     "source": "https://github.com/coreyhaines31/marketingskills",
     "path": "skills/competitor-profiling",
-    "commit": "dda3841f0b294e01e93b1541486beefbfab0915e"
+    "commit": "3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd"
   },
   {
     "name": "competitors",
@@ -1139,7 +1139,7 @@
     "mode": "vendor",
     "source": "https://github.com/coreyhaines31/marketingskills",
     "path": "skills/content-strategy",
-    "commit": "dda3841f0b294e01e93b1541486beefbfab0915e"
+    "commit": "3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd"
   },
   {
     "name": "copy-editing",
@@ -1147,7 +1147,7 @@
     "mode": "vendor",
     "source": "https://github.com/coreyhaines31/marketingskills",
     "path": "skills/copy-editing",
-    "commit": "dda3841f0b294e01e93b1541486beefbfab0915e"
+    "commit": "3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd"
   },
   {
     "name": "copywriting",
@@ -1163,7 +1163,7 @@
     "mode": "vendor",
     "source": "https://github.com/coreyhaines31/marketingskills",
     "path": "skills/cro",
-    "commit": "5b2c0007766c6a1cf1d53fd8fc73e979e0821022"
+    "commit": "3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd"
   },
   {
     "name": "customer-research",
@@ -1179,7 +1179,7 @@
     "mode": "vendor",
     "source": "https://github.com/coreyhaines31/marketingskills",
     "path": "skills/directory-submissions",
-    "commit": "dda3841f0b294e01e93b1541486beefbfab0915e"
+    "commit": "3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd"
   },
   {
     "name": "emails",
@@ -1187,7 +1187,7 @@
     "mode": "vendor",
     "source": "https://github.com/coreyhaines31/marketingskills",
     "path": "skills/emails",
-    "commit": "dda3841f0b294e01e93b1541486beefbfab0915e"
+    "commit": "3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd"
   },
   {
     "name": "events",
@@ -1227,7 +1227,7 @@
     "mode": "vendor",
     "source": "https://github.com/coreyhaines31/marketingskills",
     "path": "skills/launch",
-    "commit": "dda3841f0b294e01e93b1541486beefbfab0915e"
+    "commit": "3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd"
   },
   {
     "name": "lead-magnets",
@@ -1235,7 +1235,7 @@
     "mode": "vendor",
     "source": "https://github.com/coreyhaines31/marketingskills",
     "path": "skills/lead-magnets",
-    "commit": "5b2c0007766c6a1cf1d53fd8fc73e979e0821022"
+    "commit": "3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd"
   },
   {
     "name": "marketing-council",
@@ -1259,7 +1259,7 @@
     "mode": "vendor",
     "source": "https://github.com/coreyhaines31/marketingskills",
     "path": "skills/marketing-loops",
-    "commit": "dda3841f0b294e01e93b1541486beefbfab0915e"
+    "commit": "3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd"
   },
   {
     "name": "marketing-plan",
@@ -1267,7 +1267,7 @@
     "mode": "vendor",
     "source": "https://github.com/coreyhaines31/marketingskills",
     "path": "skills/marketing-plan",
-    "commit": "dda3841f0b294e01e93b1541486beefbfab0915e"
+    "commit": "3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd"
   },
   {
     "name": "marketing-psychology",
@@ -1315,7 +1315,7 @@
     "mode": "vendor",
     "source": "https://github.com/coreyhaines31/marketingskills",
     "path": "skills/pricing",
-    "commit": "dda3841f0b294e01e93b1541486beefbfab0915e"
+    "commit": "3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd"
   },
   {
     "name": "product-marketing",
@@ -1331,7 +1331,7 @@
     "mode": "vendor",
     "source": "https://github.com/coreyhaines31/marketingskills",
     "path": "skills/programmatic-seo",
-    "commit": "5b2c0007766c6a1cf1d53fd8fc73e979e0821022"
+    "commit": "3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd"
   },
   {
     "name": "prospecting",
@@ -1339,7 +1339,7 @@
     "mode": "vendor",
     "source": "https://github.com/coreyhaines31/marketingskills",
     "path": "skills/prospecting",
-    "commit": "dda3841f0b294e01e93b1541486beefbfab0915e"
+    "commit": "3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd"
   },
   {
     "name": "public-relations",
@@ -1355,7 +1355,7 @@
     "mode": "vendor",
     "source": "https://github.com/coreyhaines31/marketingskills",
     "path": "skills/referrals",
-    "commit": "dda3841f0b294e01e93b1541486beefbfab0915e"
+    "commit": "3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd"
   },
   {
     "name": "revops",
@@ -1363,7 +1363,7 @@
     "mode": "vendor",
     "source": "https://github.com/coreyhaines31/marketingskills",
     "path": "skills/revops",
-    "commit": "dda3841f0b294e01e93b1541486beefbfab0915e"
+    "commit": "3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd"
   },
   {
     "name": "sales-enablement",
@@ -1371,7 +1371,7 @@
     "mode": "vendor",
     "source": "https://github.com/coreyhaines31/marketingskills",
     "path": "skills/sales-enablement",
-    "commit": "dda3841f0b294e01e93b1541486beefbfab0915e"
+    "commit": "3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd"
   },
   {
     "name": "schema",
@@ -1379,7 +1379,7 @@
     "mode": "vendor",
     "source": "https://github.com/coreyhaines31/marketingskills",
     "path": "skills/schema",
-    "commit": "5b2c0007766c6a1cf1d53fd8fc73e979e0821022"
+    "commit": "3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd"
   },
   {
     "name": "seo-audit",
@@ -1387,7 +1387,7 @@
     "mode": "vendor",
     "source": "https://github.com/coreyhaines31/marketingskills",
     "path": "skills/seo-audit",
-    "commit": "5b2c0007766c6a1cf1d53fd8fc73e979e0821022"
+    "commit": "3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd"
   },
   {
     "name": "signup",
@@ -1395,7 +1395,7 @@
     "mode": "vendor",
     "source": "https://github.com/coreyhaines31/marketingskills",
     "path": "skills/signup",
-    "commit": "5b2c0007766c6a1cf1d53fd8fc73e979e0821022"
+    "commit": "3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd"
   },
   {
     "name": "site-architecture",
@@ -1403,7 +1403,7 @@
     "mode": "vendor",
     "source": "https://github.com/coreyhaines31/marketingskills",
     "path": "skills/site-architecture",
-    "commit": "5b2c0007766c6a1cf1d53fd8fc73e979e0821022"
+    "commit": "3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd"
   },
   {
     "name": "sms",
@@ -1419,7 +1419,7 @@
     "mode": "vendor",
     "source": "https://github.com/coreyhaines31/marketingskills",
     "path": "skills/social",
-    "commit": "dda3841f0b294e01e93b1541486beefbfab0915e"
+    "commit": "3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd"
   },
   {
     "name": "video",
