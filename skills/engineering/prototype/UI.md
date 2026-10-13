@@ -29,7 +29,9 @@ Create a **throwaway route** following whatever routing convention the project a
 
 Before committing to sub-shape B, sanity-check: is there really no existing page this could be embedded in? An empty route hides design problems that a populated one would expose.
 
-In both sub-shapes the floating bottom bar is identical.
+In both sub-shapes the picker is identical.
+
+**Location.** Clickable HTML prototypes go in `.scratchpad/<task>/`. Where the variants must live in the app to be judged (sub-shape A, `?variant=` on the real page), keep that, but never import prototype code into production paths, and remove it when the chosen variant lands.
 
 ## Process
 
@@ -43,15 +45,20 @@ Write down the plan in one line, in the prototype's location or a top-of-file co
 
 This works whether the user is here to push back or not.
 
-### 2. Generate radically different variants
+### 2. Name the variants, then generate them
+
+Before any code, list the set: a name and an axis for each variant (layout, information hierarchy, primary affordance). No two variants share an axis position. If two drafts converge, cut one and say so; do not keep a near-duplicate to reach the count.
 
 Draft each variant. Hold each one to:
 
 - The page's purpose and the data it has access to.
 - The project's component library / styling system (TailwindCSS, shadcn, MUI, plain CSS, whatever).
 - A clear exported component name, e.g. `VariantA`, `VariantB`, `VariantC`.
+- Full function: realistic copy, no lorem ipsum, no dead buttons. "Skip the polish" in the [SKILL](SKILL.md) applies to the logic branch only.
 
 Variants must be **structurally different**: different layout, different information hierarchy, different primary affordance, not just different colours. Three slightly-tweaked card grids isn't a UI prototype, it's wallpaper. If two drafts come out too similar, redo one with explicit "do not use a card grid" guidance.
+
+Judge each variant at full size in realistic context, never as side-by-side thumbnails: they distort spacing and scale.
 
 ### 3. Wire them together
 
@@ -74,35 +81,31 @@ For sub-shape A (existing page): keep all the existing data fetching above the s
 
 For sub-shape B (new page): the throwaway route under `/prototype/<name>` mounts the same switcher.
 
-### 4. Build the floating switcher
+### 4. Add the picker
 
-A small fixed-position bar at the bottom-centre of the screen with three pieces:
+Use the picker in [references/picker.md](references/picker.md) verbatim. It is chrome, not a design choice: do not restyle it with the project's tokens, and keep it visually distinct from the page being judged.
 
-- **Left arrow**: cycles to the previous variant (wraps around).
-- **Variant label**: shows the current variant key and, if the variant exports a name, that name too. e.g. `B (Sidebar layout)`.
-- **Right arrow**: cycles forward (wraps around).
+Hide it in production builds (gate on `process.env.NODE_ENV !== 'production'` or an equivalent check), so a stray prototype merge can't ship it to users.
 
-Behaviour:
+Put the picker in a single shared component so both sub-shapes can reuse it, wherever shared UI lives in the project.
 
-- Clicking an arrow updates the URL search param (use the framework's router, e.g. `router.replace` on Next, `navigate` on React Router, etc) so the variant is shareable and reload-stable.
-- Keyboard: `←` and `→` arrow keys also cycle. Don't intercept arrow keys when an `<input>`, `<textarea>`, or `[contenteditable]` is focused.
-- Visually distinct from the page (e.g. high-contrast pill, subtle shadow) so it's obviously not part of the design being evaluated.
-- Hidden in production builds: gate on `process.env.NODE_ENV !== 'production'` or an equivalent check, so a stray prototype merge can't ship the bar to users.
+### 5. Verify, then hand it over
 
-Put the switcher in a single shared component so both sub-shapes can reuse it. Locate it wherever shared UI lives in the project.
+Before handing off, flip through every variant yourself, check the console is clean, and screenshot each variant when browser tooling exists. Confirm every interaction responds.
 
-### 5. Hand it over
+Surface the URL (and the picker keys). Hand over a table with one row per variant: its axis, when it is the right choice, and its cost. Never pre-pick a favorite; the choice belongs to the user. The interesting feedback is usually **"I want the header from B with the sidebar from C"**, which is the actual design they want.
 
-Surface the URL (and the `?variant=` keys). The user will flip through whenever they get to it. The interesting feedback is usually **"I want the header from B with the sidebar from C"**, which is the actual design they want.
+`riff <variant>` starts another round: keep the harness and run step 2 again, diverging around the chosen direction.
 
 ### 6. Capture the answer and clean up
 
-Once a variant has won, capture the answer (which variant and why), then capture the prototype the way the [SKILL](SKILL.md) describes. Fold the winner into the real code and move the rest onto the throwaway branch, not into main:
+Once a variant has won, record the verdict and the question it answered in the implementation issue or PR, then fold the winner into the real code:
 
-- **Sub-shape A**: fold the winner into the existing page; drop the losing variants and the switcher from main.
-- **Sub-shape B**: promote the winning variant to a real route; drop the throwaway route and the switcher from main.
+- **Sub-shape A**: fold the winner into the existing page; drop the losing variants and the switcher.
+- **Sub-shape B**: promote the winning variant to a real route; drop the throwaway route and the switcher.
+- **Prototype in `.scratchpad/<task>/`**: build the real thing from the winner.
 
-The full set of variants is the primary source, so it lands on the throwaway branch, not the bin, since variant components and the switcher left in the main branch rot fast and confuse the next reader.
+Delete the prototype once the chosen change is merged: the `.scratchpad/<task>/` folder, the variant switch and the losing variants. Variant components and the switcher left behind rot fast and confuse the next reader.
 
 ## Anti-patterns
 

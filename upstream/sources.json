@@ -1606,5 +1606,14 @@
     "source": "https://github.com/emilkowalski/skills",
     "path": "skills/write-swift",
     "commit": "2d228630ba1446365f614a108cb8252f1feda202"
+  },
+  {
+    "name": "picker",
+    "bucket": "engineering",
+    "mode": "reference",
+    "into": "prototype",
+    "source": "https://github.com/emilkowalski/skills",
+    "path": "skills/prototype/PICKER.md",
+    "commit": "2d228630ba1446365f614a108cb8252f1feda202"
   }
 ]
