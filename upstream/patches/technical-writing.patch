@@ -1,10 +1,10 @@
 diff --git a/SKILL.md b/SKILL.md
-index d94b770..f02a4dc 100644
+index 01cc5db..a8b03a1 100644
 --- a/SKILL.md
 +++ b/SKILL.md
 @@ -73,6 +73,8 @@ Don't mix modes: no reference tables inside a tutorial, no tutorial hand-holding
  - Write procedures as direct commands, never as narration and never in the passive: "Install the component", not "the component must be installed".
- - Avoid "-ing" words where you can. They take too many grammatical jobs and breed misreadings.
+ - Avoid "-ing" words where you can.
  
 +For procedure steps, warnings, and cautions, and for any doc the user wants in STE, call the Skill tool with "simplified-technical-english" and write those parts in full STE, including its word list and its check script. The rest of the doc keeps the lighter principles above.
 +
@@ -19,4 +19,4 @@ index d94b770..f02a4dc 100644
 +- Call the Skill tool with "humanizer" on the final text, keeping this skill's structure and voice. It replaces the slop pass for text a person reads. That skill owns the slop-pattern catalog: AI vocabulary, filler, hedging, formatting tells. Skip the parts written in full STE: humanizer adds words and verb forms that STE does not allow.
  - PR descriptions and commit messages are writing too. Every layer except Diátaxis applies to them. A PR body is a briefing that a reviewer can read in under a minute. Do not paste swarm logs, SHA lists, or metric tables. Link them.
  - Product UI strings are not documentation. Use your product's copy guidelines for those.
- - Indent code snippets with tabs. Write real paths and real symbols. Make every count or tree claim true at the commit that lands it, and include the command that regenerates it.
+ - Indent code snippets with tabs. Write real paths. Make every count or tree claim true at the commit that lands it, and include the command that regenerates it.

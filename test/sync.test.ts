@@ -91,7 +91,7 @@ const fixtureLayer = Layer.unwrap(
       ...inFolder("skills/engineering/tdd", tddAtA),
       [
         "pstack/skills/how/SKILL.md",
-        "---\nname: how\ndescription: Explain code.\ndisable-model-invocation: true\n---\n\nSpawn one Task subagent that explores.\n",
+        "---\nname: how\ndescription: Explain code.\ndisable-model-invocation: true\n---\n\nSpawn one synthesizer. `model`: the `why synthesizer` line, default `claude-opus-5-5-xhigh`. It gets:\n",
       ],
       [
         "pstack/skills/how/agents/openai.yaml",
@@ -229,7 +229,7 @@ layer(fixtureLayer)("sync of a skill without Codex metadata", (it) => {
           [
             [
               "SKILL.md",
-              "---\nname: how\ndescription: Explain code.\n---\n\nSpawn one subagent that explores.\n",
+              "---\nname: how\ndescription: Explain code.\n---\n\nSpawn one synthesizer. Use your strongest judgment model. It gets:\n",
             ],
             ["agents/openai.yaml", 'interface:\n  display_name: "How"\n'],
           ]

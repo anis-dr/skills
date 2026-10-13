@@ -286,7 +286,7 @@
     "invocation": "model",
     "source": "https://github.com/cursor/plugins",
     "path": "pstack/skills/how",
-    "commit": "ecc249f1e306fc64ddf83c7bed16cacf7c2239db"
+    "commit": "56aca546a690ae340eccbe57455d5cb6380024c9"
   },
   {
     "name": "why",
@@ -295,7 +295,7 @@
     "invocation": "model",
     "source": "https://github.com/cursor/plugins",
     "path": "pstack/skills/why",
-    "commit": "ecc249f1e306fc64ddf83c7bed16cacf7c2239db"
+    "commit": "56aca546a690ae340eccbe57455d5cb6380024c9"
   },
   {
     "name": "architect",
@@ -303,7 +303,7 @@
     "mode": "vendor",
     "source": "https://github.com/cursor/plugins",
     "path": "pstack/skills/architect",
-    "commit": "e5a8186d7b43be8d6ac4452440fbead5f1a51c70"
+    "commit": "56aca546a690ae340eccbe57455d5cb6380024c9"
   },
   {
     "name": "arena",
@@ -311,7 +311,7 @@
     "mode": "vendor",
     "source": "https://github.com/cursor/plugins",
     "path": "pstack/skills/arena",
-    "commit": "ecc249f1e306fc64ddf83c7bed16cacf7c2239db"
+    "commit": "56aca546a690ae340eccbe57455d5cb6380024c9"
   },
   {
     "name": "interrogate",
@@ -319,7 +319,7 @@
     "mode": "vendor",
     "source": "https://github.com/cursor/plugins",
     "path": "pstack/skills/interrogate",
-    "commit": "ecc249f1e306fc64ddf83c7bed16cacf7c2239db"
+    "commit": "56aca546a690ae340eccbe57455d5cb6380024c9"
   },
   {
     "name": "blast-radius",
@@ -327,7 +327,7 @@
     "mode": "vendor",
     "source": "https://github.com/cursor/plugins",
     "path": "pstack/skills/blast-radius",
-    "commit": "ecc249f1e306fc64ddf83c7bed16cacf7c2239db"
+    "commit": "56aca546a690ae340eccbe57455d5cb6380024c9"
   },
   {
     "name": "recall",
@@ -335,7 +335,7 @@
     "mode": "vendor",
     "source": "https://github.com/cursor/plugins",
     "path": "pstack/skills/recall",
-    "commit": "ecc249f1e306fc64ddf83c7bed16cacf7c2239db"
+    "commit": "56aca546a690ae340eccbe57455d5cb6380024c9"
   },
   {
     "name": "show-me-your-work",
@@ -344,7 +344,7 @@
     "invocation": "model",
     "source": "https://github.com/cursor/plugins",
     "path": "pstack/skills/show-me-your-work",
-    "commit": "ecc249f1e306fc64ddf83c7bed16cacf7c2239db"
+    "commit": "56aca546a690ae340eccbe57455d5cb6380024c9"
   },
   {
     "name": "typescript-best-practices",
@@ -353,7 +353,7 @@
     "invocation": "model",
     "source": "https://github.com/cursor/plugins",
     "path": "pstack/skills/typescript-best-practices",
-    "commit": "e5a8186d7b43be8d6ac4452440fbead5f1a51c70"
+    "commit": "56aca546a690ae340eccbe57455d5cb6380024c9"
   },
   {
     "name": "automate-me",
@@ -361,7 +361,7 @@
     "mode": "vendor",
     "source": "https://github.com/cursor/plugins",
     "path": "pstack/skills/automate-me",
-    "commit": "ecc249f1e306fc64ddf83c7bed16cacf7c2239db"
+    "commit": "56aca546a690ae340eccbe57455d5cb6380024c9"
   },
   {
     "name": "create-verification-skill",
@@ -369,7 +369,7 @@
     "mode": "vendor",
     "source": "https://github.com/cursor/plugins",
     "path": "pstack/skills/create-verification-skill",
-    "commit": "ecc249f1e306fc64ddf83c7bed16cacf7c2239db"
+    "commit": "56aca546a690ae340eccbe57455d5cb6380024c9"
   },
   {
     "name": "maintain-verification-skill",
@@ -377,7 +377,7 @@
     "mode": "vendor",
     "source": "https://github.com/cursor/plugins",
     "path": "pstack/skills/maintain-verification-skill",
-    "commit": "ecc249f1e306fc64ddf83c7bed16cacf7c2239db"
+    "commit": "56aca546a690ae340eccbe57455d5cb6380024c9"
   },
   {
     "name": "technical-writing",
@@ -385,7 +385,7 @@
     "mode": "vendor",
     "source": "https://github.com/cursor/plugins",
     "path": "pstack/skills/technical-writing",
-    "commit": "e5a8186d7b43be8d6ac4452440fbead5f1a51c70"
+    "commit": "56aca546a690ae340eccbe57455d5cb6380024c9"
   },
   {
     "name": "unslop",
@@ -394,7 +394,7 @@
     "invocation": "model",
     "source": "https://github.com/cursor/plugins",
     "path": "pstack/skills/unslop",
-    "commit": "ecc249f1e306fc64ddf83c7bed16cacf7c2239db"
+    "commit": "56aca546a690ae340eccbe57455d5cb6380024c9"
   },
   {
     "name": "transcripts",
@@ -418,7 +418,7 @@
     "into": "principles",
     "source": "https://github.com/cursor/plugins",
     "path": "pstack/skills/principle-attack-the-premise/SKILL.md",
-    "commit": "ecc249f1e306fc64ddf83c7bed16cacf7c2239db"
+    "commit": "56aca546a690ae340eccbe57455d5cb6380024c9"
   },
   {
     "name": "boundary-discipline",
@@ -427,7 +427,7 @@
     "into": "principles",
     "source": "https://github.com/cursor/plugins",
     "path": "pstack/skills/principle-boundary-discipline/SKILL.md",
-    "commit": "ecc249f1e306fc64ddf83c7bed16cacf7c2239db"
+    "commit": "56aca546a690ae340eccbe57455d5cb6380024c9"
   },
   {
     "name": "build-the-lever",
@@ -436,7 +436,7 @@
     "into": "principles",
     "source": "https://github.com/cursor/plugins",
     "path": "pstack/skills/principle-build-the-lever/SKILL.md",
-    "commit": "ecc249f1e306fc64ddf83c7bed16cacf7c2239db"
+    "commit": "56aca546a690ae340eccbe57455d5cb6380024c9"
   },
   {
     "name": "encode-lessons-in-structure",
@@ -445,7 +445,7 @@
     "into": "principles",
     "source": "https://github.com/cursor/plugins",
     "path": "pstack/skills/principle-encode-lessons-in-structure/SKILL.md",
-    "commit": "ecc249f1e306fc64ddf83c7bed16cacf7c2239db"
+    "commit": "56aca546a690ae340eccbe57455d5cb6380024c9"
   },
   {
     "name": "exhaust-the-design-space",
@@ -454,7 +454,7 @@
     "into": "principles",
     "source": "https://github.com/cursor/plugins",
     "path": "pstack/skills/principle-exhaust-the-design-space/SKILL.md",
-    "commit": "ecc249f1e306fc64ddf83c7bed16cacf7c2239db"
+    "commit": "56aca546a690ae340eccbe57455d5cb6380024c9"
   },
   {
     "name": "experience-first",
@@ -463,7 +463,7 @@
     "into": "principles",
     "source": "https://github.com/cursor/plugins",
     "path": "pstack/skills/principle-experience-first/SKILL.md",
-    "commit": "ecc249f1e306fc64ddf83c7bed16cacf7c2239db"
+    "commit": "56aca546a690ae340eccbe57455d5cb6380024c9"
   },
   {
     "name": "fix-root-causes",
@@ -472,7 +472,7 @@
     "into": "principles",
     "source": "https://github.com/cursor/plugins",
     "path": "pstack/skills/principle-fix-root-causes/SKILL.md",
-    "commit": "ecc249f1e306fc64ddf83c7bed16cacf7c2239db"
+    "commit": "56aca546a690ae340eccbe57455d5cb6380024c9"
   },
   {
     "name": "foundational-thinking",
@@ -481,7 +481,7 @@
     "into": "principles",
     "source": "https://github.com/cursor/plugins",
     "path": "pstack/skills/principle-foundational-thinking/SKILL.md",
-    "commit": "ecc249f1e306fc64ddf83c7bed16cacf7c2239db"
+    "commit": "56aca546a690ae340eccbe57455d5cb6380024c9"
   },
   {
     "name": "guard-the-context-window",
@@ -490,7 +490,7 @@
     "into": "principles",
     "source": "https://github.com/cursor/plugins",
     "path": "pstack/skills/principle-guard-the-context-window/SKILL.md",
-    "commit": "ecc249f1e306fc64ddf83c7bed16cacf7c2239db"
+    "commit": "56aca546a690ae340eccbe57455d5cb6380024c9"
   },
   {
     "name": "laziness-protocol",
@@ -499,7 +499,7 @@
     "into": "principles",
     "source": "https://github.com/cursor/plugins",
     "path": "pstack/skills/principle-laziness-protocol/SKILL.md",
-    "commit": "ecc249f1e306fc64ddf83c7bed16cacf7c2239db"
+    "commit": "56aca546a690ae340eccbe57455d5cb6380024c9"
   },
   {
     "name": "make-operations-idempotent",
@@ -508,7 +508,7 @@
     "into": "principles",
     "source": "https://github.com/cursor/plugins",
     "path": "pstack/skills/principle-make-operations-idempotent/SKILL.md",
-    "commit": "ecc249f1e306fc64ddf83c7bed16cacf7c2239db"
+    "commit": "56aca546a690ae340eccbe57455d5cb6380024c9"
   },
   {
     "name": "migrate-callers-then-delete-legacy-apis",
@@ -517,7 +517,7 @@
     "into": "principles",
     "source": "https://github.com/cursor/plugins",
     "path": "pstack/skills/principle-migrate-callers-then-delete-legacy-apis/SKILL.md",
-    "commit": "ecc249f1e306fc64ddf83c7bed16cacf7c2239db"
+    "commit": "56aca546a690ae340eccbe57455d5cb6380024c9"
   },
   {
     "name": "minimize-reader-load",
@@ -526,7 +526,7 @@
     "into": "principles",
     "source": "https://github.com/cursor/plugins",
     "path": "pstack/skills/principle-minimize-reader-load/SKILL.md",
-    "commit": "ecc249f1e306fc64ddf83c7bed16cacf7c2239db"
+    "commit": "56aca546a690ae340eccbe57455d5cb6380024c9"
   },
   {
     "name": "model-the-domain",
@@ -535,7 +535,7 @@
     "into": "principles",
     "source": "https://github.com/cursor/plugins",
     "path": "pstack/skills/principle-model-the-domain/SKILL.md",
-    "commit": "ecc249f1e306fc64ddf83c7bed16cacf7c2239db"
+    "commit": "56aca546a690ae340eccbe57455d5cb6380024c9"
   },
   {
     "name": "never-block-on-the-human",
@@ -544,7 +544,7 @@
     "into": "principles",
     "source": "https://github.com/cursor/plugins",
     "path": "pstack/skills/principle-never-block-on-the-human/SKILL.md",
-    "commit": "ecc249f1e306fc64ddf83c7bed16cacf7c2239db"
+    "commit": "56aca546a690ae340eccbe57455d5cb6380024c9"
   },
   {
     "name": "outcome-oriented-execution",
@@ -553,7 +553,7 @@
     "into": "principles",
     "source": "https://github.com/cursor/plugins",
     "path": "pstack/skills/principle-outcome-oriented-execution/SKILL.md",
-    "commit": "ecc249f1e306fc64ddf83c7bed16cacf7c2239db"
+    "commit": "56aca546a690ae340eccbe57455d5cb6380024c9"
   },
   {
     "name": "prove-it-works",
@@ -562,7 +562,7 @@
     "into": "principles",
     "source": "https://github.com/cursor/plugins",
     "path": "pstack/skills/principle-prove-it-works/SKILL.md",
-    "commit": "ecc249f1e306fc64ddf83c7bed16cacf7c2239db"
+    "commit": "56aca546a690ae340eccbe57455d5cb6380024c9"
   },
   {
     "name": "redesign-from-first-principles",
@@ -571,7 +571,7 @@
     "into": "principles",
     "source": "https://github.com/cursor/plugins",
     "path": "pstack/skills/principle-redesign-from-first-principles/SKILL.md",
-    "commit": "ecc249f1e306fc64ddf83c7bed16cacf7c2239db"
+    "commit": "56aca546a690ae340eccbe57455d5cb6380024c9"
   },
   {
     "name": "separate-before-serializing-shared-state",
@@ -580,7 +580,7 @@
     "into": "principles",
     "source": "https://github.com/cursor/plugins",
     "path": "pstack/skills/principle-separate-before-serializing-shared-state/SKILL.md",
-    "commit": "ecc249f1e306fc64ddf83c7bed16cacf7c2239db"
+    "commit": "56aca546a690ae340eccbe57455d5cb6380024c9"
   },
   {
     "name": "sequence-verifiable-units",
@@ -589,7 +589,7 @@
     "into": "principles",
     "source": "https://github.com/cursor/plugins",
     "path": "pstack/skills/principle-sequence-verifiable-units/SKILL.md",
-    "commit": "ecc249f1e306fc64ddf83c7bed16cacf7c2239db"
+    "commit": "56aca546a690ae340eccbe57455d5cb6380024c9"
   },
   {
     "name": "subtract-before-you-add",
@@ -598,7 +598,7 @@
     "into": "principles",
     "source": "https://github.com/cursor/plugins",
     "path": "pstack/skills/principle-subtract-before-you-add/SKILL.md",
-    "commit": "ecc249f1e306fc64ddf83c7bed16cacf7c2239db"
+    "commit": "56aca546a690ae340eccbe57455d5cb6380024c9"
   },
   {
     "name": "test-behavior-not-implementation",
@@ -607,7 +607,7 @@
     "into": "principles",
     "source": "https://github.com/cursor/plugins",
     "path": "pstack/skills/principle-test-behavior-not-implementation/SKILL.md",
-    "commit": "ecc249f1e306fc64ddf83c7bed16cacf7c2239db"
+    "commit": "56aca546a690ae340eccbe57455d5cb6380024c9"
   },
   {
     "name": "type-system-discipline",
@@ -616,7 +616,7 @@
     "into": "principles",
     "source": "https://github.com/cursor/plugins",
     "path": "pstack/skills/principle-type-system-discipline/SKILL.md",
-    "commit": "ecc249f1e306fc64ddf83c7bed16cacf7c2239db"
+    "commit": "56aca546a690ae340eccbe57455d5cb6380024c9"
   },
   {
     "name": "one-codec-per-concept",
@@ -630,7 +630,7 @@
     "mode": "vendor",
     "source": "https://github.com/cursor/plugins",
     "path": "cursor-team-kit/skills/deslop",
-    "commit": "ecc249f1e306fc64ddf83c7bed16cacf7c2239db"
+    "commit": "56aca546a690ae340eccbe57455d5cb6380024c9"
   },
   {
     "name": "verify-this",
@@ -638,7 +638,7 @@
     "mode": "vendor",
     "source": "https://github.com/cursor/plugins",
     "path": "cursor-team-kit/skills/verify-this",
-    "commit": "ecc249f1e306fc64ddf83c7bed16cacf7c2239db"
+    "commit": "56aca546a690ae340eccbe57455d5cb6380024c9"
   },
   {
     "name": "control-ui",
@@ -646,7 +646,7 @@
     "mode": "vendor",
     "source": "https://github.com/cursor/plugins",
     "path": "cursor-team-kit/skills/control-ui",
-    "commit": "ecc249f1e306fc64ddf83c7bed16cacf7c2239db"
+    "commit": "56aca546a690ae340eccbe57455d5cb6380024c9"
   },
   {
     "name": "control-cli",
@@ -654,7 +654,7 @@
     "mode": "vendor",
     "source": "https://github.com/cursor/plugins",
     "path": "cursor-team-kit/skills/control-cli",
-    "commit": "ecc249f1e306fc64ddf83c7bed16cacf7c2239db"
+    "commit": "56aca546a690ae340eccbe57455d5cb6380024c9"
   },
   {
     "name": "make-pr-easy-to-review",
@@ -662,7 +662,7 @@
     "mode": "vendor",
     "source": "https://github.com/cursor/plugins",
     "path": "cursor-team-kit/skills/make-pr-easy-to-review",
-    "commit": "ecc249f1e306fc64ddf83c7bed16cacf7c2239db"
+    "commit": "56aca546a690ae340eccbe57455d5cb6380024c9"
   },
   {
     "name": "ask-anis",
@@ -686,7 +686,7 @@
       "pstack/skills/poteto-mode/scripts/package.json",
       "pstack/skills/poteto-mode/scripts/bun.lock"
     ],
-    "commit": "ecc249f1e306fc64ddf83c7bed16cacf7c2239db"
+    "commit": "56aca546a690ae340eccbe57455d5cb6380024c9"
   },
   {
     "name": "autonomous-run",

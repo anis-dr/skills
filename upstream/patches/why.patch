@@ -1,8 +1,8 @@
 diff --git a/SKILL.md b/SKILL.md
-index d0026e8..9cf3ab4 100644
+index 665fd78..6bb38c7 100644
 --- a/SKILL.md
 +++ b/SKILL.md
-@@ -60,7 +60,7 @@ Capture this as seed context (file paths, symbols, commits, PR numbers, linked t
+@@ -31,7 +31,7 @@ Before spawning investigators, build the seed context inline: file paths and lin
  
  ### Discovery
  
@@ -11,21 +11,3 @@ index d0026e8..9cf3ab4 100644
  
  Map each available MCP to one evidence category:
  
-@@ -81,7 +81,7 @@ Launch all matching investigators in a single message so they run concurrently.
- Subagent config (each):
- - Subagent: general-purpose
- - Model: a fast model
--- `readonly`: `false` (agent mode). **Do not use readonly/Ask mode.** It strips MCP access, which disables MCP-backed investigators entirely. Investigators still shouldn't write anything.
-+- Read-only: no. A read-only subagent may lose MCP access, which disables MCP-backed investigators entirely. Investigators still write nothing.
- 
- Each investigator gets:
- 1. The base prompt from `references/investigator-prompt.md`
-@@ -125,7 +125,7 @@ Spawn one synthesizer subagent:
- 
- - Subagent: general-purpose
- - Model: your strongest judgment model
--- `readonly`: `false` (agent mode). The synthesizer's quality check spot-verifies citations, which can require MCP access. Readonly/Ask mode strips MCPs and defeats that.
-+- Read-only: no. The synthesizer's quality check spot-verifies citations, which can require MCP access that a read-only subagent may lose.
- 
- The synthesizer gets:
- 1. The investigator findings, including any null results and any categories skipped with justification

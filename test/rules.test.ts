@@ -2,7 +2,7 @@ import { assert, describe, it } from "@effect/vitest";
 
 import { applyRules } from "../src/rules.ts";
 
-// Each case is real text from cursor/plugins@ecc249f and the neutral text sync must produce.
+// Each case is real text from cursor/plugins@56aca54 (modelPreamble: @ecc249f) and the neutral text sync must produce.
 const cases: ReadonlyArray<readonly [string, string, string]> = [
   [
     "modelPreamble",
@@ -10,19 +10,59 @@ const cases: ReadonlyArray<readonly [string, string, string]> = [
     "Each spawn below names the model it needs by role. Use the closest model your harness offers; when it offers no choice, use its default model.\n",
   ],
   [
-    "spawnParams",
-    "- `subagent_type`: `generalPurpose`\n- `model`: the `how explorer` line, default `grok-4.7-xhigh-fast`\n- `readonly`: `true`\n",
-    "- Subagent: general-purpose\n- Model: a fast model\n- Read-only: yes\n",
+    "inlineSpawnParams",
+    "Every spawn is a Task subagent with `subagent_type: generalPurpose` and `readonly: true`. Explorers use the `how explorer` line in the `pstack-models.mdc` rule (default `grok-4.7-xhigh-fast`), and every explainer uses the `how explainer` line (default `claude-opus-5-5-xhigh`). Set `model` to that line's value, or to the default if the rule or the line is missing. Leave `model` unset when the value is `auto` or `inherit-parent`. If the Task tool rejects a slug, use the default and say so. If it rejects the default, use the closest valid slug of the same family from its error message.\n",
+    "Every spawn is a general-purpose, read-only subagent. Explorers use a fast model, and every explainer uses your strongest judgment model.\n",
   ],
   [
-    "spawnParams",
-    "- `subagent_type`: `generalPurpose`\n- `model`: the `how explainer` line, default `claude-opus-5-5-max`\n- `readonly`: `true`\n",
-    "- Subagent: general-purpose\n- Model: your strongest judgment model\n- Read-only: yes\n",
+    "inlineSpawnParams",
+    "Every spawn is `generalPurpose` with `readonly: false` (agent mode). **Do not use readonly/Ask mode.** It strips MCP access, which disables the MCP-backed investigators and the synthesizer's citation spot-checks. Investigators still shouldn't write anything.\n",
+    "Every spawn is a general-purpose subagent that is not read-only. A read-only subagent may lose MCP access, which disables the MCP-backed investigators and the synthesizer's citation spot-checks. Investigators still shouldn't write anything.\n",
   ],
   [
-    "taskSubagent",
-    "Spawn one Task subagent that explores and explains in one pass:\n",
-    "Spawn one subagent that explores and explains in one pass:\n",
+    "inlineSpawnParams",
+    "Each reviewer gets `subagent_type: generalPurpose`, `readonly: true`, and `model` set to its configured entry, or its table default when there is no configured line. Omit `model` for an `auto` or `inherit-parent` entry, so that reviewer runs on the parent model.\n",
+    "Each reviewer is a general-purpose, read-only subagent on the model in its table row.\n",
+  ],
+  [
+    "modelLines",
+    "Spawn one investigator per category that has a matching MCP, all in a single message so they run concurrently, each owning exactly one tool or MCP. Don't ask one agent to cover multiple MCPs. `model`: the `why investigators` line, default `grok-4.7-xhigh-fast`.\n",
+    "Spawn one investigator per category that has a matching MCP, all in a single message so they run concurrently, each owning exactly one tool or MCP. Don't ask one agent to cover multiple MCPs. Use a fast model.\n",
+  ],
+  [
+    "modelLines",
+    "Spawn one synthesizer. `model`: the `why synthesizer` line, default `claude-opus-5-5-xhigh`. It gets:\n",
+    "Spawn one synthesizer. Use your strongest judgment model. It gets:\n",
+  ],
+  [
+    "modelLines",
+    "Take the runners from the `architect runners` line in the `pstack-models.mdc` rule, in place of the `arena runners` line. If the rule or that line is missing, use `claude-opus-5-5-xhigh` and `grok-4.7-xhigh-fast`. Alias and rejected entries follow the runner rules in the **arena** skill's Phase A.\n\nDesign it twice.\n",
+    "Design it twice.\n",
+  ],
+  [
+    "modelLines",
+    "3. Pick the runners. Use the `arena runners` line in `~/.cursor/rules/pstack-models.mdc`. If the rule or that line is missing, default to one each on `claude-opus-5-5-xhigh` and `grok-4.7-xhigh-fast`. An `auto` or `inherit-parent` entry in this line or the cross-judge line means the parent model, so omit `model` for it. If the Task tool rejects a configured entry, run that seat on its family's default and say so. Families go by prefix: `claude-*` and `grok-*`. With no family match, use `claude-opus-5-5-xhigh`. If it rejects a default, use the closest valid slug of the same family from its error message. Spawn more runners when the arena covers multiple design directions. Use the same model N times when the work is generation-bound rather than judgment-sensitive.\n",
+    "3. Pick the runners. Default to two, one each on your strongest judgment model and the strongest model of another family. If your harness offers one family, fill both seats with the strongest model you have and say so. Spawn more runners when the arena covers multiple design directions. Use the same model N times when the work is generation-bound rather than judgment-sensitive.\n",
+  ],
+  [
+    "modelLines",
+    "After all Phase B candidates complete, choose one model from the `arena cross-judge pool` line in `~/.cursor/rules/pstack-models.mdc`. If the rule or that line is missing, choose from `claude-opus-5-5-xhigh` and `grok-4.7-xhigh-fast`. Prefer a different model family from the parent's. Spawn one readonly judge subagent on that model. It sees the rubric and the candidates by path label, scores each criterion, and recommends a base with rationale.\n",
+    "After all Phase B candidates complete, pick a judge model, preferring a model from another family than yours. Spawn one read-only judge subagent on that model. It sees the rubric and the candidates by path label, scores each criterion, and recommends a base with rationale.\n",
+  ],
+  [
+    "modelLines",
+    "Launch all reviewers in a single message with the Task tool, one per entry on the `interrogate reviewers` line in `~/.cursor/rules/pstack-models.mdc`, labeled Reviewer A, B, and so on to match the entry count. If the rule or that line is missing, use the table defaults.\n",
+    "Launch all reviewers in a single message, each as its own subagent, one per row of the table below, labeled Reviewer A, B, and so on.\n",
+  ],
+  [
+    "modelLines",
+    "| Subagent | Default model |\n|----------|---------------|\n| Reviewer A | `claude-opus-5-5-xhigh` |\n| Reviewer B | `grok-4.7-xhigh-fast` |\n",
+    "| Subagent | Model |\n|----------|-------|\n| Reviewer A | your strongest judgment model |\n| Reviewer B | a model from another family |\n",
+  ],
+  [
+    "modelLines",
+    "If the Task tool rejects a configured entry, run that reviewer on its family's table default and say so. Families go by prefix: `claude-*` and `grok-*`. With no family match, use Reviewer A's default. If it rejects a table default, spawn with the closest equivalent from the valid slugs in its error message (prefer the same family and reasoning tier), and open a separate PR to update the default table. Do not block the review on the slug issue. Never treat an alias entry as a rejected slug or apply either fallback to it.\n\nRead `references/reviewer-prompt.md`.\n",
+    "Read `references/reviewer-prompt.md`.\n",
   ],
   [
     "skillCalls",
