@@ -383,6 +383,7 @@
     "name": "technical-writing",
     "bucket": "productivity",
     "mode": "vendor",
+    "invocation": "model",
     "source": "https://github.com/cursor/plugins",
     "path": "pstack/skills/technical-writing",
     "commit": "56aca546a690ae340eccbe57455d5cb6380024c9"
