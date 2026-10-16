@@ -898,6 +898,11 @@
     "mode": "ours"
   },
   {
+    "name": "technical-html",
+    "bucket": "productivity",
+    "mode": "ours"
+  },
+  {
     "name": "trademark-search",
     "bucket": "productivity",
     "mode": "ours"

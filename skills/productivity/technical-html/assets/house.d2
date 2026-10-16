@@ -1,0 +1,39 @@
+# House style for report diagrams. One question per diagram, at most about nine nodes.
+# Arrows follow the message. Dashed arrows are replies or optional paths.
+# Red dashed marks the thing being replaced. Plain string labels with \n, never |md blocks.
+# Prepended to every ```d2 block by scripts/build.ts, which renders with: d2 --layout=tala --pad 24
+# Landscape by default: diagrams read left to right. A block may override with its own `direction:`.
+direction: right
+
+vars: {
+  d2-config: {
+    layout-engine: tala
+    theme-id: 0
+  }
+}
+
+classes: {
+  person: {
+    shape: person
+    style: {fill: "#eaf2f8"; stroke: "#005f9e"; font-size: 20}
+  }
+  part: {
+    style: {fill: "#ffffff"; stroke: "#2a2a33"; border-radius: 6; font-size: 20}
+  }
+  store: {
+    shape: cylinder
+    style: {fill: "#fdf2f0"; stroke: "#c53a2f"; font-size: 20}
+  }
+  provider: {
+    style: {fill: "#f4f4f6"; stroke: "#465669"; border-radius: 6; font-size: 20}
+  }
+  replace: {
+    style: {fill: "#fdecea"; stroke: "#c0392b"; stroke-width: 2; stroke-dash: 4; border-radius: 6; font-size: 20}
+  }
+  group: {
+    style: {fill: "#fafafa"; stroke: "#9fa7d0"; font-size: 22; bold: true}
+  }
+  back: {
+    style: {stroke-dash: 4}
+  }
+}

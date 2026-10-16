@@ -42,7 +42,7 @@ The scratchpad skill owns the rule. Durable output follows Matt Pocock's structu
 
 ## Output formats
 
-- A report (findings, audits, reviews worth keeping) is a PDF, made with the technical-pdf skill.
+- A report (findings, audits, reviews worth keeping) is a PDF, made with the technical-pdf skill. When the user asks for a document as HTML, a shareable page or a nicer view of a Markdown file, it is one self-contained HTML page built from Markdown with the technical-html skill.
 - A plan for an executor comes from the to-plan skill, and show-me decides its display: Markdown or HTML.
 - An explanation or idea is shown with show-me, in Markdown or HTML as it decides.
 - Prototypes, pickers, catalogs and boards the user clicks through are HTML files in `.scratchpad/`.

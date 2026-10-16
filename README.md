@@ -126,7 +126,6 @@ Add `-g` to install into your user folder instead of the current project. Not su
 - [i-have-adhd](skills/productivity/i-have-adhd/SKILL.md): Action-first output for ADHD readers
 - [ketchup](skills/productivity/ketchup/SKILL.md): Catch the user up on everything in this chat since their last message, in plain words.
 - [teach](skills/productivity/teach/SKILL.md): Learn a concept in a guided workspace
-- [technical-writing](skills/productivity/technical-writing/SKILL.md): Layered technical-writing standard: Diátaxis structure, Google developer style sentences, STE instruction rules, Global English syntax.
 - [to-questionnaire](skills/productivity/to-questionnaire/SKILL.md): Front-load questions into a doc for someone to answer
 - [wait-what](skills/productivity/wait-what/SKILL.md): Re-pitch that: simpler, with the context I'm missing
 
@@ -140,7 +139,9 @@ Add `-g` to install into your user folder instead of the current project. Not su
 - [scratchpad](skills/productivity/scratchpad/SKILL.md): Where files go; temp files you can read and edit
 - [show-me](skills/productivity/show-me/SKILL.md): Help the user understand the current topic visually with concise diagrams, code-shape sketches, and focused HTML artifacts.
 - [simplified-technical-english](skills/productivity/simplified-technical-english/SKILL.md): Writes and rewrites text in Simplified Technical English (ASD-STE100), a controlled language for clear technical documentation.
+- [technical-html](skills/productivity/technical-html/SKILL.md): Markdown docs built into styled HTML pages
 - [technical-pdf](skills/productivity/technical-pdf/SKILL.md): Typst technical PDFs with verified layout
+- [technical-writing](skills/productivity/technical-writing/SKILL.md): Layered technical-writing standard: Diátaxis structure, Google developer style sentences, STE instruction rules, Global English syntax.
 - [trademark-search](skills/productivity/trademark-search/SKILL.md): Search trademark registers through TMview
 - [unslop](skills/productivity/unslop/SKILL.md): Cut AI tells from any writing.
 - [vscode-theme-to-zed](skills/productivity/vscode-theme-to-zed/SKILL.md): Port a VS Code color theme to Zed

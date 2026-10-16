@@ -1,0 +1,451 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Add a skill to anis-dr/skills</title><style>
+/* House look for technical-html. Light only: d2 diagrams have light fills. Documents do not animate. */
+:root {
+  --bg: #f6f6f4;
+  --paper: #ffffff;
+  --code-bg: #fafaf8;
+  --ink: #1d1d1f;
+  --ink-2: #3a3a3c;
+  --muted: #6e6e73;
+  --line: #e4e4e1;
+  --blue: #005f9e;
+  --blue-bg: #eaf2f8;
+  --red: #c0392b;
+  --red-bg: #fdecea;
+  --amber: #9a5b13;
+  --amber-bg: #fff4e0;
+  --green: #1f7a4f;
+  --green-bg: #e9f6ef;
+  --grey-bg: #f0f0f2;
+  --radius: 14px;
+  --sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", system-ui, sans-serif;
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  color-scheme: light;
+}
+html { background: var(--bg); -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+body {
+  margin: 0;
+  font: 16px/1.6 var(--sans);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  font-optical-sizing: auto;
+}
+.page { max-width: 1180px; margin: 0 auto; }
+main { max-width: 920px; margin: 0 auto; padding: 64px 32px 96px; }
+
+/* Type: tracking tightens as size grows, leading loosens as size shrinks. */
+.doc-header { margin-bottom: 48px; }
+.eyebrow {
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 14px;
+}
+h1 {
+  font-size: clamp(30px, 4.4vw, 44px);
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+  font-weight: 700;
+  margin: 0 0 18px;
+  text-wrap: balance;
+}
+h2 {
+  font-size: 26px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin: 64px 0 14px;
+  text-wrap: balance;
+}
+h3 { font-size: 19px; line-height: 1.3; letter-spacing: -0.012em; margin: 36px 0 10px; }
+h2, h3 { scroll-margin-top: 24px; }
+:is(h1, h2, h3) code { font-size: 0.82em; letter-spacing: -0.03em; padding: 0 0.2em; border-radius: 0.18em; }
+p, li { max-width: 68ch; text-wrap: pretty; }
+.lede { font-size: 19px; line-height: 1.5; letter-spacing: -0.006em; color: var(--ink-2); margin: 0; }
+.meta { font-size: 14px; line-height: 1.5; color: var(--muted); margin: 16px 0 0; font-variant-numeric: tabular-nums; }
+ul, ol { padding-left: 1.3em; }
+li { margin: 4px 0; }
+li > ul, li > ol { margin: 4px 0 8px; }
+strong { font-weight: 600; }
+
+/* Links stay underlined so they read as links without colour; hover is instant. */
+a {
+  color: var(--blue);
+  text-decoration: underline 1px color-mix(in srgb, currentColor 30%, transparent);
+  text-underline-offset: 2.5px;
+}
+a:hover { text-decoration-color: currentColor; }
+
+code {
+  font-family: var(--mono);
+  font-size: 0.86em;
+  background: rgb(0 0 0 / 0.05);
+  padding: 0.1em 0.35em;
+  border-radius: 5px;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+/* Header stats: one column per card, tabular figures. */
+.stats { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 12px; margin: 32px 0 0; }
+.stat {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 16px 18px 18px;
+}
+.stat b {
+  display: block;
+  font-size: 30px;
+  line-height: 1.1;
+  letter-spacing: -0.022em;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  margin-bottom: 6px;
+}
+.stat span { display: block; font-size: 14px; line-height: 1.45; color: var(--muted); }
+.stat.good b { color: var(--green); }
+.stat.gap b { color: var(--red); }
+.stat.wait b { color: var(--amber); }
+
+/* Contents: a quiet list under the header; a fixed sidebar on wide screens. */
+.toc { font-size: 14px; line-height: 1.4; margin: -16px 0 40px; padding: 16px 0; border-block: 1px solid var(--line); }
+.toc::before {
+  content: "Contents";
+  display: block;
+  margin-bottom: 6px;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.toc ol { list-style: none; margin: 0; padding: 0; }
+.toc li { margin: 0; max-width: none; }
+.toc a { display: block; padding: 4px 0; color: var(--ink-2); text-decoration: none; }
+.toc a:hover { color: var(--blue); }
+@media (min-width: 1100px) {
+  main:has(> .toc) { max-width: 1180px; padding-left: 280px; }
+  /* ponytail: 50% of the viewport ignores a classic scrollbar, so the sidebar can sit ~8px off the column there. */
+  .toc {
+    position: fixed;
+    top: 64px;
+    left: max(32px, calc(50% - 558px));
+    width: 196px;
+    max-height: calc(100vh - 96px);
+    overflow-y: auto;
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+  .toc::before { margin-bottom: 10px; }
+  .toc ol { border-left: 1px solid var(--line); }
+  .toc a { padding: 5px 0 5px 14px; margin-left: -1px; border-left: 1px solid transparent; color: var(--muted); }
+  .toc a:hover { color: var(--ink); border-left-color: var(--ink); }
+}
+
+/* Surfaces: white bordered cards on the warm page. */
+.card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 24px 28px;
+  margin: 24px 0;
+}
+.card > :first-child, .callout > :first-child { margin-top: 0; }
+.card > :last-child, .callout > :last-child { margin-bottom: 0; }
+
+figure {
+  margin: 24px 0 32px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 24px;
+  overflow-x: auto;
+}
+/* --w is the diagram's natural width, set by the build. */
+figure > svg { display: block; width: 100%; max-width: var(--w, 100%); height: auto; margin: 0 auto; }
+figcaption {
+  max-width: 68ch;
+  margin: 18px auto 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--muted);
+  text-align: center;
+  text-wrap: balance;
+}
+
+pre {
+  background: var(--code-bg);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 14px 18px 16px;
+  margin: 20px 0;
+  overflow-x: auto;
+  font: 13.5px/1.6 var(--mono);
+  tab-size: 2;
+}
+pre code { font: inherit; background: none; padding: 0; border-radius: 0; }
+pre[data-lang]::before {
+  content: attr(data-lang);
+  position: sticky;
+  left: 0;
+  display: block;
+  margin-bottom: 8px;
+  font: 600 10.5px/1.4 var(--sans);
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* Tables: scroll inside their card; right-aligned columns use tabular figures. */
+.table-wrap {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow-x: auto;
+  margin: 20px 0 28px;
+}
+table { border-collapse: collapse; width: 100%; font-size: 15px; line-height: 1.5; }
+th, td { text-align: left; vertical-align: top; padding: 11px 16px; border-bottom: 1px solid var(--line); }
+th {
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: var(--code-bg);
+  white-space: nowrap;
+  vertical-align: bottom;
+}
+tbody tr:last-child td { border-bottom: 0; }
+th[align="right"], td[align="right"] { text-align: right; font-variant-numeric: tabular-nums; }
+th[align="center"], td[align="center"] { text-align: center; }
+
+.pill {
+  display: inline-block;
+  font: 600 12px/1.6 var(--sans);
+  letter-spacing: 0.01em;
+  padding: 0 8px;
+  border-radius: 999px;
+  white-space: nowrap;
+  vertical-align: 1px;
+}
+.pill.built, .pill.done { background: var(--green-bg); color: var(--green); }
+.pill.gap { background: var(--red-bg); color: var(--red); }
+.pill.partly { background: var(--amber-bg); color: var(--amber); }
+.pill.none { background: var(--grey-bg); color: var(--muted); }
+.pill.here { background: var(--blue-bg); color: var(--blue); }
+
+/* Callouts: tinted panel, coloured bar and a small label; the text stays ink. */
+.callout {
+  --tone: var(--amber);
+  --tone-bg: var(--amber-bg);
+  max-width: calc(68ch + 44px);
+  border-left: 3px solid var(--tone);
+  background: var(--tone-bg);
+  border-radius: 0 10px 10px 0;
+  padding: 14px 20px 16px;
+  margin: 24px 0;
+}
+.callout p { margin: 0 0 8px; }
+.callout .callout-label {
+  margin: 0 0 4px;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--tone);
+}
+.callout-note { --tone: var(--blue); --tone-bg: var(--blue-bg); }
+.callout-tip { --tone: var(--green); --tone-bg: var(--green-bg); }
+.callout-caution { --tone: var(--red); --tone-bg: var(--red-bg); }
+blockquote {
+  margin: 24px 0;
+  padding: 2px 0 2px 18px;
+  border-left: 3px solid var(--line);
+  color: var(--ink-2);
+  hanging-punctuation: first;
+}
+blockquote p { margin: 0 0 8px; }
+blockquote > :last-child { margin-bottom: 0; }
+
+/* Steps: numbered cards; done is green, the current one is blue and ringed. */
+.steps > ol { list-style: none; padding: 0; margin: 20px 0 28px; counter-reset: step; display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; }
+.steps > ol > li {
+  position: relative;
+  max-width: none;
+  margin: 0;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 20px 24px 20px 62px;
+  counter-increment: step;
+}
+.steps > ol > li::before {
+  content: counter(step);
+  position: absolute;
+  left: 22px;
+  top: 20px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--grey-bg);
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 26px;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+.steps > ol > li.done::before { background: var(--green-bg); color: var(--green); }
+.steps > ol > li.here { border-color: var(--blue); box-shadow: 0 0 0 3px var(--blue-bg); }
+.steps > ol > li.here::before { background: var(--blue); color: #fff; }
+.steps > ol > li > * { margin: 12px 0 0; }
+.steps > ol > li > :first-child { margin-top: 0; }
+.steps .step-title { font-size: 17px; line-height: 26px; font-weight: 600; letter-spacing: -0.012em; }
+.steps .step-title + p { margin-top: 4px; }
+.steps .step-title .pill { margin-left: 8px; }
+.steps pre { margin-top: 14px; }
+
+.doc-footer {
+  margin-top: 72px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--muted);
+}
+.doc-footer p, .doc-footer li { max-width: none; }
+.doc-footer strong { color: var(--ink-2); }
+
+@media (max-width: 720px) {
+  main { padding: 40px 18px 64px; }
+  .doc-header { margin-bottom: 40px; }
+  h2 { font-size: 23px; margin-top: 52px; }
+  .lede { font-size: 18px; }
+  .stats { grid-auto-flow: row; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .stat b { font-size: 26px; }
+  .card { padding: 20px; }
+  figure { padding: 16px 12px; }
+  /* Below ~600px wide d2 labels drop under ~11px; scroll the diagram sideways instead. */
+  figure > svg { min-width: min(var(--w, 0px), 600px); }
+  table { font-size: 14px; }
+  th, td { padding: 10px 12px; }
+  .steps > ol > li { padding: 16px 18px; }
+  .steps > ol > li::before { position: static; float: left; margin: 0 10px 0 0; }
+  .steps > ol > li > :not(.step-title) { clear: left; }
+}
+
+@media print {
+  @page { margin: 16mm 14mm; }
+  html, body { background: #fff; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  main { padding: 0; max-width: none; }
+  .toc { display: none; }
+  h2, h3 { break-after: avoid; }
+  figure, .card, .steps > ol > li, .callout, pre, .stat, tr { break-inside: avoid; }
+  pre { white-space: pre-wrap; overflow: visible; }
+  figure > svg { max-height: 170mm; }
+  .table-wrap, figure { overflow: visible; }
+  a { color: inherit; text-decoration-color: currentColor; }
+}
+</style></head>
+<body class="doc-how-to">
+<div class="page">
+<main>
+<header class="doc-header">
+<p class="eyebrow">anis-dr/skills · How-to guide</p>
+<h1>Add a skill to anis-dr/skills</h1>
+<p class="lede">Add a new skill of your own to anis-dr/skills so that <code>bun run skills check</code> passes and the <code>/ask-anis</code> router lists it. For a contributor with a clone of the repo.</p>
+<p class="meta">16 Oct 2026 · commands from <code>src/cli.ts</code>, rules from <a href="https://github.com/anis-dr/skills/blob/main/CONVENTIONS.md">CONVENTIONS.md</a></p>
+</header>
+<h2 id="before-you-start">Before you start</h2>
+<p>You need these items:</p>
+<ul>
+<li>A clone of <code>anis-dr/skills</code> with its packages installed (<code>bun install</code>).</li>
+<li>Bun. The weekly CI job uses Bun 1.3.14.</li>
+<li>A local copy of <code>upstream/private-terms.json</code>. This file stays out of git. Without it, <code>bun run skills check</code> stops with <code>PrivateTermsMissing</code>. Get the file from the repo owner.</li>
+</ul>
+<aside class="callout callout-tip">
+<p class="callout-label">Tip</p>
+<p>If a skill for the same tool or topic exists, do not add a new skill. Add a branch to the existing skill: put the procedure in <code>references/&lt;branch&gt;.md</code> and add one pointer line to its <code>SKILL.md</code>. You then do not need a new <code>sources.json</code> entry or a router line.</p>
+</aside>
+<h2 id="add-the-skill">Add the skill</h2>
+<p>The example skill is <code>changelog-entry</code> in the <code>productivity</code> bucket. Use your own name and bucket.</p>
+<aside class="callout callout-caution">
+<p class="callout-label">Caution</p>
+<p>Do not write a private name, a client name, a host name, or an email address in a skill. The repo is public. Git keeps the text in the history after you remove it. <code>bun run skills check</code> finds only the names in <code>upstream/banned-terms.json</code> and <code>upstream/private-terms.json</code>.</p>
+</aside>
+<div class="steps">
+<ol>
+<li><p class="step-title"><strong>Select the bucket and the name</strong></p>
+<p>Select one bucket: <code>engineering</code>, <code>productivity</code>, <code>design</code>, <code>in-progress</code>, <code>marketing</code>, or <code>misc</code>. Give the skill a name of one to three words. Use the words that a user types to find the skill. Do not add <code>-patterns</code> or <code>-safety</code> to the name.</p>
+</li>
+<li><p class="step-title"><strong>Write SKILL.md</strong></p>
+<p>Make the folder <code>skills/&lt;bucket&gt;/&lt;name&gt;/</code>. Write <code>SKILL.md</code> in the folder. Make sure that <code>name</code> is the same as the folder name. Make sure that <code>description</code> has a maximum of 1024 characters.</p>
+<pre data-lang="markdown"><code>---
+name: changelog-entry
+description: &quot;Write a changelog entry for a merged pull request. Use for release notes.&quot;
+---
+
+# Changelog entry
+</code></pre>
+</li>
+<li><p class="step-title"><strong>Set the invocation</strong></p>
+<p>Most skills are model-invoked. For a model-invoked skill, write the <code>description</code> for the model and keep its triggers (&quot;Use when...&quot;). If only a person can start the skill, add <code>disable-model-invocation: true</code> to the frontmatter. For a user-invoked skill, write the <code>description</code> as one line for a person.</p>
+</li>
+<li><p class="step-title"><strong>Write agents/openai.yaml</strong></p>
+<p>Write <code>agents/openai.yaml</code> next to <code>SKILL.md</code>. Use the title-case name for <code>display_name</code>.</p>
+<pre data-lang="yaml"><code>interface:
+  display_name: &quot;Changelog Entry&quot;
+  short_description: &quot;Write one changelog entry from a merged pull request&quot;
+</code></pre>
+<p>For a user-invoked skill, add these two lines at the end of the file:</p>
+<pre data-lang="yaml"><code>policy:
+  allow_implicit_invocation: false
+</code></pre>
+</li>
+<li><p class="step-title"><strong>Add the entry to sources.json</strong></p>
+<p>Add one entry to the array in <code>upstream/sources.json</code>. Use the mode <code>ours</code> for a skill that has no upstream.</p>
+<pre data-lang="json"><code>{ &quot;name&quot;: &quot;changelog-entry&quot;, &quot;bucket&quot;: &quot;productivity&quot;, &quot;mode&quot;: &quot;ours&quot; }
+</code></pre>
+</li>
+<li><p class="step-title"><strong>Add the skill to the router</strong></p>
+<p>Open <code>skills/engineering/ask-anis/SKILL.md</code>. Find the section for your topic. Add one line that starts with the <code>/name</code> label.</p>
+<pre data-lang="markdown"><code>- **`/changelog-entry`** writes one changelog entry from a merged pull request.
+</code></pre>
+</li>
+<li><p class="step-title"><strong>Write the README skill list again</strong></p>
+<p>Run this command from the repo root. The command writes the list between the <code>skills:start</code> and <code>skills:end</code> markers in <code>README.md</code>.</p>
+<pre data-lang="bash"><code>bun run skills readme
+</code></pre>
+</li>
+<li><p class="step-title"><strong>Do the check</strong></p>
+<p>Run this command from the repo root. Make sure that the last line of the output is <code>0 findings</code>.</p>
+<pre data-lang="bash"><code>bun run skills check
+</code></pre>
+</li>
+</ol>
+</div>
+<p>To add a skill that comes from an upstream repo, use the mode <code>vendor</code>. Give the entry a <code>source</code>, a <code>path</code>, and a full 40-character <code>commit</code>. Then run <code>bun run skills sync</code>. Do not edit the vendored folder without a patch: run <code>bun run skills patch &lt;name&gt;</code> after each edit.</p>
+<h2 id="if-a-command-fails">If a command fails</h2>
+<p><code>bun run skills check</code> prints one line for each finding: the skill, the rule, and the detail. The last row is an error from <code>bun run skills sync</code>.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr><th>Finding</th><th>Cause</th><th>Fix</th></tr>
+</thead>
+<tbody>
+<tr><td><code>engineering/ask-anis: router: &quot;changelog-entry&quot;: skill missing from the router</code></td><td>The router has no <code>/changelog-entry</code> label.</td><td>Do step 6.</td></tr>
+<tr><td><code>README.md: readme: the skill list is stale</code></td><td>The skill list in <code>README.md</code> does not show the new skill.</td><td>Do step 7.</td></tr>
+<tr><td><code>productivity/changelog-entry: orphan-folder: no entry in upstream/sources.json</code></td><td>The folder has no entry in <code>sources.json</code>.</td><td>Do step 5.</td></tr>
+<tr><td><code>productivity/changelog-entry: frontmatter: name &quot;changelog&quot; differs from the folder name</code></td><td>The <code>name</code> field and the folder name are different.</td><td>Make the two names the same.</td></tr>
+<tr><td><code>productivity/changelog-entry: invocation: agents/openai.yaml is missing</code></td><td>The skill has no <code>agents/openai.yaml</code>.</td><td>Do step 4.</td></tr>
+<tr><td><code>productivity/changelog-entry: invocation: disable-model-invocation is true but agents/openai.yaml allows implicit invocation</code></td><td>The frontmatter and the <code>policy</code> lines do not agree.</td><td>Add the <code>policy</code> lines, or remove <code>disable-model-invocation: true</code>.</td></tr>
+<tr><td><code>engineering/tdd: its patch no longer applies</code></td><td>Upstream changed the lines that the skill's patch changes.</td><td>Edit the folder until the text is correct. Then run <code>bun run skills patch tdd</code>.</td></tr>
+</tbody>
+</table></div>
+</main>
+</div>
+</body></html>

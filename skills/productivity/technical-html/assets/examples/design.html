@@ -1,0 +1,517 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>How bun run skills sync builds a vendored skill</title><style>
+/* House look for technical-html. Light only: d2 diagrams have light fills. Documents do not animate. */
+:root {
+  --bg: #f6f6f4;
+  --paper: #ffffff;
+  --code-bg: #fafaf8;
+  --ink: #1d1d1f;
+  --ink-2: #3a3a3c;
+  --muted: #6e6e73;
+  --line: #e4e4e1;
+  --blue: #005f9e;
+  --blue-bg: #eaf2f8;
+  --red: #c0392b;
+  --red-bg: #fdecea;
+  --amber: #9a5b13;
+  --amber-bg: #fff4e0;
+  --green: #1f7a4f;
+  --green-bg: #e9f6ef;
+  --grey-bg: #f0f0f2;
+  --radius: 14px;
+  --sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", system-ui, sans-serif;
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  color-scheme: light;
+}
+html { background: var(--bg); -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+body {
+  margin: 0;
+  font: 16px/1.6 var(--sans);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  font-optical-sizing: auto;
+}
+.page { max-width: 1180px; margin: 0 auto; }
+main { max-width: 920px; margin: 0 auto; padding: 64px 32px 96px; }
+
+/* Type: tracking tightens as size grows, leading loosens as size shrinks. */
+.doc-header { margin-bottom: 48px; }
+.eyebrow {
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 14px;
+}
+h1 {
+  font-size: clamp(30px, 4.4vw, 44px);
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+  font-weight: 700;
+  margin: 0 0 18px;
+  text-wrap: balance;
+}
+h2 {
+  font-size: 26px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin: 64px 0 14px;
+  text-wrap: balance;
+}
+h3 { font-size: 19px; line-height: 1.3; letter-spacing: -0.012em; margin: 36px 0 10px; }
+h2, h3 { scroll-margin-top: 24px; }
+:is(h1, h2, h3) code { font-size: 0.82em; letter-spacing: -0.03em; padding: 0 0.2em; border-radius: 0.18em; }
+p, li { max-width: 68ch; text-wrap: pretty; }
+.lede { font-size: 19px; line-height: 1.5; letter-spacing: -0.006em; color: var(--ink-2); margin: 0; }
+.meta { font-size: 14px; line-height: 1.5; color: var(--muted); margin: 16px 0 0; font-variant-numeric: tabular-nums; }
+ul, ol { padding-left: 1.3em; }
+li { margin: 4px 0; }
+li > ul, li > ol { margin: 4px 0 8px; }
+strong { font-weight: 600; }
+
+/* Links stay underlined so they read as links without colour; hover is instant. */
+a {
+  color: var(--blue);
+  text-decoration: underline 1px color-mix(in srgb, currentColor 30%, transparent);
+  text-underline-offset: 2.5px;
+}
+a:hover { text-decoration-color: currentColor; }
+
+code {
+  font-family: var(--mono);
+  font-size: 0.86em;
+  background: rgb(0 0 0 / 0.05);
+  padding: 0.1em 0.35em;
+  border-radius: 5px;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+/* Header stats: one column per card, tabular figures. */
+.stats { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 12px; margin: 32px 0 0; }
+.stat {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 16px 18px 18px;
+}
+.stat b {
+  display: block;
+  font-size: 30px;
+  line-height: 1.1;
+  letter-spacing: -0.022em;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  margin-bottom: 6px;
+}
+.stat span { display: block; font-size: 14px; line-height: 1.45; color: var(--muted); }
+.stat.good b { color: var(--green); }
+.stat.gap b { color: var(--red); }
+.stat.wait b { color: var(--amber); }
+
+/* Contents: a quiet list under the header; a fixed sidebar on wide screens. */
+.toc { font-size: 14px; line-height: 1.4; margin: -16px 0 40px; padding: 16px 0; border-block: 1px solid var(--line); }
+.toc::before {
+  content: "Contents";
+  display: block;
+  margin-bottom: 6px;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.toc ol { list-style: none; margin: 0; padding: 0; }
+.toc li { margin: 0; max-width: none; }
+.toc a { display: block; padding: 4px 0; color: var(--ink-2); text-decoration: none; }
+.toc a:hover { color: var(--blue); }
+@media (min-width: 1100px) {
+  main:has(> .toc) { max-width: 1180px; padding-left: 280px; }
+  /* ponytail: 50% of the viewport ignores a classic scrollbar, so the sidebar can sit ~8px off the column there. */
+  .toc {
+    position: fixed;
+    top: 64px;
+    left: max(32px, calc(50% - 558px));
+    width: 196px;
+    max-height: calc(100vh - 96px);
+    overflow-y: auto;
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+  .toc::before { margin-bottom: 10px; }
+  .toc ol { border-left: 1px solid var(--line); }
+  .toc a { padding: 5px 0 5px 14px; margin-left: -1px; border-left: 1px solid transparent; color: var(--muted); }
+  .toc a:hover { color: var(--ink); border-left-color: var(--ink); }
+}
+
+/* Surfaces: white bordered cards on the warm page. */
+.card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 24px 28px;
+  margin: 24px 0;
+}
+.card > :first-child, .callout > :first-child { margin-top: 0; }
+.card > :last-child, .callout > :last-child { margin-bottom: 0; }
+
+figure {
+  margin: 24px 0 32px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 24px;
+  overflow-x: auto;
+}
+/* --w is the diagram's natural width, set by the build. */
+figure > svg { display: block; width: 100%; max-width: var(--w, 100%); height: auto; margin: 0 auto; }
+figcaption {
+  max-width: 68ch;
+  margin: 18px auto 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--muted);
+  text-align: center;
+  text-wrap: balance;
+}
+
+pre {
+  background: var(--code-bg);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 14px 18px 16px;
+  margin: 20px 0;
+  overflow-x: auto;
+  font: 13.5px/1.6 var(--mono);
+  tab-size: 2;
+}
+pre code { font: inherit; background: none; padding: 0; border-radius: 0; }
+pre[data-lang]::before {
+  content: attr(data-lang);
+  position: sticky;
+  left: 0;
+  display: block;
+  margin-bottom: 8px;
+  font: 600 10.5px/1.4 var(--sans);
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* Tables: scroll inside their card; right-aligned columns use tabular figures. */
+.table-wrap {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow-x: auto;
+  margin: 20px 0 28px;
+}
+table { border-collapse: collapse; width: 100%; font-size: 15px; line-height: 1.5; }
+th, td { text-align: left; vertical-align: top; padding: 11px 16px; border-bottom: 1px solid var(--line); }
+th {
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: var(--code-bg);
+  white-space: nowrap;
+  vertical-align: bottom;
+}
+tbody tr:last-child td { border-bottom: 0; }
+th[align="right"], td[align="right"] { text-align: right; font-variant-numeric: tabular-nums; }
+th[align="center"], td[align="center"] { text-align: center; }
+
+.pill {
+  display: inline-block;
+  font: 600 12px/1.6 var(--sans);
+  letter-spacing: 0.01em;
+  padding: 0 8px;
+  border-radius: 999px;
+  white-space: nowrap;
+  vertical-align: 1px;
+}
+.pill.built, .pill.done { background: var(--green-bg); color: var(--green); }
+.pill.gap { background: var(--red-bg); color: var(--red); }
+.pill.partly { background: var(--amber-bg); color: var(--amber); }
+.pill.none { background: var(--grey-bg); color: var(--muted); }
+.pill.here { background: var(--blue-bg); color: var(--blue); }
+
+/* Callouts: tinted panel, coloured bar and a small label; the text stays ink. */
+.callout {
+  --tone: var(--amber);
+  --tone-bg: var(--amber-bg);
+  max-width: calc(68ch + 44px);
+  border-left: 3px solid var(--tone);
+  background: var(--tone-bg);
+  border-radius: 0 10px 10px 0;
+  padding: 14px 20px 16px;
+  margin: 24px 0;
+}
+.callout p { margin: 0 0 8px; }
+.callout .callout-label {
+  margin: 0 0 4px;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--tone);
+}
+.callout-note { --tone: var(--blue); --tone-bg: var(--blue-bg); }
+.callout-tip { --tone: var(--green); --tone-bg: var(--green-bg); }
+.callout-caution { --tone: var(--red); --tone-bg: var(--red-bg); }
+blockquote {
+  margin: 24px 0;
+  padding: 2px 0 2px 18px;
+  border-left: 3px solid var(--line);
+  color: var(--ink-2);
+  hanging-punctuation: first;
+}
+blockquote p { margin: 0 0 8px; }
+blockquote > :last-child { margin-bottom: 0; }
+
+/* Steps: numbered cards; done is green, the current one is blue and ringed. */
+.steps > ol { list-style: none; padding: 0; margin: 20px 0 28px; counter-reset: step; display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; }
+.steps > ol > li {
+  position: relative;
+  max-width: none;
+  margin: 0;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 20px 24px 20px 62px;
+  counter-increment: step;
+}
+.steps > ol > li::before {
+  content: counter(step);
+  position: absolute;
+  left: 22px;
+  top: 20px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--grey-bg);
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 26px;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+.steps > ol > li.done::before { background: var(--green-bg); color: var(--green); }
+.steps > ol > li.here { border-color: var(--blue); box-shadow: 0 0 0 3px var(--blue-bg); }
+.steps > ol > li.here::before { background: var(--blue); color: #fff; }
+.steps > ol > li > * { margin: 12px 0 0; }
+.steps > ol > li > :first-child { margin-top: 0; }
+.steps .step-title { font-size: 17px; line-height: 26px; font-weight: 600; letter-spacing: -0.012em; }
+.steps .step-title + p { margin-top: 4px; }
+.steps .step-title .pill { margin-left: 8px; }
+.steps pre { margin-top: 14px; }
+
+.doc-footer {
+  margin-top: 72px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--muted);
+}
+.doc-footer p, .doc-footer li { max-width: none; }
+.doc-footer strong { color: var(--ink-2); }
+
+@media (max-width: 720px) {
+  main { padding: 40px 18px 64px; }
+  .doc-header { margin-bottom: 40px; }
+  h2 { font-size: 23px; margin-top: 52px; }
+  .lede { font-size: 18px; }
+  .stats { grid-auto-flow: row; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .stat b { font-size: 26px; }
+  .card { padding: 20px; }
+  figure { padding: 16px 12px; }
+  /* Below ~600px wide d2 labels drop under ~11px; scroll the diagram sideways instead. */
+  figure > svg { min-width: min(var(--w, 0px), 600px); }
+  table { font-size: 14px; }
+  th, td { padding: 10px 12px; }
+  .steps > ol > li { padding: 16px 18px; }
+  .steps > ol > li::before { position: static; float: left; margin: 0 10px 0 0; }
+  .steps > ol > li > :not(.step-title) { clear: left; }
+}
+
+@media print {
+  @page { margin: 16mm 14mm; }
+  html, body { background: #fff; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  main { padding: 0; max-width: none; }
+  .toc { display: none; }
+  h2, h3 { break-after: avoid; }
+  figure, .card, .steps > ol > li, .callout, pre, .stat, tr { break-inside: avoid; }
+  pre { white-space: pre-wrap; overflow: visible; }
+  figure > svg { max-height: 170mm; }
+  .table-wrap, figure { overflow: visible; }
+  a { color: inherit; text-decoration-color: currentColor; }
+}
+</style></head>
+<body class="doc-design">
+<div class="page">
+<main>
+<header class="doc-header">
+<p class="eyebrow">anis-dr/skills · Design note</p>
+<h1>How <code>bun run skills sync</code> builds a vendored skill</h1>
+<p class="lede">Why a vendored skill folder is build output, and what <code>bun run skills sync</code> does to turn a pinned upstream commit into it. For anyone who edits a vendored skill or adds a rule to <code>src/rules.ts</code>.</p>
+<p class="meta">16 Oct 2026 · read from <code>src/sync.ts</code>, <code>src/rules.ts</code>, <code>src/Upstream.ts</code> and <code>src/SkillTree.ts</code> at <code>af49a3a</code> · <a href="https://github.com/anis-dr/skills/blob/main/CONVENTIONS.md">CONVENTIONS.md</a></p>
+<div class="stats"><div class="stat none"><b>139</b><span>vendored skills that sync rebuilds</span></div><div class="stat none"><b>13</b><span>upstream repos they come from</span></div><div class="stat none"><b>7</b><span>agent-neutral rules in <code>src/rules.ts</code></span></div><div class="stat none"><b>27</b><span>skills that carry their own patch</span></div></div>
+</header>
+<nav class="toc" aria-label="Contents">
+<ol>
+<li><a href="#why-the-folder-is-built-not-edited">Why the folder is built, not edited</a></li>
+<li><a href="#the-pipeline-for-one-skill">The pipeline for one skill</a></li>
+<li><a href="#who-owns-the-text-the-four-modes">Who owns the text: the four modes</a></li>
+<li><a href="#trade-offs-and-the-alternatives">Trade-offs and the alternatives</a></li>
+</ol>
+</nav>
+<h2 id="why-the-folder-is-built-not-edited">Why the folder is built, not edited</h2>
+<p>Most skills in this repo are other people's text. 139 of the 185 skill folders are copies of skills from 13 upstream repos, and those upstreams keep changing. The copies cannot stay word for word, either: upstream text names one harness's tools, model ids and folders, and every skill here has to run unchanged on omp, Claude Code, Codex, Cursor and pi.</p>
+<p>So a vendored folder is not where the text lives. Its source is four things: the upstream commit pinned in <code>upstream/sources.json</code>, the shared rewrites in <code>src/rules.ts</code>, the entry's <code>invocation</code> override, and the skill's own patch in <code>upstream/patches/&lt;name&gt;.patch</code>. <code>bun run skills sync</code> combines them and writes the result over the folder. Running it twice gives the same folder, and a weekly job can move every pin forward without anyone touching the text by hand.</p>
+<h2 id="the-pipeline-for-one-skill">The pipeline for one skill</h2>
+<figure class="diagram"><svg role="img" preserveAspectRatio="xMidYMin meet" style="--w:1052px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" data-d2-version="v0.8.2"  viewBox="0 0 1052 334"><svg class="d2-3685499279 d2-svg" width="100%" height="100%" viewBox="-25 -25 1052 334"><rect x="-25.000000" y="-25.000000" width="1052.000000" height="334.000000" rx="0.000000" fill="#FFFFFF" class=" fill-N7" stroke-width="0" /><style type="text/css"><![CDATA[
+.d2-3685499279 .text-bold {
+	font-family: "d2-3685499279-font-bold";
+}
+@font-face {
+	font-family: d2-3685499279-font-bold;
+	src: url("data:application/font-woff;base64,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");
+}
+.d2-3685499279 .text-italic {
+	font-family: "d2-3685499279-font-italic";
+}
+@font-face {
+	font-family: d2-3685499279-font-italic;
+	src: url("data:application/font-woff;base64,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");
+}]]></style><style type="text/css"><![CDATA[.shape {
+  shape-rendering: geometricPrecision;
+  stroke-linejoin: round;
+}
+.connection {
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.blend {
+  mix-blend-mode: multiply;
+  opacity: 0.5;
+}
+
+		.d2-3685499279 .fill-N1{fill:#0A0F25;}
+		.d2-3685499279 .fill-N2{fill:#676C7E;}
+		.d2-3685499279 .fill-N3{fill:#9499AB;}
+		.d2-3685499279 .fill-N4{fill:#CFD2DD;}
+		.d2-3685499279 .fill-N5{fill:#DEE1EB;}
+		.d2-3685499279 .fill-N6{fill:#EEF1F8;}
+		.d2-3685499279 .fill-N7{fill:#FFFFFF;}
+		.d2-3685499279 .fill-B1{fill:#0D32B2;}
+		.d2-3685499279 .fill-B2{fill:#0D32B2;}
+		.d2-3685499279 .fill-B3{fill:#E3E9FD;}
+		.d2-3685499279 .fill-B4{fill:#E3E9FD;}
+		.d2-3685499279 .fill-B5{fill:#EDF0FD;}
+		.d2-3685499279 .fill-B6{fill:#F7F8FE;}
+		.d2-3685499279 .fill-AA2{fill:#4A6FF3;}
+		.d2-3685499279 .fill-AA4{fill:#EDF0FD;}
+		.d2-3685499279 .fill-AA5{fill:#F7F8FE;}
+		.d2-3685499279 .fill-AB4{fill:#EDF0FD;}
+		.d2-3685499279 .fill-AB5{fill:#F7F8FE;}
+		.d2-3685499279 .stroke-N1{stroke:#0A0F25;}
+		.d2-3685499279 .stroke-N2{stroke:#676C7E;}
+		.d2-3685499279 .stroke-N3{stroke:#9499AB;}
+		.d2-3685499279 .stroke-N4{stroke:#CFD2DD;}
+		.d2-3685499279 .stroke-N5{stroke:#DEE1EB;}
+		.d2-3685499279 .stroke-N6{stroke:#EEF1F8;}
+		.d2-3685499279 .stroke-N7{stroke:#FFFFFF;}
+		.d2-3685499279 .stroke-B1{stroke:#0D32B2;}
+		.d2-3685499279 .stroke-B2{stroke:#0D32B2;}
+		.d2-3685499279 .stroke-B3{stroke:#E3E9FD;}
+		.d2-3685499279 .stroke-B4{stroke:#E3E9FD;}
+		.d2-3685499279 .stroke-B5{stroke:#EDF0FD;}
+		.d2-3685499279 .stroke-B6{stroke:#F7F8FE;}
+		.d2-3685499279 .stroke-AA2{stroke:#4A6FF3;}
+		.d2-3685499279 .stroke-AA4{stroke:#EDF0FD;}
+		.d2-3685499279 .stroke-AA5{stroke:#F7F8FE;}
+		.d2-3685499279 .stroke-AB4{stroke:#EDF0FD;}
+		.d2-3685499279 .stroke-AB5{stroke:#F7F8FE;}
+		.d2-3685499279 .background-color-N1{background-color:#0A0F25;}
+		.d2-3685499279 .background-color-N2{background-color:#676C7E;}
+		.d2-3685499279 .background-color-N3{background-color:#9499AB;}
+		.d2-3685499279 .background-color-N4{background-color:#CFD2DD;}
+		.d2-3685499279 .background-color-N5{background-color:#DEE1EB;}
+		.d2-3685499279 .background-color-N6{background-color:#EEF1F8;}
+		.d2-3685499279 .background-color-N7{background-color:#FFFFFF;}
+		.d2-3685499279 .background-color-B1{background-color:#0D32B2;}
+		.d2-3685499279 .background-color-B2{background-color:#0D32B2;}
+		.d2-3685499279 .background-color-B3{background-color:#E3E9FD;}
+		.d2-3685499279 .background-color-B4{background-color:#E3E9FD;}
+		.d2-3685499279 .background-color-B5{background-color:#EDF0FD;}
+		.d2-3685499279 .background-color-B6{background-color:#F7F8FE;}
+		.d2-3685499279 .background-color-AA2{background-color:#4A6FF3;}
+		.d2-3685499279 .background-color-AA4{background-color:#EDF0FD;}
+		.d2-3685499279 .background-color-AA5{background-color:#F7F8FE;}
+		.d2-3685499279 .background-color-AB4{background-color:#EDF0FD;}
+		.d2-3685499279 .background-color-AB5{background-color:#F7F8FE;}
+		.d2-3685499279 .color-N1{color:#0A0F25;}
+		.d2-3685499279 .color-N2{color:#676C7E;}
+		.d2-3685499279 .color-N3{color:#9499AB;}
+		.d2-3685499279 .color-N4{color:#CFD2DD;}
+		.d2-3685499279 .color-N5{color:#DEE1EB;}
+		.d2-3685499279 .color-N6{color:#EEF1F8;}
+		.d2-3685499279 .color-N7{color:#FFFFFF;}
+		.d2-3685499279 .color-B1{color:#0D32B2;}
+		.d2-3685499279 .color-B2{color:#0D32B2;}
+		.d2-3685499279 .color-B3{color:#E3E9FD;}
+		.d2-3685499279 .color-B4{color:#E3E9FD;}
+		.d2-3685499279 .color-B5{color:#EDF0FD;}
+		.d2-3685499279 .color-B6{color:#F7F8FE;}
+		.d2-3685499279 .color-AA2{color:#4A6FF3;}
+		.d2-3685499279 .color-AA4{color:#EDF0FD;}
+		.d2-3685499279 .color-AA5{color:#F7F8FE;}
+		.d2-3685499279 .color-AB4{color:#EDF0FD;}
+		.d2-3685499279 .color-AB5{color:#F7F8FE;}.appendix text.text{fill:#0A0F25}.md{--color-fg-default:#0A0F25;--color-fg-muted:#676C7E;--color-fg-subtle:#9499AB;--color-canvas-default:#FFFFFF;--color-canvas-subtle:#EEF1F8;--color-border-default:#0D32B2;--color-border-muted:#0D32B2;--color-neutral-muted:#EEF1F8;--color-accent-fg:#0D32B2;--color-accent-emphasis:#0D32B2;--color-attention-subtle:#676C7E;--color-danger-fg:red;}.sketch-overlay-B1{fill:url(#streaks-darker-d2-3685499279);mix-blend-mode:lighten}.sketch-overlay-B2{fill:url(#streaks-darker-d2-3685499279);mix-blend-mode:lighten}.sketch-overlay-B3{fill:url(#streaks-bright-d2-3685499279);mix-blend-mode:darken}.sketch-overlay-B4{fill:url(#streaks-bright-d2-3685499279);mix-blend-mode:darken}.sketch-overlay-B5{fill:url(#streaks-bright-d2-3685499279);mix-blend-mode:darken}.sketch-overlay-B6{fill:url(#streaks-bright-d2-3685499279);mix-blend-mode:darken}.sketch-overlay-AA2{fill:url(#streaks-dark-d2-3685499279);mix-blend-mode:overlay}.sketch-overlay-AA4{fill:url(#streaks-bright-d2-3685499279);mix-blend-mode:darken}.sketch-overlay-AA5{fill:url(#streaks-bright-d2-3685499279);mix-blend-mode:darken}.sketch-overlay-AB4{fill:url(#streaks-bright-d2-3685499279);mix-blend-mode:darken}.sketch-overlay-AB5{fill:url(#streaks-bright-d2-3685499279);mix-blend-mode:darken}.sketch-overlay-N1{fill:url(#streaks-darker-d2-3685499279);mix-blend-mode:lighten}.sketch-overlay-N2{fill:url(#streaks-dark-d2-3685499279);mix-blend-mode:overlay}.sketch-overlay-N3{fill:url(#streaks-normal-d2-3685499279);mix-blend-mode:color-burn}.sketch-overlay-N4{fill:url(#streaks-normal-d2-3685499279);mix-blend-mode:color-burn}.sketch-overlay-N5{fill:url(#streaks-bright-d2-3685499279);mix-blend-mode:darken}.sketch-overlay-N6{fill:url(#streaks-bright-d2-3685499279);mix-blend-mode:darken}.sketch-overlay-N7{fill:url(#streaks-bright-d2-3685499279);mix-blend-mode:darken}.light-code{display: block}.dark-code{display: none}]]></style><g class="cGlu provider"><g class="shape" ><rect x="0.000000" y="110.000000" width="178.000000" height="91.000000" rx="6.000000" stroke="#465669" fill="#f4f4f6" style="stroke-width:2;" /></g><text x="89.000000" y="152.500000" fill="#0A0F25" class="text-bold fill-N1" style="text-anchor:middle;font-size:20px"><tspan x="89.000000" dy="0.000000">Upstream at</tspan><tspan x="89.000000" dy="23.000000">pinned commit</tspan></text></g><g class="c3RhZ2U= part"><g class="shape" ><rect x="281.000000" y="60.000000" width="326.000000" height="191.000000" rx="6.000000" stroke="#2a2a33" fill="#ffffff" style="stroke-width:2;" /></g><text x="444.000000" y="102.500000" fill="#0A0F25" class="text-bold fill-N1" style="text-anchor:middle;font-size:20px"><tspan x="444.000000" dy="0.000000">Scoped temp folder</tspan><tspan x="444.000000" dy="20.857143"> </tspan><tspan x="444.000000" dy="20.857143">1. copy the entry path</tspan><tspan x="444.000000" dy="20.857143">2. apply the rules</tspan><tspan x="444.000000" dy="20.857143">3. apply the invocation override</tspan><tspan x="444.000000" dy="20.857143">4. write openai.yaml if missing</tspan><tspan x="444.000000" dy="20.857143">5. apply the skill patch</tspan></text></g><g class="Zm9sZGVy store"><g class="shape" ><path d="M 831 24 C 831 0 895 0 902 0 C 909 0 973 0 973 24 V 119 C 973 143 909 143 902 143 C 895 143 831 143 831 119 V 24 Z" stroke="#c53a2f" fill="#fdf2f0" style="stroke-width:2;" /><path d="M 831 24 C 831 48 895 48 902 48 C 909 48 973 48 973 24" stroke="#c53a2f" fill="#fdf2f0" style="stroke-width:2;" /></g><text x="902.000000" y="80.500000" fill="#0A0F25" class="text-bold fill-N1" style="text-anchor:middle;font-size:20px"><tspan x="902.000000" dy="0.000000">Skill folder</tspan><tspan x="902.000000" dy="23.000000">in skills/</tspan></text></g><g class="ZmFpbA== part"><g class="shape" ><rect x="802.000000" y="193.000000" width="200.000000" height="91.000000" rx="6.000000" stroke="#2a2a33" fill="#ffffff" style="stroke-width:2;" /></g><text x="902.000000" y="235.500000" fill="#0A0F25" class="text-bold fill-N1" style="text-anchor:middle;font-size:20px"><tspan x="902.000000" dy="0.000000">PatchConflict</tspan><tspan x="902.000000" dy="23.000000">folder unchanged</tspan></text></g><g class="KHBpbiAtJmd0OyBzdGFnZSlbMF0="><marker id="mk-d2-3685499279-3488378134" markerWidth="10.000000" markerHeight="12.000000" refX="7.000000" refY="6.000000" viewBox="0.000000 0.000000 10.000000 12.000000" orient="auto" markerUnits="userSpaceOnUse"> <polygon points="0.000000,0.000000 10.000000,6.000000 0.000000,12.000000" fill="#0D32B2" class="connection fill-B1" stroke-width="2" /> </marker><path d="M 180.000000 156.000000 L 277.000000 156.000000" stroke="#0D32B2" fill="none" class="connection stroke-B1" style="stroke-width:2;" marker-end="url(#mk-d2-3685499279-3488378134)" mask="url(#d2-3685499279)" /><text x="229.500000" y="154.000000" fill="#676C7E" class="text-italic fill-N2" style="text-anchor:middle;font-size:16px"><tspan x="229.500000" dy="0.000000">shallow</tspan><tspan x="229.500000" dy="18.500000">fetch</tspan></text></g><g class="KHN0YWdlIC0mZ3Q7IGZvbGRlcilbMF0="><path d="M 609.000000 156.000000 L 647.000000 156.000000 S 657.000000 156.000000 657.000000 146.000000 L 657.000000 82.000000 S 657.000000 72.000000 667.000000 72.000000 L 827.000000 72.000000" stroke="#0D32B2" fill="none" class="connection stroke-B1" style="stroke-width:2;" marker-end="url(#mk-d2-3685499279-3488378134)" mask="url(#d2-3685499279)" /><text x="744.500000" y="45.000000" fill="#676C7E" class="text-italic fill-N2" style="text-anchor:middle;font-size:16px"><tspan x="744.500000" dy="0.000000">replaces</tspan><tspan x="744.500000" dy="18.500000">the folder</tspan></text></g><g class="KHN0YWdlIC0mZ3Q7IGZhaWwpWzBd"><marker id="mk-d2-3685499279-1918282737" markerWidth="10.000000" markerHeight="12.000000" refX="7.000000" refY="6.000000" viewBox="0.000000 0.000000 10.000000 12.000000" orient="auto" markerUnits="userSpaceOnUse"> <polygon points="0.000000,0.000000 10.000000,6.000000 0.000000,12.000000" fill="#c0392b" class="connection" stroke-width="2" /> </marker><path d="M 609.000000 156.000000 L 647.000000 156.000000 S 657.000000 156.000000 657.000000 166.000000 L 657.000000 229.000000 S 657.000000 239.000000 667.000000 239.000000 L 798.000000 239.000000" stroke="#c0392b" fill="none" class="connection" style="stroke-width:2;stroke-dasharray:8.000000,7.892511;" marker-end="url(#mk-d2-3685499279-1918282737)" mask="url(#d2-3685499279)" /><text x="729.500000" y="261.000000" fill="#676C7E" class="text-italic fill-N2" style="text-anchor:middle;font-size:16px"><tspan x="729.500000" dy="0.000000">patch no</tspan><tspan x="729.500000" dy="18.500000">longer applies</tspan></text></g><mask id="d2-3685499279" maskUnits="userSpaceOnUse" x="-25" y="-25" width="1052" height="334">
+<rect x="-25" y="-25" width="1052" height="334" fill="white"></rect>
+<rect x="201.000000" y="138.000000" width="57" height="37" fill="black"></rect>
+<rect x="710.000000" y="29.000000" width="69" height="37" fill="rgba(0,0,0,0.75)"></rect>
+<rect x="680.000000" y="245.000000" width="99" height="37" fill="rgba(0,0,0,0.75)"></rect>
+</mask></svg></svg>
+<figcaption>Arrows follow the skill text from the upstream commit to the folder under <code>skills/</code>. The five stages in the temp folder run in this order for every vendored entry. The red dashed arrow is the failure path: the patch does not apply, sync stops, and the folder keeps its old content.</figcaption></figure>
+<p><code>Upstream.fetchPinned</code> fetches one commit with <code>git fetch --depth 1</code> and checks it out under <code>.upstream/&lt;source&gt;@&lt;sha&gt;</code>. It fetches into a temporary folder and renames it at the end, so a failed fetch never looks cached, and a second skill from the same commit reuses the checkout. The pin is a full 40-character SHA because git fetches a pinned commit only by its full id.</p>
+<p>Everything after the fetch happens in a scoped temporary folder that closes when the skill is written. Sync copies the entry's <code>path</code> there, drops a <code>.git</code> folder that a whole-repo path brings along, and fails with <code>MissingUpstreamPath</code> if the path is gone.</p>
+<p>The rules then run over every <code>.md</code> file. Each rule is a named list of regex rewrites: <code>skillCalls</code> turns &quot;Run the <strong>x</strong> skill&quot; into a Skill tool call, <code>issuesFolder</code> renames Matt Pocock's <code>.scratch/</code> to <code>.issues/</code>, and <code>modelLines</code> swaps hard-coded model ids for roles. Sync records which rules changed some text. When every entry is done, a rule that matched nothing in any skill fails the run with <code>DeadRules</code>, because that rule no longer does its job.</p>
+<p>The invocation override comes next. An entry with <code>invocation: model</code> deletes the <code>disable-model-invocation: true</code> line from <code>SKILL.md</code>, and deletes the matching policy lines from upstream's own <code>agents/openai.yaml</code>. If upstream ships no <code>agents/openai.yaml</code>, sync writes one with a title-cased <code>display_name</code> and, for a user-invoked skill, <code>allow_implicit_invocation: false</code>.</p>
+<p>The patch goes last. Sync runs <code>git init</code> in the temp folder, runs <code>git apply</code> with the patch, and removes the <code>.git</code> again. Only then does <code>SkillTree.writeFolder</code> delete <code>skills/&lt;bucket&gt;/&lt;name&gt;</code> and copy the staged folder in its place.</p>
+<aside class="callout callout-note">
+<p class="callout-label">Note</p>
+<p>A hand edit in a vendored folder is lost on the next sync. Edit the folder, then run <code>bun run skills patch &lt;name&gt;</code>. The command stages the skill again without its patch, diffs your folder against that staging, and writes the difference to <code>upstream/patches/&lt;name&gt;.patch</code>. An empty difference deletes the patch file.</p>
+</aside>
+<h2 id="who-owns-the-text-the-four-modes">Who owns the text: the four modes</h2>
+<p>Every entry in <code>upstream/sources.json</code> has a <code>mode</code>. Sync treats each one differently, and the weekly upstream job moves only some of them.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr><th>Mode</th><th>Who owns the text</th><th>What sync does</th><th>When upstream changes</th><th align="right">Entries</th></tr>
+</thead>
+<tbody>
+<tr><td><code>vendor</code></td><td>Upstream</td><td>Rebuilds the whole folder with the pipeline above</td><td><code>sync --update</code> moves the pin to upstream HEAD</td><td align="right">139</td></tr>
+<tr><td><code>fork</code></td><td>Us, based on upstream at a pinned commit</td><td>Leaves the folder alone</td><td><code>sync --report</code> lists the new commits in <code>upstream/DRIFT.md</code>; a person ports them</td><td align="right">8</td></tr>
+<tr><td><code>ours</code></td><td>Us, no upstream</td><td>Leaves the folder alone. With <code>into</code>, carries the file over when it rebuilds that skill's <code>references/</code></td><td>Nothing to track</td><td align="right">39</td></tr>
+<tr><td><code>reference</code></td><td>Upstream, one file</td><td>Writes it into another skill's <code>references/</code> with frontmatter stripped and the rules applied</td><td><code>sync --update</code> moves the pin</td><td align="right">25</td></tr>
+</tbody>
+</table></div>
+<p>The 39 <code>ours</code> entries are 38 skills plus one file inside the <code>principles</code> skill. The 25 <code>reference</code> entries land in two skills: 24 in <code>principles</code> and 1 in <code>prototype</code>.</p>
+<h2 id="trade-offs-and-the-alternatives">Trade-offs and the alternatives</h2>
+<p>Most of the design sits in the order of the stages. Rules run before the patch, and <code>bun run skills patch</code> diffs against a staging that already has the rules, the override and the generated metadata, so a patch records only what no shared rule covers. When upstream moves, sync fails in one of two named ways: <code>PatchConflict</code> when a patch no longer applies, or <code>DeadRules</code> when a rewrite stopped matching. I prefer that to the alternatives below, which tend to fail by producing text that looks fine and is wrong.</p>
+<p>Editing the copies in place would be simpler on day one. It turns every upstream update into a manual three-way merge across 139 folders, which the weekly job could not do alone.</p>
+<p>Git submodules or subtrees keep upstream history, but they carry upstream text unchanged. The agent-neutral rewrites would then need a fork of each upstream, which is the cost this design avoids.</p>
+<p>Patches alone, with no shared rules, would work for a single skill. The rewrites in <code>src/rules.ts</code> repeat across many skills (the pstack model lines appear in several of them), and as patches each copy would conflict separately when upstream rewords a line. A regex survives small upstream edits, and the dead-rule check catches the case where it stops matching.</p>
+<p>Forking everything gives full control and costs a review for every upstream commit. That cost is right for the 8 skills whose text has moved far from upstream and wrong for the other 139.</p>
+<p>The design has a real cost too. A patch conflict needs a person: edit the folder until it reads right, then run <code>bun run skills patch &lt;name&gt;</code> again. And because <code>writeFolder</code> replaces the folder outright, nothing protects an edit that was never saved as a patch.</p>
+<footer class="doc-footer">
+<p><strong>Sources.</strong> Pipeline: <code>src/sync.ts</code> (<code>stage</code>, <code>syncVendored</code>, <code>syncReferences</code>, <code>writePatch</code>), <code>src/Upstream.ts</code> (<code>fetchPinned</code>), <code>src/SkillTree.ts</code> (<code>writeFolder</code>, entry classes), <code>src/rules.ts</code>, <code>src/drift.ts</code> (<code>updatePins</code>). Modes: <code>CONVENTIONS.md</code>, &quot;Layout and ownership&quot;. Counts: <code>upstream/sources.json</code> in the working tree on 16 Oct 2026, counted with <code>jq</code>; patches counted with <code>ls upstream/patches</code>. The view on alternatives is the author's reading of the code, not a recorded decision.</p>
+</footer>
+</main>
+</div>
+</body></html>

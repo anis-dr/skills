@@ -123,8 +123,8 @@ Before you change code you don't know, or when the shape of new code is the hard
 
 ## Writing
 
-- **`/show-me`** explains the current topic visually with the smallest view that makes the point: pseudocode, call trees, file trees, Mermaid, diffs, or a focused HTML file. Model-invoked: `/to-plan`, `/technical-pdf` and `/improve-codebase-architecture` use it for every visual.
-- **`/technical-writing`** is the layered standard for docs, RFCs, READMEs, PR descriptions and commit messages.
+- **`/show-me`** explains the current topic visually with the smallest view that makes the point: pseudocode, call trees, file trees, Mermaid, diffs, or a focused HTML file. Model-invoked: `/to-plan`, `/technical-pdf`, `/technical-html` and `/improve-codebase-architecture` use it for every visual.
+- **`/technical-writing`** is the layered standard for docs, RFCs, READMEs, PR descriptions and commit messages. Model-invoked: `/technical-html` uses it to pick the document type and write the sentences.
 - **`/simplified-technical-english`** writes procedures, instructions and warnings in ASD-STE100 controlled English, with an approved word list and a check script (0xpili's skill). Model-invoked: `/technical-writing` and `/technical-pdf` use it for steps and warnings.
 - **`/humanizer`** rewrites text a person will read so it sounds like the writer, ranking 26 AI patterns by strength; the writing skills run it as their final pass. **`/unslop`** is the lighter pass for text an agent reads (skills, plans, logs).
 - **`/writing-fragments`**, then **`/writing-shape`** or **`/writing-beats`** (beta): mine raw fragments with no structure, then shape them into an article paragraph by paragraph, or into a journey of beats.
@@ -209,8 +209,9 @@ Skills distilled from our own work. Most are model-invoked: the agent reaches fo
 ### Productivity
 
 - **`/i-have-adhd`** shapes replies for a reader with ADHD: next actions first, numbered steps, visible progress and fewer tangents. User-invoked: it stays active until "stop adhd mode" or "normal mode" (Ayoub Ghriss' skill).
-- **`/diagram-rules`** is the judgement for any diagram before the tool: draw or use a table, which kind answers the reader's question, what belongs in a node and on an edge, how much fits, and a check before showing it. Model-invoked: `/show-me` and `/technical-pdf` load it first.
+- **`/diagram-rules`** is the judgement for any diagram before the tool: draw or use a table, which kind answers the reader's question, what belongs in a node and on an edge, how much fits, and a check before showing it. Model-invoked: `/show-me`, `/technical-pdf` and `/technical-html` load it first.
 - **`/technical-pdf`** writes and visually checks a technical PDF (report, spec, runbook, proposal) in Typst, including client quotes whose prices compute from a day rate.
+- **`/technical-html`** turns a Markdown document (status report, design doc, how-to, reference) into one self-contained HTML page in the house style: stat cards, callouts, status pills, step cards, a table of contents and D2 diagrams laid out with TALA. It writes with `/technical-writing` and picks each visual with `/show-me`. Use it instead of `/technical-pdf` when the user wants HTML or a nicer view of a Markdown file.
 - **`/scratchpad`** decides where a file goes: durable output in Matt's structure, temporary files you may want to read or edit in the gitignored `.scratchpad/` folder, agent-only plumbing in the OS temp folder.
 - **`/checkbox-picker`** builds a local checkbox picker for bulk keep/delete decisions over dozens of items, then carries them out.
 - **`/youtube-video-to-skill`** turns a YouTube tutorial into a skill with exact frames matched to each concept (beta).
