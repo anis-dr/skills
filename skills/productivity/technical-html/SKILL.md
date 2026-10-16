@@ -10,7 +10,7 @@ You write Markdown. `scripts/build.ts` turns it into one `.html` file: no networ
 ## Files
 
 - [assets/examples/](assets/examples/): one real document per type, as `.md` source and built `.html`. Copy the closest one; do not start from a blank page.
-  - [status.md](assets/examples/status.md): status report. Stat cards, summary with a warning, status table with pills, roadmap, open decisions, risks.
+  - [status.md](assets/examples/status.md): status report, roadmap or any living document. Stat cards, summary with a warning, status table with pills, roadmap steps, open decisions, risks.
   - [design.md](assets/examples/design.md): design doc or explanation. Context, one diagram, trade-offs, with a table of contents.
   - [how-to.md](assets/examples/how-to.md): how-to or runbook. Prerequisites, numbered step cards with commands, troubleshooting table.
   - [reference.md](assets/examples/reference.md): reference. Tables and code. It is also the full syntax reference for this skill: read it before you write.
@@ -46,12 +46,14 @@ Call the Skill tool once for each, at the step named. Skip one only when the doc
 
 ## Workflow
 
-1. **Pick the type.** Use the technical-writing modes: a status report for where work stands, `design` for why and how something works, `how-to` for steps to a goal, `reference` for lookup. One document, one type. If the user brings an existing Markdown file, keep its content and fit it to the type.
+1. **Pick the type.** Use the technical-writing modes: `status` for where work stands (status reports, roadmaps, living documents), `design` for why and how something works, `how-to` for steps to a goal, `reference` for lookup. One document, one type. If the user brings an existing Markdown file, keep its content and fit it to the type.
 2. **Ground and plan.** Collect evidence first: code on the main branch, tickets, notes, measurements. Write each number with what it counts and when, and mark inference. Then plan visuals with show-me: one question per diagram, at most about nine nodes, comparisons as tables, sequences as step cards. Roadmaps, status and decisions are tables and steps, never diagrams.
 3. **Write.** Copy the closest example to `.scratchpad/<slug>/<slug>.md` (folder per the scratchpad skill; if the repo has no gitignored scratchpad, ask where). Replace all of its content; keep the structure that fits. Write the prose with technical-writing.
 4. **Build.** `bun <skill-dir>/scripts/build.ts .scratchpad/<slug>/<slug>.md` writes `<slug>.html` beside it. It fails with `build: <message>` and a line number on bad syntax, a D2 error, an uncaptioned diagram or any external resource. Fix the source and rebuild.
 5. **Verify.** Run the checklist below. Fix, rebuild, look again.
 6. **Deliver.** Tell the user the path to the `.html`. The `.md` source stays beside it.
+
+**Living documents.** A status page or roadmap is updated, not rewritten. When the work moves, edit the same `.md`: re-ground every number and claim, move `status:here` to the new current step and mark finished steps `status:done`, retire risks and decisions that are settled, change the meta line to "Updated <date>" with the commit or source it was counted at, then rebuild. The lede says it is a living document.
 
 ## Diagram rules
 
