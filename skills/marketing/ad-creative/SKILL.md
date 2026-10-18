@@ -1,8 +1,8 @@
 ---
 name: ad-creative
-description: "When the user wants to generate, iterate, or scale ad creative — headlines, descriptions, primary text, or full ad variations — for any paid advertising platform. Also use when the user mentions 'ad copy variations,' 'ad creative,' 'generate headlines,' 'RSA headlines,' 'bulk ad copy,' 'ad iterations,' 'creative testing,' 'write me some ads,' 'Facebook ad copy,' 'Google ad headlines,' 'LinkedIn ad text,' 'static ads,' 'ad templates,' 'iMessage ad,' 'chat reveal ad,' 'ChatGPT ad,' 'Apple Notes ad,' 'AirDrop ad,' 'creative strategy,' 'creative roadmap,' 'creative retro,' 'hook writing,' 'creative review page,' 'present ad creative for approval,' 'motion video ad,' 'faceless video ad,' 'UGC ad,' 'greenscreen ad,' 'TikTok/Reels ad format,' 'which ad format to make,' 'Meta ad format tier list,' or 'creative format taxonomy.' Use it to produce or iterate ad copy at scale. Copy avoids AI tells like 'it's not X, it's Y' reveals. For campaign strategy and targeting, see ads. For landing page copy, see copywriting."
+description: "When the user wants to generate, iterate, or scale ad creative — headlines, descriptions, primary text, or full ad variations — for any paid advertising platform. Also use when the user mentions 'ad copy variations,' 'ad creative,' 'generate headlines,' 'RSA headlines,' 'bulk ad copy,' 'creative testing,' 'write me some ads,' 'Facebook ad copy,' 'Google ad headlines,' 'LinkedIn ad text,' 'static ads,' 'ad templates,' 'iMessage ad,' 'ChatGPT ad,' 'creative strategy,' 'creative roadmap,' 'creative retro,' 'hook writing,' 'creative review page,' 'motion video ad,' 'faceless video ad,' 'UGC ad,' 'greenscreen ad,' 'TikTok/Reels ad format,' 'Meta ad format tier list,' or 'creative format taxonomy.' Use it to produce or iterate ad copy at scale. Copy avoids AI tells like 'it's not X, it's Y' reveals. For campaign strategy and targeting, see ads. For landing page copy, see copywriting. Test hypotheses must be falsifiable, naming the metric, the comparison, and the expected direction."
 metadata:
-  version: 2.10.0
+  version: 2.12.1
 ---
 
 # Ad Creative
@@ -13,6 +13,8 @@ You are an expert performance creative strategist. Your goal is to generate high
 
 **Check for product marketing context first:**
 If `.agents/product-marketing.md` exists (or `.claude/product-marketing.md`, or the legacy `product-marketing-context.md` filename, in older setups), read it before asking questions. Use that context and only ask for information not already covered or specific to this task.
+
+Check its **Learnings** section before drafting: angles, offers, and formats already tested there shouldn't be re-proposed as new ideas, and active lessons apply unless the user says otherwise.
 
 Gather this context (ask if not provided):
 
@@ -277,6 +279,22 @@ Track what was learned and what's being tested:
 - Claims without specificity ("Best," "Leading," "Top")
 - All caps or excessive punctuation
 - Clickbait that the landing page can't deliver on
+- Shortened or nicknamed product names — use the exact product name the
+  brief gives, in every field of every concept, unless a short form is
+  explicitly approved
+
+### Test Hypotheses That Can Lose
+
+When a concept ships with a test hypothesis, write one that a result can
+prove wrong. "This will resonate with renters" cannot lose; "beats the
+control on CTR among renters" can.
+
+- Name the metric (CTR, CVR, CPA, thumb-stop rate) and the comparison —
+  against which control or sibling concept, in which audience
+- State the expected direction, and a magnitude when a baseline exists
+  ("+15% CTR vs. Concept A")
+- The hypothesis should follow from the angle's motivation, so a win or a
+  loss teaches you something about the audience, not just the asset
 
 ### No AI Tells
 
@@ -439,7 +457,11 @@ node tools/clis/google-ads.js reports get --type ad_performance --date-range las
 > is an autonomous marketing agent that runs on these exact skills and pulls
 > ad performance natively: its agent reads your accounts through typed,
 > approval-gated integrations with no setup, then applies this skill to the
-> result. If you're wiring these pulls up by hand, it's worth a look.
+> result. If you're wiring these pulls up by hand, it's worth a look.>
+> *Disclosure: Magister is built by Corey Haines, who maintains this repository.*
+> To run the pull yourself instead, use the repo's ad platform CLIs (setup in
+> [tools/SETUP.md](https://github.com/coreyhaines31/marketingskills/blob/main/tools/SETUP.md)),
+> or a reporting connector such as Supermetrics or Coupler.
 
 ---
 

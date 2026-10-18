@@ -286,7 +286,7 @@
     "invocation": "model",
     "source": "https://github.com/cursor/plugins",
     "path": "pstack/skills/how",
-    "commit": "56aca546a690ae340eccbe57455d5cb6380024c9"
+    "commit": "019a6a20592c10bf92869e5740368f578a9997fd"
   },
   {
     "name": "why",
@@ -295,7 +295,7 @@
     "invocation": "model",
     "source": "https://github.com/cursor/plugins",
     "path": "pstack/skills/why",
-    "commit": "56aca546a690ae340eccbe57455d5cb6380024c9"
+    "commit": "019a6a20592c10bf92869e5740368f578a9997fd"
   },
   {
     "name": "architect",
@@ -311,7 +311,7 @@
     "mode": "vendor",
     "source": "https://github.com/cursor/plugins",
     "path": "pstack/skills/arena",
-    "commit": "56aca546a690ae340eccbe57455d5cb6380024c9"
+    "commit": "019a6a20592c10bf92869e5740368f578a9997fd"
   },
   {
     "name": "interrogate",
@@ -319,7 +319,7 @@
     "mode": "vendor",
     "source": "https://github.com/cursor/plugins",
     "path": "pstack/skills/interrogate",
-    "commit": "56aca546a690ae340eccbe57455d5cb6380024c9"
+    "commit": "019a6a20592c10bf92869e5740368f578a9997fd"
   },
   {
     "name": "blast-radius",
@@ -335,7 +335,7 @@
     "mode": "vendor",
     "source": "https://github.com/cursor/plugins",
     "path": "pstack/skills/recall",
-    "commit": "56aca546a690ae340eccbe57455d5cb6380024c9"
+    "commit": "019a6a20592c10bf92869e5740368f578a9997fd"
   },
   {
     "name": "show-me-your-work",
@@ -344,7 +344,7 @@
     "invocation": "model",
     "source": "https://github.com/cursor/plugins",
     "path": "pstack/skills/show-me-your-work",
-    "commit": "56aca546a690ae340eccbe57455d5cb6380024c9"
+    "commit": "019a6a20592c10bf92869e5740368f578a9997fd"
   },
   {
     "name": "typescript-best-practices",
@@ -353,7 +353,7 @@
     "invocation": "model",
     "source": "https://github.com/cursor/plugins",
     "path": "pstack/skills/typescript-best-practices",
-    "commit": "56aca546a690ae340eccbe57455d5cb6380024c9"
+    "commit": "019a6a20592c10bf92869e5740368f578a9997fd"
   },
   {
     "name": "automate-me",
@@ -361,7 +361,7 @@
     "mode": "vendor",
     "source": "https://github.com/cursor/plugins",
     "path": "pstack/skills/automate-me",
-    "commit": "56aca546a690ae340eccbe57455d5cb6380024c9"
+    "commit": "019a6a20592c10bf92869e5740368f578a9997fd"
   },
   {
     "name": "create-verification-skill",
@@ -419,7 +419,7 @@
     "into": "principles",
     "source": "https://github.com/cursor/plugins",
     "path": "pstack/skills/principle-attack-the-premise/SKILL.md",
-    "commit": "56aca546a690ae340eccbe57455d5cb6380024c9"
+    "commit": "019a6a20592c10bf92869e5740368f578a9997fd"
   },
   {
     "name": "boundary-discipline",
@@ -473,7 +473,7 @@
     "into": "principles",
     "source": "https://github.com/cursor/plugins",
     "path": "pstack/skills/principle-fix-root-causes/SKILL.md",
-    "commit": "56aca546a690ae340eccbe57455d5cb6380024c9"
+    "commit": "019a6a20592c10bf92869e5740368f578a9997fd"
   },
   {
     "name": "foundational-thinking",
@@ -509,7 +509,7 @@
     "into": "principles",
     "source": "https://github.com/cursor/plugins",
     "path": "pstack/skills/principle-make-operations-idempotent/SKILL.md",
-    "commit": "56aca546a690ae340eccbe57455d5cb6380024c9"
+    "commit": "019a6a20592c10bf92869e5740368f578a9997fd"
   },
   {
     "name": "migrate-callers-then-delete-legacy-apis",
@@ -518,7 +518,7 @@
     "into": "principles",
     "source": "https://github.com/cursor/plugins",
     "path": "pstack/skills/principle-migrate-callers-then-delete-legacy-apis/SKILL.md",
-    "commit": "56aca546a690ae340eccbe57455d5cb6380024c9"
+    "commit": "019a6a20592c10bf92869e5740368f578a9997fd"
   },
   {
     "name": "minimize-reader-load",
@@ -608,7 +608,7 @@
     "into": "principles",
     "source": "https://github.com/cursor/plugins",
     "path": "pstack/skills/principle-test-behavior-not-implementation/SKILL.md",
-    "commit": "56aca546a690ae340eccbe57455d5cb6380024c9"
+    "commit": "019a6a20592c10bf92869e5740368f578a9997fd"
   },
   {
     "name": "type-system-discipline",
@@ -617,7 +617,7 @@
     "into": "principles",
     "source": "https://github.com/cursor/plugins",
     "path": "pstack/skills/principle-type-system-discipline/SKILL.md",
-    "commit": "56aca546a690ae340eccbe57455d5cb6380024c9"
+    "commit": "019a6a20592c10bf92869e5740368f578a9997fd"
   },
   {
     "name": "one-codec-per-concept",
@@ -687,7 +687,7 @@
       "pstack/skills/poteto-mode/scripts/package.json",
       "pstack/skills/poteto-mode/scripts/bun.lock"
     ],
-    "commit": "56aca546a690ae340eccbe57455d5cb6380024c9"
+    "commit": "019a6a20592c10bf92869e5740368f578a9997fd"
   },
   {
     "name": "autonomous-run",
@@ -695,7 +695,7 @@
     "mode": "fork",
     "source": "https://github.com/cursor/plugins",
     "path": "pstack/skills/poteto-mode/playbooks/autonomous-run.md",
-    "commit": "ecc249f1e306fc64ddf83c7bed16cacf7c2239db"
+    "commit": "019a6a20592c10bf92869e5740368f578a9997fd"
   },
   {
     "name": "pause-resume",
@@ -706,7 +706,7 @@
       "pstack/skills/poteto-mode/playbooks/pause-safely.md",
       "pstack/skills/poteto-mode/playbooks/session-pickup.md"
     ],
-    "commit": "ecc249f1e306fc64ddf83c7bed16cacf7c2239db"
+    "commit": "019a6a20592c10bf92869e5740368f578a9997fd"
   },
   {
     "name": "performance",
@@ -717,7 +717,7 @@
       "pstack/skills/poteto-mode/playbooks/perf-issue.md",
       "pstack/skills/poteto-mode/playbooks/hillclimb.md"
     ],
-    "commit": "e5a8186d7b43be8d6ac4452440fbead5f1a51c70"
+    "commit": "019a6a20592c10bf92869e5740368f578a9997fd"
   },
   {
     "name": "typescript-library",
@@ -737,7 +737,7 @@
     "mode": "fork",
     "source": "https://github.com/cursor/plugins",
     "path": "pstack/skills/poteto-mode/playbooks/eval.md",
-    "commit": "ecc249f1e306fc64ddf83c7bed16cacf7c2239db"
+    "commit": "019a6a20592c10bf92869e5740368f578a9997fd"
   },
   {
     "name": "logo-surface-board",
@@ -1033,7 +1033,7 @@
     "mode": "vendor",
     "source": "https://github.com/blader/humanizer",
     "path": ".",
-    "commit": "225a6f39ac85f76ee48dbad772ea4abe4ed6c9d8"
+    "commit": "8c307f367c91bd974002f10f2be2965d642c13df"
   },
   {
     "name": "ab-testing",
@@ -1041,7 +1041,7 @@
     "mode": "vendor",
     "source": "https://github.com/coreyhaines31/marketingskills",
     "path": "skills/ab-testing",
-    "commit": "3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd"
+    "commit": "365b412152b9542499ca1439426f7fc3cc92bb65"
   },
   {
     "name": "ad-creative",
@@ -1049,7 +1049,7 @@
     "mode": "vendor",
     "source": "https://github.com/coreyhaines31/marketingskills",
     "path": "skills/ad-creative",
-    "commit": "3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd"
+    "commit": "365b412152b9542499ca1439426f7fc3cc92bb65"
   },
   {
     "name": "ads",
@@ -1057,7 +1057,7 @@
     "mode": "vendor",
     "source": "https://github.com/coreyhaines31/marketingskills",
     "path": "skills/ads",
-    "commit": "3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd"
+    "commit": "365b412152b9542499ca1439426f7fc3cc92bb65"
   },
   {
     "name": "ai-seo",
@@ -1065,7 +1065,7 @@
     "mode": "vendor",
     "source": "https://github.com/coreyhaines31/marketingskills",
     "path": "skills/ai-seo",
-    "commit": "3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd"
+    "commit": "365b412152b9542499ca1439426f7fc3cc92bb65"
   },
   {
     "name": "analytics",
@@ -1073,7 +1073,7 @@
     "mode": "vendor",
     "source": "https://github.com/coreyhaines31/marketingskills",
     "path": "skills/analytics",
-    "commit": "3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd"
+    "commit": "365b412152b9542499ca1439426f7fc3cc92bb65"
   },
   {
     "name": "aso",
@@ -1089,7 +1089,7 @@
     "mode": "vendor",
     "source": "https://github.com/coreyhaines31/marketingskills",
     "path": "skills/attribution",
-    "commit": "3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd"
+    "commit": "365b412152b9542499ca1439426f7fc3cc92bb65"
   },
   {
     "name": "churn-prevention",
@@ -1097,7 +1097,7 @@
     "mode": "vendor",
     "source": "https://github.com/coreyhaines31/marketingskills",
     "path": "skills/churn-prevention",
-    "commit": "3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd"
+    "commit": "365b412152b9542499ca1439426f7fc3cc92bb65"
   },
   {
     "name": "co-marketing",
@@ -1105,7 +1105,7 @@
     "mode": "vendor",
     "source": "https://github.com/coreyhaines31/marketingskills",
     "path": "skills/co-marketing",
-    "commit": "dda3841f0b294e01e93b1541486beefbfab0915e"
+    "commit": "365b412152b9542499ca1439426f7fc3cc92bb65"
   },
   {
     "name": "cold-email",
@@ -1153,7 +1153,7 @@
     "mode": "vendor",
     "source": "https://github.com/coreyhaines31/marketingskills",
     "path": "skills/copy-editing",
-    "commit": "3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd"
+    "commit": "365b412152b9542499ca1439426f7fc3cc92bb65"
   },
   {
     "name": "copywriting",
@@ -1161,7 +1161,7 @@
     "mode": "vendor",
     "source": "https://github.com/coreyhaines31/marketingskills",
     "path": "skills/copywriting",
-    "commit": "dda3841f0b294e01e93b1541486beefbfab0915e"
+    "commit": "365b412152b9542499ca1439426f7fc3cc92bb65"
   },
   {
     "name": "cro",
@@ -1193,7 +1193,7 @@
     "mode": "vendor",
     "source": "https://github.com/coreyhaines31/marketingskills",
     "path": "skills/emails",
-    "commit": "3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd"
+    "commit": "365b412152b9542499ca1439426f7fc3cc92bb65"
   },
   {
     "name": "events",
@@ -1209,7 +1209,7 @@
     "mode": "vendor",
     "source": "https://github.com/coreyhaines31/marketingskills",
     "path": "skills/free-tools",
-    "commit": "5b2c0007766c6a1cf1d53fd8fc73e979e0821022"
+    "commit": "365b412152b9542499ca1439426f7fc3cc92bb65"
   },
   {
     "name": "image",
@@ -1225,7 +1225,7 @@
     "mode": "vendor",
     "source": "https://github.com/coreyhaines31/marketingskills",
     "path": "skills/influencer-marketing",
-    "commit": "dda3841f0b294e01e93b1541486beefbfab0915e"
+    "commit": "365b412152b9542499ca1439426f7fc3cc92bb65"
   },
   {
     "name": "launch",
@@ -1265,7 +1265,7 @@
     "mode": "vendor",
     "source": "https://github.com/coreyhaines31/marketingskills",
     "path": "skills/marketing-loops",
-    "commit": "3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd"
+    "commit": "365b412152b9542499ca1439426f7fc3cc92bb65"
   },
   {
     "name": "marketing-plan",
@@ -1273,7 +1273,7 @@
     "mode": "vendor",
     "source": "https://github.com/coreyhaines31/marketingskills",
     "path": "skills/marketing-plan",
-    "commit": "3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd"
+    "commit": "365b412152b9542499ca1439426f7fc3cc92bb65"
   },
   {
     "name": "marketing-psychology",
@@ -1289,7 +1289,7 @@
     "mode": "vendor",
     "source": "https://github.com/coreyhaines31/marketingskills",
     "path": "skills/offers",
-    "commit": "5b2c0007766c6a1cf1d53fd8fc73e979e0821022"
+    "commit": "365b412152b9542499ca1439426f7fc3cc92bb65"
   },
   {
     "name": "onboarding",
@@ -1297,7 +1297,7 @@
     "mode": "vendor",
     "source": "https://github.com/coreyhaines31/marketingskills",
     "path": "skills/onboarding",
-    "commit": "5b2c0007766c6a1cf1d53fd8fc73e979e0821022"
+    "commit": "365b412152b9542499ca1439426f7fc3cc92bb65"
   },
   {
     "name": "paywalls",
@@ -1321,7 +1321,7 @@
     "mode": "vendor",
     "source": "https://github.com/coreyhaines31/marketingskills",
     "path": "skills/pricing",
-    "commit": "3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd"
+    "commit": "365b412152b9542499ca1439426f7fc3cc92bb65"
   },
   {
     "name": "product-marketing",
@@ -1329,7 +1329,7 @@
     "mode": "vendor",
     "source": "https://github.com/coreyhaines31/marketingskills",
     "path": "skills/product-marketing",
-    "commit": "5b2c0007766c6a1cf1d53fd8fc73e979e0821022"
+    "commit": "365b412152b9542499ca1439426f7fc3cc92bb65"
   },
   {
     "name": "programmatic-seo",
@@ -1361,7 +1361,7 @@
     "mode": "vendor",
     "source": "https://github.com/coreyhaines31/marketingskills",
     "path": "skills/referrals",
-    "commit": "3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd"
+    "commit": "365b412152b9542499ca1439426f7fc3cc92bb65"
   },
   {
     "name": "revops",
@@ -1369,7 +1369,7 @@
     "mode": "vendor",
     "source": "https://github.com/coreyhaines31/marketingskills",
     "path": "skills/revops",
-    "commit": "3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd"
+    "commit": "365b412152b9542499ca1439426f7fc3cc92bb65"
   },
   {
     "name": "sales-enablement",
@@ -1393,7 +1393,7 @@
     "mode": "vendor",
     "source": "https://github.com/coreyhaines31/marketingskills",
     "path": "skills/seo-audit",
-    "commit": "3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd"
+    "commit": "365b412152b9542499ca1439426f7fc3cc92bb65"
   },
   {
     "name": "signup",
@@ -1425,7 +1425,7 @@
     "mode": "vendor",
     "source": "https://github.com/coreyhaines31/marketingskills",
     "path": "skills/social",
-    "commit": "3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd"
+    "commit": "365b412152b9542499ca1439426f7fc3cc92bb65"
   },
   {
     "name": "video",
@@ -1489,7 +1489,7 @@
     "mode": "vendor",
     "source": "https://github.com/cursor/plugins",
     "path": "pstack/skills/correct",
-    "commit": "56aca546a690ae340eccbe57455d5cb6380024c9"
+    "commit": "019a6a20592c10bf92869e5740368f578a9997fd"
   },
   {
     "name": "ketchup",
@@ -1497,7 +1497,7 @@
     "mode": "vendor",
     "source": "https://github.com/cursor/plugins",
     "path": "pstack/skills/ketchup",
-    "commit": "56aca546a690ae340eccbe57455d5cb6380024c9"
+    "commit": "019a6a20592c10bf92869e5740368f578a9997fd"
   },
   {
     "name": "benchmark-checklist",

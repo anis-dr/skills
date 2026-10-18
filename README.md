@@ -74,7 +74,7 @@ Add `-g` to install into your user folder instead of the current project. Not su
 - [domain-modeling](skills/engineering/domain-modeling/SKILL.md): Build and sharpen a domain model
 - [drizzle-postgres](skills/engineering/drizzle-postgres/SKILL.md): Drizzle bulk params, migration merges, baselines
 - [effect-ts](skills/engineering/effect-ts/SKILL.md): Effect v3 (stable) guidance for TypeScript; for an Effect v4 project use effect-v4 instead.
-- [effect-v4](skills/engineering/effect-v4/SKILL.md): Effect v4 (beta) development and v3 → v4 migration guidance.
+- [effect-v4](skills/engineering/effect-v4/SKILL.md): Effect v4 (stable, effect@4.0.x) development and v3 → v4 migration guidance.
 - [estimate](skills/engineering/estimate/SKILL.md): Ranged, calibrated estimates for agent runs, tickets and quotes
 - [git-split-amended-followup](skills/engineering/git-split-amended-followup/SKILL.md): Split an amended fix into its own follow-up commit
 - [how](skills/engineering/how/SKILL.md): Use for "how does X work", code walkthroughs before changing something, and placement / ownership / layering questions ("where should this live", "which package owns this", "is this the right layer").
@@ -124,7 +124,7 @@ Add `-g` to install into your user folder instead of the current project. Not su
 - [grill-me](skills/productivity/grill-me/SKILL.md): Sharpen a plan through interview
 - [handoff](skills/productivity/handoff/SKILL.md): Compact a conversation into a handoff
 - [i-have-adhd](skills/productivity/i-have-adhd/SKILL.md): Action-first output for ADHD readers
-- [ketchup](skills/productivity/ketchup/SKILL.md): Catch the user up on everything in this chat since their last message, in plain words.
+- [ketchup](skills/productivity/ketchup/SKILL.md): Catch the user up on what changed in this chat since their last message, in a few plain sentences and small visuals.
 - [teach](skills/productivity/teach/SKILL.md): Learn a concept in a guided workspace
 - [to-questionnaire](skills/productivity/to-questionnaire/SKILL.md): Front-load questions into a doc for someone to answer
 - [wait-what](skills/productivity/wait-what/SKILL.md): Re-pitch that: simpler, with the context I'm missing
