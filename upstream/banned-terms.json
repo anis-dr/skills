@@ -18,8 +18,8 @@
   },
   {
     "pattern": "\\b(?:claude|gpt|grok|gemini|composer)-(?:\\d|opus|sonnet|haiku)[\\w.-]*",
-    "reason": "model id; name models by role (ad-creative names image and speech APIs, not agent models)",
-    "allowIn": ["marketing/ad-creative"]
+    "reason": "model id; name models by role (ad-creative names image and speech APIs, and effect-v4's Effect AI examples pass provider model names as API arguments; neither names an agent model)",
+    "allowIn": ["marketing/ad-creative", "engineering/effect-v4"]
   },
   {
     "pattern": "skill://",

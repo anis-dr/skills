@@ -928,7 +928,7 @@
     "mode": "vendor",
     "source": "https://github.com/teeverc/effect-ts",
     "path": "skills/effect-v4",
-    "commit": "2d77eb8e9f2acc00a0f16e5e5b0c37be9a4c779f"
+    "commit": "96d13f2a95fd91bc7de0493ccfb19026099f6ee8"
   },
   {
     "name": "effect-ts",
@@ -936,7 +936,7 @@
     "mode": "vendor",
     "source": "https://github.com/teeverc/effect-ts",
     "path": "skills/effect-ts",
-    "commit": "2d77eb8e9f2acc00a0f16e5e5b0c37be9a4c779f"
+    "commit": "96d13f2a95fd91bc7de0493ccfb19026099f6ee8"
   },
   {
     "name": "vercel-composition-patterns",
