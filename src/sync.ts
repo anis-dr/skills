@@ -1,4 +1,4 @@
-import { Effect, FileSystem, Path, Schema } from "effect";
+import { Effect, FileSystem, Option, Path, Schema } from "effect";
 
 import { applyRules, ruleNames } from "./rules.ts";
 import type { ReferenceEntry, SourceEntry, VendorEntry } from "./SkillTree.ts";
@@ -123,6 +123,19 @@ const syncVendored = Effect.fn("syncVendored")(function* (entry: VendorEntry) {
   const staged = yield* stage(entry, true);
   yield* (yield* SkillTree).writeFolder(entry.skill, staged.dir);
   return staged.used;
+}, Effect.scoped);
+
+// The reason a vendored skill's patch fails on this entry's commit; none when it
+// applies or the skill has no patch. Writes nothing.
+export const patchConflict = Effect.fn("patchConflict")(function* (
+  entry: VendorEntry
+) {
+  return yield* stage(entry, true).pipe(
+    Effect.map(() => Option.none<string>()),
+    Effect.catchTag("PatchConflict", (error) =>
+      Effect.succeedSome(error.reason)
+    )
+  );
 }, Effect.scoped);
 
 // Rebuilds one skill's references/ folder from its reference entries: each

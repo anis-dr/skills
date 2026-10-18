@@ -166,6 +166,54 @@ layer(fixtureLayer)("updatePins then sync", (it) => {
 });
 
 layer(fixtureLayer)(
+  "updatePins when a patch no longer applies at HEAD",
+  (it) => {
+    it.effect(
+      "keeps that skill's pin and folder and lists it as a patch conflict",
+      () =>
+        Effect.gen(function* () {
+          const fs = yield* FileSystem.FileSystem;
+          const { ask, commits, root, tdd } = yield* Fixture;
+          yield* fs.makeDirectory(`${root}/upstream/patches`, {
+            recursive: true,
+          });
+          yield* fs.writeFileString(
+            `${root}/upstream/patches/tdd.patch`,
+            "--- a/SKILL.md\n+++ b/SKILL.md\n@@ -5 +5 @@\n-Body at A.\n+Body patched.\n"
+          );
+          yield* fs.makeDirectory(`${root}/skills/engineering/ask`, {
+            recursive: true,
+          });
+          yield* fs.writeFileString(
+            `${root}/skills/engineering/ask/SKILL.md`,
+            "Our router.\n"
+          );
+          yield* sync([tdd, ask]);
+
+          const drift = yield* findDrift([tdd, ask]);
+          const updated = updatePins([tdd, ask], drift);
+          yield* sync(updated);
+
+          const report = renderDrift(drift);
+          assert.strictEqual(
+            updated[0]?.mode === "vendor" && updated[0].commit,
+            commits.a
+          );
+          assert.strictEqual(
+            yield* fs.readFileString(`${root}/skills/engineering/tdd/SKILL.md`),
+            skillMd("tdd", "Body patched.")
+          );
+          assert.match(
+            report,
+            /## Patch conflicts: needs a hand fix\n[\s\S]*### tdd \(vendor/u
+          );
+          assert.notInclude(report, "## Vendored");
+        })
+    );
+  }
+);
+
+layer(fixtureLayer)(
   "findDrift on a fork built from several upstream paths",
   (it) => {
     it.effect("lists commits that touch any of the paths", () =>

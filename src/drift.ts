@@ -1,4 +1,4 @@
-import { Effect } from "effect";
+import { Effect, Option } from "effect";
 
 import type {
   ForkEntry,
@@ -6,6 +6,7 @@ import type {
   SourceEntry,
   VendorEntry,
 } from "./SkillTree.ts";
+import { patchConflict } from "./sync.ts";
 import { Upstream } from "./Upstream.ts";
 
 export interface Drift {
@@ -15,6 +16,8 @@ export interface Drift {
   // [sha, subject] of each commit after the pin that touches the entry's path, newest first.
   readonly commits: ReadonlyArray<readonly [string, string]>;
   readonly stat: string;
+  // Why the vendored skill's patch fails on head; its pin stays until a person fixes the patch.
+  readonly conflict: Option.Option<string>;
 }
 
 // The upstream paths an entry is built from.
@@ -35,10 +38,16 @@ export const findDrift = Effect.fn("findDrift")(function* (
         pathsOf(entry)
       );
       if (commits.length > 0) {
+        const head = yield* upstream.head(entry.source);
+        let conflict = Option.none<string>();
+        if (entry.mode === "vendor") {
+          conflict = yield* patchConflict(entry.withCommit(head));
+        }
         drift.push({
           commits,
+          conflict,
           entry,
-          head: yield* upstream.head(entry.source),
+          head,
           stat: yield* upstream.diffStat(
             entry.source,
             entry.commit,
@@ -53,20 +62,26 @@ export const findDrift = Effect.fn("findDrift")(function* (
 
 const pin = (entry: SourceEntry, drift: ReadonlyArray<Drift>): SourceEntry => {
   const moved = drift.find((each) => each.entry === entry);
-  if (moved === undefined || entry.mode === "fork" || entry.mode === "ours") {
+  if (
+    moved === undefined ||
+    Option.isSome(moved.conflict) ||
+    entry.mode === "fork" ||
+    entry.mode === "ours"
+  ) {
     return entry;
   }
   return entry.withCommit(moved.head);
 };
 
 // Vendored skills and references move to upstream HEAD; forks keep their base
-// commit until a human ports the change (the upstream-review skill).
+// commit until a human ports the change (the upstream-review skill), and so does
+// a vendored skill whose patch no longer applies.
 export const updatePins = (
   entries: ReadonlyArray<SourceEntry>,
   drift: ReadonlyArray<Drift>
 ): ReadonlyArray<SourceEntry> => entries.map((entry) => pin(entry, drift));
 
-const section = ({ commits, entry, head, stat }: Drift) =>
+const section = ({ commits, conflict, entry, head, stat }: Drift) =>
   [
     `### ${entry.name} (${entry.mode}, ${entry.skill})`,
     "",
@@ -74,16 +89,24 @@ const section = ({ commits, entry, head, stat }: Drift) =>
     "",
     ...commits.map(([sha, subject]) => `- ${sha.slice(0, 7)} ${subject}`),
     "",
+    ...Option.match(conflict, {
+      onNone: () => [],
+      onSome: (reason) => ["```text", reason.trimEnd(), "```", ""],
+    }),
     "```text",
     stat.trimEnd(),
     "```",
     "",
   ].join("\n");
 
-// upstream/DRIFT.md: forks that need a human port first, then what --update moves.
+// upstream/DRIFT.md: what needs a person first (forks, then patches that no
+// longer apply), then what --update moves.
 export const renderDrift = (drift: ReadonlyArray<Drift>) => {
   const forks = drift.filter((each) => each.entry.mode === "fork");
-  const vendored = drift.filter((each) => each.entry.mode !== "fork");
+  const conflicts = drift.filter((each) => Option.isSome(each.conflict));
+  const vendored = drift.filter(
+    (each) => each.entry.mode !== "fork" && Option.isNone(each.conflict)
+  );
   const lines = [
     "# Upstream drift",
     "",
@@ -95,6 +118,15 @@ export const renderDrift = (drift: ReadonlyArray<Drift>) => {
   }
   if (forks.length > 0) {
     lines.push("## Forks: needs review", "", ...forks.map(section));
+  }
+  if (conflicts.length > 0) {
+    lines.push(
+      "## Patch conflicts: needs a hand fix",
+      "",
+      "These skills keep their old pin: their patch no longer applies to upstream HEAD. Move the pin by hand, run `bun run skills sync`, redo the edit in the skill folder, then run `bun run skills patch <name>`.",
+      "",
+      ...conflicts.map(section)
+    );
   }
   if (vendored.length > 0) {
     lines.push("## Vendored", "", ...vendored.map(section));
