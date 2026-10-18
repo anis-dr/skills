@@ -70,6 +70,17 @@ const rules: ReadonlyArray<Rule> = [
     ],
   },
   {
+    // pstack's per-spawn reasoning level and fast/standard speed, a Cursor-only
+    // setting described in poteto-mode, which is not vendored here.
+    name: "subagentEffort",
+    rewrites: [
+      [
+        / Pick each subagent's reasoning level and fast or standard speed for the job, per the Subagents section(?: of the \*\*poteto-mode\*\* skill)?\./gu,
+        "",
+      ],
+    ],
+  },
+  {
     // Operative "Run the **x** skill" becomes a Skill tool call (CONVENTIONS.md).
     name: "skillCalls",
     rewrites: [

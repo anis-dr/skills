@@ -2,7 +2,7 @@ import { assert, describe, it } from "@effect/vitest";
 
 import { applyRules } from "../src/rules.ts";
 
-// Each case is real text from cursor/plugins@56aca54 (modelPreamble: @ecc249f) and the neutral text sync must produce.
+// Each case is real text from cursor/plugins@56aca54 (modelPreamble: @ecc249f, subagentEffort: @019a6a2) and the neutral text sync must produce.
 const cases: ReadonlyArray<readonly [string, string, string]> = [
   [
     "modelPreamble",
@@ -113,6 +113,11 @@ const cases: ReadonlyArray<readonly [string, string, string]> = [
     "skillsFolder",
     "the project-local skill whose body has launch/drive sections and a feature map (usually `.cursor/skills/verify-*/`).\n",
     "the project-local skill whose body has launch/drive sections and a feature map (usually `.agents/skills/verify-*/`).\n",
+  ],
+  [
+    "subagentEffort",
+    "Not a redo of the work, a scan for what's suboptimal or risky. Pick each subagent's reasoning level and fast or standard speed for the job, per the Subagents section of the **poteto-mode** skill.\n",
+    "Not a redo of the work, a scan for what's suboptimal or risky.\n",
   ],
 ];
 
