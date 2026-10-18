@@ -1,11 +1,11 @@
 ---
 name: technical-html
-description: "Write a technical document in Markdown and build it into one self-contained HTML page in the house style: status report, design doc, how-to or reference, with stat cards, callouts, status pills, step cards, a table of contents and D2 diagrams laid out with TALA. Use when the user wants a document or report as HTML, a shareable page, a nicer view of a Markdown file, or 'a document like the last one'. For a PDF use technical-pdf instead."
+description: "Write a technical document in Markdown and build it into one self-contained HTML page in the house style: status report, design doc, how-to or reference, with stat cards, callouts, status pills, step cards, a table of contents, D2 diagrams laid out with TALA, and light and dark modes. Use when the user wants a document or report as HTML, a shareable page, a nicer view of a Markdown file, or 'a document like the last one'. For a PDF use technical-pdf instead."
 ---
 
 # Technical HTML
 
-You write Markdown. `scripts/build.ts` turns it into one `.html` file: no network, no JavaScript, house CSS inlined, diagrams rendered with TALA and inlined as SVG. The look lives in [assets/style.css](assets/style.css). Do not restyle it per document.
+You write Markdown. `scripts/build.ts` turns it into one `.html` file: no network, house CSS inlined, diagrams rendered with TALA and inlined as SVG. The page follows the reader's light or dark setting, and a small button at the top right switches it; that toggle is the only JavaScript in the page. The look lives in [assets/style.css](assets/style.css). Do not restyle it per document.
 
 ## Files
 
@@ -73,13 +73,13 @@ tmp="$(mktemp -d)"
 page="file://$PWD/.scratchpad/<slug>/<slug>.html"
 "$chrome" --headless=new --disable-gpu --hide-scrollbars --window-size=1280,6000 --screenshot="$tmp/desktop.png" "$page"
 "$chrome" --headless=new --disable-gpu --hide-scrollbars --window-size=520,9000 --screenshot="$tmp/narrow.png" "$page"
-magick "$tmp/desktop.png" -trim +repage -crop 1280x1500 +repage "$tmp/desktop-%d.png"
-magick "$tmp/narrow.png" -trim +repage -crop 520x1500 +repage "$tmp/narrow-%d.png"
+"$chrome" --headless=new --disable-gpu --hide-scrollbars --blink-settings=preferredColorScheme=0 --window-size=1280,6000 --screenshot="$tmp/dark.png" "$page"
+for shot in desktop narrow dark; do w=1280; [ $shot = narrow ] && w=520; magick "$tmp/$shot.png" -trim +repage -crop ${w}x1500 +repage "$tmp/$shot-%d.png"; done
 ```
 
 A tall screenshot is shrunk when you read it, so read every slice, then `rm -rf "$tmp"`. Check:
 
-- Every diagram is legible at both widths, with no clipped label and no unexplained dashed or red edge.
+- Every diagram is legible at both widths and in dark mode, with no clipped label and no unexplained dashed or red edge.
 - Nothing overflows the page at 520 px. Tables scroll inside their frame.
 - Every pill matches its row's evidence. "Built" means proven by the stated basis, and the basis is on the page.
 - Every number has its unit and scope. Inferences are marked.

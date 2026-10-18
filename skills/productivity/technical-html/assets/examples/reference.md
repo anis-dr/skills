@@ -178,6 +178,19 @@ GitHub tables render inside `<div class="table-wrap">`, which scrolls sideways w
 
 Raw HTML in the Markdown passes through unchanged. It is allowed and discouraged: the class names above are the styling contract, and raw HTML can step outside it.
 
+## Light and dark
+
+Every page supports both schemes. There is no syntax for it.
+
+| Part | Behaviour |
+|---|---|
+| Default | The page follows the reader's system setting, through `<meta name="color-scheme" content="light dark">` and `light-dark()` colour tokens in `style.css`. |
+| Toggle | A button at the top right switches to the scheme not on screen. A choice that differs from the system setting is stored in `localStorage` under `color-scheme`. Switching back to the system scheme removes it. |
+| Scripts | One line in `<head>` applies the stored choice before the page paints, and one short script at the end of `<body>` handles the button. They are the only JavaScript in the page. |
+| Without JavaScript | The page still follows the system setting. The toggle has no effect. |
+| Diagrams | `style.css` recolours the `house.d2` palette and the D2 default colours, so diagrams follow the scheme. A colour outside that palette keeps its light value. |
+| Print | Always light. The button is hidden. |
+
 ## Build failures
 
 Each failure prints `build: <message>` and exits with code 1. Where the source has a line, the message names it.
