@@ -1497,7 +1497,7 @@
     "mode": "vendor",
     "source": "https://github.com/cursor/plugins",
     "path": "pstack/skills/ketchup",
-    "commit": "019a6a20592c10bf92869e5740368f578a9997fd"
+    "commit": "d457567332aa6989e753ea289f30ea2bfbc80bc0"
   },
   {
     "name": "benchmark-checklist",
