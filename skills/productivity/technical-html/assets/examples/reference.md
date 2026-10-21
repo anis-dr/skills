@@ -105,6 +105,15 @@ Labels are plain strings. Write a line break as `\n`. A `|md` label fails the bu
 
 Every other fenced block renders as `<pre data-lang="<lang>"><code>`. The language shows as a small label on the block. There is no syntax highlighting and no script.
 
+A `diff` block is the one exception: each line is tinted by its first character. Lines starting with `+` are green, `-` red and `@@` blue; other lines stay plain. Keep the marker in the first column.
+
+```diff
+ defineAgent({
+-  output: { schema: Cards },
++  output: { toolId: "mcp__sapio__present" },
+ })
+```
+
 ## Callouts
 
 A blockquote whose first line is a GitHub alert marker becomes a callout.

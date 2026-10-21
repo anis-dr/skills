@@ -257,6 +257,12 @@ html = html
     });
   })
   .replace(/<pre><code class="language-([^"]+)">/g, '<pre data-lang="$1"><code>')
+  // Diff blocks: one span per line, classed by its first character, so CSS can tint added and removed rows.
+  .replace(/(<pre data-lang="diff"><code>)([\s\S]*?)(<\/code><\/pre>)/g, (_all, open: string, body: string, close: string) => {
+    const lines = body.replace(/\n$/, "").split("\n");
+    const kind = (l: string) => (l.startsWith("@@") ? " hunk" : l[0] === "+" ? " add" : l[0] === "-" ? " del" : "");
+    return open + lines.map((l) => `<span class="ln${kind(l)}">${l || " "}</span>`).join("") + close;
+  })
   .replace(/<table>/g, '<div class="table-wrap"><table>')
   .replace(/<\/table>/g, "</table></div>");
 

@@ -27,6 +27,7 @@ Full details and every build failure are in [reference.md](assets/examples/refer
 - `> [!NOTE]`, `[!TIP]`, `[!IMPORTANT]`, `[!WARNING]`, `[!CAUTION]`: callouts.
 - Inline code `status:built`, `status:gap`, `status:partly`, `status:none`, `status:done`, `status:here`, optionally followed by a label: pills.
 - `::: steps` around an ordered list: numbered step cards. Bold first line is the step title. A `status:done` pill marks a finished step, one `status:here` pill marks the current one.
+- ` ```diff ` fenced block: lines starting `+`, `-` and `@@` are tinted green, red and blue.
 - `::: card` and `::: footer`: a bordered card, and the sources block at the end. Divs do not nest.
 
 ## Skills to load
