@@ -264,10 +264,12 @@ Add `-g` to install into your user folder instead of the current project. Not su
 | Command | What it does |
 |---|---|
 | `bun run skills sync` | Rebuilds every vendored skill from its pinned upstream commit, then applies the agent-neutral rules and patches. |
-| `bun run skills sync --report` | Writes `upstream/DRIFT.md`: upstream commits since each pin. |
+| `bun run skills sync --report` | Writes `upstream/DRIFT.md`: upstream commits since each pin, and upstream skills and subagents nothing tracks. |
 | `bun run skills sync --update` | Moves vendored skills to upstream HEAD and writes the report. |
-| `bun run skills patch <name>` | Saves hand edits to a vendored skill as its patch. |
+| `bun run skills patch <name>` | Saves hand edits to a vendored skill or agent as its patch. |
 | `bun run skills check` | Checks frontmatter, invocation, skill calls, banned terms, the router and this README. |
 | `bun run skills readme` | Regenerates the skill list above. |
+
+Subagent definitions vendored from upstream live in `agents/<name>.md`. An entry with `"mode": "agent"` in `upstream/sources.json` names the upstream Markdown file, and sync builds it like a vendored skill: the agent-neutral rules, then `upstream/patches/<name>.patch`. The drift report lists every upstream skill and subagent that no entry tracks; to leave one out on purpose, add it to `upstream/ignored.json` with a reason.
 
 [CONVENTIONS.md](CONVENTIONS.md) says how a skill here is written. Upstream sources and licenses are in [NOTICE.md](NOTICE.md).

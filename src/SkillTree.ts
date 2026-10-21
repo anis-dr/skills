@@ -109,13 +109,54 @@ export class ReferenceEntry extends Schema.Class<ReferenceEntry>(
   }
 }
 
+// An upstream subagent definition that sync writes to `agents/<name>.md` at
+// the repo root, with the rules and `upstream/patches/<name>.patch` applied.
+export class AgentEntry extends Schema.Class<AgentEntry>("AgentEntry")({
+  name: Schema.String,
+  mode: Schema.Literal("agent"),
+  source: Schema.String,
+  // Markdown file inside the upstream repo.
+  path: Schema.String,
+  commit: Commit,
+}) {
+  // The file sync writes, relative to the repo root; reports use it as the label.
+  get skill() {
+    return `agents/${this.name}.md`;
+  }
+
+  withCommit(commit: string) {
+    return new AgentEntry({
+      commit,
+      mode: this.mode,
+      name: this.name,
+      path: this.path,
+      source: this.source,
+    });
+  }
+}
+
 // One entry of upstream/sources.json.
-export type SourceEntry = ForkEntry | OursEntry | ReferenceEntry | VendorEntry;
+export type SourceEntry =
+  | AgentEntry
+  | ForkEntry
+  | OursEntry
+  | ReferenceEntry
+  | VendorEntry;
 
 const Entries = Schema.Array(
-  Schema.Union([VendorEntry, ForkEntry, OursEntry, ReferenceEntry])
+  Schema.Union([VendorEntry, ForkEntry, OursEntry, ReferenceEntry, AgentEntry])
 );
 const Sources = Schema.fromJsonString(Entries, { space: 2 });
+
+// An upstream skill or subagent definition (or a folder of them) that the drift
+// report leaves out of its untracked list on purpose.
+export class IgnoredEntry extends Schema.Class<IgnoredEntry>("IgnoredEntry")({
+  source: Schema.String,
+  path: Schema.String,
+  reason: Schema.String,
+}) {}
+
+const Ignored = Schema.fromJsonString(Schema.Array(IgnoredEntry));
 
 // A regex (matched case-insensitively) that no file under skills/ may contain.
 export class BannedTerm extends Schema.Class<BannedTerm>("BannedTerm")({
@@ -160,8 +201,15 @@ export class SkillTree extends Context.Service<
       folder: string,
       from: string
     ) => Effect.Effect<void, PlatformError>;
+    // upstream/ignored.json; none when the file is missing.
+    readonly readIgnored: Effect.Effect<
+      ReadonlyArray<IgnoredEntry>,
+      PlatformError | Schema.SchemaError
+    >;
     // Absolute path of a skill folder ("<bucket>/<name>").
     readonly skillDir: (skill: string) => string;
+    // Absolute path of the top-level agents/ folder, which may not exist.
+    readonly agentsDir: string;
     // Absolute path of upstream/patches/<name>.patch, which may not exist.
     readonly patchPath: (name: string) => string;
     // Every "<bucket>/<name>" folder under skills/, sorted.
@@ -292,11 +340,23 @@ export class SkillTree extends Context.Service<
           return [...publicTerms, ...privateTerms];
         }).pipe(Effect.withSpan("SkillTree.readBannedTerms"));
 
+        const readIgnored = Effect.gen(function* () {
+          const file = path.join(root, "upstream", "ignored.json");
+          if (!(yield* fs.exists(file))) {
+            return [];
+          }
+          return yield* Schema.decodeEffect(Ignored)(
+            yield* fs.readFileString(file)
+          );
+        }).pipe(Effect.withSpan("SkillTree.readIgnored"));
+
         return SkillTree.of({
+          agentsDir: path.resolve(root, "agents"),
           listSkills,
           patchPath: (name) =>
             path.resolve(root, "upstream", "patches", `${name}.patch`),
           readBannedTerms,
+          readIgnored,
           readSkillFiles,
           readSources,
           readText,

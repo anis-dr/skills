@@ -73,6 +73,15 @@ export class Upstream extends Context.Service<
       from: string,
       paths: ReadonlyArray<string>
     ) => Effect.Effect<string, UpstreamFetchError>;
+    // Every file path at HEAD, from the mirror's trees (no file contents fetched).
+    readonly filesAtHead: (
+      source: string
+    ) => Effect.Effect<ReadonlyArray<string>, UpstreamFetchError>;
+    // One file's content at HEAD; the mirror fetches that blob on first read.
+    readonly readAtHead: (
+      source: string,
+      file: string
+    ) => Effect.Effect<string, UpstreamFetchError>;
   }
 >()("skills/Upstream") {
   static readonly layer = (cacheDir: string) =>
@@ -211,7 +220,35 @@ export class Upstream extends Context.Service<
           (effect, source, from) => failWith(source, from)(effect)
         );
 
-        return Upstream.of({ commitsSince, diffStat, fetchPinned, head });
+        const filesAtHead = Effect.fn("Upstream.filesAtHead")(
+          function* (source: string) {
+            const out = yield* git(yield* mirror(source), [
+              "ls-tree",
+              "-r",
+              "--name-only",
+              "-z",
+              "HEAD",
+            ]);
+            return out.split("\0").filter((file) => file !== "");
+          },
+          (effect, source) => failWith(source, "HEAD")(effect)
+        );
+
+        const readAtHead = Effect.fn("Upstream.readAtHead")(
+          function* (source: string, file: string) {
+            return yield* git(yield* mirror(source), ["show", `HEAD:${file}`]);
+          },
+          (effect, source) => failWith(source, "HEAD")(effect)
+        );
+
+        return Upstream.of({
+          commitsSince,
+          diffStat,
+          fetchPinned,
+          filesAtHead,
+          head,
+          readAtHead,
+        });
       })
     );
 }

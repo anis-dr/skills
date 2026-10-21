@@ -1,0 +1,637 @@
+[
+  {
+    "source": "https://github.com/cursor/plugins",
+    "path": "advisor/agents/advisor-subagent.md",
+    "reason": "Cursor Advisor plugin: model checkpoints tied to Cursor model switching"
+  },
+  {
+    "source": "https://github.com/cursor/plugins",
+    "path": "advisor/skills/advisor",
+    "reason": "Cursor Advisor plugin: model checkpoints tied to Cursor model switching"
+  },
+  {
+    "source": "https://github.com/cursor/plugins",
+    "path": "agent-compatibility/agents/compatibility-scan-review.md",
+    "reason": "Wraps the agent-compatibility CLI; tool-specific"
+  },
+  {
+    "source": "https://github.com/cursor/plugins",
+    "path": "agent-compatibility/agents/docs-reliability-review.md",
+    "reason": "Wraps the agent-compatibility CLI; tool-specific"
+  },
+  {
+    "source": "https://github.com/cursor/plugins",
+    "path": "agent-compatibility/agents/startup-review.md",
+    "reason": "Wraps the agent-compatibility CLI; tool-specific"
+  },
+  {
+    "source": "https://github.com/cursor/plugins",
+    "path": "agent-compatibility/agents/validation-review.md",
+    "reason": "Wraps the agent-compatibility CLI; tool-specific"
+  },
+  {
+    "source": "https://github.com/cursor/plugins",
+    "path": "agent-compatibility/skills/check-agent-compatibility",
+    "reason": "Wraps the agent-compatibility CLI; tool-specific"
+  },
+  {
+    "source": "https://github.com/cursor/plugins",
+    "path": "cli-for-agent/skills/cli-for-agents",
+    "reason": "pending decision"
+  },
+  {
+    "source": "https://github.com/cursor/plugins",
+    "path": "continual-learning/agents/agents-memory-updater.md",
+    "reason": "Cursor transcript mining for AGENTS.md; Cursor only"
+  },
+  {
+    "source": "https://github.com/cursor/plugins",
+    "path": "continual-learning/skills/continual-learning",
+    "reason": "Cursor transcript mining for AGENTS.md; Cursor only"
+  },
+  {
+    "source": "https://github.com/cursor/plugins",
+    "path": "create-plugin/agents/plugin-architect.md",
+    "reason": "Cursor plugin authoring only"
+  },
+  {
+    "source": "https://github.com/cursor/plugins",
+    "path": "create-plugin/skills/create-plugin-scaffold",
+    "reason": "Cursor plugin authoring only"
+  },
+  {
+    "source": "https://github.com/cursor/plugins",
+    "path": "create-plugin/skills/review-plugin-submission",
+    "reason": "Cursor plugin authoring only"
+  },
+  {
+    "source": "https://github.com/cursor/plugins",
+    "path": "cursor-sdk/skills/cursor-sdk",
+    "reason": "Cursor SDK specific"
+  },
+  {
+    "source": "https://github.com/cursor/plugins",
+    "path": "cursor-team-kit/agents/ci-watcher.md",
+    "reason": "Cursor team's workflow kit; babysit, pr and make-pr-easy-to-review cover its PR and CI parts"
+  },
+  {
+    "source": "https://github.com/cursor/plugins",
+    "path": "cursor-team-kit/agents/thermo-nuclear-code-quality-review.md",
+    "reason": "Cursor team's workflow kit; babysit, pr and make-pr-easy-to-review cover its PR and CI parts"
+  },
+  {
+    "source": "https://github.com/cursor/plugins",
+    "path": "cursor-team-kit/skills/check-compiler-errors",
+    "reason": "Cursor team's workflow kit; babysit, pr and make-pr-easy-to-review cover its PR and CI parts"
+  },
+  {
+    "source": "https://github.com/cursor/plugins",
+    "path": "cursor-team-kit/skills/fix-ci",
+    "reason": "Cursor team's workflow kit; babysit, pr and make-pr-easy-to-review cover its PR and CI parts"
+  },
+  {
+    "source": "https://github.com/cursor/plugins",
+    "path": "cursor-team-kit/skills/fix-merge-conflicts",
+    "reason": "Cursor team's workflow kit; babysit, pr and make-pr-easy-to-review cover its PR and CI parts"
+  },
+  {
+    "source": "https://github.com/cursor/plugins",
+    "path": "cursor-team-kit/skills/get-pr-comments",
+    "reason": "Cursor team's workflow kit; babysit, pr and make-pr-easy-to-review cover its PR and CI parts"
+  },
+  {
+    "source": "https://github.com/cursor/plugins",
+    "path": "cursor-team-kit/skills/loop-on-ci",
+    "reason": "Cursor team's workflow kit; babysit, pr and make-pr-easy-to-review cover its PR and CI parts"
+  },
+  {
+    "source": "https://github.com/cursor/plugins",
+    "path": "cursor-team-kit/skills/new-branch-and-pr",
+    "reason": "Cursor team's workflow kit; babysit, pr and make-pr-easy-to-review cover its PR and CI parts"
+  },
+  {
+    "source": "https://github.com/cursor/plugins",
+    "path": "cursor-team-kit/skills/pr-review-canvas",
+    "reason": "Cursor team's workflow kit; babysit, pr and make-pr-easy-to-review cover its PR and CI parts"
+  },
+  {
+    "source": "https://github.com/cursor/plugins",
+    "path": "cursor-team-kit/skills/review-and-ship",
+    "reason": "Cursor team's workflow kit; babysit, pr and make-pr-easy-to-review cover its PR and CI parts"
+  },
+  {
+    "source": "https://github.com/cursor/plugins",
+    "path": "cursor-team-kit/skills/run-smoke-tests",
+    "reason": "Cursor team's workflow kit; babysit, pr and make-pr-easy-to-review cover its PR and CI parts"
+  },
+  {
+    "source": "https://github.com/cursor/plugins",
+    "path": "cursor-team-kit/skills/thermo-nuclear-code-quality-review",
+    "reason": "Cursor team's workflow kit; babysit, pr and make-pr-easy-to-review cover its PR and CI parts"
+  },
+  {
+    "source": "https://github.com/cursor/plugins",
+    "path": "cursor-team-kit/skills/weekly-review",
+    "reason": "Cursor team's workflow kit; babysit, pr and make-pr-easy-to-review cover its PR and CI parts"
+  },
+  {
+    "source": "https://github.com/cursor/plugins",
+    "path": "cursor-team-kit/skills/what-did-i-get-done",
+    "reason": "Cursor team's workflow kit; babysit, pr and make-pr-easy-to-review cover its PR and CI parts"
+  },
+  {
+    "source": "https://github.com/cursor/plugins",
+    "path": "cursor-team-kit/skills/workflow-from-chats",
+    "reason": "Cursor team's workflow kit; babysit, pr and make-pr-easy-to-review cover its PR and CI parts"
+  },
+  {
+    "source": "https://github.com/cursor/plugins",
+    "path": "docs-canvas/skills/docs-canvas",
+    "reason": "Renders a Cursor Canvas; Cursor only"
+  },
+  {
+    "source": "https://github.com/cursor/plugins",
+    "path": "dyl-stack/agents/dyl-agent.md",
+    "reason": "Dylan's personal mode on top of pstack"
+  },
+  {
+    "source": "https://github.com/cursor/plugins",
+    "path": "dyl-stack/skills/build-figma",
+    "reason": "Dylan's personal mode on top of pstack"
+  },
+  {
+    "source": "https://github.com/cursor/plugins",
+    "path": "dyl-stack/skills/dyl-mode",
+    "reason": "Dylan's personal mode on top of pstack"
+  },
+  {
+    "source": "https://github.com/cursor/plugins",
+    "path": "dyl-stack/skills/dyl-ready-pr",
+    "reason": "Dylan's personal mode on top of pstack"
+  },
+  {
+    "source": "https://github.com/cursor/plugins",
+    "path": "dyl-stack/skills/dyl-review",
+    "reason": "Dylan's personal mode on top of pstack"
+  },
+  {
+    "source": "https://github.com/cursor/plugins",
+    "path": "dyl-stack/skills/principle-the-algorithm",
+    "reason": "Dylan's personal mode on top of pstack"
+  },
+  {
+    "source": "https://github.com/cursor/plugins",
+    "path": "grok-voice/skills/add-dictation",
+    "reason": "Grok voice API specific"
+  },
+  {
+    "source": "https://github.com/cursor/plugins",
+    "path": "grok-voice/skills/add-read-aloud",
+    "reason": "Grok voice API specific"
+  },
+  {
+    "source": "https://github.com/cursor/plugins",
+    "path": "grok-voice/skills/add-voice",
+    "reason": "Grok voice API specific"
+  },
+  {
+    "source": "https://github.com/cursor/plugins",
+    "path": "grok-voice/skills/debug-voice",
+    "reason": "Grok voice API specific"
+  },
+  {
+    "source": "https://github.com/cursor/plugins",
+    "path": "harness/pstack",
+    "reason": "Claude Code copy of pstack/; new pstack skills show up under pstack/"
+  },
+  {
+    "source": "https://github.com/cursor/plugins",
+    "path": "orchestrate/skills/orchestrate",
+    "reason": "Cursor SDK cloud agents only"
+  },
+  {
+    "source": "https://github.com/cursor/plugins",
+    "path": "origin-apps/skills/origin-api",
+    "reason": "Cursor Origin API specific"
+  },
+  {
+    "source": "https://github.com/cursor/plugins",
+    "path": "origin-apps/skills/port-github-app-to-origin",
+    "reason": "Cursor Origin API specific"
+  },
+  {
+    "source": "https://github.com/cursor/plugins",
+    "path": "pr-review-canvas/skills/pr-review-canvas",
+    "reason": "Renders a Cursor Canvas; Cursor only"
+  },
+  {
+    "source": "https://github.com/cursor/plugins",
+    "path": "pstack/agents/poteto-agent.md",
+    "reason": "pending decision"
+  },
+  {
+    "source": "https://github.com/cursor/plugins",
+    "path": "pstack/automations/benny/skills/reproduce-and-fix-issues",
+    "reason": "Benny Slack triage automation; needs its own Slack, tracker and app-control setup"
+  },
+  {
+    "source": "https://github.com/cursor/plugins",
+    "path": "pstack/automations/benny/skills/setup-benny",
+    "reason": "Benny Slack triage automation; needs its own Slack, tracker and app-control setup"
+  },
+  {
+    "source": "https://github.com/cursor/plugins",
+    "path": "pstack/automations/benny/skills/triage-issue-reports",
+    "reason": "Benny Slack triage automation; needs its own Slack, tracker and app-control setup"
+  },
+  {
+    "source": "https://github.com/cursor/plugins",
+    "path": "pstack/skills/bro",
+    "reason": "Overlaps Matt's wait-what"
+  },
+  {
+    "source": "https://github.com/cursor/plugins",
+    "path": "pstack/skills/figure-it-out",
+    "reason": "covered by Matt's to-tickets + implement-spec chain; autonomous-run covers unplanned loops"
+  },
+  {
+    "source": "https://github.com/cursor/plugins",
+    "path": "pstack/skills/in-your-own-words",
+    "reason": "Overlaps Matt's grilling and wait-what"
+  },
+  {
+    "source": "https://github.com/cursor/plugins",
+    "path": "pstack/skills/make-bot-ui",
+    "reason": "Grok Bot specific"
+  },
+  {
+    "source": "https://github.com/cursor/plugins",
+    "path": "pstack/skills/poteto-help",
+    "reason": "Cursor/pstack setup only"
+  },
+  {
+    "source": "https://github.com/cursor/plugins",
+    "path": "pstack/skills/poteto-mode",
+    "reason": "Cursor/pstack mode skill; its playbooks are forked here as babysit, autonomous-run, pause-resume, performance, eval and measure-ui"
+  },
+  {
+    "source": "https://github.com/cursor/plugins",
+    "path": "pstack/skills/setup-pstack",
+    "reason": "Cursor/pstack setup only"
+  },
+  {
+    "source": "https://github.com/cursor/plugins",
+    "path": "pstack/skills/tdd",
+    "reason": "Name clash with Matt's tdd"
+  },
+  {
+    "source": "https://github.com/cursor/plugins",
+    "path": "pstack/skills/teach",
+    "reason": "Name clash with Matt's teach"
+  },
+  {
+    "source": "https://github.com/cursor/plugins",
+    "path": "ralph-loop/skills/cancel-ralph",
+    "reason": "Cursor Ralph Loop plugin; autonomous-run covers the loop"
+  },
+  {
+    "source": "https://github.com/cursor/plugins",
+    "path": "ralph-loop/skills/ralph-loop",
+    "reason": "Cursor Ralph Loop plugin; autonomous-run covers the loop"
+  },
+  {
+    "source": "https://github.com/cursor/plugins",
+    "path": "ralph-loop/skills/ralph-loop-help",
+    "reason": "Cursor Ralph Loop plugin; autonomous-run covers the loop"
+  },
+  {
+    "source": "https://github.com/cursor/plugins",
+    "path": "teaching/skills/create-learning-path",
+    "reason": "Cursor teaching plugin; Matt's teach covers learning sessions"
+  },
+  {
+    "source": "https://github.com/cursor/plugins",
+    "path": "teaching/skills/run-learning-retrospective",
+    "reason": "Cursor teaching plugin; Matt's teach covers learning sessions"
+  },
+  {
+    "source": "https://github.com/cursor/plugins",
+    "path": "thermos/agents/thermo-nuclear-code-quality-review-subagent.md",
+    "reason": "Thermo-nuclear reviews run through Cursor-only subagents; interrogate and blast-radius cover review"
+  },
+  {
+    "source": "https://github.com/cursor/plugins",
+    "path": "thermos/agents/thermo-nuclear-review-subagent.md",
+    "reason": "Thermo-nuclear reviews run through Cursor-only subagents; interrogate and blast-radius cover review"
+  },
+  {
+    "source": "https://github.com/cursor/plugins",
+    "path": "thermos/skills/thermo-nuclear-code-quality-review",
+    "reason": "Thermo-nuclear reviews run through Cursor-only subagents; interrogate and blast-radius cover review"
+  },
+  {
+    "source": "https://github.com/cursor/plugins",
+    "path": "thermos/skills/thermo-nuclear-review",
+    "reason": "Thermo-nuclear reviews run through Cursor-only subagents; interrogate and blast-radius cover review"
+  },
+  {
+    "source": "https://github.com/cursor/plugins",
+    "path": "thermos/skills/thermos",
+    "reason": "Thermo-nuclear reviews run through Cursor-only subagents; interrogate and blast-radius cover review"
+  },
+  {
+    "source": "https://github.com/cursor/plugins",
+    "path": "third_party/google-docs/skills/google-docs",
+    "reason": "Grok Bot specific: MCP tool guide for Grok Bot"
+  },
+  {
+    "source": "https://github.com/cursor/plugins",
+    "path": "third_party/google-drive/skills/google-drive",
+    "reason": "Grok Bot specific: MCP tool guide for Grok Bot"
+  },
+  {
+    "source": "https://github.com/cursor/plugins",
+    "path": "third_party/google-sheets/skills/google-sheets",
+    "reason": "Grok Bot specific: MCP tool guide for Grok Bot"
+  },
+  {
+    "source": "https://github.com/cursor/plugins",
+    "path": "third_party/google-slides/skills/google-slides",
+    "reason": "Grok Bot specific: MCP tool guide for Grok Bot"
+  },
+  {
+    "source": "https://github.com/cursor/plugins",
+    "path": "third_party/tailscale/skills/tailscale-setup",
+    "reason": "Grok Bot specific: MCP tool guide for Grok Bot"
+  },
+  {
+    "source": "https://github.com/cursor/plugins",
+    "path": "third_party/x-money/skills/x-money-guide",
+    "reason": "Grok Bot specific: MCP tool guide for Grok Bot"
+  },
+  {
+    "source": "https://github.com/cursor/plugins",
+    "path": "third_party/x/skills/x-api-mcp-guide",
+    "reason": "Grok Bot specific: MCP tool guide for Grok Bot"
+  },
+  {
+    "source": "https://github.com/mattpocock/skills",
+    "path": "skills/in-progress/chief-of-staff",
+    "reason": "pending decision"
+  },
+  {
+    "source": "https://github.com/mattpocock/skills",
+    "path": "skills/in-progress/claude-handoff",
+    "reason": "pending decision"
+  },
+  {
+    "source": "https://github.com/TanStack/router",
+    "path": "packages/react-router/skills/compositions/router-query",
+    "reason": "TanStack Router and Start library reference; typescript-library forks only the type-safety guides"
+  },
+  {
+    "source": "https://github.com/TanStack/router",
+    "path": "packages/react-router/skills/lifecycle/migrate-from-react-router",
+    "reason": "TanStack Router and Start library reference; typescript-library forks only the type-safety guides"
+  },
+  {
+    "source": "https://github.com/TanStack/router",
+    "path": "packages/react-router/skills/react-router",
+    "reason": "TanStack Router and Start library reference; typescript-library forks only the type-safety guides"
+  },
+  {
+    "source": "https://github.com/TanStack/router",
+    "path": "packages/react-start/skills/lifecycle/migrate-from-nextjs",
+    "reason": "TanStack Router and Start library reference; typescript-library forks only the type-safety guides"
+  },
+  {
+    "source": "https://github.com/TanStack/router",
+    "path": "packages/react-start/skills/react-start",
+    "reason": "TanStack Router and Start library reference; typescript-library forks only the type-safety guides"
+  },
+  {
+    "source": "https://github.com/TanStack/router",
+    "path": "packages/react-start/skills/react-start/server-components",
+    "reason": "TanStack Router and Start library reference; typescript-library forks only the type-safety guides"
+  },
+  {
+    "source": "https://github.com/TanStack/router",
+    "path": "packages/router-core/skills/router-core",
+    "reason": "TanStack Router and Start library reference; typescript-library forks only the type-safety guides"
+  },
+  {
+    "source": "https://github.com/TanStack/router",
+    "path": "packages/router-core/skills/router-core/auth-and-guards",
+    "reason": "TanStack Router and Start library reference; typescript-library forks only the type-safety guides"
+  },
+  {
+    "source": "https://github.com/TanStack/router",
+    "path": "packages/router-core/skills/router-core/code-splitting",
+    "reason": "TanStack Router and Start library reference; typescript-library forks only the type-safety guides"
+  },
+  {
+    "source": "https://github.com/TanStack/router",
+    "path": "packages/router-core/skills/router-core/data-loading",
+    "reason": "TanStack Router and Start library reference; typescript-library forks only the type-safety guides"
+  },
+  {
+    "source": "https://github.com/TanStack/router",
+    "path": "packages/router-core/skills/router-core/navigation",
+    "reason": "TanStack Router and Start library reference; typescript-library forks only the type-safety guides"
+  },
+  {
+    "source": "https://github.com/TanStack/router",
+    "path": "packages/router-core/skills/router-core/not-found-and-errors",
+    "reason": "TanStack Router and Start library reference; typescript-library forks only the type-safety guides"
+  },
+  {
+    "source": "https://github.com/TanStack/router",
+    "path": "packages/router-core/skills/router-core/path-params",
+    "reason": "TanStack Router and Start library reference; typescript-library forks only the type-safety guides"
+  },
+  {
+    "source": "https://github.com/TanStack/router",
+    "path": "packages/router-core/skills/router-core/search-params",
+    "reason": "TanStack Router and Start library reference; typescript-library forks only the type-safety guides"
+  },
+  {
+    "source": "https://github.com/TanStack/router",
+    "path": "packages/router-core/skills/router-core/ssr",
+    "reason": "TanStack Router and Start library reference; typescript-library forks only the type-safety guides"
+  },
+  {
+    "source": "https://github.com/TanStack/router",
+    "path": "packages/router-core/skills/router-core/type-safety",
+    "reason": "TanStack Router and Start library reference; typescript-library forks only the type-safety guides"
+  },
+  {
+    "source": "https://github.com/TanStack/router",
+    "path": "packages/router-plugin/skills/router-plugin",
+    "reason": "TanStack Router and Start library reference; typescript-library forks only the type-safety guides"
+  },
+  {
+    "source": "https://github.com/TanStack/router",
+    "path": "packages/solid-router/skills/solid-router",
+    "reason": "TanStack Router and Start library reference; typescript-library forks only the type-safety guides"
+  },
+  {
+    "source": "https://github.com/TanStack/router",
+    "path": "packages/solid-start/skills/solid-start",
+    "reason": "TanStack Router and Start library reference; typescript-library forks only the type-safety guides"
+  },
+  {
+    "source": "https://github.com/TanStack/router",
+    "path": "packages/start-client-core/skills/start-core",
+    "reason": "TanStack Router and Start library reference; typescript-library forks only the type-safety guides"
+  },
+  {
+    "source": "https://github.com/TanStack/router",
+    "path": "packages/start-client-core/skills/start-core/auth-server-primitives",
+    "reason": "TanStack Router and Start library reference; typescript-library forks only the type-safety guides"
+  },
+  {
+    "source": "https://github.com/TanStack/router",
+    "path": "packages/start-client-core/skills/start-core/deployment",
+    "reason": "TanStack Router and Start library reference; typescript-library forks only the type-safety guides"
+  },
+  {
+    "source": "https://github.com/TanStack/router",
+    "path": "packages/start-client-core/skills/start-core/execution-model",
+    "reason": "TanStack Router and Start library reference; typescript-library forks only the type-safety guides"
+  },
+  {
+    "source": "https://github.com/TanStack/router",
+    "path": "packages/start-client-core/skills/start-core/middleware",
+    "reason": "TanStack Router and Start library reference; typescript-library forks only the type-safety guides"
+  },
+  {
+    "source": "https://github.com/TanStack/router",
+    "path": "packages/start-client-core/skills/start-core/server-functions",
+    "reason": "TanStack Router and Start library reference; typescript-library forks only the type-safety guides"
+  },
+  {
+    "source": "https://github.com/TanStack/router",
+    "path": "packages/start-client-core/skills/start-core/server-routes",
+    "reason": "TanStack Router and Start library reference; typescript-library forks only the type-safety guides"
+  },
+  {
+    "source": "https://github.com/TanStack/router",
+    "path": "packages/start-server-core/skills/start-server-core",
+    "reason": "TanStack Router and Start library reference; typescript-library forks only the type-safety guides"
+  },
+  {
+    "source": "https://github.com/TanStack/router",
+    "path": "packages/virtual-file-routes/skills/virtual-file-routes",
+    "reason": "TanStack Router and Start library reference; typescript-library forks only the type-safety guides"
+  },
+  {
+    "source": "https://github.com/TanStack/router",
+    "path": "packages/vue-router/skills/vue-router",
+    "reason": "TanStack Router and Start library reference; typescript-library forks only the type-safety guides"
+  },
+  {
+    "source": "https://github.com/TanStack/router",
+    "path": "packages/vue-start/skills/vue-start",
+    "reason": "TanStack Router and Start library reference; typescript-library forks only the type-safety guides"
+  },
+  {
+    "source": "https://github.com/TanStack/router",
+    "path": "skills/bundle-size-optimization",
+    "reason": "TanStack repo-internal: the router repo's own bundle-size workflow"
+  },
+  {
+    "source": "https://github.com/GoogleChrome/modern-web-guidance",
+    "path": "skills/chrome-extensions",
+    "reason": "pending decision"
+  },
+  {
+    "source": "https://github.com/humanlayer/skills",
+    "path": "plugins/build-iterated-agentic-loop/skills/build-iterated-agentic-loop",
+    "reason": "pending decision"
+  },
+  {
+    "source": "https://github.com/humanlayer/skills",
+    "path": "plugins/design-control-loop/skills/design-control-loop",
+    "reason": "pending decision"
+  },
+  {
+    "source": "https://github.com/humanlayer/skills",
+    "path": "plugins/improve-claude-md/skills/improve-claude-md",
+    "reason": "Claude Code specific (CLAUDE.md)"
+  },
+  {
+    "source": "https://github.com/humanlayer/skills",
+    "path": "plugins/narrow-react-prop-types/skills/narrow-react-prop-types",
+    "reason": "pending decision"
+  },
+  {
+    "source": "https://github.com/humanlayer/skills",
+    "path": "plugins/rpi/agents/codebase-analyzer.md",
+    "reason": "pending decision"
+  },
+  {
+    "source": "https://github.com/humanlayer/skills",
+    "path": "plugins/rpi/agents/codebase-locator.md",
+    "reason": "pending decision"
+  },
+  {
+    "source": "https://github.com/humanlayer/skills",
+    "path": "plugins/rpi/agents/codebase-pattern-finder.md",
+    "reason": "pending decision"
+  },
+  {
+    "source": "https://github.com/humanlayer/skills",
+    "path": "plugins/rpi/agents/outline-implementer-agent.md",
+    "reason": "pending decision"
+  },
+  {
+    "source": "https://github.com/humanlayer/skills",
+    "path": "plugins/rpi/agents/web-search-researcher.md",
+    "reason": "pending decision"
+  },
+  {
+    "source": "https://github.com/humanlayer/skills",
+    "path": "plugins/rpi/skills/rpi",
+    "reason": "pending decision"
+  },
+  {
+    "source": "https://github.com/humanlayer/skills",
+    "path": "plugins/visual-pr/skills/visual-pr",
+    "reason": "pending decision"
+  },
+  {
+    "source": "https://github.com/coreyhaines31/marketingskills",
+    "path": "skills/conversion-tracking",
+    "reason": "Pending decision: new in Corey's marketing set"
+  },
+  {
+    "source": "https://github.com/coreyhaines31/marketingskills",
+    "path": "skills/link-building",
+    "reason": "Pending decision: new in Corey's marketing set"
+  },
+  {
+    "source": "https://github.com/supermemoryai/skills",
+    "path": "memorybench",
+    "reason": "Supermemory product specific"
+  },
+  {
+    "source": "https://github.com/supermemoryai/skills",
+    "path": "supermemory",
+    "reason": "Supermemory product specific"
+  },
+  {
+    "source": "https://github.com/supermemoryai/skills",
+    "path": "supermemory-cli",
+    "reason": "Supermemory product specific"
+  },
+  {
+    "source": "https://github.com/ayghri/i-have-adhd",
+    "path": ".cursor/skills/i-have-adhd",
+    "reason": "Cursor copy of the vendored skills/i-have-adhd"
+  },
+  {
+    "source": "https://github.com/emilkowalski/skills",
+    "path": "skills/prototype",
+    "reason": "Name clash with Matt's prototype; its PICKER.md is vendored as a reference"
+  }
+]

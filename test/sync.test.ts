@@ -4,6 +4,7 @@ import { Effect, FileSystem, Layer, Path } from "effect";
 import * as Context from "effect/Context";
 
 import {
+  AgentEntry,
   OursEntry,
   ReferenceEntry,
   SkillTree,
@@ -73,6 +74,7 @@ class Fixture extends Context.Service<
   Fixture,
   {
     readonly arena: VendorEntry;
+    readonly critic: AgentEntry;
     readonly how: VendorEntry;
     readonly lever: ReferenceEntry;
     readonly root: string;
@@ -96,6 +98,10 @@ const fixtureLayer = Layer.unwrap(
       [
         "pstack/skills/how/agents/openai.yaml",
         "policy:\n  allow_implicit_invocation: false\n",
+      ],
+      [
+        "pstack/agents/critic.md",
+        "---\nname: critic\ndescription: Reviews a diff.\n---\n\nRead `.cursor/skills/tdd/SKILL.md` first.\n",
       ],
       [
         "pstack/skills/arena/SKILL.md",
@@ -136,6 +142,13 @@ const fixtureLayer = Layer.unwrap(
         Fixture,
         Fixture.of({
           arena: vendor("arena", "pstack/skills/arena"),
+          critic: new AgentEntry({
+            commit,
+            mode: "agent",
+            name: "critic",
+            path: "pstack/agents/critic.md",
+            source: upstream,
+          }),
           how,
           lever: new ReferenceEntry({
             bucket: "engineering",
@@ -198,6 +211,37 @@ layer(fixtureLayer)("sync with a wrong upstream path", (it) => {
         [["SKILL.md", "Kept.\n"]]
       );
     })
+  );
+});
+
+layer(fixtureLayer)("sync of a vendored agent", (it) => {
+  it.effect(
+    "writes agents/<name>.md with the rules applied, and keeps a saved patch",
+    () =>
+      Effect.gen(function* () {
+        const fs = yield* FileSystem.FileSystem;
+        const { critic, root } = yield* Fixture;
+        const file = `${root}/agents/critic.md`;
+
+        yield* sync([critic]);
+
+        assert.strictEqual(
+          yield* fs.readFileString(file),
+          "---\nname: critic\ndescription: Reviews a diff.\n---\n\nRead `.agents/skills/tdd/SKILL.md` first.\n"
+        );
+
+        yield* fs.writeFileString(
+          file,
+          "---\nname: critic\ndescription: Reviews a diff.\n---\n\nRead the tdd skill first.\n"
+        );
+        assert.isTrue(yield* writePatch(critic));
+        yield* sync([critic]);
+
+        assert.strictEqual(
+          yield* fs.readFileString(file),
+          "---\nname: critic\ndescription: Reviews a diff.\n---\n\nRead the tdd skill first.\n"
+        );
+      })
   );
 });
 

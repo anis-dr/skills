@@ -14,6 +14,9 @@ Every skill has one entry in `upstream/sources.json`. The entry's `mode` says wh
 - **fork**: our text, based on upstream text at a pinned commit; `path` lists one upstream path or several. `bun run skills sync --report` reports upstream changes to any of them, and they are ported by review.
 - **ours**: no upstream. With `into`, the entry is one of our own files in another skill's `references/` folder, next to vendored references; sync keeps it, and the owning skill's `SKILL.md` must link it.
 - **reference**: one upstream file that sync writes into another skill's `references/` folder, frontmatter stripped. That skill's `SKILL.md` links every file in the folder.
+- **agent**: one upstream subagent definition (a Markdown file with `name` and `description` frontmatter), which sync writes to `agents/<name>.md` at the repo root. It has no bucket, and syncs like **vendor**: the rules, then `upstream/patches/<name>.patch`, saved with `bun run skills patch <name>`.
+
+`bun run skills sync --report` also lists, under "Untracked upstream" in `upstream/DRIFT.md`, every skill folder and subagent definition at each source's HEAD that no entry tracks. Vendor it, or add `{ source, path, reason }` to `upstream/ignored.json`; a `path` may be a folder that covers everything under it. The report also lists ignore entries that match nothing upstream, so delete those.
 
 The `ask-anis` router maps every skill by its `/name` label. Adding, renaming or removing a skill means updating the router: `bun run skills check` fails on a skill the router leaves out or a `/name` that is not a skill.
 

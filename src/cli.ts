@@ -4,7 +4,7 @@ import { Console, Effect, Layer, Option, Schema } from "effect";
 import { Argument, Command, Flag } from "effect/unstable/cli";
 
 import { check, loadSkills, summarize } from "./check.ts";
-import { findDrift, renderDrift, updatePins } from "./drift.ts";
+import { findDrift, findUntracked, renderDrift, updatePins } from "./drift.ts";
 import { renderSkillList, withSkillList } from "./readme.ts";
 import { SkillTree } from "./SkillTree.ts";
 import { writePatch, sync } from "./sync.ts";
@@ -30,7 +30,7 @@ class UnknownSkill extends Schema.TaggedError<UnknownSkill>()("UnknownSkill", {
   name: Schema.String,
 }) {
   override get message() {
-    return `no vendored skill named "${this.name}" in upstream/sources.json`;
+    return `no vendored skill or agent named "${this.name}" in upstream/sources.json`;
   }
 }
 
@@ -56,9 +56,16 @@ const syncCommand = Command.make(
       let entries = yield* tree.readSources;
       if (report || update) {
         const drift = yield* findDrift(entries);
-        yield* tree.writeText("upstream/DRIFT.md", renderDrift(drift));
+        const discovery = yield* findUntracked(
+          entries,
+          yield* tree.readIgnored
+        );
+        yield* tree.writeText(
+          "upstream/DRIFT.md",
+          renderDrift(drift, discovery)
+        );
         yield* Console.log(
-          `wrote upstream/DRIFT.md: ${drift.length} entries drifted`
+          `wrote upstream/DRIFT.md: ${drift.length} entries drifted, ${discovery.untracked.length} untracked upstream, ${discovery.stale.length} stale ignore entries`
         );
         if (report) {
           return;
@@ -85,9 +92,11 @@ const patchCommand = Command.make(
     Effect.gen(function* () {
       const entries = yield* (yield* SkillTree).readSources;
       const entry = entries.find(
-        (each) => each.mode === "vendor" && each.name === name
+        (each) =>
+          (each.mode === "vendor" || each.mode === "agent") &&
+          each.name === name
       );
-      if (entry?.mode !== "vendor") {
+      if (entry?.mode !== "vendor" && entry?.mode !== "agent") {
         return yield* new UnknownSkill({ name });
       }
       if (yield* writePatch(entry)) {

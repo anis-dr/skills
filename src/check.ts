@@ -42,7 +42,10 @@ const CodexMetadata = Schema.Struct({
 });
 
 // Parses YAML text and decodes it with `schema`; failures become a readable message.
-const decodeYaml = <T>(schema: Schema.ConstraintDecoder<T>, text: string) =>
+export const decodeYaml = <T>(
+  schema: Schema.ConstraintDecoder<T>,
+  text: string
+) =>
   Result.try({ catch: String, try: () => parse(text) }).pipe(
     Result.flatMap((value) =>
       Result.mapError(
@@ -70,11 +73,15 @@ const finding = (
   detail: string
 ): Finding => ({ detail, rule, skill });
 
+// The YAML between a Markdown file's opening `---` lines, if it has any.
+export const frontmatterBlock = (text: string) =>
+  /^---\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)/u.exec(text)?.[1];
+
 function readFrontmatter(
   files: Files
 ): Result.Result<typeof Frontmatter.Type, string> {
   const skillMd = files.find(([file]) => file === "SKILL.md")?.[1] ?? "";
-  const block = /^---\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)/u.exec(skillMd)?.[1];
+  const block = frontmatterBlock(skillMd);
   if (block === undefined) {
     return Result.fail("SKILL.md has no frontmatter block");
   }
@@ -87,7 +94,7 @@ function sourcesFindings(
 ): Array<Finding> {
   const declared = new Set(
     entries
-      .filter((entry) => entry.mode !== "reference")
+      .filter((entry) => entry.mode !== "reference" && entry.mode !== "agent")
       .map((entry) => entry.skill)
   );
   const present = new Set(folders);
