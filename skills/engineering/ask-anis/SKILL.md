@@ -95,6 +95,7 @@ Before you change code you don't know, or when the shape of new code is the hard
 - **`/interrogate`**: several reviewers on different model families challenge a change from independent angles. Heavier than `/code-review`; reach for it before shipping something you can't afford to get wrong.
 - **`/blast-radius`** looks past the diff for what a change could break elsewhere, and proves the one fact it's safe because of by running real code.
 - **`/deslop`** strips AI-generated slop from code and tidies its style.
+- **`/no-comments`** sends a comment-hating subagent through the diff, then fixes the workarounds it flags at the root and offers a type, test or lint for each constraint a comment claimed. User-invoked.
 
 ## Verify
 

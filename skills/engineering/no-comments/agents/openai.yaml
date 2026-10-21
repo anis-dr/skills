@@ -1,0 +1,4 @@
+interface:
+  display_name: "No Comments"
+policy:
+  allow_implicit_invocation: false

@@ -48,6 +48,7 @@ Add `-g` to install into your user folder instead of the current project. Not su
 - [interrogate](skills/engineering/interrogate/SKILL.md): Use for "interrogate", "adversarial review", "multi-model review", "challenge this", "stress test this code", "find blind spots", or "tear this apart".
 - [maintain-formal-verification-skill](skills/engineering/maintain-formal-verification-skill/SKILL.md): Bring a project's formal verification back in line with the code after the code changes: find the commits that touched verified code, update the model, harness, or properties to describe the code as it is now, rerun, and say whether each failure is drift in the verification or a bug in the code.
 - [maintain-verification-skill](skills/engineering/maintain-verification-skill/SKILL.md): Periodic pass that keeps a project's verification skill and feature map honest: parallel source readers per feature, one live session driving every feature, at most one PR of proven corrections.
+- [no-comments](skills/engineering/no-comments/SKILL.md): Spawn Comment Sicko, fix accepted findings, and offer encodings for claimed constraints.
 - [recall](skills/engineering/recall/SKILL.md): Reconstruct your recent working context from your own chat history, live state, and the shared record (user reports, prior fixes, incidents), then hand back a tight current-state brief.
 - [retro](skills/engineering/retro/SKILL.md): Conduct a retrospective on a coding session.
 - [setup-matt-pocock-skills](skills/engineering/setup-matt-pocock-skills/SKILL.md): Configure a repo for the skills
