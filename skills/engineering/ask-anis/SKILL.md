@@ -35,6 +35,8 @@ The route most work travels. You have an idea and want it built.
 
    **`/reflect`** is its sibling for skills: three reviewers mine the session's transcript, and each lesson becomes an edit to a skill the session used (or a new skill), applied after you approve. `/retro` fixes the repo's environment, `/reflect` fixes the skills; each hands the other's findings back to you.
 
+   **`/omp-session-retro`** does both over days or months of sessions across omp, Claude Code, Codex, Cursor and pi: one report with environment findings and skill findings kept apart.
+
 ### Context hygiene
 
 Keep steps 1–3 in **one unbroken context window** (don't compact or clear until after `/to-tickets`) so the grilling, spec, and tickets all build on the same thinking. Each `/implement` then starts fresh, working from the ticket. Run `/retro` in the session it's looking back on, before you clear; after clearing, point it at that session's log instead.

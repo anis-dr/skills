@@ -88,6 +88,7 @@ Add `-g` to install into your user folder instead of the current project. Not su
 - [logging-best-practices](skills/engineering/logging-best-practices/SKILL.md): Logging best practices focused on wide events (canonical log lines) for powerful debugging and analytics
 - [make-pr-easy-to-review](skills/engineering/make-pr-easy-to-review/SKILL.md): Prepare PRs for review by cleaning noisy history, improving PR descriptions, and adding reviewer guidance without changing code behavior.
 - [modern-web-guidance](skills/engineering/modern-web-guidance/SKILL.md): Search tool for modern web development best practices.
+- [omp-session-retro](skills/engineering/omp-session-retro/SKILL.md): Retro over many sessions and harnesses
 - [orca](skills/engineering/orca/SKILL.md): Verify UI and hand off tickets inside Orca
 - [parallel-branches](skills/engineering/parallel-branches/SKILL.md): Parallel subagents in one worktree to a gh stack
 - [pause-resume](skills/engineering/pause-resume/SKILL.md): Pause work safely or pick up a prior session

@@ -14,7 +14,7 @@
   {
     "pattern": "~/\\.cursor/",
     "reason": "Cursor-only path",
-    "allowIn": ["engineering/transcripts"]
+    "allowIn": ["engineering/transcripts", "engineering/omp-session-retro"]
   },
   {
     "pattern": "\\b(?:claude|gpt|grok|gemini|composer)-(?:\\d|opus|sonnet|haiku)[\\w.-]*",
