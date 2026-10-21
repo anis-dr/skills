@@ -1,11 +1,11 @@
 ---
 name: technical-html
-description: "Write a technical document in Markdown and build it into one self-contained HTML page in the house style: status report, design doc, how-to or reference, with stat cards, callouts, status pills, step cards, a table of contents, D2 diagrams laid out with TALA, and light and dark modes. Use when the user wants a document or report as HTML, a shareable page, a nicer view of a Markdown file, or 'a document like the last one'. For a PDF use technical-pdf instead."
+description: "Write a technical document in Markdown, or Markdown with Svelte components, and build it into one self-contained HTML page in the house style: status report, design doc, how-to or reference, with stat cards, callouts, status pills, step cards, a table of contents, D2 diagrams laid out with TALA, highlighted code and diffs, and light and dark modes. Use when the user wants a document or report as HTML, a shareable page, a nicer view of a Markdown file, or 'a document like the last one'. For a PDF use technical-pdf instead."
 ---
 
 # Technical HTML
 
-You write Markdown. `scripts/build.ts` turns it into one `.html` file: no network, house CSS inlined, diagrams rendered with TALA and inlined as SVG. The page follows the reader's light or dark setting, and a small button at the top right switches it; that toggle is the only JavaScript in the page. The look lives in [assets/style.css](assets/style.css). Do not restyle it per document.
+You write Markdown (`.md`), or Markdown with Svelte components (`.svx`). `scripts/build.ts` prerenders it with SvelteKit into one `.html` file: no network, house CSS inlined, diagrams rendered with TALA and inlined as SVG, code and diffs highlighted at build time. The page reads with JavaScript off. It follows the reader's light or dark setting, and a small button at the top right switches it. In a `.md` page that toggle is the only JavaScript; a page with a multi-file diff or Svelte components also hydrates those. The look lives in [assets/style.css](assets/style.css). Do not restyle it per document.
 
 ## Files
 
@@ -14,8 +14,10 @@ You write Markdown. `scripts/build.ts` turns it into one `.html` file: no networ
   - [design.md](assets/examples/design.md): design doc or explanation. Context, one diagram, trade-offs, with a table of contents.
   - [how-to.md](assets/examples/how-to.md): how-to or runbook. Prerequisites, numbered step cards with commands, troubleshooting table.
   - [reference.md](assets/examples/reference.md): reference. Tables and code. It is also the full syntax reference for this skill: read it before you write.
+  - [interactive.svx](assets/examples/interactive.svx): a `.svx` document. State in its one `<script>`, a scoped `<style>`, a component imported from [Backoff.svelte](assets/examples/Backoff.svelte) beside it, and a multi-file diff with a unified and split switch. Copy it only when the document needs something a reader changes.
 - [assets/house.d2](assets/house.d2): D2 variables and classes. The build adds it to every diagram, so diagrams never declare them.
-- [scripts/build.ts](scripts/build.ts): the builder. Bun only, plus the `d2` CLI with TALA.
+- [scripts/build.ts](scripts/build.ts): the builder. Needs Bun and the `d2` CLI with TALA. The first run installs the SvelteKit app in [app/](app/).
+- [app/](app/): the SvelteKit app that prerenders the one page. The Markdown dialect lives in `app/plugins/`, one remark plugin per concern.
 
 ## Syntax in one screen
 
@@ -27,8 +29,12 @@ Full details and every build failure are in [reference.md](assets/examples/refer
 - `> [!NOTE]`, `[!TIP]`, `[!IMPORTANT]`, `[!WARNING]`, `[!CAUTION]`: callouts.
 - Inline code `status:built`, `status:gap`, `status:partly`, `status:none`, `status:done`, `status:here`, optionally followed by a label: pills.
 - `::: steps` around an ordered list: numbered step cards. Bold first line is the step title. A `status:done` pill marks a finished step, one `status:here` pill marks the current one.
-- ` ```diff ` fenced block: lines starting `+`, `-` and `@@` are tinted green, red and blue.
+- A fenced block in a language Shiki knows (`ts`, `bash`, `yaml`, `json`, ...): highlighted at build time. Other languages stay plain.
+- ` ```pseudo ` for logic and algorithms: pseudocode with its keywords, calls, strings and comments highlighted. ` ```text ` for file trees and call trees: no highlighting.
+- ` ```diff ` fenced block: a highlighted diff. Without git file headers it names a language or a path (` ```diff ts `, ` ```diff pseudo `, ` ```diff text `, ` ```diff apps/x.ts `), or the build fails. `split` after it shows two columns. A pasted `git diff` of two or more files gets a unified and split switch.
+- In a diff, a changed line is a `-` line and a `+` line, each one whole. Pierre parses every diff line as real code, so never wrap a long `+` line onto a second `+` line by hand.
 - `::: card` and `::: footer`: a bordered card, and the sources block at the end. Divs do not nest.
+- `.svx` only: one `<script>`, Svelte markup, components imported by a path relative to the document, one scoped `<style>` with the house variables. `{` in prose starts an expression, so write `&#123;`. In `.md`, braces are text.
 
 ## Skills to load
 
@@ -50,7 +56,7 @@ Call the Skill tool once for each, at the step named. Skip one only when the doc
 1. **Pick the type.** Use the technical-writing modes: `status` for where work stands (status reports, roadmaps, living documents), `design` for why and how something works, `how-to` for steps to a goal, `reference` for lookup. One document, one type. If the user brings an existing Markdown file, keep its content and fit it to the type.
 2. **Ground and plan.** Collect evidence first: code on the main branch, tickets, notes, measurements. Write each number with what it counts and when, and mark inference. Then plan visuals with show-me: one question per diagram, at most about nine nodes, comparisons as tables, sequences as step cards. Roadmaps, status and decisions are tables and steps, never diagrams.
 3. **Write.** Copy the closest example to `.scratchpad/<slug>/<slug>.md` (folder per the scratchpad skill; if the repo has no gitignored scratchpad, ask where). Replace all of its content; keep the structure that fits. Write the prose with technical-writing.
-4. **Build.** `bun <skill-dir>/scripts/build.ts .scratchpad/<slug>/<slug>.md` writes `<slug>.html` beside it. It fails with `build: <message>` and a line number on bad syntax, a D2 error, an uncaptioned diagram or any external resource. Fix the source and rebuild.
+4. **Build.** `bun <skill-dir>/scripts/build.ts .scratchpad/<slug>/<slug>.md` writes `<slug>.html` beside it and leaves nothing else. It fails with `build: <file>:<line>: <message>` on bad syntax, a D2 error, an uncaptioned diagram, a diff without a language, invalid Svelte or any external resource. Fix the source and rebuild. Write `.md` unless the reader must change something on the page; then write `.svx`.
 5. **Verify.** Run the checklist below. Fix, rebuild, look again.
 6. **Deliver.** Tell the user the path to the `.html`. The `.md` source stays beside it.
 
@@ -75,12 +81,14 @@ page="file://$PWD/.scratchpad/<slug>/<slug>.html"
 "$chrome" --headless=new --disable-gpu --hide-scrollbars --window-size=1280,6000 --screenshot="$tmp/desktop.png" "$page"
 "$chrome" --headless=new --disable-gpu --hide-scrollbars --window-size=520,9000 --screenshot="$tmp/narrow.png" "$page"
 "$chrome" --headless=new --disable-gpu --hide-scrollbars --blink-settings=preferredColorScheme=0 --window-size=1280,6000 --screenshot="$tmp/dark.png" "$page"
-for shot in desktop narrow dark; do w=1280; [ $shot = narrow ] && w=520; magick "$tmp/$shot.png" -trim +repage -crop ${w}x1500 +repage "$tmp/$shot-%d.png"; done
+"$chrome" --headless=new --disable-gpu --hide-scrollbars --blink-settings=scriptEnabled=false --window-size=1280,6000 --screenshot="$tmp/nojs.png" "$page"   # .svx and multi-file diffs
+for shot in desktop narrow dark nojs; do w=1280; [ $shot = narrow ] && w=520; magick "$tmp/$shot.png" -trim +repage -crop ${w}x1500 +repage "$tmp/$shot-%d.png"; done
 ```
 
 A tall screenshot is shrunk when you read it, so read every slice, then `rm -rf "$tmp"`. Check:
 
 - Every diagram is legible at both widths and in dark mode, with no clipped label and no unexplained dashed or red edge.
+- With JavaScript off, every interactive part shows a sensible first state. With it on, each one reacts.
 - Nothing overflows the page at 520 px. Tables scroll inside their frame.
 - Every pill matches its row's evidence. "Built" means proven by the stated basis, and the basis is on the page.
 - Every number has its unit and scope. Inferences are marked.

@@ -1,0 +1,76 @@
+---
+type: design
+eyebrow: "technical-html · Interactive example"
+lede: "A `.svx` document: Markdown with Svelte in it. The page is prerendered, so it reads with JavaScript off, and the parts below that react hydrate when it is on."
+meta: "21 Oct 2026 · built with `scripts/build.ts` from `assets/examples/interactive.svx` · the retry policy is an example, not a real service"
+toc: false
+---
+
+<script lang="ts">
+  import Backoff from "./Backoff.svelte";
+
+  // A document has one <script>. State for the controls below lives here.
+  let attempts = $state(4);
+  let base = $state(1);
+</script>
+
+# Retries with exponential backoff
+
+## The policy
+
+A client that gets a `503` waits, then tries again. Each wait doubles, so a service that is down for a minute sees a few retries, not a flood. Two numbers set the policy: how many retries, and the first wait.
+
+<div class="controls">
+  <label>Retries <input type="range" min="1" max="8" bind:value={attempts} /> <output>{attempts}</output></label>
+  <label>First wait (s) <input type="range" min="1" max="5" bind:value={base} /> <output>{base}</output></label>
+</div>
+
+<Backoff {attempts} {base} />
+
+The table comes from `Backoff.svelte`, a component next to this document. The two sliders and their state are written inline, in this file.
+
+> [!NOTE]
+> Without JavaScript the sliders do not move, and the table shows the prerendered policy: 4 retries from 1 s. Every other part of the page is plain HTML.
+
+## The change
+
+The policy lives in one function, and the client calls it. This git diff touches two files, so it renders as one block with a unified and split switch. The switch needs JavaScript; without it the diff stays unified.
+
+```diff
+diff --git a/src/retry.ts b/src/retry.ts
+index 3f1a2c4..8d0e9b7 100644
+--- a/src/retry.ts
++++ b/src/retry.ts
+@@ -1,10 +1,10 @@
+-export async function retry<T>(run: () => Promise<T>, attempts = 3): Promise<T> {
++export async function retry<T>(run: () => Promise<T>, attempts = 4, base = 1000): Promise<T> {
+   for (let i = 0; ; i++) {
+     try {
+       return await run();
+     } catch (error) {
+       if (i >= attempts) throw error;
+-      await sleep(1000);
++      await sleep(base * 2 ** i);
+     }
+   }
+ }
+diff --git a/src/client.ts b/src/client.ts
+index 51b7a0e..c2d4f19 100644
+--- a/src/client.ts
++++ b/src/client.ts
+@@ -12,2 +12,2 @@ export function getOrder(id: string) {
+-  return retry(() => fetchJson(`/orders/${id}`));
++  return retry(() => fetchJson(`/orders/${id}`), 4, 1000);
+ }
+```
+
+<style>
+  .controls { display: grid; gap: 10px; margin: 24px 0 4px; padding: 16px 20px; background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); }
+  .controls label { display: grid; grid-template-columns: 9em 1fr 2ch; gap: 12px; align-items: center; font-size: 14px; color: var(--muted); }
+  .controls input { accent-color: var(--blue); }
+  .controls output { color: var(--ink); font-weight: 600; font-variant-numeric: tabular-nums; text-align: right; }
+</style>
+
+::: footer
+**Source.** `assets/examples/interactive.svx` and `assets/examples/Backoff.svelte` in the technical-html skill. The syntax for `.svx` documents is in `reference.md`.
+:::

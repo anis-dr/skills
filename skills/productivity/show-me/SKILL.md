@@ -7,7 +7,7 @@ Call the Skill tool with "diagram-rules" first and apply it to every view below.
 
 - Show logic or an algorithm as pseudocode:
 
-```text
+```pseudo
 on(save)
   if content is unchanged
     return cached result
@@ -55,11 +55,11 @@ sequenceDiagram
     Daemon-->>UI: stream result
 ```
 
-- Use `diff` when the point is what changes and the surrounding shape already exists. Match the diff shape to the topic.
+- Use `diff` when the point is what changes and the surrounding shape already exists. Match the diff shape to the topic. Name the language after `diff` (`diff tsx`, `diff text`, `diff pseudo`) so renderers can highlight it, and change a line as a whole `-`/`+` pair, never as a hand-wrapped `+` continuation.
 
 For a component change:
 
-```diff
+```diff tsx
  <SessionPage>
    useSessionEvents()
    <SessionToolbar>
@@ -70,7 +70,7 @@ For a component change:
 
 For a file-layout change:
 
-```diff
+```diff text
  src/
  ├── commands/
 +│   └── show-me.ts       # expands the slash command
@@ -83,7 +83,7 @@ For a file-layout change:
 
 For a call-tree or call-stack change:
 
-```diff
+```diff text
  submitForm
    createSession
      persistPrompt
@@ -96,7 +96,7 @@ For a call-tree or call-stack change:
 
 For a state or control-flow change:
 
-```diff
+```diff pseudo
  on(save)
 -  write content
 +  if content is unchanged

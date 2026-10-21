@@ -1,12 +1,12 @@
 ---
 type: reference
 eyebrow: "technical-html · Reference"
-lede: "Every piece of Markdown syntax that `scripts/build.ts` reads, what it renders to, and every condition that stops a build."
-meta: "16 Oct 2026 · matches `scripts/build.ts` and `assets/style.css` in the technical-html skill"
+lede: "Every piece of syntax that `scripts/build.ts` reads in a `.md` or `.svx` document, what it renders to, and every condition that stops a build."
+meta: "21 Oct 2026 · matches `scripts/build.ts`, `app/plugins/` and `assets/style.css` in the technical-html skill"
 toc: true
 ---
 
-# technical-html Markdown reference
+# technical-html document reference
 
 ## Command
 
@@ -14,25 +14,26 @@ toc: true
 bun skills/productivity/technical-html/scripts/build.ts path/to/doc.md
 ```
 
-The build writes `path/to/doc.html` beside the source and prints `wrote <path> (<n> diagram(s), <bytes> bytes)`. On any problem it prints `build: <message>` to stderr and exits with code 1. It uses Bun built-ins only and needs the `d2` CLI with the TALA layout plugin.
+The build writes `path/to/doc.html` beside the source and prints `wrote <path> (<bytes> bytes, <n> of them script)`. A `.svx` document builds the same way. On any problem it prints `build: <file>:<line>: <message>` to stderr and exits with code 1. It needs Bun and the `d2` CLI with the TALA layout plugin. The first run installs the dependencies of the SvelteKit app in `app/`.
 
 ```d2
-md: "doc.md" {class: part}
+doc: "doc.md or doc.svx" {class: part}
+plugins: "app/plugins" {class: part}
 d2: "d2 with TALA" {class: provider}
-markdown: "Bun.markdown" {class: part}
+pierre: "Pierre" {class: provider}
+kit: "SvelteKit prerender" {class: part}
 html: "doc.html" {class: part}
-house: "house.d2" {class: store}
-css: "style.css" {class: store}
 
-md -> d2: "each d2 fence"
-md -> markdown: "everything\nelse"
-house -> d2: "prepended"
-d2 -> html: "inline SVG"
-markdown -> html: "HTML body"
-css -> html: "inlined"
+doc -> plugins: "one source\npass, then mdsvex"
+plugins -> d2: "each d2 fence"
+plugins -> pierre: "each diff and\ncode fence"
+plugins -> kit: "one Svelte page"
+kit -> html: "one file, CSS\nand scripts inlined"
 ```
 
-*Arrows follow the content from the source file to the page. The build lifts each `d2` fence out of the Markdown before `Bun.markdown` runs, so diagrams never pass through the Markdown renderer.*
+*Arrows follow the content from the source file to the page. The plugins render every diagram and code block at build time; the page that SvelteKit prerenders already holds their HTML.*
+
+The build is one `vite build` of the app in `app/`, with the document as its only page. It runs where the document lives, so a `.svx` document can import a component next to it. It leaves nothing beside the document except the `.html`.
 
 ## Frontmatter
 
@@ -67,7 +68,7 @@ toc: auto
 
 The first `#` heading is the page title. The build moves it into `<header class="doc-header">` together with the eyebrow, lede, meta and stats, and copies its text into `<title>`. A file with no `#` heading does not build.
 
-Every heading gets an `id` made from its text. The table of contents links to the `##` headings only, so `###` headings never appear in it.
+Every other heading gets an `id` made from its text. The table of contents links to the `##` headings only, so `###` headings never appear in it.
 
 ## Diagrams
 
@@ -103,16 +104,66 @@ Labels are plain strings. Write a line break as `\n`. A `|md` label fails the bu
 
 ## Code blocks
 
-Every other fenced block renders as `<pre data-lang="<lang>"><code>`. The language shows as a small label on the block. There is no syntax highlighting and no script.
+A fenced block in a language that Shiki knows, such as `ts`, `bash`, `yaml`, `json` or `markdown`, is highlighted at build time by Pierre. It renders as a `<diffs-container>` with the highlighted code in a declarative shadow root, so it needs no script. Long lines wrap.
 
-A `diff` block is the one exception: each line is tinted by its first character. Lines starting with `+` are green, `-` red and `@@` blue; other lines stay plain. Keep the marker in the first column.
+Two more fence names render the same way, for content that is not code in a real language:
 
-```diff
+| Fence | Use it for | Highlighting |
+|---|---|---|
+| ` ```pseudo ` | Logic and algorithms written as pseudocode | Keywords, constants, calls, strings, numbers, comments and operators. Other words stay plain. |
+| ` ```text ` | File trees and call trees | None |
+
+The `pseudo` grammar is part of this skill, in `app/src/lib/pseudo.ts`. Its keywords are `if`, `else`, `elif`, `then`, `for`, `each`, `in`, `while`, `until`, `return`, `break`, `continue`, `on`, `when`, `await`, `async`, `try`, `catch`, `finally`, `throw`, `and`, `or`, `not`, `is`, `new`, `emit`, `call`, `let`, `set`, `match`, `case` and `end`. Its constants are `true`, `false`, `null`, `none` and `nil`. A word directly before `(` is a call. A comment starts with `#` or `//`.
+
+```pseudo
+on(save)
+  if content is unchanged
+    return cached result
+  write new content
+  invalidate cache
+```
+
+Any other block, including one with no language, renders as `<pre data-lang="<lang>"><code>`. The language shows as a small label on the block.
+
+## Diffs
+
+A `diff` fenced block renders with Pierre too, as added and removed rows with line numbers and syntax highlighting. Five rules decide what it shows.
+
+- **A bare hunk names its language.** A block without git file headers (`diff --git` or `---`) must name a language or a file path after `diff`. With a language, the block has no file header. With a path, the path is the header and its extension picks the language.
+- **`pseudo` and `text` work after `diff` too.** ` ```diff pseudo ` highlights a change to pseudocode. ` ```diff text ` shows a change to a file tree or a call tree with no highlighting. A path that ends in `.pseudo` picks `pseudo`.
+- **A changed line is a pair of whole lines.** Pierre parses every diff line as real code. Write the old line whole after `-` and the new line whole after `+`. Do not wrap a long `+` line onto a second `+` line by hand: Pierre reads the second line as a new line of code.
+- **`split` shows two columns.** Add the word `split` after the language or path. Without it the diff is unified.
+- **Two or more files become a switch.** Paste the output of `git diff`. When it holds two or more files, the block becomes one framed diff with a unified and split switch above it. The switch needs JavaScript; without it the diff stays unified. This is the only built-in part that hydrates.
+
+```diff ts
  defineAgent({
+   tools: [question, find_projects, document_status, find_budget_lines, propose_change_order, present],
 -  output: { schema: Cards },
 +  output: { toolId: "mcp__sapio__present" },
  })
 ```
+
+The block above starts with ` ```diff ts `. The same lines with ` ```diff apps/sapio/agent.ts split ` show the path as a header, in two columns:
+
+```diff apps/sapio/agent.ts split
+ defineAgent({
+   tools: [question, find_projects, document_status, find_budget_lines, propose_change_order, present],
+-  output: { schema: Cards },
++  output: { toolId: "mcp__sapio__present" },
+ })
+```
+
+A ` ```diff pseudo ` block shows the same kind of change in pseudocode:
+
+```diff pseudo
+ on(save)
++  if content is unchanged
++    return cached result
+   write new content
++  invalidate cache
+```
+
+The page ships only the grammars its switches use. A page with no switch ships no highlighter at all.
 
 ## Callouts
 
@@ -154,11 +205,11 @@ An inline code span that holds the word `status`, a colon and a kind becomes a p
 | `here` | We are here | Blue | `status:here` |
 | `partly` with a custom label | The text after the kind | Amber | `status:partly Weekly only` |
 
-Renders as `<span class="pill built">Built</span>`. Pills work in paragraphs, list items and table cells. Inside a fenced code block the text stays literal. An unknown kind fails the build.
+Renders as `<span class="pill built">Built</span>`. Pills work in paragraphs, list items, table cells and the frontmatter `lede`, `meta` and stat labels. Inside a fenced code block the text stays literal. An unknown kind fails the build.
 
 ## Fenced divs
 
-A line `::: <kind>` opens a div and a line holding only `:::` closes it. Divs do not nest.
+A line `::: <kind>` opens a div and a line holding only `:::` closes it. Both lines start in the first column. Divs do not nest.
 
 ````markdown
 ::: steps
@@ -183,9 +234,24 @@ In a `steps` div, a bold first line becomes `<p class="step-title">`, together w
 
 GitHub tables render inside `<div class="table-wrap">`, which scrolls sideways when the table is wider than the page. Column alignment from the separator row is kept. A right-aligned column (`--:`) also uses tabular numbers.
 
+## Svelte in .svx documents
+
+A `.svx` document is the same Markdown with Svelte allowed in it: every rule above applies. [interactive.svx](interactive.svx) uses each part below.
+
+| Part | Rule |
+|---|---|
+| `<script>` | At most one instance `<script lang="ts">`, anywhere at the top level. It holds imports and state for the whole document. A second one fails the build. |
+| Components | Write them inline as Svelte markup, or import a `.svelte` file with a path relative to the document, such as `import Backoff from "./Backoff.svelte"`. Leave a blank line around Markdown inside a component. |
+| `<style>` | One `<style>`, scoped to the markup in this document. Use the house variables, such as `var(--line)`, `var(--paper)`, `var(--radius)` and `var(--blue)`, so the part follows light and dark. |
+| Braces | `{` and `}` in prose start a Svelte expression. Write a literal brace as `&#123;` and `&#125;`. Braces in code spans and fenced blocks stay literal. |
+| Frontmatter | The frontmatter keys are constants in the document, so `{lede}` prints the lede. Do not declare a variable with the name of a key. |
+| No JavaScript | The page is prerendered: it shows each component in its first state. |
+
+A `.svx` document with a `<script>` or a component hydrates the whole page; one without them ships no more script than a `.md` document. In a `.md` document, braces and `$` are always literal text.
+
 ## Raw HTML
 
-Raw HTML in the Markdown passes through unchanged. It is allowed and discouraged: the class names above are the styling contract, and raw HTML can step outside it.
+Raw HTML in the Markdown passes through unchanged. It is allowed and discouraged: the class names above are the styling contract, and raw HTML can step outside it. In a `.md` document, a capitalised tag such as `<Card>` is read as a Svelte component and fails, so keep raw HTML to lowercase tags.
 
 ## Light and dark
 
@@ -195,20 +261,21 @@ Every page supports both schemes. There is no syntax for it.
 |---|---|
 | Default | The page follows the reader's system setting, through `<meta name="color-scheme" content="light dark">` and `light-dark()` colour tokens in `style.css`. |
 | Toggle | A button at the top right switches to the scheme not on screen. A choice that differs from the system setting is stored in `localStorage` under `color-scheme`. Switching back to the system scheme removes it. |
-| Scripts | One line in `<head>` applies the stored choice before the page paints, and one short script at the end of `<body>` handles the button. They are the only JavaScript in the page. |
+| Scripts | One line in `<head>` applies the stored choice before the page paints, and one short script at the end of `<body>` handles the button. In a page without a diff switch or Svelte, they are the only JavaScript, about 860 bytes. |
 | Without JavaScript | The page still follows the system setting. The toggle has no effect. |
-| Diagrams | `style.css` recolours the `house.d2` palette and the D2 default colours, so diagrams follow the scheme. A colour outside that palette keeps its light value. |
+| Diagrams and code | `style.css` recolours the `house.d2` palette and the D2 default colours, and Pierre's code follows the page scheme. A diagram colour outside that palette keeps its light value. |
 | Print | Always light. The button is hidden. |
 
 ## Build failures
 
-Each failure prints `build: <message>` and exits with code 1. Where the source has a line, the message names it.
+Each failure prints `build: <message>` and exits with code 1. Where the source has a line, the message starts with `<file>:<line>:`.
 
 | Condition | Message contains |
 |---|---|
-| No path given, or a file that cannot be read | `usage:` or `cannot read` |
+| No path given, a file that is not `.md` or `.svx`, or a file that cannot be read | `usage:`, `must be a .md or .svx file` or `cannot read` |
 | No `#` heading | `no H1` |
 | Frontmatter that is not a YAML mapping | `frontmatter must be a YAML mapping` or `frontmatter is not valid YAML` |
+| `eyebrow`, `lede`, `meta` or `type` that is not a string | `frontmatter "<key>" must be a string` |
 | `type` outside the four values | `frontmatter type` |
 | 1 card, or more than 4, in `stats` | `frontmatter stats must be a list of 2 to 4 cards` |
 | A card without `value` or `label`, or with an unknown `tone` | `frontmatter stats[n]` |
@@ -219,13 +286,18 @@ Each failure prints `build: <message>` and exits with code 1. Where the source h
 | A `:::` with no open div, or an open div at the end of the file | `":::" closes nothing` or `unclosed` |
 | A `steps` div without a numbered list | `"::: steps" needs a numbered list` |
 | Two or more `here` pills in one `steps` div | `"::: steps" has n "here" pills` |
+| A `diff` block without file headers, language or path | `needs a language or a file path` |
+| A `diff` block whose hunks do not match their `@@` line counts | `diff does not parse` |
 | A `\|md` label in a `d2` block | `d2 uses a \|md label` |
 | A diagram without an italic caption | `diagram has no caption` |
+| A `d2` block that is never closed | `unclosed d2 code fence` |
 | A `d2` block that does not compile, or no `d2` on the path | `d2 failed for the diagram` or `cannot find the` |
+| A `.svx` document that is not valid Svelte, such as one with two `<script>` blocks | The Svelte message, such as `A component can have a single top-level <script>`, at its file, line and column |
+| A `.svx` component that throws while the page prerenders, such as an undefined variable | `the page threw while prerendering`, with the error. It has no line. |
 | A `script`, `link`, `img`, `iframe`, `source`, `video` or `audio` tag that loads an `http(s)` URL, a CSS `url()` with one, or an `@import` | `external resource` |
 
-A normal link to a web page is not an external resource and builds fine.
+A normal link to a web page is not an external resource and builds fine. If the first run cannot install the app's dependencies, the build prints `bun install failed` with the app's folder.
 
 ::: footer
-**Source.** `scripts/build.ts`, `assets/house.d2` and `assets/style.css` in `skills/productivity/technical-html/`. The example documents in `assets/examples/` use every feature on this page.
+**Source.** `scripts/build.ts`, `app/plugins/`, `assets/house.d2` and `assets/style.css` in `skills/productivity/technical-html/`. The example documents in `assets/examples/` use every feature on this page.
 :::

@@ -88,7 +88,7 @@ The em dash rule covers our text only. Vendored text keeps upstream punctuation,
 4. **Run the checks on every push** `status:here`
    Waits on the first open decision below. Until then, `bun run skills check` runs only in the weekly upstream job.
 5. **Rebuild the example pages in a check**
-   A script builds the four examples and fails when a committed `.html` differs, so a change to `style.css` cannot leave them stale.
+   A script builds the five examples and fails when a committed `.html` differs, so a change to `style.css` cannot leave them stale.
 :::
 
 ## Open decisions
@@ -104,9 +104,9 @@ The em dash rule covers our text only. Vendored text keeps upstream punctuation,
 ::: card
 **TALA is a separate install.** The build calls `d2 --layout=tala`, and TALA ships as its own plugin binary, `d2plugin-tala`, beside `d2`. On a machine without it every diagram fails, so the whole build fails. SKILL.md stating the install step, and a build error that names the plugin, retire this risk.
 
-**`Bun.markdown` is new.** The builder uses Bun's built-in Markdown renderer, checked here on Bun 1.4.2. A Bun release that changes its HTML output changes every page. Rebuilding the four examples after each Bun upgrade and reading the diff catches it.
+**The builder rides on fast-moving packages.** The builder is a SvelteKit app that prerenders the page, with mdsvex for the Markdown and Pierre for code and diffs, pinned in `app/bun.lock`. An upgrade that changes their HTML output changes every page. Rebuilding the examples after each upgrade and reading the diff catches it.
 
-**The example pages can go stale.** The four built `.html` files are committed beside their sources. A change to `style.css`, `house.d2` or `build.ts` without a rebuild leaves them showing the old look. Step 5 retires this risk.
+**The example pages can go stale.** The five built `.html` files are committed beside their sources. A change to `style.css`, `house.d2` or the plugins in `app/` without a rebuild leaves them showing the old look. Step 5 retires this risk.
 :::
 
 ::: footer

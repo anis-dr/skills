@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Scheme toggle (see style.css). The head script applies a stored override before first paint; the body script
+         flips between the system scheme and its opposite, stored literally in localStorage "color-scheme". Storage may
+         be blocked, so the override also lives in `stored` for this page. -->
+    <meta name="color-scheme" content="light dark">
+    <script>try{document.querySelector('meta[name="color-scheme"]').content=localStorage.getItem("color-scheme")??"light dark"}catch{}</script>
+    %sveltekit.head%
+  </head>
+  <body%doc.body%>
+    <button type="button" class="scheme"><span class="to-dark"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="8" cy="8" r="3"/><path d="M8 1v1.5M8 13.5V15M1 8h1.5M13.5 8H15M3.05 3.05l1.06 1.06M11.89 11.89l1.06 1.06M3.05 12.95l1.06-1.06M11.89 4.11l1.06-1.06"/></svg><span class="visually-hidden">Switch to dark theme</span></span><span class="to-light"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><path d="M13.5 9.5A5.5 5.5 0 0 1 6.5 2.5a5.5 5.5 0 1 0 7 7z"/></svg><span class="visually-hidden">Switch to light theme</span></span></button>
+    <div style="display: contents">%sveltekit.body%</div>
+    <script>{
+const meta = document.querySelector('meta[name="color-scheme"]');
+const system = matchMedia("(prefers-color-scheme: dark)");
+const read = () => { try { return localStorage.getItem("color-scheme"); } catch { return null; } };
+let stored = read();
+document.querySelector(".scheme").addEventListener("click", () => {
+  const os = system.matches ? "dark" : "light";
+  const target = (stored ?? os) === "dark" ? "light" : "dark";
+  stored = target === os ? null : target;
+  try { stored === null ? localStorage.removeItem("color-scheme") : localStorage.setItem("color-scheme", stored); } catch {}
+  meta.content = stored ?? "light dark";
+});
+addEventListener("storage", () => { stored = read(); meta.content = stored ?? "light dark"; });
+}</script>
+  </body>
+</html>

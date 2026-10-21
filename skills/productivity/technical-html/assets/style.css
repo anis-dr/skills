@@ -193,12 +193,12 @@ code {
 .toc a { display: block; padding: 4px 0; color: var(--ink-2); text-decoration: none; }
 .toc a:hover { color: var(--blue); }
 @media (min-width: 1100px) {
-  main:has(> .toc) { max-width: 1032px; padding-left: 280px; }
+  main:has(> .toc) { max-width: 784px; padding-left: 280px; }
   /* ponytail: 50% of the viewport ignores a classic scrollbar, so the sidebar can sit ~8px off the column there. */
   .toc {
     position: fixed;
     top: 64px;
-    left: max(32px, calc(50% - 484px));
+    left: max(32px, calc(50% - 516px));
     width: 196px;
     max-height: calc(100vh - 96px);
     overflow-y: auto;
@@ -278,12 +278,24 @@ pre {
   tab-size: 2;
 }
 pre code { font: inherit; background: none; padding: 0; border-radius: 0; }
-/* Diff lines: the build wraps each line of a ```diff block; the tint spans the full row, also when scrolled. */
-pre[data-lang="diff"] code { display: block; width: max-content; min-width: 100%; }
-pre[data-lang="diff"] .ln { display: block; margin: 0 -18px; padding: 0 18px; }
-pre[data-lang="diff"] .add { background: var(--green-bg); color: var(--green); }
-pre[data-lang="diff"] .del { background: var(--red-bg); color: var(--red); }
-pre[data-lang="diff"] .hunk { color: var(--blue); }
+/* Highlighted code and diffs: Pierre renders each into a <diffs-container> shadow root at build time. They sit in the
+   house column, follow the page's scheme and use the house mono font. The files of one multi-file diff stack as one
+   frame. */
+diffs-container {
+  display: block;
+  color-scheme: inherit;
+  margin: 20px 0;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  --diffs-font-family: var(--mono);
+  --diffs-font-size: 13px;
+  --diffs-line-height: 20px;
+  --diffs-header-font-family: var(--sans);
+}
+.diff > diffs-container + diffs-container { margin-top: -21px; border-top-left-radius: 0; border-top-right-radius: 0; }
+.diff > diffs-container:has(+ diffs-container) { border-bottom-left-radius: 0; border-bottom-right-radius: 0; }
+.steps diffs-container { margin-top: 14px; }
 pre[data-lang]::before {
   content: attr(data-lang);
   position: sticky;
