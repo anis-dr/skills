@@ -104,6 +104,7 @@ Before you change code you don't know, or when the shape of new code is the hard
 - **`/benchmark-checklist`** vets a performance measurement before you report or act on it: what limits it, whether the work really ran, errors, repeatability and relevance. Model-invoked: `/performance` calls it.
 - **`/eval`** tests how a skill, structure or prompt change affects agent behaviour, with blinded runs on several model families and a blinded judge.
 - **`/create-verification-skill`** writes a project-local skill that drives your app the way a user does; **`/maintain-verification-skill`** keeps that skill and its feature map honest as the app changes.
+- **`/create-formal-verification-skill`** formally verifies one property of the code where a bug costs most and tests reach least (a model checker, prover or code-level verifier), and leaves a project-local skill that rechecks it; **`/maintain-formal-verification-skill`** brings that verification back in line after code changes that skipped it. Both user-invoked.
 
 ## Pull requests
 
@@ -117,6 +118,7 @@ Before you change code you don't know, or when the shape of new code is the hard
 - **`/pause-resume`** pauses work at a safe boundary with a `wip:` commit and a resume note, or picks up one prior session from its transcript, branch or note without redoing it.
 - **`/recall`** rebuilds your recent working context from past chats, live state and the shared record, then hands back a brief. Use it before resuming work after a break.
 - **`/ketchup`** catches you up on everything in the chat since your last message, in plain words, with an executive summary and enough context for each action item. User-invoked.
+- **`/swarm`** fans a task out to N parallel workers in the background (slices, a race on identical briefs, or both), drains them and returns one report. User-invoked.
 - **`/show-me-your-work`** keeps a decision log for long or unattended runs, so a reviewer can trust the result.
 - **`/transcripts`** knows where each harness stores session transcripts. Model-invoked: `/recall`, `/show-me-your-work` and `/automate-me` use it.
 - **`/automate-me`** turns your working conventions, mined from past chats, into a personal `-mode` skill.
@@ -257,6 +259,7 @@ Off the main flow entirely.
 - **`/to-questionnaire`** comes in when the thing blocking you isn't in your head or the codebase but in **someone else's**, and it writes them a questionnaire to fill in. It's the inverse of `/grill-me`: instead of interviewing you about the subject, it interviews you about the **send** (who it's going to, what you need back) and aims the questions at the gap. What comes back is material for `/grill-with-docs` or `/to-spec`.
 - **`/wizard`** is for the steps only a **human** can take: provisioning infrastructure, setting up credentials or CI secrets, clicking through an unfamiliar third-party dashboard, running a one-off migration or cutover. It generates an interactive bash script that opens each URL, captures each value, and writes it into `.env` and GitHub secrets, so the procedure stops being something you re-explain to an agent every time. Model-invoked, so the agent reaches for it the moment it hits a wall only you can pass. If the agent could just do it itself, it should; this is for where a human is genuinely in the loop.
 - **`/wait-what`** is the corrective for a message that didn't land. Use it mid-conversation, inside any other skill, and the agent re-pitches what it just said with the context you were missing, in plain English, using the `GLOSSARY.md` vocabulary. It works after the fact; `/grill-with-docs` is the upfront cure, because a shared language agreed early is what stops the jargon arriving at all.
+- **`/sharpen`** makes a task deeper, not bigger: what a top professional would add, the raw material they would start from, their methods and an outside check, then a rewrite of your prompt that asks for exactly that. User-invoked.
 - **`/teach`**: learn a concept over multiple sessions, using the current directory as a stateful workspace.
 - **`/writing-for-agents`** is the reference for writing documents agents consume: skills, AGENTS.md, pointed-at docs.
 

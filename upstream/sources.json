@@ -380,6 +380,38 @@
     "commit": "56aca546a690ae340eccbe57455d5cb6380024c9"
   },
   {
+    "name": "create-formal-verification-skill",
+    "bucket": "engineering",
+    "mode": "vendor",
+    "source": "https://github.com/cursor/plugins",
+    "path": "pstack/skills/create-formal-verification-skill",
+    "commit": "190d28736eff128ec94f502a22c7fe0c4b56cd37"
+  },
+  {
+    "name": "maintain-formal-verification-skill",
+    "bucket": "engineering",
+    "mode": "vendor",
+    "source": "https://github.com/cursor/plugins",
+    "path": "pstack/skills/maintain-formal-verification-skill",
+    "commit": "190d28736eff128ec94f502a22c7fe0c4b56cd37"
+  },
+  {
+    "name": "sharpen",
+    "bucket": "engineering",
+    "mode": "vendor",
+    "source": "https://github.com/cursor/plugins",
+    "path": "pstack/skills/sharpen",
+    "commit": "190d28736eff128ec94f502a22c7fe0c4b56cd37"
+  },
+  {
+    "name": "swarm",
+    "bucket": "engineering",
+    "mode": "vendor",
+    "source": "https://github.com/cursor/plugins",
+    "path": "pstack/skills/swarm",
+    "commit": "190d28736eff128ec94f502a22c7fe0c4b56cd37"
+  },
+  {
     "name": "technical-writing",
     "bucket": "productivity",
     "mode": "vendor",

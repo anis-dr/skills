@@ -1,0 +1,4 @@
+interface:
+  display_name: "Sharpen"
+policy:
+  allow_implicit_invocation: false

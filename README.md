@@ -38,6 +38,7 @@ Add `-g` to install into your user folder instead of the current project. Not su
 - [automate-me](skills/engineering/automate-me/SKILL.md): Use for "automate me", "create/update/refresh my -mode skill", "turn/capture my preferences or working style into a skill", or wanting agents to follow how the user works.
 - [blast-radius](skills/engineering/blast-radius/SKILL.md): Find what a change could break somewhere else before it ships, beyond the diff, and prove the one fact it's safe because of by running real code instead of writing it up.
 - [correct](skills/engineering/correct/SKILL.md): Find the mistakes agents keep repeating in this repo and make each one impossible.
+- [create-formal-verification-skill](skills/engineering/create-formal-verification-skill/SKILL.md): Generate a project-local skill that formally verifies the code where a bug costs the most and tests reach the least, in any language, with whichever verification tool fits.
 - [create-verification-skill](skills/engineering/create-verification-skill/SKILL.md): Generate a project-local verification skill that drives your app the way a user does — any language, framework, or platform.
 - [eval](skills/engineering/eval/SKILL.md): Blind test a skill or prompt change across models
 - [grill-with-docs](skills/engineering/grill-with-docs/SKILL.md): Grill a design and write its docs
@@ -45,10 +46,13 @@ Add `-g` to install into your user folder instead of the current project. Not su
 - [implement-spec](skills/engineering/implement-spec/SKILL.md): Implement the result of /to-spec and /to-tickets in code.
 - [improve-codebase-architecture](skills/engineering/improve-codebase-architecture/SKILL.md): Find and grill architecture improvements
 - [interrogate](skills/engineering/interrogate/SKILL.md): Use for "interrogate", "adversarial review", "multi-model review", "challenge this", "stress test this code", "find blind spots", or "tear this apart".
+- [maintain-formal-verification-skill](skills/engineering/maintain-formal-verification-skill/SKILL.md): Bring a project's formal verification back in line with the code after the code changes: find the commits that touched verified code, update the model, harness, or properties to describe the code as it is now, rerun, and say whether each failure is drift in the verification or a bug in the code.
 - [maintain-verification-skill](skills/engineering/maintain-verification-skill/SKILL.md): Periodic pass that keeps a project's verification skill and feature map honest: parallel source readers per feature, one live session driving every feature, at most one PR of proven corrections.
 - [recall](skills/engineering/recall/SKILL.md): Reconstruct your recent working context from your own chat history, live state, and the shared record (user reports, prior fixes, incidents), then hand back a tight current-state brief.
 - [retro](skills/engineering/retro/SKILL.md): Conduct a retrospective on a coding session.
 - [setup-matt-pocock-skills](skills/engineering/setup-matt-pocock-skills/SKILL.md): Configure a repo for the skills
+- [sharpen](skills/engineering/sharpen/SKILL.md): Make a task deeper, not bigger, then rewrite the prompt.
+- [swarm](skills/engineering/swarm/SKILL.md): Fan out N parallel workers, drain them, and return one report.
 - [to-spec](skills/engineering/to-spec/SKILL.md): Turn a conversation into a spec
 - [to-tickets](skills/engineering/to-tickets/SKILL.md): Split a plan into tracer-bullet tickets
 - [triage](skills/engineering/triage/SKILL.md): Move issues through triage roles
