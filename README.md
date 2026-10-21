@@ -50,6 +50,7 @@ Add `-g` to install into your user folder instead of the current project. Not su
 - [maintain-verification-skill](skills/engineering/maintain-verification-skill/SKILL.md): Periodic pass that keeps a project's verification skill and feature map honest: parallel source readers per feature, one live session driving every feature, at most one PR of proven corrections.
 - [no-comments](skills/engineering/no-comments/SKILL.md): Spawn Comment Sicko, fix accepted findings, and offer encodings for claimed constraints.
 - [recall](skills/engineering/recall/SKILL.md): Reconstruct your recent working context from your own chat history, live state, and the shared record (user reports, prior fixes, incidents), then hand back a tight current-state brief.
+- [reflect](skills/engineering/reflect/SKILL.md): Spawn three parallel review subagents over the active transcript, surface learnings, and route each to a concrete edit on an existing skill.
 - [retro](skills/engineering/retro/SKILL.md): Conduct a retrospective on a coding session.
 - [setup-matt-pocock-skills](skills/engineering/setup-matt-pocock-skills/SKILL.md): Configure a repo for the skills
 - [sharpen](skills/engineering/sharpen/SKILL.md): Make a task deeper, not bigger, then rewrite the prompt.

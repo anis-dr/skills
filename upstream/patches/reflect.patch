@@ -1,0 +1,139 @@
+diff --git a/SKILL.md b/SKILL.md
+index b62aa14..e7c697f 100644
+--- a/SKILL.md
++++ b/SKILL.md
+@@ -12,48 +12,44 @@ Invoke when the user says "reflect" or "/reflect". Skip when the conversation is
+ 
+ ## 1. Locate the active transcript
+ 
+-Before fanning out, find this conversation's transcript in the `agent-transcripts/` directory the system prompt names. Do not glob across `~/.cursor/projects/*/`. That crosses workspace boundaries and reads private chats from unrelated projects.
+-
+-```bash
+-ls -t <agent-transcripts>/*.jsonl <agent-transcripts>/*/*.jsonl <agent-transcripts>/*/subagents/*.jsonl 2>/dev/null | head -10
+-```
+-
+-That covers the legacy flat (`<id>.jsonl`), current nested (`<id>/<id>.jsonl`), and subagent (`<parent>/subagents/<child>.jsonl`) layouts. For each candidate, read the first JSONL line. Take the file whose `message.content[0].text` contains the conversation's opening user prompt. If none matches, pass a tight digest of the session instead.
++Before fanning out, call the Skill tool with "transcripts" and use it to find this conversation's transcript in the harness you run in. Read only the current workspace's transcripts. Do not glob across other workspaces' folders: that crosses workspace boundaries and reads private chats from unrelated projects. If you cannot find and confirm the transcript, pass a tight digest of the session instead.
+ 
+ ## 2. Spawn three reviewers in parallel
+ 
+-One message, three `Task` calls, `subagent_type: generalPurpose`, agent mode (`readonly: false`). Reviewers need MCP access to look up the tickets, chat threads, and observability traces the transcript references, and readonly strips MCPs.
++Spawn three reviewer subagents in one message, so they run in parallel. Each reviewer reads files and may use MCP tools to look up the tickets, chat threads, and observability traces the transcript cites, but never edits. A read-only subagent may lose MCP access, so when your harness strips MCP tools from read-only subagents, spawn a general-purpose one; the template's no-edit rule still holds.
+ 
+-Each reviewer and the synthesizer name a role line in the `pstack-models.mdc` rule and a default. Set `model` to that line's value, or to the default if the rule or the line is missing. Leave `model` unset when the value is `auto` or `inherit-parent`. If the Task tool rejects a slug, use the default and say so. If it rejects the default, use the closest valid slug of the same family from its error message.
++Each spawn names the model it needs by role. Use the closest model your harness offers; when it offers no choice, use its default model.
+ 
+-| Lens | Role line | Default `model` | Prompt template |
+-|---|---|---|---|
+-| Judgment | `reflect judgment, divergent, synthesizer` | `claude-opus-5-5-xhigh` | `references/judgment-reviewer.md` |
+-| Tooling | `reflect tooling` | `grok-4.7-xhigh-fast` | `references/tooling-reviewer.md` |
+-| Divergent | `reflect judgment, divergent, synthesizer` | `claude-opus-5-5-xhigh` | `references/divergent-reviewer.md` |
++| Lens | Model | Prompt template |
++|---|---|---|
++| Judgment | the strongest model your harness offers | `references/judgment-reviewer.md` |
++| Tooling | a fast model | `references/tooling-reviewer.md` |
++| Divergent | the strongest model your harness offers | `references/divergent-reviewer.md` |
+ 
+-Pass each template verbatim, substituting the transcript path or digest where marked. Reviewers return findings in the `Task` response body.
++Pass each template verbatim, substituting the transcript path or digest where marked. Reviewers return findings in their final reply.
+ 
+ ## 3. Synthesize
+ 
+-One `Task` call, `subagent_type: generalPurpose`, `model` from the `reflect judgment, divergent, synthesizer` line (default `claude-opus-5-5-xhigh`), agent mode (`readonly: false`). It spot-verifies citations through MCP, and readonly strips MCPs. Pass `references/synthesizer.md` verbatim, with each reviewer's full output inlined where marked. It returns an Accepted / Rejected / Backlog list.
++Spawn one synthesizer subagent on the strongest model your harness offers, with the reviewers' access: it spot-verifies citations through MCP tools and never edits. Pass `references/synthesizer.md` verbatim, with each reviewer's full output inlined where marked. It returns an Accepted / Rejected / Backlog list.
+ 
+ ## 4. Structural enforcement check
+ 
+ Move any Accepted item that a lint rule, script, metadata flag, or runtime check would enforce more reliably to Backlog. See the **encode-lessons-in-structure** principle (call the Skill tool with "principles" and read its reference).
+ 
++Move any Accepted item that fixes the repo's environment rather than a skill to Backlog, under the note 'run /retro for these'. That covers checks, lint rules, hooks, AGENTS.md or CLAUDE.md, coding standards, and tool cost.
++
+ ## 5. Apply
+ 
+ Present the synthesizer's full Accepted / Rejected / Backlog output and wait for explicit approval before applying any Accepted edit. The user picks the subset and may redirect routings. Skill changes affect every future agent in the org. Do not auto-apply.
+ 
+-File each Backlog item to your team's devex or backlog tracker without waiting. Only the Accepted list waits for approval.
++File each Backlog item to your team's devex or backlog tracker without waiting, except the items under 'run /retro for these': list those and tell the user to run `/retro`. Only the Accepted list waits for approval.
+ 
+ Follow each approved row's Routing exactly:
+ 
+ - Trivial existing-skill edit (a one-line bullet, a tightened sentence, a stale fact corrected): the parent does it directly.
+-- Substantive existing-skill edit (a new section, a new pattern table, more than ~10 lines): hand to Cursor's built-in `create-skill` skill and run its draft / test / iterate loop.
+-- `tune description: <skill path>` (the skill exists but didn't trigger when it should have): hand to `create-skill` and run its description-optimization loop.
+-- `new skill via create-skill: <kebab-name>`: hand creation to `create-skill`. Do not invent the shape ad hoc.
++- Substantive existing-skill edit (a new section, a new pattern table, more than ~10 lines): call the Skill tool with "writing-for-agents" and write the edit by its rules.
++- `tune description: <skill path>` (the skill exists but didn't trigger when it should have): call the Skill tool with "writing-for-agents" and rewrite the description by its rules.
++- `new skill: <kebab-name>`: call the Skill tool with "writing-for-agents" and create the skill by its rules. Do not invent the shape ad hoc. In a skills repo with a `CONVENTIONS.md`, such as the one this skill ships from, follow it too: an `ours` entry in `upstream/sources.json` and a line in the router.
+ 
+ If your environment ships a SKILL.md validator, run it on every touched skill before declaring done.
+ 
+diff --git a/references/divergent-reviewer.md b/references/divergent-reviewer.md
+index f25f54b..6cc92c7 100644
+--- a/references/divergent-reviewer.md
++++ b/references/divergent-reviewer.md
+@@ -18,7 +18,7 @@ Scan for:
+ 
+ ## Scope to skills and tools the session actually used
+ 
+-Route findings only to skills, tools, or MCPs this transcript used. A skill counts as used when the transcript shows a `Read` of its `SKILL.md` (under `.agents/skills/`, `~/.agents/skills/`, or `~/.cursor/plugins/`), a `Task` prompt naming its path, or a tool call (Shell, Grep, MCP, etc.) matching its documented commands. Speculative routings to skills the parent never opened do not count.
++Route findings only to skills, tools, or MCPs this transcript used. A skill counts as used when the transcript shows it loaded, in any harness (a Skill tool call or a read of its `SKILL.md`), a subagent prompt naming its path, or a tool call (shell, search, MCP, etc.) matching its documented commands. Speculative routings to skills the parent never opened do not count.
+ 
+ Two finding shapes are valid:
+ - The parent invoked the skill and you found a real gap in its body. Route to the skill's relevant section.
+diff --git a/references/judgment-reviewer.md b/references/judgment-reviewer.md
+index 1cdb57c..9b238f2 100644
+--- a/references/judgment-reviewer.md
++++ b/references/judgment-reviewer.md
+@@ -17,7 +17,7 @@ Scan for:
+ 
+ ## Scope to skills and tools the session actually used
+ 
+-Route findings only to skills, tools, or MCPs this transcript used. A skill counts as used when the transcript shows a `Read` of its `SKILL.md` (under `.agents/skills/`, `~/.agents/skills/`, or `~/.cursor/plugins/`), a `Task` prompt naming its path, or a tool call (Shell, Grep, MCP, etc.) matching its documented commands. Speculative routings to skills the parent never opened do not count.
++Route findings only to skills, tools, or MCPs this transcript used. A skill counts as used when the transcript shows it loaded, in any harness (a Skill tool call or a read of its `SKILL.md`), a subagent prompt naming its path, or a tool call (shell, search, MCP, etc.) matching its documented commands. Speculative routings to skills the parent never opened do not count.
+ 
+ Two finding shapes are valid:
+ - The parent invoked the skill and you found a real gap in its body. Route to the skill's relevant section.
+diff --git a/references/synthesizer.md b/references/synthesizer.md
+index 1a090d8..a9cf703 100644
+--- a/references/synthesizer.md
++++ b/references/synthesizer.md
+@@ -14,7 +14,7 @@ Apply each criterion to every finding:
+ 
+ - Durability: still true in 6 months once paths, SHAs, tool versions, and code shapes have changed.
+ - Specificity: broad enough to apply across tasks, precise enough that a future agent recognizes when to use it. Reject vague platitudes ("write good code") and hyper-specific facts ("`<specific-skill-name>` has 175 tokens at limit 80").
+-- Existing-skill-first: propose `new skill via create-skill:` only when no existing skill is a real home, the pattern recurs, and the topic deserves its own skill.
++- Existing-skill-first: propose `new skill:` only when no existing skill is a real home, the pattern recurs, and the topic deserves its own skill.
+ - Convergence: findings echoed by 2+ reviewers carry higher confidence. Singletons must clear a higher bar on the other criteria.
+ - Decision-changing: a future agent does something different because of the edit, not just reads more text.
+ - Structural-mechanism check: route to Backlog when a lint rule, script, metadata flag, or runtime check already enforces the rule or could enforce it cheaply. Skill prose is for things mechanisms cannot enforce.
+@@ -25,7 +25,7 @@ Drop (implementation details that drift):
+ - "linter at SHA `bd91aa7` uses chars/4 heuristic"
+ - "`<specific-skill-name>` has 175 tokens at limit 80"
+ - "Bugbot flagged regex backtracking on May 2"
+-- "we renamed `gpt-4` to `gpt-4o` in `encodingForModel`"
++- "we renamed `model-v1` to `model-v2` in `encodingForModel`"
+ 
+ Keep (durable patterns):
+ - "closed regex enums for trigger detection are brittle. Prefer schema-validated structures"
+@@ -41,7 +41,7 @@ Output exactly the format below. No preamble, no narration. One sentence per cel
+ |---|---|---|
+ | <failure mode in a skill the parent used> | <change to that skill's body> | <skill path + section> |
+ | <skill existed but didn't trigger> | <tune the skill's description so it fires next time> | <tune description: <skill path>> |
+-| <new pattern, no existing skill is a real home> | <draft a new skill via create-skill> | <new skill via create-skill: <kebab-name>> |
++| <new pattern, no existing skill is a real home> | <draft a new skill> | <new skill: <kebab-name>> |
+ 
+ One row per finding. The user approves row by row.
+ 
+diff --git a/references/tooling-reviewer.md b/references/tooling-reviewer.md
+index 1533ce0..5de32b4 100644
+--- a/references/tooling-reviewer.md
++++ b/references/tooling-reviewer.md
+@@ -28,7 +28,7 @@ Scan for:
+ 
+ ## Scope to skills and tools the session actually used
+ 
+-Route findings only to skills, tools, or MCPs this transcript used. A skill counts as used when the transcript shows a `Read` of its `SKILL.md` (under `.agents/skills/`, `~/.agents/skills/`, or `~/.cursor/plugins/`), a `Task` prompt naming its path, or a tool call (Shell, Grep, MCP, etc.) matching its documented commands. Speculative routings to skills the parent never opened do not count.
++Route findings only to skills, tools, or MCPs this transcript used. A skill counts as used when the transcript shows it loaded, in any harness (a Skill tool call or a read of its `SKILL.md`), a subagent prompt naming its path, or a tool call (shell, search, MCP, etc.) matching its documented commands. Speculative routings to skills the parent never opened do not count.
+ 
+ Two finding shapes are valid:
+ - The parent invoked the skill and you found a real gap in its body. Route to the skill's relevant section.

@@ -33,6 +33,8 @@ The route most work travels. You have an idea and want it built.
 
 4. **`/retro`** closes the loop. After a build, and especially one that went sideways, it looks back over the session and suggests changes to the agent's **environment**, not the code: navigation pointers, automated checks, the coding standards `/code-review` enforces, steering files, tooling. Mechanical mistakes become deterministic checks; judgement calls become coding standards. The next build then starts from a better environment.
 
+   **`/reflect`** is its sibling for skills: three reviewers mine the session's transcript, and each lesson becomes an edit to a skill the session used (or a new skill), applied after you approve. `/retro` fixes the repo's environment, `/reflect` fixes the skills; each hands the other's findings back to you.
+
 ### Context hygiene
 
 Keep steps 1–3 in **one unbroken context window** (don't compact or clear until after `/to-tickets`) so the grilling, spec, and tickets all build on the same thinking. Each `/implement` then starts fresh, working from the ticket. Run `/retro` in the session it's looking back on, before you clear; after clearing, point it at that session's log instead.
@@ -121,7 +123,7 @@ Before you change code you don't know, or when the shape of new code is the hard
 - **`/ketchup`** catches you up on everything in the chat since your last message, in plain words, with an executive summary and enough context for each action item. User-invoked.
 - **`/swarm`** fans a task out to N parallel workers in the background (slices, a race on identical briefs, or both), drains them and returns one report. User-invoked.
 - **`/show-me-your-work`** keeps a decision log for long or unattended runs, so a reviewer can trust the result.
-- **`/transcripts`** knows where each harness stores session transcripts. Model-invoked: `/recall`, `/show-me-your-work` and `/automate-me` use it.
+- **`/transcripts`** knows where each harness stores session transcripts. Model-invoked: `/recall`, `/reflect`, `/show-me-your-work` and `/automate-me` use it.
 - **`/automate-me`** turns your working conventions, mined from past chats, into a personal `-mode` skill.
 
 ## Writing
