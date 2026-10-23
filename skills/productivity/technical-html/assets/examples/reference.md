@@ -14,7 +14,7 @@ toc: true
 bun skills/productivity/technical-html/scripts/build.ts path/to/doc.md
 ```
 
-The build writes `path/to/doc.html` beside the source and prints `wrote <path> (<bytes> bytes, <n> of them script)`. A `.svx` document builds the same way. On any problem it prints `build: <file>:<line>: <message>` to stderr and exits with code 1. It needs Bun and the `d2` CLI with the TALA layout plugin. The first run installs the dependencies of the SvelteKit app in `app/`.
+The build writes `path/to/doc.html` beside the source and prints `wrote <path> (<bytes> bytes, <n> of them script)`. A `.svx` document builds the same way. On any problem it prints `build: <file>:<line>: <message>` to stderr and exits with code 1 [@build]. It needs Bun and the `d2` CLI with the TALA layout plugin. The first run installs the dependencies of the SvelteKit app in `app/`.
 
 ```d2
 doc: "doc.md or doc.svx" {class: part}
@@ -62,6 +62,7 @@ toc: auto
 | `stats[].value` | Plain text or a number | Required | `<b>` in the card |
 | `stats[].label` | Inline Markdown | Required | `<span>` in the card |
 | `stats[].tone` | `good`, `gap`, `wait` or `none` | `none` | Card class: green, red, amber or neutral |
+| `bibliography` | A path to a BibTeX file, relative to the document | `<doc>.bib` beside the document, if it exists | The Sources section; see [Citations](#citations) |
 | `toc` | `auto`, `true` or `false` | `auto` | `<nav class="toc">` listing every `##` heading. `auto` shows it when the page has 4 or more. |
 
 ## Title and headings
@@ -209,7 +210,7 @@ Renders as `<span class="pill built">Built</span>`. Pills work in paragraphs, li
 
 ## Fenced divs
 
-A line `::: <kind>` opens a div and a line holding only `:::` closes it. Both lines start in the first column. Divs do not nest.
+A line `::: <kind>` opens a div and a line holding only `:::` closes it. Both lines start in the first column. Divs do not nest [@plugins].
 
 ````markdown
 ::: steps
@@ -226,9 +227,79 @@ A line `::: <kind>` opens a div and a line holding only `:::` closes it. Both li
 |---|---|---|
 | `steps` | `<div class="steps">` | A numbered list. Each item is a step card. |
 | `card` | `<div class="card">` | Any Markdown, in a white bordered card. |
-| `footer` | `<footer class="doc-footer">` | Sources and colophon, muted and smaller. |
+| `footer` | `<footer class="doc-footer">` | A colophon, muted and smaller: how the page was made, or a caveat. Sources go in the `.bib` file; see [Citations](#citations). |
 
 In a `steps` div, a bold first line becomes `<p class="step-title">`, together with the rest of that line. An item with a `done` pill gets `<li class="done">`. An item with a `here` pill gets `<li class="here">`, the current step. A `steps` div holds at most one `here` pill.
+
+## Citations
+
+Sources live in a BibTeX file beside the document, and the prose cites them where a claim is made. The build numbers the sources in the order they are first cited and adds a Sources section at the end of the page, before any `::: footer`.
+
+```bibtex
+@online{step,
+  author = {{Trigger.dev}},
+  title = {Step class},
+  url = {https://example.com/docs/step},
+  urldate = {2026-10-21},
+  note = {The retry options a step accepts.},
+}
+
+@software{retry,
+  title = {Retry helper},
+  organization = {acme/payments},
+  path = {src/retry.ts},
+  version = {4f2c9a1},
+  urldate = {2026-10-21},
+  note = {The wait doubles on each attempt.},
+}
+```
+
+````markdown
+A step retries up to three times [@step], and each wait is twice the last [@retry].
+Both limits can change per call [@step; @retry].
+````
+
+| Part | Rule |
+|---|---|
+| File | `<doc>.bib` beside the document, with the same name: `design.bib` for `design.md`. Frontmatter `bibliography: <path>` points elsewhere, relative to the document. |
+| Citation | `[@key]` for one source, `[@a; @b]` for several. In inline code or a fenced block it stays text. |
+| Numbers | Each source gets the next number when it is first cited. `[@a]` renders as `[1]`; `[@a; @b]` renders as `[1][2]`, each marker its own link, in number order. |
+| Every entry is cited | An entry that nothing cites fails the build. A `.bib` file in a document without citations must be empty. |
+| No section | A document without citations gets no Sources section. |
+
+Entry types are `@online` for a web page, `@software` for code, `@misc`, `@article` and `@book`. Any other type renders like `@misc`. Every type uses the same format, so pick the one that names the source best.
+
+| Field | Renders as |
+|---|---|
+| `title` | The title in `<strong>`, linked when `url` is set |
+| `author` | The names after the title. Write an organisation in double braces: `{{Trigger.dev}}`. |
+| `organization`, `publisher`, `howpublished` | After the title, when there is no `author` |
+| `date` or `year` | After the author |
+| `path` | A repo-relative code path in `<code>` |
+| `version` | The commit or release the source was read at: "at `4f2c9a1`" |
+| `url` | The link on the title |
+| `urldate` | The day you read it, written `2026-10-21`: "Read 21 Oct 2026." |
+| `note` | What the source supports, as a short sentence |
+
+A missing field is left out. Field text is TeX: `\texttt{x}` renders as code, `--` as a dash and `~` as a space, so write `\textasciitilde{}` for a tilde in a note. `path`, `version` and `url` are read as typed.
+
+Under a `## Retries` heading, the two entries above render as:
+
+```html
+<a class="cite" href="#ref-step" id="cite-step-1">[1]</a>
+<a class="cite" href="#ref-retry" id="cite-retry-1">[2]</a>
+<a class="cite" href="#ref-step" id="cite-step-2">[1]</a><a class="cite" href="#ref-retry" id="cite-retry-2">[2]</a>
+
+<section class="doc-sources" aria-labelledby="sources">
+  <h2 id="sources">Sources</h2>
+  <ol>
+    <li id="ref-step"><strong><a href="https://example.com/docs/step">Step class</a></strong>, Trigger.dev. Read 21 Oct 2026. The retry options a step accepts.<span class="cited-in">Cited in: <a class="backref" href="#cite-step-1" aria-label="Back to citation 1 of 2, in Retries">Retries</a><a class="backref backref-n" href="#cite-step-2" aria-label="Back to citation 2 of 2, in Retries">2</a></span></li>
+    <li id="ref-retry"><strong>Retry helper</strong>, acme/payments, <code>src/retry.ts</code> at <code>4f2c9a1</code>. Read 21 Oct 2026. The wait doubles on each attempt.<span class="cited-in">Cited in: <a class="backref" href="#cite-retry-1" aria-label="Back to citation 1 of 2, in Retries">Retries</a><a class="backref backref-n" href="#cite-retry-2" aria-label="Back to citation 2 of 2, in Retries">2</a></span></li>
+  </ol>
+</section>
+```
+
+The Sources heading is in the table of contents like any other `##` heading. Each entry ends with a `Cited in:` line that links back to each citation: a name is the nearest `##` heading above that citation, and further citations under the same heading appear as small numerals.
 
 ## Tables
 
@@ -236,7 +307,7 @@ GitHub tables render inside `<div class="table-wrap">`, which scrolls sideways w
 
 ## Svelte in .svx documents
 
-A `.svx` document is the same Markdown with Svelte allowed in it: every rule above applies. [interactive.svx](interactive.svx) uses each part below.
+A `.svx` document is the same Markdown with Svelte allowed in it: every rule above applies. [interactive.svx](interactive.svx) uses each part below [@examples].
 
 | Part | Rule |
 |---|---|
@@ -263,7 +334,7 @@ Every page supports both schemes. There is no syntax for it.
 | Toggle | A button at the top right switches to the scheme not on screen. A choice that differs from the system setting is stored in `localStorage` under `color-scheme`. Switching back to the system scheme removes it. |
 | Scripts | One line in `<head>` applies the stored choice before the page paints, and one short script at the end of `<body>` handles the button. In a page without a diff switch or Svelte, they are the only JavaScript, about 860 bytes. |
 | Without JavaScript | The page still follows the system setting. The toggle has no effect. |
-| Diagrams and code | `style.css` recolours the `house.d2` palette and the D2 default colours, and Pierre's code follows the page scheme. A diagram colour outside that palette keeps its light value. |
+| Diagrams and code | `style.css` recolours the `house.d2` palette and the D2 default colours, and Pierre's code follows the page scheme [@style; @housed2]. A diagram colour outside that palette keeps its light value. |
 | Print | Always light. The button is hidden. |
 
 ## Build failures
@@ -286,6 +357,11 @@ Each failure prints `build: <message>` and exits with code 1. Where the source h
 | A `:::` with no open div, or an open div at the end of the file | `":::" closes nothing` or `unclosed` |
 | A `steps` div without a numbered list | `"::: steps" needs a numbered list` |
 | Two or more `here` pills in one `steps` div | `"::: steps" has n "here" pills` |
+| A `[@key]` citation with no bibliography | `citations need a bibliography: add <doc>.bib` |
+| A citation whose key is not in the `.bib` file | `unknown citation "@key"` |
+| A `.bib` entry that nothing cites, at its line in the `.bib` file | `source "key" is never cited` |
+| A `.bib` file that does not parse | `bibliography does not parse:` and the parser's message |
+| `bibliography` that is not a string, or names a file that does not exist | `frontmatter "bibliography" must be a string` or `cannot read bibliography` |
 | A `diff` block without file headers, language or path | `needs a language or a file path` |
 | A `diff` block whose hunks do not match their `@@` line counts | `diff does not parse` |
 | A `\|md` label in a `d2` block | `d2 uses a \|md label` |
@@ -297,7 +373,3 @@ Each failure prints `build: <message>` and exits with code 1. Where the source h
 | A `script`, `link`, `img`, `iframe`, `source`, `video` or `audio` tag that loads an `http(s)` URL, a CSS `url()` with one, or an `@import` | `external resource` |
 
 A normal link to a web page is not an external resource and builds fine. If the first run cannot install the app's dependencies, the build prints `bun install failed` with the app's folder.
-
-::: footer
-**Source.** `scripts/build.ts`, `app/plugins/`, `assets/house.d2` and `assets/style.css` in `skills/productivity/technical-html/`. The example documents in `assets/examples/` use every feature on this page.
-:::

@@ -89,6 +89,8 @@
   }
 }
 html { background: var(--bg); -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+/* In-page anchors (contents, citations, back-links) glide; with reduced motion they jump. */
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
 body {
   margin: 0;
   font: 16px/1.6 var(--sans);
@@ -455,6 +457,149 @@ blockquote > :last-child { margin-bottom: 0; }
 }
 .doc-footer strong { color: var(--ink-2); }
 
+/* Sources: a numbered bibliography. Set off like the footer, entries one per line with a hanging [n] marker. */
+.doc-sources {
+  margin-top: 72px;
+  padding-top: 8px;
+  border-top: 1px solid var(--line);
+}
+.doc-sources > h2 { margin-top: 24px; }
+.doc-sources ol {
+  list-style: none;
+  padding: 0;
+  margin: 16px 0 0;
+  counter-reset: source;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+.doc-sources li {
+  counter-increment: source;
+  position: relative;
+  margin: 0;
+  padding-left: 2.75em;
+}
+.doc-sources li + li { margin-top: 12px; }
+.doc-sources li::before {
+  content: "[" counter(source) "]";
+  position: absolute;
+  left: 0;
+  width: 2.2em;
+  text-align: end;
+  font-family: var(--mono);
+  font-size: 0.86em;
+  line-height: calc(1.55em / 0.86);
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.doc-sources strong { color: var(--ink); }
+.doc-sources li code {
+  font-size: 0.84em;
+  padding: 0.05em 0.3em;
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--tint) 65%, transparent);
+}
+/* Landing on a reference. The jump to a source (or back to its citation) ends with a quiet "this one": a --blue-bg tint
+   fades in fast, holds briefly and fades out on a strong ease-out, about one second, once, never looping. The tint is a
+   pseudo-element animated by opacity only; the entry's [n] turns --blue on the same curve. The short delay lets the
+   smooth scroll arrive before the cue plays. With reduced motion nothing moves: the tint simply stays while the element
+   is the :target. */
+.doc-sources li[id] { scroll-margin-top: clamp(32px, 12vh, 96px); }
+.doc-sources li { isolation: isolate; }
+.doc-sources li::after,
+a.cite::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  background: var(--blue-bg);
+  opacity: 0;
+  pointer-events: none;
+}
+.doc-sources li::after { inset: -4px -8px; border-radius: 8px; }
+a.cite::after { inset: -1px -3px; border-radius: 4px; }
+.doc-sources li:target::after,
+a.cite:target::after { animation: target-tint 1000ms 200ms backwards; }
+.doc-sources li:target::before { animation: target-marker 1000ms 200ms backwards; }
+@keyframes target-tint {
+  0% { opacity: 0; animation-timing-function: cubic-bezier(0.23, 1, 0.32, 1); }
+  15% { opacity: 1; }
+  40% { opacity: 1; animation-timing-function: cubic-bezier(0.23, 1, 0.32, 1); }
+  100% { opacity: 0; }
+}
+@keyframes target-marker {
+  0% { color: var(--muted); animation-timing-function: cubic-bezier(0.23, 1, 0.32, 1); }
+  15% { color: var(--blue); }
+  40% { color: var(--blue); animation-timing-function: cubic-bezier(0.23, 1, 0.32, 1); }
+  100% { color: var(--muted); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .doc-sources li:target::after, a.cite:target::after { animation: none; opacity: 1; }
+  .doc-sources li:target::before { animation: none; color: var(--blue); }
+}
+
+/* Back-links: a muted `Cited in:` line under each entry names the section of each citation site, quiet until hovered.
+   A further citation under the same heading is a raised mono numeral. */
+.doc-sources a.backref {
+  color: var(--muted);
+  text-decoration: none;
+  border-radius: 3px;
+}
+.doc-sources .cited-in {
+  display: block;
+  margin-top: 2px;
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+.doc-sources .cited-in a.backref {
+  text-decoration: underline 1px color-mix(in srgb, currentColor 30%, transparent);
+  text-underline-offset: 2.5px;
+}
+.doc-sources .cited-in a.backref-n {
+  margin-left: 0.3em;
+  font-family: var(--mono);
+  font-size: 0.8em;
+  line-height: 0;
+  vertical-align: 0.4em;
+  font-variant-numeric: tabular-nums;
+  text-decoration: none;
+}
+
+/* Inline citation [N]: raised mono marker that leaves the line box untouched. */
+a.cite {
+  position: relative;
+  isolation: isolate;
+  font-family: var(--mono);
+  font-size: 0.8em;
+  line-height: 0;
+  vertical-align: 0.35em;
+  color: var(--blue);
+  text-decoration: none;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  border-radius: 3px;
+  scroll-margin-block: 33vh;
+}
+
+/* Hover restraint: colour and underline switch instantly, and only where a real pointer can hover. Press gives the same
+   cue on touch. Focus gets the house ring (matches .scheme). */
+@media (hover: hover) and (pointer: fine) {
+  a.cite:hover { text-decoration: underline 1px currentColor; text-underline-offset: 2px; }
+  .doc-sources a.backref:hover { color: var(--blue); }
+}
+a.cite:active { text-decoration: underline 1px currentColor; text-underline-offset: 2px; }
+/* Inline citations are exempt from the 24px target minimum, but on touch the 15px marker is hard to hit. Block padding
+   grows the hit area to ~24px without moving the line; no inline padding, so neighbours [1][2] never overlap. */
+@media (pointer: coarse) {
+  a.cite { padding-block: 4.5px; }
+  a.cite::after { inset: 3.5px -3px; }
+}
+.doc-sources a.backref:active { color: var(--blue); }
+a.cite:focus-visible,
+.doc-sources a.backref:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+.doc-sources + .doc-footer { margin-top: 48px; }
+
 @media (max-width: 720px) {
   /* Top padding clears the scheme toggle (16px + 32px), so a long eyebrow never runs under it. */
   main { padding: 60px 18px 64px; }
@@ -472,6 +617,11 @@ blockquote > :last-child { margin-bottom: 0; }
   .steps > ol > li { padding: 16px 18px; }
   .steps > ol > li::before { position: static; float: left; margin: 0 10px 0 0; }
   .steps > ol > li > :not(.step-title) { clear: left; }
+  .doc-sources { margin-top: 56px; }
+  .doc-sources > h2 { margin-top: 20px; }
+  .doc-sources ol { font-size: 14.5px; }
+  .doc-sources li { padding-left: 2.5em; overflow-wrap: anywhere; }
+  .doc-sources li::before { width: 2em; }
 }
 
 @media print {
@@ -483,7 +633,7 @@ blockquote > :last-child { margin-bottom: 0; }
   main { padding: 0; max-width: none; }
   .toc { display: none; }
   h2, h3 { break-after: avoid; }
-  figure, .card, .steps > ol > li, .callout, pre, .stat, tr { break-inside: avoid; }
+  figure, .card, .steps > ol > li, .callout, pre, .stat, tr, .doc-sources li { break-inside: avoid; }
   pre { white-space: pre-wrap; overflow: visible; }
   figure > svg { max-height: 170mm; }
   .table-wrap, figure { overflow: visible; }

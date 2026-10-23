@@ -8,6 +8,7 @@ import { fileURLToPath } from "node:url";
 import { bundledLanguagesInfo } from "shiki";
 import { defineConfig } from "vite";
 import { blocks } from "./plugins/blocks.ts";
+import { cite } from "./plugins/cite.ts";
 import { divs } from "./plugins/divs.ts";
 import { escapeMarkdown } from "./plugins/escape.ts";
 import { fences, islandLangs } from "./plugins/fences.ts";
@@ -23,7 +24,7 @@ const markdown = mdsvex({
   highlight: false,
   smartypants: false,
   frontmatter: { type: "yaml", marker: "-", parse: frontmatter },
-  remarkPlugins: [blocks, fences, page, escapeMarkdown],
+  remarkPlugins: [blocks, cite, fences, page, escapeMarkdown],
 });
 
 // The client re-highlights only the languages the document's diff islands use; fences.ts collects them while the

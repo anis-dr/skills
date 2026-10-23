@@ -27,14 +27,14 @@ A client that gets a `503` waits, then tries again. Each wait doubles, so a serv
 
 <Backoff {attempts} {base} />
 
-The table comes from `Backoff.svelte`, a component next to this document. The two sliders and their state are written inline, in this file.
+The table comes from `Backoff.svelte`, a component next to this document [@backoff]. The two sliders and their state are written inline, in this file [@interactive].
 
 > [!NOTE]
 > Without JavaScript the sliders do not move, and the table shows the prerendered policy: 4 retries from 1 s. Every other part of the page is plain HTML.
 
 ## The change
 
-The policy lives in one function, and the client calls it. This git diff touches two files, so it renders as one block with a unified and split switch. The switch needs JavaScript; without it the diff stays unified.
+The policy lives in one function, and the client calls it. This git diff touches two files, so it renders as one block with a unified and split switch [@reference]. The switch needs JavaScript; without it the diff stays unified.
 
 ```diff
 diff --git a/src/retry.ts b/src/retry.ts
@@ -70,7 +70,3 @@ index 51b7a0e..c2d4f19 100644
   .controls input { accent-color: var(--blue); }
   .controls output { color: var(--ink); font-weight: 600; font-variant-numeric: tabular-nums; text-align: right; }
 </style>
-
-::: footer
-**Source.** `assets/examples/interactive.svx` and `assets/examples/Backoff.svelte` in the technical-html skill. The syntax for `.svx` documents is in `reference.md`.
-:::

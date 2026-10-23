@@ -5,6 +5,7 @@
   "dependencies": {
     "@pierre/diffs": "1.6.0",
     "@pierre/theme": "^2.0.0",
+    "@retorquere/bibtex-parser": "^12.1.11",
     "@sveltejs/adapter-static": "^4.0.0",
     "@sveltejs/kit": "^3.1.0",
     "@sveltejs/vite-plugin-svelte": "^7.3.1",

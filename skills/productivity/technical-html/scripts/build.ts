@@ -18,9 +18,13 @@ if (!/\.(md|svx)$/i.test(input)) fail(`${input}: the document must be a .md or .
 if (!existsSync(input) || !statSync(input).isFile()) fail(`cannot read ${input}`);
 
 const app = join(import.meta.dir, "..", "app");
-if (!existsSync(join(app, "node_modules"))) {
+// Install on first run and again whenever bun.lock changes, so an update that adds a dependency reaches old installs.
+const lockHash = Bun.hash(readFileSync(join(app, "bun.lock"))).toString(16);
+const stamp = join(app, "node_modules", ".technical-html-lock");
+if (!existsSync(stamp) || readFileSync(stamp, "utf8") !== lockHash) {
   const install = Bun.spawnSync(["bun", "install", "--frozen-lockfile"], { cwd: app, stdout: "ignore", stderr: "inherit" });
   if (install.exitCode !== 0) fail(`bun install failed in ${app}`);
+  writeFileSync(stamp, lockHash);
 }
 
 // Inside the app, so Kit's server output resolves the app's node_modules; one folder per run, removed below.

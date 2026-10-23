@@ -1,0 +1,89 @@
+@misc{sourcesjson,
+  title = {Upstream entries},
+  organization = {anis-dr/skills},
+  path = {upstream/sources.json},
+  version = {1113ecf},
+  url = {https://github.com/anis-dr/skills/blob/main/upstream/sources.json},
+  urldate = {2026-10-16},
+  note = {The counts by mode and bucket, on \texttt{main}, counted with \texttt{jq}.},
+}
+
+@misc{userinvoked,
+  title = {User-invoked skills},
+  organization = {anis-dr/skills},
+  path = {skills/*/*/SKILL.md},
+  version = {1113ecf},
+  urldate = {2026-10-16},
+  note = {\texttt{grep -l '^disable-model-invocation: true' skills/*/*/SKILL.md | wc -l} returns 35.},
+}
+
+@software{check,
+  title = {Repo checks},
+  organization = {anis-dr/skills},
+  urldate = {2026-10-16},
+  note = {\texttt{bun run skills check} on Bun 1.4.2 reports 0 findings.},
+}
+
+@software{tests,
+  title = {Test suite},
+  organization = {anis-dr/skills},
+  urldate = {2026-10-16},
+  note = {\texttt{bun run test} on Bun 1.4.2: 5 files, 40 tests.},
+}
+
+@software{checkts,
+  title = {Check rules},
+  organization = {anis-dr/skills},
+  path = {src/check.ts},
+  urldate = {2026-10-16},
+  note = {The rules and the finding kind each one prints.},
+}
+
+@misc{bannedterms,
+  title = {Banned terms},
+  organization = {anis-dr/skills},
+  path = {upstream/banned-terms.json},
+  urldate = {2026-10-16},
+  note = {The public and private term patterns.},
+}
+
+@online{conventions,
+  title = {Conventions},
+  organization = {anis-dr/skills},
+  path = {CONVENTIONS.md},
+  url = {https://github.com/anis-dr/skills/blob/main/CONVENTIONS.md},
+  urldate = {2026-10-16},
+  note = {The rules the checks enforce.},
+}
+
+@software{workflow,
+  title = {Weekly upstream job},
+  organization = {anis-dr/skills},
+  path = {.github/workflows/upstream.yml},
+  urldate = {2026-10-16},
+  note = {The schedule: Mondays at 06:00 UTC.},
+}
+
+@misc{lockfile,
+  title = {Skill lock file},
+  howpublished = {Local install},
+  path = {~/.agents/.skill-lock.json},
+  urldate = {2026-10-16},
+  note = {The technical-html entry: its source and its update time.},
+}
+
+@misc{claudeskills,
+  title = {Installed skills},
+  howpublished = {Local install},
+  path = {~/.claude/skills},
+  urldate = {2026-10-16},
+  note = {\texttt{ls -la \textasciitilde{}/.claude/skills}: one symlink per skill.},
+}
+
+@misc{emdash,
+  title = {Em dash counts},
+  organization = {anis-dr/skills},
+  path = {skills/},
+  urldate = {2026-10-16},
+  note = {Counted with \texttt{grep -rl} over \texttt{skills/}.},
+}

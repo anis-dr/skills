@@ -1,0 +1,68 @@
+@software{sync,
+  title = {Sync pipeline},
+  organization = {anis-dr/skills},
+  path = {src/sync.ts},
+  version = {af49a3a},
+  urldate = {2026-10-16},
+  note = {\texttt{stage}, \texttt{syncVendored}, \texttt{syncReferences} and \texttt{writePatch}: the copy, the rules, the invocation override, the patch and the patch command.},
+}
+
+@software{upstream,
+  title = {Pinned upstream fetch},
+  organization = {anis-dr/skills},
+  path = {src/Upstream.ts},
+  version = {af49a3a},
+  urldate = {2026-10-16},
+  note = {\texttt{fetchPinned}: the shallow fetch, the checkout folder and the rename at the end.},
+}
+
+@software{skilltree,
+  title = {Skill folders},
+  organization = {anis-dr/skills},
+  path = {src/SkillTree.ts},
+  version = {af49a3a},
+  urldate = {2026-10-16},
+  note = {\texttt{writeFolder} and the entry classes: the folder is replaced outright.},
+}
+
+@software{rules,
+  title = {Agent-neutral rules},
+  organization = {anis-dr/skills},
+  path = {src/rules.ts},
+  version = {af49a3a},
+  urldate = {2026-10-16},
+  note = {The shared regex rewrites: \texttt{skillCalls}, \texttt{issuesFolder} and \texttt{modelLines}.},
+}
+
+@software{drift,
+  title = {Pin updates},
+  organization = {anis-dr/skills},
+  path = {src/drift.ts},
+  urldate = {2026-10-16},
+  note = {\texttt{updatePins}: how a pin moves forward to upstream HEAD.},
+}
+
+@online{conventions,
+  title = {Layout and ownership},
+  organization = {anis-dr/skills},
+  path = {CONVENTIONS.md},
+  url = {https://github.com/anis-dr/skills/blob/main/CONVENTIONS.md},
+  urldate = {2026-10-16},
+  note = {The four modes and who owns the text in each.},
+}
+
+@misc{sourcesjson,
+  title = {Upstream entries},
+  howpublished = {anis-dr/skills, working tree},
+  path = {upstream/sources.json},
+  urldate = {2026-10-16},
+  note = {The counts of skills, upstream repos and entries per mode, counted with \texttt{jq}.},
+}
+
+@misc{patches,
+  title = {Skill patches},
+  howpublished = {anis-dr/skills, working tree},
+  path = {upstream/patches/},
+  urldate = {2026-10-16},
+  note = {The patch count, counted with \texttt{ls upstream/patches}.},
+}

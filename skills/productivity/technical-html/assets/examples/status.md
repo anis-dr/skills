@@ -14,14 +14,14 @@ stats:
 
 ## Summary
 
-The repo holds 185 skills. 139 are vendored copies that `bun run skills sync` rebuilds from a pinned upstream commit, 8 are forks of upstream text, and 38 are our own. `bun run skills check` reports 0 findings and all 40 tests pass. The technical-html skill is rebuilt as a Markdown builder, pushed to `main` and installed from GitHub.
+The repo holds 185 skills. 139 are vendored copies that `bun run skills sync` rebuilds from a pinned upstream commit, 8 are forks of upstream text, and 38 are our own [@sourcesjson]. `bun run skills check` reports 0 findings and all 40 tests pass [@check; @tests]. The technical-html skill is rebuilt as a Markdown builder, pushed to `main` and installed from GitHub.
 
 > [!WARNING]
-> Two rules have no script behind them. Nothing checks for em dashes, and `bun run skills check` runs only inside the weekly upstream job. A push that breaks a rule shows up at the next Monday 06:00 UTC run at the earliest.
+> Two rules have no script behind them. Nothing checks for em dashes, and `bun run skills check` runs only inside the weekly upstream job [@workflow]. A push that breaks a rule shows up at the next Monday 06:00 UTC run at the earliest.
 
 ## What the catalogue holds
 
-Each skill folder has one entry in `upstream/sources.json`, and the entry's `mode` says who owns the text. User-invoked skills set `disable-model-invocation: true`, so only a person typing `/name` can start them.
+Each skill folder has one entry in `upstream/sources.json`, and the entry's `mode` says who owns the text. User-invoked skills set `disable-model-invocation: true`, so only a person typing `/name` can start them [@userinvoked].
 
 | Bucket | Vendor | Fork | Ours | Skills | User-invoked |
 |---|--:|--:|--:|--:|--:|
@@ -33,7 +33,7 @@ Each skill folder has one entry in `upstream/sources.json`, and the entry's `mod
 | misc | 4 | 0 | 0 | 4 | 0 |
 | **Total** | **139** | **8** | **38** | **185** | **35** |
 
-`sources.json` has 211 entries in all. The other 26 are files, not skills: 25 `reference` entries that sync writes into another skill's `references/` folder (24 into `principles`, 1 into `prototype`), and 1 `ours` entry with `into`, our own file inside `principles`. Of the 139 vendored skills, 27 carry a patch in `upstream/patches/` and 8 carry an `invocation: model` override.
+`sources.json` has 211 entries in all. The other 26 are files, not skills: 25 `reference` entries that sync writes into another skill's `references/` folder (24 into `principles`, 1 into `prototype`), and 1 `ours` entry with `into`, our own file inside `principles`. Of the 139 vendored skills, 27 carry a patch in `upstream/patches/` and 8 carry an `invocation: model` override [@sourcesjson].
 
 ## How a change reaches an installed agent
 
@@ -55,11 +55,11 @@ agents -> claude: "symlinked\nper skill"
 
 *Arrows follow the skill files from the repo to the folder an agent reads. The dashed arrow is a local install from the working tree, used only to test a skill before it is pushed.*
 
-An edit in the working tree does nothing for an installed agent until it is pushed and installed again. The lock file entry for technical-html reads `"sourceType": "github"` with an update time of 21:38 UTC on 16 Oct 2026, so agents load the Markdown builder from `main`.
+An edit in the working tree does nothing for an installed agent until it is pushed and installed again [@claudeskills]. The lock file entry for technical-html reads `"sourceType": "github"` with an update time of 21:38 UTC on 16 Oct 2026, so agents load the Markdown builder from `main` [@lockfile].
 
 ## Checks the repo enforces
 
-`bun run skills check` runs every rule below in one pass and exits 1 on any finding. Each row names the finding kind it prints, from `src/check.ts`.
+`bun run skills check` runs every rule below in one pass and exits 1 on any finding [@conventions]. Each row names the finding kind it prints, from `src/check.ts` [@checkts].
 
 | Rule | Status | Enforced by |
 |---|---|---|
@@ -67,14 +67,14 @@ An edit in the working tree does nothing for an installed agent until it is push
 | `description` is at most 1024 characters | `status:built` | `frontmatter` |
 | Every folder has a `sources.json` entry, and every entry has a folder | `status:built` | `orphan-folder`, `missing-folder` |
 | The `ask-anis` router names every skill, and only skills | `status:built` | `router` |
-| No banned or private term in any skill file (6 public patterns, 8 private) | `status:built` | `banned-term` |
+| No banned or private term in any skill file (6 public patterns, 8 private) [@bannedterms] | `status:built` | `banned-term` |
 | `agents/openai.yaml` exists and agrees with `disable-model-invocation` | `status:built` | `invocation` |
 | A Skill tool call names a model-invoked skill here or carries an install command | `status:built` | `skill-call` |
 | The skill list in `README.md` matches the folders | `status:built` | `readme` |
-| No em dashes in text we write | `status:gap Not checked` | Review only. 0 of our 38 skills contain one today. |
-| The checks run on every push | `status:partly Weekly only` | `.github/workflows/upstream.yml`, Mondays 06:00 UTC |
+| No em dashes in text we write | `status:gap Not checked` | Review only. 0 of our 38 skills contain one today [@emdash]. |
+| The checks run on every push | `status:partly Weekly only` | `.github/workflows/upstream.yml`, Mondays 06:00 UTC [@workflow] |
 
-The em dash rule covers our text only. Vendored text keeps upstream punctuation, and 488 files under `skills/` contain at least one em dash, so a check has to skip `vendor` and `reference` folders.
+The em dash rule covers our text only. Vendored text keeps upstream punctuation, and 488 files under `skills/` contain at least one em dash [@emdash], so a check has to skip `vendor` and `reference` folders.
 
 ## Roadmap: the technical-html work
 
@@ -107,8 +107,4 @@ The em dash rule covers our text only. Vendored text keeps upstream punctuation,
 **The builder rides on fast-moving packages.** The builder is a SvelteKit app that prerenders the page, with mdsvex for the Markdown and Pierre for code and diffs, pinned in `app/bun.lock`. An upgrade that changes their HTML output changes every page. Rebuilding the examples after each upgrade and reading the diff catches it.
 
 **The example pages can go stale.** The five built `.html` files are committed beside their sources. A change to `style.css`, `house.d2` or the plugins in `app/` without a rebuild leaves them showing the old look. Step 5 retires this risk.
-:::
-
-::: footer
-**Sources.** Counts by mode and bucket: `upstream/sources.json` on `main` at `1113ecf`, counted with `jq`. User-invoked count: `grep -l '^disable-model-invocation: true' skills/*/*/SKILL.md | wc -l` returns 35. Checks: `bun run skills check` (0 findings) and `bun run test` (5 files, 40 tests) on Bun 1.4.2. Rules: `src/check.ts`, `upstream/banned-terms.json`, `CONVENTIONS.md`. Schedule: `.github/workflows/upstream.yml`. Install state: `~/.agents/.skill-lock.json` and `ls -la ~/.claude/skills`. Em dash counts: `grep -rl` over `skills/`.
 :::

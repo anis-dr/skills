@@ -9,7 +9,7 @@ You write Markdown (`.md`), or Markdown with Svelte components (`.svx`). `script
 
 ## Files
 
-- [assets/examples/](assets/examples/): one real document per type, as `.md` source and built `.html`. Copy the closest one; do not start from a blank page.
+- [assets/examples/](assets/examples/): one real document per type, as `.md` source, a `.bib` of its sources when it cites any, and built `.html`. Copy the closest one; do not start from a blank page.
   - [status.md](assets/examples/status.md): status report, roadmap or any living document. Stat cards, summary with a warning, status table with pills, roadmap steps, open decisions, risks.
   - [design.md](assets/examples/design.md): design doc or explanation. Context, one diagram, trade-offs, with a table of contents.
   - [how-to.md](assets/examples/how-to.md): how-to or runbook. Prerequisites, numbered step cards with commands, troubleshooting table.
@@ -23,7 +23,7 @@ You write Markdown (`.md`), or Markdown with Svelte components (`.svx`). `script
 
 Full details and every build failure are in [reference.md](assets/examples/reference.md).
 
-- Frontmatter: `type` (`status`, `design`, `how-to`, `reference`), `eyebrow`, `lede`, `meta`, `stats` (2 to 4 cards, `tone`: `good`, `gap`, `wait`, `none`), `toc` (`auto`, `true`, `false`).
+- Frontmatter: `type` (`status`, `design`, `how-to`, `reference`), `eyebrow`, `lede`, `meta`, `stats` (2 to 4 cards, `tone`: `good`, `gap`, `wait`, `none`), `toc` (`auto`, `true`, `false`), `bibliography` (a `.bib` path, when it is not `<doc>.bib`).
 - The first `#` heading is the page title.
 - ` ```d2 ` fenced block: a diagram. The paragraph right after it, entirely in italics, is its caption. A diagram without a caption fails the build.
 - `> [!NOTE]`, `[!TIP]`, `[!IMPORTANT]`, `[!WARNING]`, `[!CAUTION]`: callouts.
@@ -33,7 +33,29 @@ Full details and every build failure are in [reference.md](assets/examples/refer
 - ` ```pseudo ` for logic and algorithms: pseudocode with its keywords, calls, strings and comments highlighted. ` ```text ` for file trees and call trees: no highlighting.
 - ` ```diff ` fenced block: a highlighted diff. Without git file headers it names a language or a path (` ```diff ts `, ` ```diff pseudo `, ` ```diff text `, ` ```diff apps/x.ts `), or the build fails. `split` after it shows two columns. A pasted `git diff` of two or more files gets a unified and split switch.
 - In a diff, a changed line is a `-` line and a `+` line, each one whole. Pierre parses every diff line as real code, so never wrap a long `+` line onto a second `+` line by hand.
-- `::: card` and `::: footer`: a bordered card, and the sources block at the end. Divs do not nest.
+- `::: card`: a bordered card. Divs do not nest.
+- Sources: write them in `<doc>.bib` beside the document (or point frontmatter `bibliography:` at one), and cite each where its claim is made with `[@key]`, or `[@a; @b]` for several. The build numbers them in first-citation order and adds a Sources section at the end. An unknown key, an entry nothing cites, or citations without a `.bib` file fail the build. Use `@online` for a web page and `@software` for code:
+
+  ```bibtex
+  @online{step,
+    author = {{Trigger.dev}},
+    title = {Step class},
+    url = {https://example.com/docs/step},
+    urldate = {2026-10-21},
+    note = {The retry options a step accepts.},
+  }
+
+  @software{sync,
+    title = {Sync pipeline},
+    organization = {anis-dr/skills},
+    path = {src/sync.ts},
+    version = {af49a3a},
+    urldate = {2026-10-16},
+    note = {The stages, in order.},
+  }
+  ```
+
+- `::: footer`: a colophon only, muted and smaller: how the page was made, or a caveat. Sources never go here.
 - `.svx` only: one `<script>`, Svelte markup, components imported by a path relative to the document, one scoped `<style>` with the house variables. `{` in prose starts an expression, so write `&#123;`. In `.md`, braces are text.
 
 ## Skills to load
@@ -54,13 +76,13 @@ Call the Skill tool once for each, at the step named. Skip one only when the doc
 ## Workflow
 
 1. **Pick the type.** Use the technical-writing modes: `status` for where work stands (status reports, roadmaps, living documents), `design` for why and how something works, `how-to` for steps to a goal, `reference` for lookup. One document, one type. If the user brings an existing Markdown file, keep its content and fit it to the type.
-2. **Ground and plan.** Collect evidence first: code on the main branch, tickets, notes, measurements. Write each number with what it counts and when, and mark inference. Then plan visuals with show-me: one question per diagram, at most about nine nodes, comparisons as tables, sequences as step cards. Roadmaps, status and decisions are tables and steps, never diagrams.
-3. **Write.** Copy the closest example to `.scratchpad/<slug>/<slug>.md` (folder per the scratchpad skill; if the repo has no gitignored scratchpad, ask where). Replace all of its content; keep the structure that fits. Write the prose with technical-writing.
-4. **Build.** `bun <skill-dir>/scripts/build.ts .scratchpad/<slug>/<slug>.md` writes `<slug>.html` beside it and leaves nothing else. It fails with `build: <file>:<line>: <message>` on bad syntax, a D2 error, an uncaptioned diagram, a diff without a language, invalid Svelte or any external resource. Fix the source and rebuild. Write `.md` unless the reader must change something on the page; then write `.svx`.
+2. **Ground and plan.** Collect evidence first: code on the main branch, tickets, notes, measurements. Write each number with what it counts and when, and mark inference. Record each source as you read it: file, commit, URL, date and what it supports. Then plan visuals with show-me: one question per diagram, at most about nine nodes, comparisons as tables, sequences as step cards. Roadmaps, status and decisions are tables and steps, never diagrams.
+3. **Write.** Copy the closest example to `.scratchpad/<slug>/<slug>.md` (folder per the scratchpad skill; if the repo has no gitignored scratchpad, ask where). Replace all of its content; keep the structure that fits. Write the prose with technical-writing. Write the sources in `.scratchpad/<slug>/<slug>.bib`, one entry per source, and cite each one with `[@key]` in the sentence that makes its claim.
+4. **Build.** `bun <skill-dir>/scripts/build.ts .scratchpad/<slug>/<slug>.md` writes `<slug>.html` beside it and leaves nothing else. It fails with `build: <file>:<line>: <message>` on bad syntax, a D2 error, an uncaptioned diagram, a diff without a language, a citation without a `.bib` entry, a `.bib` entry nothing cites, invalid Svelte or any external resource. Fix the source and rebuild. Write `.md` unless the reader must change something on the page; then write `.svx`.
 5. **Verify.** Run the checklist below. Fix, rebuild, look again.
-6. **Deliver.** Tell the user the path to the `.html`. The `.md` source stays beside it.
+6. **Deliver.** Tell the user the path to the `.html`. The `.md` source and its `.bib` stay beside it.
 
-**Living documents.** A status page or roadmap is updated, not rewritten. When the work moves, edit the same `.md`: re-ground every number and claim, move `status:here` to the new current step and mark finished steps `status:done`, retire risks and decisions that are settled, change the meta line to "Updated <date>" with the commit or source it was counted at, then rebuild. The lede says it is a living document.
+**Living documents.** A status page or roadmap is updated, not rewritten. When the work moves, edit the same `.md`: re-ground every number and claim and update the `.bib` entries behind them (commit, `urldate`), move `status:here` to the new current step and mark finished steps `status:done`, retire risks and decisions that are settled, change the meta line to "Updated <date>" with the commit or source it was counted at, then rebuild. The lede says it is a living document.
 
 ## Diagram rules
 
@@ -92,4 +114,5 @@ A tall screenshot is shrunk when you read it, so read every slice, then `rm -rf 
 - Nothing overflows the page at 520 px. Tables scroll inside their frame.
 - Every pill matches its row's evidence. "Built" means proven by the stated basis, and the basis is on the page.
 - Every number has its unit and scope. Inferences are marked.
+- Every claim that rests on a source cites it, and each Sources entry says what it supports.
 - The prose passes ran. No em dashes.
