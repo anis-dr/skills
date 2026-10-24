@@ -473,6 +473,11 @@
     "mode": "ours"
   },
   {
+    "name": "file-structure",
+    "bucket": "engineering",
+    "mode": "ours"
+  },
+  {
     "name": "attack-the-premise",
     "bucket": "engineering",
     "mode": "reference",

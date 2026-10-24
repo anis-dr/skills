@@ -1,7 +1,7 @@
 ---
 name: scratchpad
 description: >-
-  Decide where a file goes and keep temporary files the user may want to read or edit in the repository's gitignored `.scratchpad/` folder. Use before writing a report, draft, screenshot, captured output, decision log, resume note, hand-off, or probe script that is not meant to be committed.
+  Keep temporary files the user may want to read or edit in the repository's gitignored `.scratchpad/` folder. Use before writing a report, draft, screenshot, captured output, decision log, resume note, hand-off, or probe script that is not meant to be committed.
 ---
 
 # Scratchpad

@@ -1,0 +1,3 @@
+interface:
+  display_name: "File Structure"
+  short_description: "Place, name and tidy files so the tree explains the code"
