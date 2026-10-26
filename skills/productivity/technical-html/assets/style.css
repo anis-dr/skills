@@ -559,6 +559,169 @@ figure.diagram:target::after { animation: target-tint 1000ms 200ms backwards; }
   figure.diagram:target::after { animation: none; opacity: 1; }
 }
 
+/* Key and Read (app/src/lib/DiagramTools.svelte). One button set at the bottom right of the frame, its centre level
+   with the caption's last line (24px padding + half the 21px line − half the 28px button); the caption keeps a
+   symmetric gutter so it stays centred and never runs under the buttons. Below 520px the set drops under the caption. */
+figure.diagram:has(> .fig-tools) { --fig-tools-w: 148px; }
+figure.diagram:has(> .fig-tools > .fig-tool:only-of-type) { --fig-tools-w: 84px; }
+figure.diagram:has(> .fig-tools) > figcaption { padding-inline: var(--fig-tools-w); }
+.fig-tools { position: absolute; right: 20px; bottom: 20.5px; display: flex; gap: 6px; }
+@media (max-width: 720px) {
+  .fig-tools { right: 8px; bottom: 12.5px; }
+}
+@media (max-width: 520px) {
+  figure.diagram:has(> .fig-tools) > figcaption { padding-inline: 0; }
+  .fig-tools { position: static; justify-content: center; margin-top: 12px; }
+}
+/* Buttons: hairline outline on paper, pressed (open) and hovered on the page tint. Hover is instant and pointer-only;
+   press scales a touch so the button answers on the press. */
+.fig-tool {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 28px;
+  padding: 0 10px 0 8px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+  color: var(--ink-2);
+  font: 500 13px/1 var(--sans);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: transform 120ms ease-out;
+}
+.fig-tool svg {
+  flex: none;
+  width: 14px;
+  height: 14px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.fig-tool[aria-expanded="true"] { background: var(--tint); color: var(--ink); }
+@media (hover: hover) and (pointer: fine) {
+  .fig-tool:not(:disabled):hover { background: var(--tint); color: var(--ink); }
+}
+.fig-tool:active:not(:disabled) { transform: scale(0.97); }
+.fig-tool:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+.fig-tool:disabled { opacity: 0.45; cursor: default; }
+.fig-tool-ghost { border-color: transparent; background: none; }
+.fig-tool-next { padding: 0 8px 0 10px; }
+
+/* Popovers: native top-layer popovers, so the figure's overflow never clips them. Each opens under its own button,
+   right edges aligned, 8px below: under the diagram, never over it, and never flipped above. They grow from their
+   button's corner on a short ease-out and leave faster; reduced motion keeps only the fade. Without anchor positioning
+   the component measures the same top/right. */
+.fig-pop {
+  box-sizing: border-box;
+  inset: auto;
+  top: anchor(bottom);
+  right: anchor(right);
+  max-width: calc(100vw - 24px);
+  margin: 8px 0 0;
+  padding: 6px;
+  overflow: visible;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--paper);
+  color: var(--ink);
+  box-shadow: 0 10px 28px -8px rgb(0 0 0 / 0.16), 0 2px 6px -2px rgb(0 0 0 / 0.08);
+  font: 14px/1.5 var(--sans);
+  text-align: start;
+  outline: none;
+  transform-origin: top right;
+  transition: opacity 150ms cubic-bezier(0.23, 1, 0.32, 1), transform 150ms cubic-bezier(0.23, 1, 0.32, 1),
+    overlay 150ms allow-discrete, display 150ms allow-discrete;
+}
+.fig-pop:not(:popover-open) { opacity: 0; transform: translateY(-4px) scale(0.97); transition-duration: 100ms; }
+@starting-style {
+  .fig-pop:popover-open { opacity: 0; transform: translateY(-4px) scale(0.97); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fig-pop, .fig-pop:not(:popover-open) { transform: none; }
+  @starting-style {
+    .fig-pop:popover-open { transform: none; }
+  }
+}
+.fig-pop-title { margin: 0; padding: 4px 10px 2px; font-size: 12px; line-height: 1.5; color: var(--muted); }
+
+/* Key: a compact list, shapes then a hairline then connections (d2's legend order). Rows are 6px-radius (popover 12px
+   minus its 6px padding) and light up on the page tint while pointed at or focused. Swatches are d2's own drawings,
+   inside the figure, so the dark remap above recolours them like the diagram. */
+.fig-key { width: 240px; }
+.fig-key-list { outline: none; }
+.fig-key-list ul { margin: 0; padding: 0; list-style: none; }
+.fig-key-list ul + ul { margin-top: 4px; padding-top: 4px; border-top: 1px solid var(--line); }
+.fig-key-list li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: default;
+  outline: none;
+}
+.fig-key-list li[data-hot] { background: var(--tint); }
+.fig-key-list li:focus-visible { box-shadow: inset 0 0 0 2px var(--blue); }
+.fig-swatch { display: grid; flex: none; place-items: center; width: 28px; height: 24px; }
+.fig-swatch > svg { display: block; width: 24px; height: 24px; overflow: visible; }
+.fig-swatch[data-kind="edge"] > svg { width: 25px; height: 8px; }
+
+/* Read: "2 of 5" and its dots, one sentence, Back and Next. */
+.fig-read { display: flex; flex-direction: column; gap: 10px; width: 320px; padding: 8px 8px 8px 12px; }
+.fig-read-head { display: flex; align-items: center; gap: 8px; margin-top: -2px; }
+.fig-read-count { font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+/* Dots: an 18×24px target around a 6px mark; the current step is ink, the rest a quiet tone. */
+.fig-read-dots { display: flex; margin: 0 -6px; }
+.fig-read-dots button {
+  display: grid;
+  place-items: center;
+  width: 18px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+.fig-read-dots button::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--muted) 40%, transparent);
+}
+@media (hover: hover) and (pointer: fine) {
+  .fig-read-dots button:hover::before { background: var(--muted); }
+}
+.fig-read-dots button[aria-current]::before { background: var(--ink); }
+/* The sentence: layers share one grid cell, so a new step cross-fades over the old one and the popover never jumps
+   (200ms on the house curve; reduced motion, a 150ms linear fade). The first step arrives with the popover itself. */
+.fig-read-text { display: grid; padding-right: 4px; font-size: 15px; line-height: 1.5; }
+.fig-read-text > p { grid-area: 1 / 1; margin: 0; text-wrap: pretty; }
+.fig-read-text > p[data-entering] { animation: fig-read-in 200ms cubic-bezier(0.22, 1, 0.36, 1) both; }
+.fig-read-text > p[data-leaving] { animation: fig-read-out 200ms cubic-bezier(0.22, 1, 0.36, 1) both; }
+@keyframes fig-read-in { from { opacity: 0; } }
+@keyframes fig-read-out { to { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) {
+  .fig-read-text > p[data-entering],
+  .fig-read-text > p[data-leaving] { animation-duration: 150ms; animation-timing-function: linear; }
+}
+.fig-read-nav { display: flex; justify-content: flex-end; gap: 6px; }
+
+/* Highlight: opacity on d2's own node and edge groups, nothing else; edges keep their arrowheads. */
+figure.diagram > svg g { transition: opacity 200ms cubic-bezier(0.22, 1, 0.36, 1); }
+figure.diagram > svg g[data-dim] { opacity: 0.22; }
+@media (prefers-reduced-motion: reduce) {
+  figure.diagram > svg g { transition: opacity 150ms linear; }
+}
+/* Too narrow to hang a popover off one button: below 520px it spans the viewport, 12px in from each side. */
+@media (max-width: 520px) {
+  .fig-pop { left: 12px; right: 12px; width: auto; max-width: none; }
+}
+
 /* Back-links: a muted `Cited in:` line under each entry names the section of each citation site, quiet until hovered.
    A further citation under the same heading is a raised mono numeral. */
 .doc-sources a.backref {
@@ -655,7 +818,8 @@ a.xref:focus-visible,
 @media print {
   @page { margin: 16mm 14mm; }
   :root { color-scheme: light !important; }
-  .scheme { display: none; }
+  .scheme, .fig-tools { display: none; }
+  figure.diagram:has(> .fig-tools) > figcaption { padding-inline: 0; }
   html, body { background: #fff; }
   * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   main { padding: 0; max-width: none; }

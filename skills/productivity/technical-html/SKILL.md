@@ -5,7 +5,7 @@ description: "Write a technical document in Markdown, or Markdown with Svelte co
 
 # Technical HTML
 
-You write Markdown (`.md`), or Markdown with Svelte components (`.svx`). `scripts/build.ts` prerenders it with SvelteKit into one `.html` file: no network, house CSS inlined, diagrams rendered with TALA and inlined as SVG, code and diffs highlighted at build time. The page reads with JavaScript off. It follows the reader's light or dark setting, and a small button at the top right switches it. In a `.md` page that toggle is the only JavaScript; a page with a multi-file diff or Svelte components also hydrates those. The look lives in [assets/style.css](assets/style.css). Do not restyle it per document.
+You write Markdown (`.md`), or Markdown with Svelte components (`.svx`). `scripts/build.ts` prerenders it with SvelteKit into one `.html` file: no network, house CSS inlined, diagrams rendered with TALA and inlined as SVG, code and diffs highlighted at build time. The page reads with JavaScript off. It follows the reader's light or dark setting, and a small button at the top right switches it. In a `.md` page that toggle is the only JavaScript; a page with a multi-file diff, a diagram key or read steps, or Svelte components also hydrates those. The look lives in [assets/style.css](assets/style.css). Do not restyle it per document.
 
 ## Files
 
@@ -15,7 +15,7 @@ You write Markdown (`.md`), or Markdown with Svelte components (`.svx`). `script
   - [how-to.md](assets/examples/how-to.md): how-to or runbook. Prerequisites, numbered step cards with commands, troubleshooting table.
   - [reference.md](assets/examples/reference.md): reference. Tables and code. It is also the full syntax reference for this skill: read it before you write.
   - [interactive.svx](assets/examples/interactive.svx): a `.svx` document. State in its one `<script>`, a scoped `<style>`, a component imported from [Backoff.svelte](assets/examples/Backoff.svelte) beside it, and a multi-file diff with a unified and split switch. Copy it only when the document needs something a reader changes.
-- [assets/house.d2](assets/house.d2): D2 variables and classes. The build adds it to every diagram, so diagrams never declare them.
+- [assets/house.d2](assets/house.d2): D2 variables and classes. The build adds it to every diagram, so diagrams never declare them; a diagram's only `vars` is its key, `d2-legend`.
 - [scripts/build.ts](scripts/build.ts): the builder. Needs Bun and the `d2` CLI with TALA. The first run installs the SvelteKit app in [app/](app/).
 - [app/](app/): the SvelteKit app that prerenders the one page. The Markdown dialect lives in `app/plugins/`, one remark plugin per concern.
 
@@ -26,6 +26,8 @@ Full details and every build failure are in [reference.md](assets/examples/refer
 - Frontmatter: `type` (`status`, `design`, `how-to`, `reference`), `eyebrow`, `lede`, `meta`, `stats` (2 to 4 cards, `tone`: `good`, `gap`, `wait`, `none`), `toc` (`auto`, `true`, `false`), `bibliography` (a `.bib` path, when it is not `<doc>.bib`).
 - The first `#` heading is the page title.
 - ` ```d2 #fig:<name> ` fenced block: a diagram, numbered Figure 1, 2, ... in document order. The paragraph right after it, entirely in italics, is its caption: the figure's name, at most 10 words and no full stop. Refer to it in the prose with `[@fig:<name>]`, which renders as a link reading "Figure N". Never type a figure number. The build fails on a diagram without a label or caption, a sentence as a caption, a duplicate label, an unknown `[@fig:...]`, a figure nothing refers to, and "Figure 2" typed in prose.
+- Key: inside the `d2` block, d2's own `vars: { d2-legend: { ... } }` with one entry per symbol to explain, each named in 1 to 4 words (`s: "Service" {class: part}`, `s -> t: "Reply" {class: back}`). It is the only `vars` a block may declare. The reader opens it from a Key button, and pointing at an entry lights every part drawn the same way. An entry that matches nothing in the diagram, or a name that is a sentence, fails the build.
+- ` ```read #fig:<name> ` fenced block, anywhere in the document: a walkthrough of that figure. Each line is one step, `api, api -> db, db: One short sentence.`, naming the d2 nodes and edges it lights. An id not in the figure, a line without `: `, a step longer than one sentence of 20 words, an unknown figure or a second `read` fence for one figure fails the build.
 - `> [!NOTE]`, `[!TIP]`, `[!IMPORTANT]`, `[!WARNING]`, `[!CAUTION]`: callouts.
 - Inline code `status:built`, `status:gap`, `status:partly`, `status:none`, `status:done`, `status:here`, optionally followed by a label: pills.
 - `::: steps` around an ordered list: numbered step cards. Bold first line is the step title. A `status:done` pill marks a finished step, one `status:here` pill marks the current one.
@@ -78,7 +80,7 @@ Call the Skill tool once for each, at the step named. Skip one only when the doc
 1. **Pick the type.** Use the technical-writing modes: `status` for where work stands (status reports, roadmaps, living documents), `design` for why and how something works, `how-to` for steps to a goal, `reference` for lookup. One document, one type. If the user brings an existing Markdown file, keep its content and fit it to the type.
 2. **Ground and plan.** Collect evidence first: code on the main branch, tickets, notes, measurements. Write each number with what it counts and when, and mark inference. Record each source as you read it: file, commit, URL, date and what it supports. Then plan visuals with show-me: one question per diagram, at most about nine nodes, comparisons as tables, sequences as step cards. Roadmaps, status and decisions are tables and steps, never diagrams.
 3. **Write.** Copy the closest example to `.scratchpad/<slug>/<slug>.md` (folder per the scratchpad skill; if the repo has no gitignored scratchpad, ask where). Replace all of its content; keep the structure that fits. Write the prose with technical-writing. Write the sources in `.scratchpad/<slug>/<slug>.bib`, one entry per source, and cite each one with `[@key]` in the sentence that makes its claim.
-4. **Build.** `bun <skill-dir>/scripts/build.ts .scratchpad/<slug>/<slug>.md` writes `<slug>.html` beside it and leaves nothing else. It fails with `build: <file>:<line>: <message>` on bad syntax, a D2 error, a diagram without a label or short caption, a figure reference that is unknown or missing, a figure number typed by hand, a diff without a language, a citation without a `.bib` entry, a `.bib` entry nothing cites, invalid Svelte or any external resource. Fix the source and rebuild. Write `.md` unless the reader must change something on the page; then write `.svx`.
+4. **Build.** `bun <skill-dir>/scripts/build.ts .scratchpad/<slug>/<slug>.md` writes `<slug>.html` beside it and leaves nothing else. It fails with `build: <file>:<line>: <message>` on bad syntax, a D2 error, a diagram without a label or short caption, a figure reference that is unknown or missing, a figure number typed by hand, a key entry or read step that names nothing in its diagram, a diff without a language, a citation without a `.bib` entry, a `.bib` entry nothing cites, invalid Svelte or any external resource. Fix the source and rebuild. Write `.md` unless the reader must change something on the page; then write `.svx`.
 5. **Verify.** Run the checklist below. Fix, rebuild, look again.
 6. **Deliver.** Tell the user the path to the `.html`. The `.md` source and its `.bib` stay beside it.
 
@@ -91,6 +93,8 @@ Call the Skill tool once for each, at the step named. Skip one only when the doc
 - Use the house classes: `person`, `part`, `store`, `provider`, `replace`, `group`, and `class: back` for dashed replies and optional paths. Red dashed (`replace`) marks the thing being replaced. Add a class only when a new role repeats.
 - The caption names the figure, like a title: *From working tree to installed agent*. If the diagram needs help to read, say so in the prose around it, not in the caption.
 - The prose refers to every figure by its reference, `[@fig:<name>]`, in the sentence that needs it: "[@fig:sync] shows the five stages."
+- Key: optional. Add it when the reader needs a symbol explained: what a box style or an arrow style means. List only those symbols, each named in 1 to 4 words ("Data we keep", "Refused"), not every class the diagram uses. Never name colours in the prose: name a box by its label (the box "Server already knows"), and leave what a style means to the key.
+- Read steps: optional. Add them when the diagram tells a story in order. One short sentence per step, in the order of the story, each naming the nodes and edges it is about.
 - Diagrams sit at natural width. Below 720 px they keep at least 600 px and scroll sideways like tables, so a phone reader scrolls a wide one. If a diagram needs more than one sideways scroll to read, split it.
 
 ## Verification checklist

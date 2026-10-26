@@ -93,7 +93,7 @@ db -> api: "confirms" {class: back}
 
 Renders as `<figure class="diagram" id="fig-order">`, holding the inline SVG and a `<figcaption>` that starts with `<span class="fig-num">Figure 1</span>`. The reference renders as `<a class="xref" href="#fig-order">Figure 1</a>`. The SVG shows at its natural width and shrinks to fit the page. Below 720 px wide it keeps at least 600 px and scrolls sideways, so labels stay legible.
 
-The build prepends `assets/house.d2` to every block, so a block must not declare `vars` or `classes`. The house file sets `direction: right`, so diagrams read left to right unless a block sets its own `direction`. It defines these classes:
+The build prepends `assets/house.d2` to every block, so a block must not declare `classes`, and declares `vars` only for its key (see [Key and read steps](#key-and-read-steps)). The house file sets `direction: right`, so diagrams read left to right unless a block sets its own `direction`. It defines these classes:
 
 | Class | Use it for | Look |
 |---|---|---|
@@ -106,6 +106,81 @@ The build prepends `assets/house.d2` to every block, so a block must not declare
 | `back` | A reply or optional edge | Dashed line |
 
 Labels are plain strings. Write a line break as `\n`. A `|md` label fails the build.
+
+### Key and read steps
+
+A diagram can carry two reading aids. Both are optional, and either one can stand alone.
+
+- **Key**: a short legend, opened from a Key button beside the caption. Each entry is one symbol from the diagram and a name of 1 to 4 words. Pointing at an entry lights every part of the diagram drawn the same way and dims the rest.
+- **Read steps**: a walkthrough, opened from a Read button. Each step is one short sentence and lights the nodes and arrows it names.
+
+Both need JavaScript, so a diagram with either one makes the page hydrate, like a multi-file diff. Without JavaScript the diagram and its caption show as usual, and nothing lights up.
+
+The key is d2's own `vars: { d2-legend: { ... } }` block, inside the `d2` fence. It is the only `vars` a block may declare. Each node in it takes a house class, and each edge takes the style of the arrows it explains. Every node in the block is an entry, including a node that an edge creates by naming it, so an edge connects two entries of the key, or one entry to itself (`u -> u`) when the key lists a single box.
+
+| Entry | Lights in the diagram | Example |
+|---|---|---|
+| Node | Every node with the same house class | `s: "Service" {class: part}` |
+| Edge | Every arrow with the same colour and the same dashing | `t -> s: "Reply" {class: back}` |
+
+The build cuts the block out of the diagram, so d2 draws no Legend box of its own. It renders the block on its own with d2 and takes each symbol from that drawing, so a swatch looks exactly like the diagram, in light and dark. Put in only the symbols a reader needs explained. In the prose, name a box by its label, such as "the box Orders", never by its colour.
+
+Read steps go in a separate ` ```read #fig:<name> ` fence for the figure with that label. It can sit anywhere in the document; right after the caption is easiest to maintain. It renders nothing in place. Each line is one step, in the order of the story:
+
+```text
+<id>, <id>, ...: One short sentence.
+```
+
+An id is any node or edge of the diagram, written as in the `d2` block: `api`, a node in a container `known.sent`, the container `known`, or an edge `api -> db`. An edge id lights every edge from the first node to the second. A step's sentence has at most 20 words.
+
+````markdown
+```d2 #fig:order
+direction: right
+api: "acme-api" {class: part}
+db: "Orders" {class: store}
+api -> db: "writes the order"
+db -> api: "confirms" {class: back}
+
+vars: {
+  d2-legend: {
+    s: "Service" {class: part}
+    t: "Table" {class: store}
+    s -> t: "Request"
+    t -> s: "Reply" {class: back}
+  }
+}
+```
+
+*How acme-api stores an order*
+
+```read #fig:order
+api, api -> db, db: acme-api writes the order to the Orders table.
+db -> api: The table confirms the write.
+```
+````
+
+The build turns the key and the steps into props of the `DiagramTools` component, after the caption. Each `targets` entry is the class that d2 gives that part's `<g>` in the SVG: its d2 id in base64. Each `svg` is d2's own drawing of the symbol, about 24 px wide:
+
+```svelte
+<figure class="diagram" id="fig-order">
+  <svg …the diagram, without a Legend box…></svg>
+  <figcaption><span class="fig-num">Figure 1</span> How acme-api stores an order</figcaption>
+  <DiagramTools
+    legend={[
+      { label: "Service", kind: "node", targets: ["YXBp"], svg: "<svg viewBox=\"-4 -4 128 128\" …>…</svg>" },
+      { label: "Table", kind: "node", targets: ["ZGI="], svg: "…" },
+      { label: "Request", kind: "edge", targets: ["KGFwaSAtJmd0OyBkYilbMF0="], svg: "<svg viewBox=\"-1 -8 50 16\" …>…</svg>" },
+      { label: "Reply", kind: "edge", targets: ["KGRiIC0mZ3Q7IGFwaSlbMF0="], svg: "…" },
+    ]}
+    steps={[
+      { text: "acme-api writes the order to the Orders table.", targets: ["YXBp", "KGFwaSAtJmd0OyBkYilbMF0=", "ZGI="] },
+      { text: "The table confirms the write.", targets: ["KGRiIC0mZ3Q7IGFwaSlbMF0="] },
+    ]}
+  />
+</figure>
+```
+
+`YXBp` is `api`, `ZGI=` is `db`, and `KGFwaSAtJmd0OyBkYilbMF0=` is `(api -&gt; db)[0]`, d2's id for the first edge from `api` to `db`.
 
 ## Code blocks
 
@@ -138,7 +213,7 @@ A `diff` fenced block renders with Pierre too, as added and removed rows with li
 - **`pseudo` and `text` work after `diff` too.** ` ```diff pseudo ` highlights a change to pseudocode. ` ```diff text ` shows a change to a file tree or a call tree with no highlighting. A path that ends in `.pseudo` picks `pseudo`.
 - **A changed line is a pair of whole lines.** Pierre parses every diff line as real code. Write the old line whole after `-` and the new line whole after `+`. Do not wrap a long `+` line onto a second `+` line by hand: Pierre reads the second line as a new line of code.
 - **`split` shows two columns.** Add the word `split` after the language or path. Without it the diff is unified.
-- **Two or more files become a switch.** Paste the output of `git diff`. When it holds two or more files, the block becomes one framed diff with a unified and split switch above it. The switch needs JavaScript; without it the diff stays unified. This is the only built-in part that hydrates.
+- **Two or more files become a switch.** Paste the output of `git diff`. When it holds two or more files, the block becomes one framed diff with a unified and split switch above it. The switch needs JavaScript; without it the diff stays unified. It hydrates the page, as a diagram's key and read steps do.
 
 ```diff ts
  defineAgent({
@@ -336,7 +411,7 @@ Every page supports both schemes. There is no syntax for it.
 |---|---|
 | Default | The page follows the reader's system setting, through `<meta name="color-scheme" content="light dark">` and `light-dark()` colour tokens in `style.css`. |
 | Toggle | A button at the top right switches to the scheme not on screen. A choice that differs from the system setting is stored in `localStorage` under `color-scheme`. Switching back to the system scheme removes it. |
-| Scripts | One line in `<head>` applies the stored choice before the page paints, and one short script at the end of `<body>` handles the button. In a page without a diff switch or Svelte, they are the only JavaScript, about 860 bytes. |
+| Scripts | One line in `<head>` applies the stored choice before the page paints, and one short script at the end of `<body>` handles the button. In a page without a diff switch, a diagram key, read steps or Svelte, they are the only JavaScript, about 860 bytes. |
 | Without JavaScript | The page still follows the system setting. The toggle has no effect. |
 | Diagrams and code | `style.css` recolours the `house.d2` palette and the D2 default colours, and Pierre's code follows the page scheme [@style; @housed2]. A diagram colour outside that palette keeps its light value. |
 | Print | Always light. The button is hidden. |
@@ -379,6 +454,18 @@ Each failure prints `build: <message>` and exits with code 1. Where the source h
 | A figure number typed in prose, such as `Figure 2` | `is a figure number typed by hand` |
 | A `d2` block that is never closed | `unclosed d2 code fence` |
 | A `d2` block that does not compile, or no `d2` on the path | `d2 failed for the diagram` or `cannot find the` |
+| A `d2` block with `vars` other than one `d2-legend` block | `a diagram declares no vars but its key` |
+| A `vars` block whose braces never close | `the vars block is never closed` |
+| A key entry over 4 words or with a full stop | `legend label "<label>" is not a short name` |
+| A key entry drawn like nothing in the diagram, such as a class no node uses | `legend item "<label>" matches nothing in the diagram` |
+| A `read` fence without a `#fig:<name>` label | `read fence has no figure label` |
+| A `read` fence for a label no diagram has | `read fence names unknown figure "#fig:<name>"` |
+| A second `read` fence for one figure | `already has a read fence at line` |
+| A `read` fence with no steps | `read fence has no steps` |
+| A read step without `: ` after its ids, at the step's line | `read step is not "ids: One short sentence."` |
+| A read step with an empty id, such as `a, , b` | `read step has an empty id` |
+| A read step id that names no node or edge of the diagram, at the step's line | `"<id>" is not in figure "#fig:<name>"` |
+| A read step over 20 words or longer than one sentence | `read step is more than one short sentence` |
 | A `.svx` document that is not valid Svelte, such as one with two `<script>` blocks | The Svelte message, such as `A component can have a single top-level <script>`, at its file, line and column |
 | A `.svx` component that throws while the page prerenders, such as an undefined variable | `the page threw while prerendering`, with the error. It has no line. |
 | A `script`, `link`, `img`, `iframe`, `source`, `video` or `audio` tag that loads an `http(s)` URL, a CSS `url()` with one, or an `@import` | `external resource` |

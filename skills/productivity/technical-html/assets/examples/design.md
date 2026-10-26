@@ -21,7 +21,7 @@ So a vendored folder is not where the text lives. Its source is four things: the
 
 ## The pipeline for one skill
 
-Sync builds each vendored entry in five stages, always in the same order, inside a temporary folder. In [@fig:sync], the red dashed arrow is the failure path: when the skill's patch no longer applies, sync stops and the folder keeps its old content.
+Sync builds each vendored entry in five stages, always in the same order, inside a temporary folder. [@fig:sync] also shows the failure path: when the skill's patch no longer applies, sync stops at "PatchConflict" and the folder keeps its old content.
 
 ```d2 #fig:sync
 pin: "Upstream at\npinned commit" {class: provider}
@@ -32,9 +32,23 @@ fail: "PatchConflict\nfolder unchanged" {class: part}
 pin -> stage: "shallow\nfetch"
 stage -> folder: "replaces\nthe folder"
 stage -> fail: "patch no\nlonger applies" {style: {stroke: "#c0392b"; stroke-dash: 4}}
+
+vars: {
+  d2-legend: {
+    u: "Outside source" {class: provider}
+    u -> u: "Failure path" {style: {stroke: "#c0392b"; stroke-dash: 4}}
+  }
+}
 ```
 
 *How sync builds one vendored skill*
+
+```read #fig:sync
+pin, pin -> stage: Sync fetches the upstream commit the entry pins.
+stage: It builds the skill in a scoped temp folder, in five stages.
+stage -> folder, folder: The staged result replaces the skill folder.
+stage -> fail, fail: If the patch no longer applies, sync stops and the folder keeps its old content.
+```
 
 `Upstream.fetchPinned` fetches one commit with `git fetch --depth 1` and checks it out under `.upstream/<source>@<sha>`. It fetches into a temporary folder and renames it at the end, so a failed fetch never looks cached, and a second skill from the same commit reuses the checkout. The pin is a full 40-character SHA because git fetches a pinned commit only by its full id [@upstream].
 
