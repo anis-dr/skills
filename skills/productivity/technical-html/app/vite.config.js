@@ -12,6 +12,7 @@ import { cite } from "./plugins/cite.ts";
 import { divs } from "./plugins/divs.ts";
 import { escapeMarkdown } from "./plugins/escape.ts";
 import { fences, islandLangs } from "./plugins/fences.ts";
+import { figures } from "./plugins/figures.ts";
 import { frontmatter, page } from "./plugins/page.ts";
 
 const doc = process.env.TECHNICAL_HTML_DOC ?? "";
@@ -24,7 +25,7 @@ const markdown = mdsvex({
   highlight: false,
   smartypants: false,
   frontmatter: { type: "yaml", marker: "-", parse: frontmatter },
-  remarkPlugins: [blocks, cite, fences, page, escapeMarkdown],
+  remarkPlugins: [blocks, figures, cite, fences, page, escapeMarkdown],
 });
 
 // The client re-highlights only the languages the document's diff islands use; fences.ts collects them while the

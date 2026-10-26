@@ -21,7 +21,9 @@ So a vendored folder is not where the text lives. Its source is four things: the
 
 ## The pipeline for one skill
 
-```d2
+Sync builds each vendored entry in five stages, always in the same order, inside a temporary folder. In [@fig:sync], the red dashed arrow is the failure path: when the skill's patch no longer applies, sync stops and the folder keeps its old content.
+
+```d2 #fig:sync
 pin: "Upstream at\npinned commit" {class: provider}
 stage: "Scoped temp folder\n\n1. copy the entry path\n2. apply the rules\n3. apply the invocation override\n4. write openai.yaml if missing\n5. apply the skill patch" {class: part}
 folder: "Skill folder\nin skills/" {class: store}
@@ -32,7 +34,7 @@ stage -> folder: "replaces\nthe folder"
 stage -> fail: "patch no\nlonger applies" {style: {stroke: "#c0392b"; stroke-dash: 4}}
 ```
 
-*Arrows follow the skill text from the upstream commit to the folder under `skills/`. The five stages in the temp folder run in this order for every vendored entry. The red dashed arrow is the failure path: the patch does not apply, sync stops, and the folder keeps its old content.*
+*How sync builds one vendored skill*
 
 `Upstream.fetchPinned` fetches one commit with `git fetch --depth 1` and checks it out under `.upstream/<source>@<sha>`. It fetches into a temporary folder and renames it at the end, so a failed fetch never looks cached, and a second skill from the same commit reuses the checkout. The pin is a full 40-character SHA because git fetches a pinned commit only by its full id [@upstream].
 

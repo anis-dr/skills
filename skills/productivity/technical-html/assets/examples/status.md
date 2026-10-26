@@ -37,7 +37,7 @@ Each skill folder has one entry in `upstream/sources.json`, and the entry's `mod
 
 ## How a change reaches an installed agent
 
-```d2
+```d2 #fig:install
 tree: "Working tree" {class: part}
 github: "GitHub main" {class: provider}
 add: "npx skills add -g" {class: part}
@@ -53,9 +53,9 @@ add -> lock: "records source\nand folder hash"
 agents -> claude: "symlinked\nper skill"
 ```
 
-*Arrows follow the skill files from the repo to the folder an agent reads. The dashed arrow is a local install from the working tree, used only to test a skill before it is pushed.*
+*From working tree to installed agent*
 
-An edit in the working tree does nothing for an installed agent until it is pushed and installed again [@claudeskills]. The lock file entry for technical-html reads `"sourceType": "github"` with an update time of 21:38 UTC on 16 Oct 2026, so agents load the Markdown builder from `main` [@lockfile].
+An edit in the working tree does nothing for an installed agent until it is pushed and installed again [@claudeskills]. The dashed local install in [@fig:install] is only for testing a skill before it is pushed. The lock file entry for technical-html reads `"sourceType": "github"` with an update time of 21:38 UTC on 16 Oct 2026, so agents load the Markdown builder from `main` [@lockfile].
 
 ## Checks the repo enforces
 

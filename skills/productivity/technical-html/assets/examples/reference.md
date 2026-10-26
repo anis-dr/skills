@@ -14,9 +14,9 @@ toc: true
 bun skills/productivity/technical-html/scripts/build.ts path/to/doc.md
 ```
 
-The build writes `path/to/doc.html` beside the source and prints `wrote <path> (<bytes> bytes, <n> of them script)`. A `.svx` document builds the same way. On any problem it prints `build: <file>:<line>: <message>` to stderr and exits with code 1 [@build]. It needs Bun and the `d2` CLI with the TALA layout plugin. The first run installs the dependencies of the SvelteKit app in `app/`.
+The build writes `path/to/doc.html` beside the source and prints `wrote <path> (<bytes> bytes, <n> of them script)`. A `.svx` document builds the same way. On any problem it prints `build: <file>:<line>: <message>` to stderr and exits with code 1 [@build]. It needs Bun and the `d2` CLI with the TALA layout plugin. The first run installs the dependencies of the SvelteKit app in `app/`. [@fig:build] shows how the source becomes the page.
 
-```d2
+```d2 #fig:build
 doc: "doc.md or doc.svx" {class: part}
 plugins: "app/plugins" {class: part}
 d2: "d2 with TALA" {class: provider}
@@ -31,9 +31,9 @@ plugins -> kit: "one Svelte page"
 kit -> html: "one file, CSS\nand scripts inlined"
 ```
 
-*Arrows follow the content from the source file to the page. The plugins render every diagram and code block at build time; the page that SvelteKit prerenders already holds their HTML.*
+*From source file to page*
 
-The build is one `vite build` of the app in `app/`, with the document as its only page. It runs where the document lives, so a `.svx` document can import a component next to it. It leaves nothing beside the document except the `.html`.
+The plugins render every diagram and code block at build time, so the page that SvelteKit prerenders already holds their HTML. The build is one `vite build` of the app in `app/`, with the document as its only page. It runs where the document lives, so a `.svx` document can import a component next to it. It leaves nothing beside the document except the `.html`.
 
 ## Frontmatter
 
@@ -73,10 +73,14 @@ Every other heading gets an `id` made from its text. The table of contents links
 
 ## Diagrams
 
-A fenced block with the language `d2` becomes a diagram. The paragraph after the closing fence must be entirely italic: it becomes the caption.
+A fenced block with the language `d2` becomes a diagram. After the language it carries a label, `#fig:<name>`, made of letters, digits, `-` and `_`. The paragraph after the closing fence must be entirely italic: it becomes the caption. The caption names the figure, like a title: at most 10 words and no full stop. If the reader needs help with the arrows, explain them in a normal paragraph before or after the diagram.
+
+The build numbers diagrams from 1 in document order. The prose refers to each one with `[@fig:<name>]`, written like a citation, and the build replaces it with a link reading "Figure N". A reference may come before its figure. Every figure needs at least one reference, and a figure number typed by hand fails the build, so adding a figure never leaves a stale number.
 
 ````markdown
-```d2
+[@fig:order] shows the write and its confirmation.
+
+```d2 #fig:order
 direction: right
 api: "acme-api" {class: part}
 db: "Orders" {class: store}
@@ -84,10 +88,10 @@ api -> db: "writes the order"
 db -> api: "confirms" {class: back}
 ```
 
-*Arrows follow the request. The dashed arrow is the reply.*
+*How acme-api stores an order*
 ````
 
-Renders as `<figure class="diagram">`, holding the inline SVG and a `<figcaption>`. The SVG shows at its natural width and shrinks to fit the page. Below 720 px wide it keeps at least 600 px and scrolls sideways, so labels stay legible.
+Renders as `<figure class="diagram" id="fig-order">`, holding the inline SVG and a `<figcaption>` that starts with `<span class="fig-num">Figure 1</span>`. The reference renders as `<a class="xref" href="#fig-order">Figure 1</a>`. The SVG shows at its natural width and shrinks to fit the page. Below 720 px wide it keeps at least 600 px and scrolls sideways, so labels stay legible.
 
 The build prepends `assets/house.d2` to every block, so a block must not declare `vars` or `classes`. The house file sets `direction: right`, so diagrams read left to right unless a block sets its own `direction`. It defines these classes:
 
@@ -366,6 +370,13 @@ Each failure prints `build: <message>` and exits with code 1. Where the source h
 | A `diff` block whose hunks do not match their `@@` line counts | `diff does not parse` |
 | A `\|md` label in a `d2` block | `d2 uses a \|md label` |
 | A diagram without an italic caption | `diagram has no caption` |
+| A diagram caption over 10 words or with a full stop | `diagram caption is a sentence` |
+| A `d2` block without a `#fig:<name>` label | `diagram has no label` |
+| A label that is not `#fig:<name>` | `is not #fig:<name>` |
+| Two diagrams with the same label | `is already used at line` |
+| A `[@fig:<name>]` with no diagram of that label | `unknown figure "@fig:<name>"` |
+| A diagram that nothing refers to | `is never referenced` |
+| A figure number typed in prose, such as `Figure 2` | `is a figure number typed by hand` |
 | A `d2` block that is never closed | `unclosed d2 code fence` |
 | A `d2` block that does not compile, or no `d2` on the path | `d2 failed for the diagram` or `cannot find the` |
 | A `.svx` document that is not valid Svelte, such as one with two `<script>` blocks | The Svelte message, such as `A component can have a single top-level <script>`, at its file, line and column |

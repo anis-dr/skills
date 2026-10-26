@@ -243,6 +243,8 @@ figcaption {
   text-align: center;
   text-wrap: balance;
 }
+/* "Figure N" leads the caption: ink and weight set it apart from the muted name; it never breaks inside itself. */
+.fig-num { color: var(--ink-2); font-weight: 600; font-variant-numeric: tabular-nums; white-space: nowrap; }
 /* Dark diagrams. d2 writes colours as attributes, some also as theme classes (`.d2-<hash> .fill-N1`, specificity
    0,2,0); these rules (0,2,2) win. They map the house.d2 palette and d2 theme 0; light values are unchanged.
    Without light-dark() the diagrams keep their light colours. */
@@ -537,6 +539,25 @@ a.cite:target::after { animation: target-tint 1000ms 200ms backwards; }
   .doc-sources li:target::after, a.cite:target::after { animation: none; opacity: 1; }
   .doc-sources li:target::before { animation: none; color: var(--blue); }
 }
+/* Landing on a figure ends with the same "this one". The diagram covers the figure's interior, so the cue is a ring
+   instead of a tint: a 1px --blue edge with a 3px --blue-bg band inside the border, drawn on a pseudo-element (the
+   figure's overflow would clip anything outside) and animated by opacity on the target-tint curve. Reduced motion: the
+   ring stays while the figure is the :target. */
+figure.diagram { position: relative; }
+figure.diagram[id] { scroll-margin-top: clamp(32px, 12vh, 96px); }
+figure.diagram::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: calc(var(--radius) - 1px);
+  box-shadow: inset 0 0 0 1px var(--blue), inset 0 0 0 4px var(--blue-bg);
+  opacity: 0;
+  pointer-events: none;
+}
+figure.diagram:target::after { animation: target-tint 1000ms 200ms backwards; }
+@media (prefers-reduced-motion: reduce) {
+  figure.diagram:target::after { animation: none; opacity: 1; }
+}
 
 /* Back-links: a muted `Cited in:` line under each entry names the section of each citation site, quiet until hovered.
    A further citation under the same heading is a raised mono numeral. */
@@ -581,14 +602,20 @@ a.cite {
   border-radius: 3px;
   scroll-margin-block: 33vh;
 }
+/* Figure reference "Figure N": an ordinary prose link at body size, kept on one line. The plain a:hover is reset so the
+   underline only firms up under the hover rule below. */
+a.xref { white-space: nowrap; border-radius: 3px; }
+a.xref:hover { text-decoration-color: color-mix(in srgb, currentColor 30%, transparent); }
 
 /* Hover restraint: colour and underline switch instantly, and only where a real pointer can hover. Press gives the same
    cue on touch. Focus gets the house ring (matches .scheme). */
 @media (hover: hover) and (pointer: fine) {
   a.cite:hover { text-decoration: underline 1px currentColor; text-underline-offset: 2px; }
   .doc-sources a.backref:hover { color: var(--blue); }
+  a.xref:hover { text-decoration-color: currentColor; }
 }
 a.cite:active { text-decoration: underline 1px currentColor; text-underline-offset: 2px; }
+a.xref:active { text-decoration-color: currentColor; }
 /* Inline citations are exempt from the 24px target minimum, but on touch the 15px marker is hard to hit. Block padding
    grows the hit area to ~24px without moving the line; no inline padding, so neighbours [1][2] never overlap. */
 @media (pointer: coarse) {
@@ -597,6 +624,7 @@ a.cite:active { text-decoration: underline 1px currentColor; text-underline-offs
 }
 .doc-sources a.backref:active { color: var(--blue); }
 a.cite:focus-visible,
+a.xref:focus-visible,
 .doc-sources a.backref:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
 .doc-sources + .doc-footer { margin-top: 48px; }
 
@@ -638,4 +666,7 @@ a.cite:focus-visible,
   figure > svg { max-height: 170mm; }
   .table-wrap, figure { overflow: visible; }
   a { color: inherit; text-decoration-color: currentColor; }
+  /* On paper a figure reference is plain "Figure N" text, and a landed figure prints without its ring. */
+  a.xref { text-decoration: none; }
+  figure.diagram::after { display: none; }
 }
