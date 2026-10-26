@@ -132,7 +132,7 @@ Add `-g` to install into your user folder instead of the current project. Not su
 - [grill-me](skills/productivity/grill-me/SKILL.md): Sharpen a plan through interview
 - [handoff](skills/productivity/handoff/SKILL.md): Compact a conversation into a handoff
 - [i-have-adhd](skills/productivity/i-have-adhd/SKILL.md): Action-first output for ADHD readers
-- [ketchup](skills/productivity/ketchup/SKILL.md): Catch the user up on what changed in this chat since their last message, in a few plain sentences and small visuals.
+- [ketchup](skills/productivity/ketchup/SKILL.md): Catch the user up on what changed in this chat since their last message, in plain words and small visuals.
 - [teach](skills/productivity/teach/SKILL.md): Learn a concept in a guided workspace
 - [to-questionnaire](skills/productivity/to-questionnaire/SKILL.md): Front-load questions into a doc for someone to answer
 - [wait-what](skills/productivity/wait-what/SKILL.md): Re-pitch that: simpler, with the context I'm missing
