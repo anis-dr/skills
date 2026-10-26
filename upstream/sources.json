@@ -385,7 +385,7 @@
     "mode": "vendor",
     "source": "https://github.com/cursor/plugins",
     "path": "pstack/skills/create-formal-verification-skill",
-    "commit": "190d28736eff128ec94f502a22c7fe0c4b56cd37"
+    "commit": "99b609a72323b70204eab407c622f436e858e112"
   },
   {
     "name": "maintain-formal-verification-skill",
@@ -1081,7 +1081,7 @@
     "mode": "vendor",
     "source": "https://github.com/GoogleChrome/modern-web-guidance",
     "path": "skills/modern-web-guidance",
-    "commit": "b31dc0a43ff5d19bcf386a3476a216f3b39a6f55"
+    "commit": "65e7edd67e77420eaf02c5df00fdc0521417d809"
   },
   {
     "name": "show-me",
@@ -1122,7 +1122,7 @@
     "mode": "vendor",
     "source": "https://github.com/coreyhaines31/marketingskills",
     "path": "skills/ads",
-    "commit": "365b412152b9542499ca1439426f7fc3cc92bb65"
+    "commit": "e85f3cbc2e4a79bf33b2a12e9bdd9087d414735b"
   },
   {
     "name": "ai-seo",
@@ -1130,7 +1130,7 @@
     "mode": "vendor",
     "source": "https://github.com/coreyhaines31/marketingskills",
     "path": "skills/ai-seo",
-    "commit": "365b412152b9542499ca1439426f7fc3cc92bb65"
+    "commit": "e85f3cbc2e4a79bf33b2a12e9bdd9087d414735b"
   },
   {
     "name": "analytics",
@@ -1138,7 +1138,7 @@
     "mode": "vendor",
     "source": "https://github.com/coreyhaines31/marketingskills",
     "path": "skills/analytics",
-    "commit": "365b412152b9542499ca1439426f7fc3cc92bb65"
+    "commit": "e85f3cbc2e4a79bf33b2a12e9bdd9087d414735b"
   },
   {
     "name": "aso",
@@ -1154,7 +1154,7 @@
     "mode": "vendor",
     "source": "https://github.com/coreyhaines31/marketingskills",
     "path": "skills/attribution",
-    "commit": "365b412152b9542499ca1439426f7fc3cc92bb65"
+    "commit": "e85f3cbc2e4a79bf33b2a12e9bdd9087d414735b"
   },
   {
     "name": "churn-prevention",
@@ -1194,7 +1194,7 @@
     "mode": "vendor",
     "source": "https://github.com/coreyhaines31/marketingskills",
     "path": "skills/competitor-profiling",
-    "commit": "3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd"
+    "commit": "e85f3cbc2e4a79bf33b2a12e9bdd9087d414735b"
   },
   {
     "name": "competitors",
@@ -1210,7 +1210,7 @@
     "mode": "vendor",
     "source": "https://github.com/coreyhaines31/marketingskills",
     "path": "skills/content-strategy",
-    "commit": "3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd"
+    "commit": "e85f3cbc2e4a79bf33b2a12e9bdd9087d414735b"
   },
   {
     "name": "copy-editing",
@@ -1250,7 +1250,7 @@
     "mode": "vendor",
     "source": "https://github.com/coreyhaines31/marketingskills",
     "path": "skills/directory-submissions",
-    "commit": "3b84db2e3dc5a91563cc0c5ab359c5b3f7d3c9cd"
+    "commit": "e85f3cbc2e4a79bf33b2a12e9bdd9087d414735b"
   },
   {
     "name": "emails",
@@ -1274,7 +1274,7 @@
     "mode": "vendor",
     "source": "https://github.com/coreyhaines31/marketingskills",
     "path": "skills/free-tools",
-    "commit": "365b412152b9542499ca1439426f7fc3cc92bb65"
+    "commit": "e85f3cbc2e4a79bf33b2a12e9bdd9087d414735b"
   },
   {
     "name": "image",
@@ -1330,7 +1330,7 @@
     "mode": "vendor",
     "source": "https://github.com/coreyhaines31/marketingskills",
     "path": "skills/marketing-loops",
-    "commit": "365b412152b9542499ca1439426f7fc3cc92bb65"
+    "commit": "e85f3cbc2e4a79bf33b2a12e9bdd9087d414735b"
   },
   {
     "name": "marketing-plan",
@@ -1418,7 +1418,7 @@
     "mode": "vendor",
     "source": "https://github.com/coreyhaines31/marketingskills",
     "path": "skills/public-relations",
-    "commit": "dda3841f0b294e01e93b1541486beefbfab0915e"
+    "commit": "e85f3cbc2e4a79bf33b2a12e9bdd9087d414735b"
   },
   {
     "name": "referrals",
@@ -1458,7 +1458,7 @@
     "mode": "vendor",
     "source": "https://github.com/coreyhaines31/marketingskills",
     "path": "skills/seo-audit",
-    "commit": "365b412152b9542499ca1439426f7fc3cc92bb65"
+    "commit": "e85f3cbc2e4a79bf33b2a12e9bdd9087d414735b"
   },
   {
     "name": "signup",
@@ -1562,7 +1562,7 @@
     "mode": "vendor",
     "source": "https://github.com/cursor/plugins",
     "path": "pstack/skills/ketchup",
-    "commit": "019a6a20592c10bf92869e5740368f578a9997fd"
+    "commit": "99b609a72323b70204eab407c622f436e858e112"
   },
   {
     "name": "benchmark-checklist",
