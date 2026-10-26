@@ -216,6 +216,7 @@ Skills distilled from our own work. Most are model-invoked: the agent reaches fo
 ### Productivity
 
 - **`/i-have-adhd`** shapes replies for a reader with ADHD: next actions first, numbered steps, visible progress and fewer tangents. User-invoked: it stays active until "stop adhd mode" or "normal mode" (Ayoub Ghriss' skill).
+- **`/be-ambitious`** rewrites a task as a deeper version of itself, not a bigger one: what a top professional would add, the rawest source material, the named methods and tools, and an external check with a pass criterion. It stops at the rewritten prompt (Dan McAteer's skill).
 - **`/diagram-rules`** is the judgement for any diagram before the tool: draw or use a table, which kind answers the reader's question, what belongs in a node and on an edge, how much fits, and a check before showing it. Model-invoked: `/show-me`, `/technical-pdf` and `/technical-html` load it first.
 - **`/technical-pdf`** writes and visually checks a technical PDF (report, spec, runbook, proposal) in Typst, including client quotes whose prices compute from a day rate.
 - **`/technical-html`** turns a Markdown document (status report, design doc, how-to, reference) into one self-contained HTML page in the house style: stat cards, callouts, status pills, step cards, a table of contents and D2 diagrams laid out with TALA. It writes with `/technical-writing` and picks each visual with `/show-me`. Use it instead of `/technical-pdf` when the user wants HTML or a nicer view of a Markdown file.

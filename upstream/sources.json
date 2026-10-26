@@ -1686,5 +1686,13 @@
     "source": "https://github.com/emilkowalski/skills",
     "path": "skills/prototype/PICKER.md",
     "commit": "2d228630ba1446365f614a108cb8252f1feda202"
+  },
+  {
+    "name": "be-ambitious",
+    "bucket": "productivity",
+    "mode": "vendor",
+    "source": "https://github.com/DannyMac180/skills",
+    "path": "be-ambitious",
+    "commit": "7dc63b7a748b8bd14bf213c15ecddd4536409407"
   }
 ]
