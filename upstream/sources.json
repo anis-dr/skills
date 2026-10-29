@@ -5,7 +5,7 @@
     "mode": "vendor",
     "source": "https://github.com/mattpocock/skills",
     "path": "skills/engineering/code-review",
-    "commit": "49dd158d1076134a641b33efb035946536778336"
+    "commit": "a496f5513d4a4cf889bc48e189e579f4b0bdf6aa"
   },
   {
     "name": "codebase-design",
@@ -13,7 +13,7 @@
     "mode": "vendor",
     "source": "https://github.com/mattpocock/skills",
     "path": "skills/engineering/codebase-design",
-    "commit": "4588b32ecab9ecc9fc8cc6b6c5e7d675b6004b0d"
+    "commit": "a496f5513d4a4cf889bc48e189e579f4b0bdf6aa"
   },
   {
     "name": "diagnosing-bugs",
@@ -53,7 +53,7 @@
     "mode": "vendor",
     "source": "https://github.com/mattpocock/skills",
     "path": "skills/engineering/improve-codebase-architecture",
-    "commit": "4588b32ecab9ecc9fc8cc6b6c5e7d675b6004b0d"
+    "commit": "a496f5513d4a4cf889bc48e189e579f4b0bdf6aa"
   },
   {
     "name": "prototype",
@@ -69,7 +69,7 @@
     "mode": "vendor",
     "source": "https://github.com/mattpocock/skills",
     "path": "skills/engineering/research",
-    "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
+    "commit": "a496f5513d4a4cf889bc48e189e579f4b0bdf6aa"
   },
   {
     "name": "setup-matt-pocock-skills",
@@ -77,7 +77,7 @@
     "mode": "vendor",
     "source": "https://github.com/mattpocock/skills",
     "path": "skills/engineering/setup-matt-pocock-skills",
-    "commit": "49dd158d1076134a641b33efb035946536778336"
+    "commit": "a496f5513d4a4cf889bc48e189e579f4b0bdf6aa"
   },
   {
     "name": "tdd",
@@ -117,7 +117,7 @@
     "mode": "vendor",
     "source": "https://github.com/mattpocock/skills",
     "path": "skills/engineering/wayfinder",
-    "commit": "49dd158d1076134a641b33efb035946536778336"
+    "commit": "a496f5513d4a4cf889bc48e189e579f4b0bdf6aa"
   },
   {
     "name": "wizard",
@@ -141,7 +141,7 @@
     "mode": "vendor",
     "source": "https://github.com/mattpocock/skills",
     "path": "skills/productivity/grilling",
-    "commit": "49dd158d1076134a641b33efb035946536778336"
+    "commit": "a496f5513d4a4cf889bc48e189e579f4b0bdf6aa"
   },
   {
     "name": "handoff",
@@ -205,7 +205,7 @@
     "mode": "vendor",
     "source": "https://github.com/mattpocock/skills",
     "path": "skills/engineering/implement-spec",
-    "commit": "4588b32ecab9ecc9fc8cc6b6c5e7d675b6004b0d"
+    "commit": "a496f5513d4a4cf889bc48e189e579f4b0bdf6aa"
   },
   {
     "name": "writing-beats",
