@@ -7,15 +7,23 @@
 //               d2 id or edge (`model -> check`) of that figure. It may sit anywhere in the document.
 //   ```diff  -> Pierre diff; a git diff with 2+ files becomes the hydrated <DiffIsland>; `split` in the meta splits it
 //   a Shiki language or `pseudo` -> Pierre file view;  anything else -> <pre data-lang>
+//   `::: files` (a div of 2+ fences, each with a unique path) -> the hydrated <FilesIsland>: a @pierre/trees file
+//               tree of the paths beside the selected file's Pierre view, each file prerendered with its path header
 // It also marks the document interactive (metadata.interactive, read by src/routes/+page.ts) when it holds an island,
 // or when a .svx document has a <script> or a component, and imports the islands it uses into the document's one
 // <script>.
 import { preloadFile, preloadFileDiff } from "@pierre/diffs/ssr";
 import { getFiletypeFromFileName } from "@pierre/diffs";
+import darkTheme from "@pierre/theme/themes/pierre-dark.json" with { type: "json" };
+import lightTheme from "@pierre/theme/themes/pierre-light.json" with { type: "json" };
+import { themeToTreeStyles } from "@pierre/trees";
+import { preloadFileTree, serializeFileTreeSsrPayload } from "@pierre/trees/ssr";
 import { toString } from "mdast-util-to-string";
 import { fileURLToPath } from "node:url";
-import { visit } from "unist-util-visit";
+import { normalizeTheme } from "shiki/core";
+import { SKIP, visit } from "unist-util-visit";
 import { diffOptions, parseFiles, registerThemes } from "../src/lib/pierre.ts";
+import { treeOptions } from "../src/lib/tree.ts";
 import type { File, Node } from "./blocks.ts";
 import { box, decode } from "./blocks.ts";
 import { d2, edgeKey } from "./d2.ts";
@@ -33,6 +41,17 @@ const html = (value: string): Node => ({ type: "html", value });
 // A static render drops Pierre's 16 kB icon sprite when nothing in it uses an icon; an island keeps it for re-renders.
 const shadow = (h: string, island = false) =>
   `<diffs-container><template shadowrootmode="open">${island || h.includes("<use") ? h : h.replace(/<svg data-icon-sprite[\s\S]*?<\/svg>\s*/, "")}</template></diffs-container>`;
+
+// A `::: files` tree in the colours of the Pierre theme the code uses: each --trees-theme-* variable as
+// light-dark(light, dark), so it follows the page scheme. --files-code-bg fills the code pane under a short file.
+const [light, dark] = [lightTheme, darkTheme].map((t) => normalizeTheme(t as never));
+const [lightTree, darkTree] = [light!, dark!].map((t) => themeToTreeStyles(t as never));
+const TREE_STYLE = [
+  ...Object.keys(lightTree!).filter((k) => k.startsWith("--trees-theme-")).map((k) => `${k}:light-dark(${lightTree![k]},${darkTree![k]})`),
+  `--files-code-bg:light-dark(${light!.bg},${dark!.bg})`,
+].join(";");
+// Fence languages that are not a file's code.
+const NOT_FILES = ["diff", "d2", "read"];
 
 // A diagram caption names the figure, like a title; longer text is an explanation and belongs in the prose.
 const CAPTION_WORDS = 10;
@@ -80,8 +99,40 @@ export const fences = () => async (tree: Node, file: File) => {
   const name = file.filename;
   const jobs: Job[] = [];
   // The island components the document uses, imported into its <script>.
-  const islands = new Set<"DiffIsland" | "DiagramTools">();
+  const islands = new Set<"DiffIsland" | "DiagramTools" | "FilesIsland">();
   const reads = readFences(tree, name);
+  let trees = 0;
+
+  // `::: files`: two or more code fences, each with a unique file path, and nothing else.
+  async function files(div: Node): Promise<Node> {
+    const at = div.position?.start.line ?? 1;
+    const seen = new Map<string, number>();
+    const items = (div.children ?? []).map((node) => {
+      const line = node.position?.start.line ?? at;
+      if (node.type !== "code") fail(name, line, '"::: files" holds only code fences, each with a file path');
+      const lang = node.lang ?? "";
+      if (NOT_FILES.includes(lang)) fail(name, line, `a \`\`\`${lang} fence is not a file; "::: files" holds code fences, each with a file path`);
+      const { path, lang: fileLang } = fenceWords(`${lang} ${node.meta ?? ""}`);
+      if (path === undefined) fail(name, line, 'a fence in "::: files" needs a file path after its language, e.g. ```ts src/agent.ts');
+      const first = seen.get(path);
+      if (first !== undefined) fail(name, line, `"${path}" is already a file of this "::: files" (line ${first})`);
+      seen.set(path, line);
+      return { path, lang: fileLang ?? "text", contents: decode(node.value ?? "") };
+    });
+    if (items.length < 2) fail(name, at, `"::: files" holds ${items.length} file${items.length === 1 ? "" : "s"}; it needs two or more, else write a plain code fence`);
+    // Long lines run on, as in an editor, and each file scrolls sideways in Pierre's own scroller.
+    const htmls = await Promise.all(
+      items.map(async ({ path, lang, contents }) => shadow((await preloadFile({ file: { name: path, contents, lang }, options: { overflow: "scroll" } })).prerenderedHTML)),
+    );
+    const paths = items.map((f) => f.path);
+    const id = `file-tree-${++trees}`;
+    const treeHtml = serializeFileTreeSsrPayload(preloadFileTree(treeOptions(id, paths)));
+    // The longest file sets the frame's one height (style.css), so switching files never moves the page.
+    const lines = Math.max(...items.map((f) => f.contents.replace(/\n$/, "").split("\n").length));
+    const style = `${TREE_STYLE};--files-lines:${lines}`;
+    islands.add("FilesIsland");
+    return html(`<FilesIsland id={${JSON.stringify(id)}} paths={${JSON.stringify(paths)}} style={${JSON.stringify(style)}} tree={import.meta.env.SSR ? ${JSON.stringify(treeHtml)} : ""} htmls={import.meta.env.SSR ? ${JSON.stringify(htmls)} : []} />`);
+  }
 
   async function diff(node: Node, at: number): Promise<Node> {
     const value = node.value ?? "";
@@ -107,8 +158,13 @@ export const fences = () => async (tree: Node, file: File) => {
     return html(`<DiffIsland patch={${JSON.stringify(patch)}} lang={${JSON.stringify(m.lang)}} htmls={import.meta.env.SSR ? ${JSON.stringify(htmls)} : []} />`);
   }
 
-  visit(tree as never, "code", (node: Node, index: number | undefined, parent: Node | undefined) => {
+  visit(tree as never, (node: Node, index: number | undefined, parent: Node | undefined) => {
     if (parent === undefined || index === undefined) return;
+    if (node.type === "div-files") {
+      jobs.push({ node, parent, render: files(node) });
+      return SKIP;
+    }
+    if (node.type !== "code") return;
     node.value = decode(node.value ?? "");
     const at = node.position?.start.line ?? 1;
     const lang = node.lang ?? "";

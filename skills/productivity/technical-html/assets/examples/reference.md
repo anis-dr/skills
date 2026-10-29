@@ -205,6 +205,70 @@ on(save)
 
 Any other block, including one with no language, renders as `<pre data-lang="<lang>"><code>`. The language shows as a small label on the block.
 
+## Several files
+
+A `::: files` div holds two or more code fences that belong together, such as the files of one example. Each fence names its language and then its file path. The block renders as one frame, like an editor: a file tree of the paths on the left and one file's code on the right, with its path as the header. Folders nest, and a folder with only one folder inside shows as one row (`apps/sapio`). The first file is open when the page loads, and clicking a file in the tree shows it.
+
+````markdown
+::: files
+```ts apps/sapio/agent.ts
+import { defineAgent } from "./runtime";
+import { present } from "./tools/present";
+
+export const agent = defineAgent({
+  tools: [present],
+  output: { toolId: "mcp__sapio__present" },
+});
+```
+```ts apps/sapio/tools/present.ts
+import { tool } from "../runtime";
+import { Cards } from "../cards";
+
+export const present = tool({
+  description: "Show the answer as cards.",
+  input: Cards,
+});
+```
+```ts apps/sapio/cards.ts
+import * as z from "zod";
+
+export const Cards = z.array(z.object({ title: z.string(), body: z.string() }));
+```
+:::
+````
+
+::: files
+```ts apps/sapio/agent.ts
+import { defineAgent } from "./runtime";
+import { present } from "./tools/present";
+
+export const agent = defineAgent({
+  tools: [present],
+  output: { toolId: "mcp__sapio__present" },
+});
+```
+```ts apps/sapio/tools/present.ts
+import { tool } from "../runtime";
+import { Cards } from "../cards";
+
+export const present = tool({
+  description: "Show the answer as cards.",
+  input: Cards,
+});
+```
+```ts apps/sapio/cards.ts
+import * as z from "zod";
+
+export const Cards = z.array(z.object({ title: z.string(), body: z.string() }));
+```
+:::
+
+- **Every fence needs a path.** The path follows the language (` ```ts src/agent.ts `), or stands alone when its extension names the language (` ```src/agent.ts `). Each path appears once per block.
+- **Only code fences.** Prose, a `diff`, a `d2` or a `read` fence inside the div fails the build. Put the explanation before or after the block.
+- **The tree is @pierre/trees, the code is Pierre.** Both render at build time into declarative shadow roots and share the Pierre theme. Below 720 pixels the tree sits above the code, at most four and a half rows tall.
+- **One height, like an editor.** The block is as tall as its longest file, or its tree if that is taller, up to `min(640px, 75vh)`. Switching files never changes its height: a short file leaves space below it. Past the limit the code scrolls inside the block, and so does a long tree. Long lines do not wrap; the file scrolls sideways. Choosing a file opens it at its first line.
+- **Switching needs JavaScript.** The block hydrates the page, as a multi-file diff does. The tree's own script is about 215 kB; a page that did not hydrate before also gains Svelte and the page itself as script. Without JavaScript the tree shows, and every file shows beside it, stacked under its path in one scrolling pane of the same height. A printed page shows every file at full length and no tree.
+
 ## Diffs
 
 A `diff` fenced block renders with Pierre too, as added and removed rows with line numbers and syntax highlighting. Five rules decide what it shows.
@@ -306,6 +370,7 @@ A line `::: <kind>` opens a div and a line holding only `:::` closes it. Both li
 |---|---|---|
 | `steps` | `<div class="steps">` | A numbered list. Each item is a step card. |
 | `card` | `<div class="card">` | Any Markdown, in a white bordered card. |
+| `files` | `<div class="files">`, a file tree beside the code | Two or more code fences, each with a file path. See [Several files](#several-files). |
 | `footer` | `<footer class="doc-footer">` | A colophon, muted and smaller: how the page was made, or a caveat. Sources go in the `.bib` file; see [Citations](#citations). |
 
 In a `steps` div, a bold first line becomes `<p class="step-title">`, together with the rest of that line. An item with a `done` pill gets `<li class="done">`. An item with a `here` pill gets `<li class="here">`, the current step. A `steps` div holds at most one `here` pill.
@@ -411,7 +476,7 @@ Every page supports both schemes. There is no syntax for it.
 |---|---|
 | Default | The page follows the reader's system setting, through `<meta name="color-scheme" content="light dark">` and `light-dark()` colour tokens in `style.css`. |
 | Toggle | A button at the top right switches to the scheme not on screen. A choice that differs from the system setting is stored in `localStorage` under `color-scheme`. Switching back to the system scheme removes it. |
-| Scripts | One line in `<head>` applies the stored choice before the page paints, and one short script at the end of `<body>` handles the button. In a page without a diff switch, a diagram key, read steps or Svelte, they are the only JavaScript, about 860 bytes. |
+| Scripts | One line in `<head>` applies the stored choice before the page paints, and one short script at the end of `<body>` handles the button. In a page without a diff switch, a `::: files` block, a diagram key, read steps or Svelte, they are the only JavaScript, about 860 bytes. |
 | Without JavaScript | The page still follows the system setting. The toggle has no effect. |
 | Diagrams and code | `style.css` recolours the `house.d2` palette and the D2 default colours, and Pierre's code follows the page scheme [@style; @housed2]. A diagram colour outside that palette keeps its light value. |
 | Print | Always light. The button is hidden. |
@@ -436,6 +501,11 @@ Each failure prints `build: <message>` and exits with code 1. Where the source h
 | A `:::` with no open div, or an open div at the end of the file | `":::" closes nothing` or `unclosed` |
 | A `steps` div without a numbered list | `"::: steps" needs a numbered list` |
 | Two or more `here` pills in one `steps` div | `"::: steps" has n "here" pills` |
+| A fence in a `files` div with no file path | `a fence in "::: files" needs a file path` |
+| Two fences in one `files` div with the same path, at the second | `"<path>" is already a file of this "::: files"` |
+| Prose or another block in a `files` div, at its line | `"::: files" holds only code fences` |
+| A `diff`, `d2` or `read` fence in a `files` div | `fence is not a file` |
+| A `files` div with fewer than two fences | `"::: files" holds n file(s); it needs two or more` |
 | A `[@key]` citation with no bibliography | `citations need a bibliography: add <doc>.bib` |
 | A citation whose key is not in the `.bib` file | `unknown citation "@key"` |
 | A `.bib` entry that nothing cites, at its line in the `.bib` file | `source "key" is never cited` |

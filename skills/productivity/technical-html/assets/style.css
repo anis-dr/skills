@@ -300,6 +300,49 @@ diffs-container {
 .diff > diffs-container + diffs-container { margin-top: -21px; border-top-left-radius: 0; border-top-right-radius: 0; }
 .diff > diffs-container:has(+ diffs-container) { border-bottom-left-radius: 0; border-bottom-right-radius: 0; }
 .steps diffs-container { margin-top: 14px; }
+/* `::: files`: one frame, a file tree (@pierre/trees, in a <file-tree-container> shadow root) on the left and the code
+   on the right, like an editor in the page. FilesIsland's style attribute carries the tree colours from the same
+   Pierre theme as the code, so the two read as one component. Like an editor, the frame keeps one height whichever
+   file is open: the build sets --files-lines to the longest file's line count and --rows to the tree's rows, and the
+   frame fits the taller of the two, capped at --files-max. A block of short files stays short. Past the cap each pane
+   scrolls on its own. Long lines run on, as in an editor, and scroll sideways inside Pierre's own scroller (its
+   `scroll` overflow keeps the line numbers pinned and stops the browser's back swipe). Vertical scrolling chains to
+   the page at a pane's end (no overscroll-behavior), so the page wheel is never trapped. Every file shows, stacked in
+   the code pane, until the island hydrates; with scripting on, all but the first hide before then, so nothing jumps. */
+.files {
+  --files-max: min(640px, 75vh);
+  /* A Pierre file: its 44px path header, 20px per line (diffs-container's line height) and a 2px bottom gap. */
+  --files-code-h: calc(var(--files-lines) * 20px + 46px);
+  /* The tree: 30px rows (trees' default density) and 8px above and below. */
+  --files-tree-h: calc(var(--rows) * 30px + 16px);
+  display: grid;
+  grid-template-columns: 208px minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr);
+  height: min(var(--files-max), max(var(--files-code-h), var(--files-tree-h)) + 2px); /* 2px: the border */
+  box-sizing: border-box;
+  margin: 20px 0;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.steps .files { margin-top: 14px; }
+.files-tree { border-right: 1px solid var(--line); background: var(--trees-theme-sidebar-bg); }
+/* The tree fills its pane; a long one scrolls inside the library's own scroller. */
+.files-tree file-tree-container {
+  box-sizing: border-box;
+  height: 100%;
+  padding-block: 8px;
+  color-scheme: inherit;
+  --trees-font-family-override: var(--sans);
+}
+.files-code { overflow: hidden auto; background: var(--files-code-bg); }
+.files-code > diffs-container { margin: 0; border: 0; border-radius: 0; }
+/* Only stacked files get a divider; a hidden file still counts as a sibling, and a border would push the open one 1px. */
+.files:not(.live) .files-code > diffs-container + diffs-container { border-top: 1px solid var(--line); }
+.files-code > [hidden] { display: none; }
+@media (scripting: enabled) {
+  .files:not(.live) .files-code > diffs-container + diffs-container { display: none; }
+}
 pre[data-lang]::before {
   content: attr(data-lang);
   position: sticky;
@@ -805,6 +848,17 @@ a.xref:focus-visible,
   figure > svg { min-width: min(var(--w, 0px), 600px); }
   table { font-size: 14px; }
   th, td { padding: 10px 12px; }
+  /* Code needs the width: the tree sits above it, at most four and a half rows (the half row shows there is more),
+     and the code pane takes the rest of the same fixed frame. */
+  .files {
+    --files-tree-narrow: min(var(--files-tree-h), 4.5 * 30px + 8px);
+    display: flex;
+    flex-direction: column;
+    height: min(var(--files-max), var(--files-tree-narrow) + 1px + var(--files-code-h) + 2px);
+  }
+  .files-tree { flex: none; border-right: 0; border-bottom: 1px solid var(--line); }
+  .files-tree file-tree-container { height: var(--files-tree-narrow); }
+  .files-code { flex: 1 1 auto; min-height: 0; }
   .steps > ol > li { padding: 16px 18px; }
   .steps > ol > li::before { position: static; float: left; margin: 0 10px 0 0; }
   .steps > ol > li > :not(.step-title) { clear: left; }
@@ -824,6 +878,11 @@ a.xref:focus-visible,
   * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   main { padding: 0; max-width: none; }
   .toc { display: none; }
+  /* Paper cannot switch files or scroll: print every file at full height, stacked under its path, without the tree. */
+  .files { display: block; height: auto; }
+  .files-code { overflow: visible; }
+  .files-tree { display: none; }
+  .files-code > diffs-container[hidden], .files:not(.live) .files-code > diffs-container + diffs-container { display: block; }
   h2, h3 { break-after: avoid; }
   figure, .card, .steps > ol > li, .callout, pre, .stat, tr, .doc-sources li { break-inside: avoid; }
   pre { white-space: pre-wrap; overflow: visible; }

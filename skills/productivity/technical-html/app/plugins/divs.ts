@@ -3,7 +3,7 @@
 // `:::` would join as a lazy line, and line numbers stay the same. plugins/blocks.ts wraps what lies between markers.
 import { fail } from "./fail.ts";
 
-export const DIVS = ["steps", "card", "footer"];
+export const DIVS = ["steps", "card", "files", "footer"];
 // Per document: file line of each marker -> its kind ("" closes).
 export const markers = new Map<string, Map<number, string>>();
 

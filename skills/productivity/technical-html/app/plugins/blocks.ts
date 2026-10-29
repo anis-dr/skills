@@ -1,6 +1,6 @@
-// Remark plugin for the house dialect inside the body: wraps the `::: steps`, `card` and `footer` divs that
-// plugins/divs.ts marked, turns `::: steps` lists into step cards, GitHub alerts into callouts and `status:` code spans
-// into pills, and puts every table in a scrolling frame.
+// Remark plugin for the house dialect inside the body: wraps the `::: steps`, `card`, `files` and `footer` divs that
+// plugins/divs.ts marked (plugins/fences.ts renders `files`), turns `::: steps` lists into step cards, GitHub alerts
+// into callouts and `status:` code spans into pills, and puts every table in a scrolling frame.
 import { toString } from "mdast-util-to-string";
 import { visit } from "unist-util-visit";
 import { markers } from "./divs.ts";
@@ -53,6 +53,7 @@ export function pill(code: string, file: string, line: number | undefined): stri
 const DIV_TAGS: Record<string, [hName: string, className: string]> = {
   steps: ["div", "steps"],
   card: ["div", "card"],
+  files: ["div", "files"],
   footer: ["footer", "doc-footer"],
 };
 
@@ -110,7 +111,8 @@ export const blocks = () => (tree: Node, file: File) => {
     } else {
       const [hName, className] = DIV_TAGS[kind] ?? ["div", kind];
       open = box(`div-${kind}`, hName, [className], []);
-      if (kind === "steps") open.position = node.position;
+      // Line numbers for build errors: steps and files check their content (here and in plugins/fences.ts).
+      if (kind === "steps" || kind === "files") open.position = node.position;
       body.push(open);
     }
   }
