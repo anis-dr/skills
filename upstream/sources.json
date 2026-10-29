@@ -820,6 +820,11 @@
     "mode": "ours"
   },
   {
+    "name": "app-ux",
+    "bucket": "design",
+    "mode": "ours"
+  },
+  {
     "name": "measure-ui",
     "bucket": "design",
     "mode": "fork",

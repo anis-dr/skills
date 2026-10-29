@@ -231,6 +231,7 @@ Skills distilled from our own work. Most are model-invoked: the agent reaches fo
 ### Design
 
 - **`/refactoring-ui`** applies the Refactoring UI rules, scales and review checklist when designing or reviewing web UI.
+- **`/app-ux`** builds or reviews application screens against click-cost, state and feedback rules, and replaces the tells of generated UI (buried actions, missing states, confirm modals, decorative KPI cards), distilled from Kole Jain's videos.
 - **`/design-references`** finds references on Mobbin for the screens, flows or sections you are designing and gives you a catalog to pick from.
 - **`/measure-ui`** proves a build matches its design, a layout fix, hover, focus and animation behaviour, or that a migration stayed pixel-identical by measuring in a live browser instead of eyeballing screenshots.
 - **`/redesign-inventory`** inventories every control before a redesign so none is silently dropped.
