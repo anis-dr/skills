@@ -54,6 +54,7 @@ Add `-g` to install into your user folder instead of the current project. Not su
 - [retro](skills/engineering/retro/SKILL.md): Conduct a retrospective on a coding session.
 - [setup-matt-pocock-skills](skills/engineering/setup-matt-pocock-skills/SKILL.md): Configure a repo for the skills
 - [sharpen](skills/engineering/sharpen/SKILL.md): Make a task deeper, not bigger, then rewrite the prompt.
+- [statechart](skills/engineering/statechart/SKILL.md): Check a TLA+ model of a system that moves between states, such as a product flow, a protocol, or a service, and draw it as a Mermaid statechart.
 - [swarm](skills/engineering/swarm/SKILL.md): Fan out N parallel workers, drain them, and return one report.
 - [to-spec](skills/engineering/to-spec/SKILL.md): Turn a conversation into a spec
 - [to-tickets](skills/engineering/to-tickets/SKILL.md): Split a plan into tracer-bullet tickets
@@ -132,7 +133,8 @@ Add `-g` to install into your user folder instead of the current project. Not su
 - [grill-me](skills/productivity/grill-me/SKILL.md): Sharpen a plan through interview
 - [handoff](skills/productivity/handoff/SKILL.md): Compact a conversation into a handoff
 - [i-have-adhd](skills/productivity/i-have-adhd/SKILL.md): Action-first output for ADHD readers
-- [ketchup](skills/productivity/ketchup/SKILL.md): Catch the user up on what changed in this chat since their last message, in a few plain sentences and small visuals.
+- [ketchup](skills/productivity/ketchup/SKILL.md): Catch the user up on what changed in this chat since their last message, in plain words and small visuals.
+- [ketchup-video](skills/productivity/ketchup-video/SKILL.md): Catch the user up like /ketchup, with a short subtitled video of slides for what happened and the waiting calls as text under it.
 - [teach](skills/productivity/teach/SKILL.md): Learn a concept in a guided workspace
 - [to-questionnaire](skills/productivity/to-questionnaire/SKILL.md): Front-load questions into a doc for someone to answer
 - [wait-what](skills/productivity/wait-what/SKILL.md): Re-pitch that: simpler, with the context I'm missing
@@ -184,6 +186,7 @@ Add `-g` to install into your user folder instead of the current project. Not su
 - [pen-dev](skills/design/pen-dev/SKILL.md): Design, gate and migrate tokens in pen.dev files
 - [redesign-inventory](skills/design/redesign-inventory/SKILL.md): Redesign a UI without dropping any control
 - [refactoring-ui](skills/design/refactoring-ui/SKILL.md): Refactoring UI rules, scales and review checklist
+- [remove-animations](skills/design/remove-animations/SKILL.md): Find the animations an interface doesn't need and remove them — motion on keyboard actions, high-frequency surfaces, functional data, and decoration with no purpose — then clean up what they leave behind.
 - [svg-animations](skills/design/svg-animations/SKILL.md): Create beautiful, performant SVG animations and illustrations.
 - [web-design-guidelines](skills/design/web-design-guidelines/SKILL.md): Review UI code for Web Interface Guidelines compliance.
 

@@ -1644,6 +1644,14 @@
     "commit": "2d228630ba1446365f614a108cb8252f1feda202"
   },
   {
+    "name": "remove-animations",
+    "bucket": "design",
+    "mode": "vendor",
+    "source": "https://github.com/emilkowalski/skills",
+    "path": "skills/remove-animations",
+    "commit": "f1090bec277140d02ed202440185ad9d02ac1490"
+  },
+  {
     "name": "animation-performance",
     "bucket": "design",
     "mode": "vendor",
