@@ -311,7 +311,7 @@
     "mode": "vendor",
     "source": "https://github.com/cursor/plugins",
     "path": "pstack/skills/arena",
-    "commit": "019a6a20592c10bf92869e5740368f578a9997fd"
+    "commit": "ae5650febf4320793844c12c4adaa937f417f8da"
   },
   {
     "name": "interrogate",
@@ -319,7 +319,7 @@
     "mode": "vendor",
     "source": "https://github.com/cursor/plugins",
     "path": "pstack/skills/interrogate",
-    "commit": "019a6a20592c10bf92869e5740368f578a9997fd"
+    "commit": "ae5650febf4320793844c12c4adaa937f417f8da"
   },
   {
     "name": "blast-radius",
@@ -385,7 +385,7 @@
     "mode": "vendor",
     "source": "https://github.com/cursor/plugins",
     "path": "pstack/skills/create-formal-verification-skill",
-    "commit": "190d28736eff128ec94f502a22c7fe0c4b56cd37"
+    "commit": "ae5650febf4320793844c12c4adaa937f417f8da"
   },
   {
     "name": "maintain-formal-verification-skill",
@@ -409,7 +409,7 @@
     "mode": "vendor",
     "source": "https://github.com/cursor/plugins",
     "path": "pstack/skills/reflect",
-    "commit": "190d28736eff128ec94f502a22c7fe0c4b56cd37"
+    "commit": "ae5650febf4320793844c12c4adaa937f417f8da"
   },
   {
     "name": "swarm",
@@ -417,7 +417,7 @@
     "mode": "vendor",
     "source": "https://github.com/cursor/plugins",
     "path": "pstack/skills/swarm",
-    "commit": "190d28736eff128ec94f502a22c7fe0c4b56cd37"
+    "commit": "ae5650febf4320793844c12c4adaa937f417f8da"
   },
   {
     "name": "no-comments",
@@ -752,7 +752,7 @@
       "pstack/skills/poteto-mode/scripts/package.json",
       "pstack/skills/poteto-mode/scripts/bun.lock"
     ],
-    "commit": "019a6a20592c10bf92869e5740368f578a9997fd"
+    "commit": "ae5650febf4320793844c12c4adaa937f417f8da"
   },
   {
     "name": "autonomous-run",
@@ -760,7 +760,7 @@
     "mode": "fork",
     "source": "https://github.com/cursor/plugins",
     "path": "pstack/skills/poteto-mode/playbooks/autonomous-run.md",
-    "commit": "019a6a20592c10bf92869e5740368f578a9997fd"
+    "commit": "ae5650febf4320793844c12c4adaa937f417f8da"
   },
   {
     "name": "pause-resume",
@@ -1567,7 +1567,7 @@
     "mode": "vendor",
     "source": "https://github.com/cursor/plugins",
     "path": "pstack/skills/ketchup",
-    "commit": "019a6a20592c10bf92869e5740368f578a9997fd"
+    "commit": "ae5650febf4320793844c12c4adaa937f417f8da"
   },
   {
     "name": "benchmark-checklist",
@@ -1585,7 +1585,7 @@
     "into": "principles",
     "source": "https://github.com/cursor/plugins",
     "path": "pstack/skills/principle-explain-the-number/SKILL.md",
-    "commit": "56aca546a690ae340eccbe57455d5cb6380024c9"
+    "commit": "ae5650febf4320793844c12c4adaa937f417f8da"
   },
   {
     "name": "emil-design-eng",

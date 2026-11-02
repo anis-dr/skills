@@ -14,7 +14,7 @@ You own the exit condition. Define done, then drive to it without stopping.
    - When there is an event to watch (CI finishing, a merge, a ref advancing), start a subagent in the background that watches for the event and wakes you, with a long time-based heartbeat as the fallback.
    - When there is no event, use a fixed-interval heartbeat sized to when the result is worth checking again.
 3. **Iterate.** Each iteration makes the smallest change the evidence justifies, checks it against the predicate, commits it if the predicate advanced, and discards it if it did not help. Revert a belt-and-suspenders change that "might help" instead of leaving it in. Sequence the work by the sequence-verifiable-units principle (call the Skill tool with "principles"). Verify each unit before starting the next, never in one batch at the end.
-4. **Own mid-run discoveries.** Fix what you find along the way yourself, each through the skill that owns that kind of work:
+4. **Own mid-run discoveries.** Fix what you find along the way that supports the goal yourself, each through the skill that owns that kind of work:
    - A broken skill: `Call the Skill tool with "writing-for-agents"` and fix it.
    - A related bug, a flaky verifier, or a tooling failure: `Call the Skill tool with "diagnosing-bugs"`.
    - Red CI, review noise and bot comments on a PR: call the Skill tool with "babysit" in `drive` mode. Its rules (no rebase or retarget, one fresh build for a flake, conflicts go to the branch owner) apply inside this run too, and it never merges.

@@ -29,8 +29,12 @@ const rules: ReadonlyArray<Rule> = [
         "Every spawn is a general-purpose subagent that is not read-only. A read-only subagent may lose MCP access,",
       ],
       [
-        /Each reviewer gets `subagent_type: generalPurpose`, `readonly: true`, and `model` set to[^\n]*/gu,
-        "Each reviewer is a general-purpose, read-only subagent on the model in its table row.",
+        /Read the `interrogate reviewers` line in place of `arena runners`\. /gu,
+        "Run two adversaries, one on your strongest judgment model and one on a model from another family, in place of arena's runners. ",
+      ],
+      [
+        /Spawn each adversary as `generalPurpose`\./gu,
+        "Spawn each adversary as a general-purpose subagent.",
       ],
     ],
   },
@@ -52,20 +56,8 @@ const rules: ReadonlyArray<Rule> = [
         "Default to two, one each on your strongest judgment model and the strongest model of another family. If your harness offers one family, fill both seats with the strongest model you have and say so.",
       ],
       [
-        /choose one model from the `arena cross-judge pool` line in `~\/\.cursor\/rules\/pstack-models\.mdc`\. If the rule or that line is missing, choose from `claude-[^`]+` and `grok-[^`]+`\. Prefer a different model family from the parent's\. Spawn one readonly judge/gu,
-        "pick a judge model, preferring a model from another family than yours. Spawn one read-only judge",
-      ],
-      [
-        / with the Task tool, one per entry on the `interrogate reviewers` line in `~\/\.cursor\/rules\/pstack-models\.mdc`, labeled Reviewer A, B, and so on to match the entry count\. If the rule or that line is missing, use the table defaults\./gu,
-        ", each as its own subagent, one per row of the table below, labeled Reviewer A, B, and so on.",
-      ],
-      [
-        /\| Subagent \| Default model \|\n\|-+\|-+\|\n\| Reviewer A \| `claude-[^`]+` \|\n\| Reviewer B \| `grok-[^`]+` \|/gu,
-        "| Subagent | Model |\n|----------|-------|\n| Reviewer A | your strongest judgment model |\n| Reviewer B | a model from another family |",
-      ],
-      [
-        /^If the Task tool rejects a configured entry, run that reviewer[^\n]*\n\n/gmu,
-        "",
+        /choose one model from the `arena cross-judge pool` line in `~\/\.cursor\/rules\/pstack-models\.mdc`\..*? The judge sees the rubric/gu,
+        "pick a judge model, preferring a model from another family than yours. Spawn one read-only judge subagent on that model. It sees the rubric",
       ],
     ],
   },

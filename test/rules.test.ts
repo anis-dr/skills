@@ -2,7 +2,7 @@ import { assert, describe, it } from "@effect/vitest";
 
 import { applyRules } from "../src/rules.ts";
 
-// Each case is real text from cursor/plugins@56aca54 (modelPreamble: @ecc249f, subagentEffort: @019a6a2) and the neutral text sync must produce.
+// Each case is real text from cursor/plugins@56aca54 (modelPreamble: @ecc249f, subagentEffort: @019a6a2, arena judge and interrogate adversaries: @ae5650f) and the neutral text sync must produce.
 const cases: ReadonlyArray<readonly [string, string, string]> = [
   [
     "modelPreamble",
@@ -21,8 +21,8 @@ const cases: ReadonlyArray<readonly [string, string, string]> = [
   ],
   [
     "inlineSpawnParams",
-    "Each reviewer gets `subagent_type: generalPurpose`, `readonly: true`, and `model` set to its configured entry, or its table default when there is no configured line. Omit `model` for an `auto` or `inherit-parent` entry, so that reviewer runs on the parent model.\n",
-    "Each reviewer is a general-purpose, read-only subagent on the model in its table row.\n",
+    "Run Phase A steps 3 and 4 and Phase B of the **arena** skill, with four changes. Read the `interrogate reviewers` line in place of `arena runners`. Copy the scope's uncommitted changes into each worktree. Spawn each adversary as `generalPurpose`. In place of the arena task and rationale, give each adversary the scope, the intent, and this brief:\n",
+    "Run Phase A steps 3 and 4 and Phase B of the **arena** skill, with four changes. Run two adversaries, one on your strongest judgment model and one on a model from another family, in place of arena's runners. Copy the scope's uncommitted changes into each worktree. Spawn each adversary as a general-purpose subagent. In place of the arena task and rationale, give each adversary the scope, the intent, and this brief:\n",
   ],
   [
     "modelLines",
@@ -46,23 +46,8 @@ const cases: ReadonlyArray<readonly [string, string, string]> = [
   ],
   [
     "modelLines",
-    "After all Phase B candidates complete, choose one model from the `arena cross-judge pool` line in `~/.cursor/rules/pstack-models.mdc`. If the rule or that line is missing, choose from `claude-opus-5-5-xhigh` and `grok-4.7-xhigh-fast`. Prefer a different model family from the parent's. Spawn one readonly judge subagent on that model. It sees the rubric and the candidates by path label, scores each criterion, and recommends a base with rationale.\n",
-    "After all Phase B candidates complete, pick a judge model, preferring a model from another family than yours. Spawn one read-only judge subagent on that model. It sees the rubric and the candidates by path label, scores each criterion, and recommends a base with rationale.\n",
-  ],
-  [
-    "modelLines",
-    "Launch all reviewers in a single message with the Task tool, one per entry on the `interrogate reviewers` line in `~/.cursor/rules/pstack-models.mdc`, labeled Reviewer A, B, and so on to match the entry count. If the rule or that line is missing, use the table defaults.\n",
-    "Launch all reviewers in a single message, each as its own subagent, one per row of the table below, labeled Reviewer A, B, and so on.\n",
-  ],
-  [
-    "modelLines",
-    "| Subagent | Default model |\n|----------|---------------|\n| Reviewer A | `claude-opus-5-5-xhigh` |\n| Reviewer B | `grok-4.7-xhigh-fast` |\n",
-    "| Subagent | Model |\n|----------|-------|\n| Reviewer A | your strongest judgment model |\n| Reviewer B | a model from another family |\n",
-  ],
-  [
-    "modelLines",
-    "If the Task tool rejects a configured entry, run that reviewer on its family's table default and say so. Families go by prefix: `claude-*` and `grok-*`. With no family match, use Reviewer A's default. If it rejects a table default, spawn with the closest equivalent from the valid slugs in its error message (prefer the same family and reasoning tier), and open a separate PR to update the default table. Do not block the review on the slug issue. Never treat an alias entry as a rejected slug or apply either fallback to it.\n\nRead `references/reviewer-prompt.md`.\n",
-    "Read `references/reviewer-prompt.md`.\n",
+    "After all Phase B candidates complete, choose one model from the `arena cross-judge pool` line in `~/.cursor/rules/pstack-models.mdc`. If the rule or that line is missing, choose from `claude-opus-5-5-xhigh` and `grok-4.7-xhigh-fast`. Spawn one readonly judge subagent. The judge is never from the parent's family, as Phase A step 3 defines families. Try only the entries from another family, in pool order. An `auto` or `inherit-parent` entry is the parent model, so it never judges. With the default pool, a Claude parent gets `grok-4.7-xhigh-fast`. A parent from any other family gets `claude-opus-5-5-xhigh` first. If the Task tool rejects an entry, use a valid slug of the same model at the closest level or speed from the error message, or move to the next entry when there is none. If no entry from another family runs, try the default pool's entries from another family the same way. If none of those runs, skip the judge, pick the base alone in Phase D, and say so. If you do not know the parent's model, try the pool's real slugs in pool order and say that the family check did not run. The judge sees the rubric and the candidates by path label, scores each criterion, and recommends a base with rationale. It runs in parallel with your reading in Phase D. Don't spawn it while candidates are still writing.\n",
+    "After all Phase B candidates complete, pick a judge model, preferring a model from another family than yours. Spawn one read-only judge subagent on that model. It sees the rubric and the candidates by path label, scores each criterion, and recommends a base with rationale. It runs in parallel with your reading in Phase D. Don't spawn it while candidates are still writing.\n",
   ],
   [
     "skillCalls",

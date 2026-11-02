@@ -44,12 +44,16 @@ Present the synthesizer's full Accepted / Rejected / Backlog output and wait for
 
 File each Backlog item to your team's devex or backlog tracker without waiting, except the items under 'run /retro for these': list those and tell the user to run `/retro`. Only the Accepted list waits for approval.
 
+Never edit a skill under `plugins/cache/`. Before approval, show its destination, `.agents/skills/<skill>/` or `~/.agents/skills/<skill>/`. After approval, copy the skill folder there and edit the copy. Never open a PR or push.
+
 Follow each approved row's Routing exactly:
 
 - Trivial existing-skill edit (a one-line bullet, a tightened sentence, a stale fact corrected): the parent does it directly.
 - Substantive existing-skill edit (a new section, a new pattern table, more than ~10 lines): call the Skill tool with "writing-for-agents" and write the edit by its rules.
 - `tune description: <skill path>` (the skill exists but didn't trigger when it should have): call the Skill tool with "writing-for-agents" and rewrite the description by its rules.
 - `new skill: <kebab-name>`: call the Skill tool with "writing-for-agents" and create the skill by its rules. Do not invent the shape ad hoc. In a skills repo with a `CONVENTIONS.md`, such as the one this skill ships from, follow it too: an `ours` entry in `upstream/sources.json` and a line in the router.
+
+If your environment ships a SKILL.md validator, run it on every touched skill before declaring done.
 
 If your environment ships a SKILL.md validator, run it on every touched skill before declaring done.
 
