@@ -126,6 +126,7 @@ Before you change code you don't know, or when the shape of new code is the hard
 - **`/ketchup`** catches you up on everything in the chat since your last message, in plain words, with an executive summary and enough context for each action item. User-invoked.
 - **`/ketchup-video`** catches you up like `/ketchup`, with a short subtitled video of slides for what happened and the waiting calls as text under it. User-invoked.
 - **`/swarm`** fans a task out to N parallel workers in the background (slices, a race on identical briefs, or both), drains them and returns one report. User-invoked.
+- **`/software-factory`** (beta, Matt Pocock's skill) gives shared language for designing a software factory: the tasks it runs and the services it plugs into. User-invoked.
 - **`/show-me-your-work`** keeps a decision log for long or unattended runs, so a reviewer can trust the result.
 - **`/transcripts`** knows where each harness stores session transcripts. Model-invoked: `/recall`, `/reflect`, `/show-me-your-work` and `/automate-me` use it.
 - **`/automate-me`** turns your working conventions, mined from past chats, into a personal `-mode` skill.

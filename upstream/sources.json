@@ -224,6 +224,14 @@
     "commit": "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
   },
   {
+    "name": "software-factory",
+    "bucket": "in-progress",
+    "mode": "vendor",
+    "source": "https://github.com/mattpocock/skills",
+    "path": "skills/in-progress/software-factory",
+    "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d"
+  },
+  {
     "name": "writing-shape",
     "bucket": "in-progress",
     "mode": "vendor",
