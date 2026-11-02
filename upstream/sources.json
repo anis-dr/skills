@@ -1609,7 +1609,7 @@
     "mode": "vendor",
     "source": "https://github.com/emilkowalski/skills",
     "path": "skills/emil-design-eng",
-    "commit": "2d228630ba1446365f614a108cb8252f1feda202"
+    "commit": "f1090bec277140d02ed202440185ad9d02ac1490"
   },
   {
     "name": "animate",
@@ -1617,7 +1617,7 @@
     "mode": "vendor",
     "source": "https://github.com/emilkowalski/skills",
     "path": "skills/animate",
-    "commit": "2d228630ba1446365f614a108cb8252f1feda202"
+    "commit": "f1090bec277140d02ed202440185ad9d02ac1490"
   },
   {
     "name": "review-animations",
@@ -1625,7 +1625,7 @@
     "mode": "vendor",
     "source": "https://github.com/emilkowalski/skills",
     "path": "skills/review-animations",
-    "commit": "2d228630ba1446365f614a108cb8252f1feda202"
+    "commit": "f1090bec277140d02ed202440185ad9d02ac1490"
   },
   {
     "name": "improve-animations",
@@ -1633,7 +1633,7 @@
     "mode": "vendor",
     "source": "https://github.com/emilkowalski/skills",
     "path": "skills/improve-animations",
-    "commit": "2d228630ba1446365f614a108cb8252f1feda202"
+    "commit": "f1090bec277140d02ed202440185ad9d02ac1490"
   },
   {
     "name": "find-animation-opportunities",
@@ -1649,7 +1649,7 @@
     "mode": "vendor",
     "source": "https://github.com/emilkowalski/skills",
     "path": "skills/animation-performance",
-    "commit": "2d228630ba1446365f614a108cb8252f1feda202"
+    "commit": "f1090bec277140d02ed202440185ad9d02ac1490"
   },
   {
     "name": "animation-vocabulary",
