@@ -111,10 +111,10 @@ select.custom-select option:checked .option-title {
 
 ## Fallback Strategies
 
-### Fallbacks & browser support for Customizable <select>
+### Fallbacks & browser support for Customizable `<select>`
 
 Browser support for Customizable <select>: Limited availability.
-Supported by: Chrome 135 (Apr 2025), Edge 135 (Apr 2025), and Safari 27.
+Supported by: Chrome 135 (Apr 2025), Edge 135 (Apr 2025), and Safari 27 (Sep 2026).
 Unsupported in: Firefox.
 
 For browsers that do not yet support `appearance: base-select`, the `<select>` element degrades gracefully to a standard operating system dropdown.
