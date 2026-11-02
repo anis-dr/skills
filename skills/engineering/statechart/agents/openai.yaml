@@ -1,0 +1,4 @@
+interface:
+  display_name: "Statechart"
+policy:
+  allow_implicit_invocation: false

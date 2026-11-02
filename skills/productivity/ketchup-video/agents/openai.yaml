@@ -1,0 +1,4 @@
+interface:
+  display_name: "Ketchup Video"
+policy:
+  allow_implicit_invocation: false

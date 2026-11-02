@@ -396,6 +396,14 @@
     "commit": "190d28736eff128ec94f502a22c7fe0c4b56cd37"
   },
   {
+    "name": "statechart",
+    "bucket": "engineering",
+    "mode": "vendor",
+    "source": "https://github.com/cursor/plugins",
+    "path": "pstack/skills/statechart",
+    "commit": "ae5650febf4320793844c12c4adaa937f417f8da"
+  },
+  {
     "name": "sharpen",
     "bucket": "engineering",
     "mode": "vendor",
@@ -1567,6 +1575,14 @@
     "mode": "vendor",
     "source": "https://github.com/cursor/plugins",
     "path": "pstack/skills/ketchup",
+    "commit": "ae5650febf4320793844c12c4adaa937f417f8da"
+  },
+  {
+    "name": "ketchup-video",
+    "bucket": "productivity",
+    "mode": "vendor",
+    "source": "https://github.com/cursor/plugins",
+    "path": "pstack/skills/ketchup-video",
     "commit": "ae5650febf4320793844c12c4adaa937f417f8da"
   },
   {
