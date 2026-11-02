@@ -156,6 +156,7 @@ Start with **`/product-marketing`**: it writes the product marketing context fil
 - **Copy and content:** **`/copywriting`**, **`/copy-editing`**, **`/content-strategy`**, **`/lead-magnets`**, **`/free-tools`**, **`/image`**, **`/video`**, **`/social`**.
 - **Conversion:** **`/cro`** for pages and forms, **`/signup`**, **`/onboarding`**, **`/popups`**, **`/paywalls`**, **`/ab-testing`**, **`/churn-prevention`**.
 - **Search:** **`/seo-audit`**, **`/ai-seo`** for AI search engines, **`/programmatic-seo`**, **`/site-architecture`**, **`/schema`** markup, **`/competitors`** comparison pages, **`/directory-submissions`**, **`/aso`** for app stores.
+- **Growth teardown:** **`/reverse-engineer-marketing`** reverse engineers how another company grew: a dated log of its moves against its traffic curve, compared with your own data.
 - **Paid and measurement:** **`/ads`**, **`/ad-creative`**, **`/analytics`**, **`/attribution`**.
 - **Email and messaging:** **`/emails`** for sequences, **`/cold-email`**, **`/sms`**.
 - **Sales and partnerships:** **`/prospecting`**, **`/sales-enablement`**, **`/revops`**, **`/referrals`**, **`/co-marketing`**, **`/influencer-marketing`**, **`/community-marketing`**, **`/public-relations`**, **`/events`**.

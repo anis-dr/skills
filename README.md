@@ -196,6 +196,7 @@ Add `-g` to install into your user folder instead of the current project. Not su
 
 - [loop-me](skills/in-progress/loop-me/SKILL.md): Spec the workflows you want to build
 - [setup-ts-deep-modules](skills/in-progress/setup-ts-deep-modules/SKILL.md): Enforce deep TypeScript modules
+- [software-factory](skills/in-progress/software-factory/SKILL.md): Shared language for designing a software factory: the tasks it runs and the services it plugs into.
 - [writing-beats](skills/in-progress/writing-beats/SKILL.md): Assemble raw material into beats
 - [writing-fragments](skills/in-progress/writing-fragments/SKILL.md): Mine raw writing fragments
 - [writing-shape](skills/in-progress/writing-shape/SKILL.md): Shape raw material into an article
@@ -249,6 +250,7 @@ Add `-g` to install into your user folder instead of the current project. Not su
 - [prospecting](skills/marketing/prospecting/SKILL.md): When the user wants to find, qualify, and build a list of prospects to reach out to, across B2B SaaS, general B2B, or local small businesses.
 - [public-relations](skills/marketing/public-relations/SKILL.md): When the user wants help with public relations, earned media, press coverage, journalist outreach, or media strategy (not pull requests).
 - [referrals](skills/marketing/referrals/SKILL.md): When the user wants to create, optimize, or analyze a referral program, affiliate program, or word-of-mouth strategy.
+- [reverse-engineer-marketing](skills/marketing/reverse-engineer-marketing/SKILL.md): When the user wants to reverse engineer how another company grew and copy what worked.
 - [revops](skills/marketing/revops/SKILL.md): When the user wants help with revenue operations, lead lifecycle management, or marketing-to-sales handoff processes.
 - [sales-enablement](skills/marketing/sales-enablement/SKILL.md): When the user wants to create sales collateral, pitch decks, one-pagers, objection handling docs, or demo scripts.
 - [schema](skills/marketing/schema/SKILL.md): When the user wants to add, fix, or optimize schema markup and structured data on their site.

@@ -8,14 +8,6 @@ No pinned skill changed upstream.
 
 Skills and subagent definitions at upstream HEAD that no `upstream/sources.json` entry tracks. Vendor each one, or list it in `upstream/ignored.json` with a reason.
 
-### https://github.com/mattpocock/skills
-
-- `skills/in-progress/software-factory` (skill): Shared language for designing a software factory: the tasks it runs and the services it plugs into.
-
-### https://github.com/coreyhaines31/marketingskills
-
-- `skills/reverse-engineer-marketing` (skill): When the user wants to reverse engineer how another company grew and copy what worked. Also use when the user mentions 'reverse engineer,' 'how did X grow,' 'how does X get customers,' 'growth teardown,' 'marketing teardown,' 'GTM teardown,' 'growth blueprint,' 'what is X doing for marketing,' 'what made X take off,' 'copy X's playbook,' 'X's distribution strategy,' 'what content works for X,' 'funnel hack,' 'map their funnel,' or 'watch what X is doing.' Builds a dated log of a company's moves against its traffic curve from public data, sign-ups and demos, team interviews, and hidden signals (DNS, certificate logs, archives, sponsorships), compares it with the user's own data, and turns what lined up with growth into plays routed to the skill that runs each one. For a snapshot profile of a competitor's positioning, pricing, and features, see competitor-profiling. For comparison pages, see competitors. For why a single post went viral, see social.
-
 ### https://github.com/DannyMac180/skills
 
 - `codex-dynamic-workflows` (skill): Design a multi-agent workflow for a complex task when the user requests dynamic orchestration.

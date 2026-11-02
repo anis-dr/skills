@@ -1482,6 +1482,14 @@
     "commit": "88c79f6528a9347420e57ceb1fff9a60de651768"
   },
   {
+    "name": "reverse-engineer-marketing",
+    "bucket": "marketing",
+    "mode": "vendor",
+    "source": "https://github.com/coreyhaines31/marketingskills",
+    "path": "skills/reverse-engineer-marketing",
+    "commit": "88c79f6528a9347420e57ceb1fff9a60de651768"
+  },
+  {
     "name": "signup",
     "bucket": "marketing",
     "mode": "vendor",
