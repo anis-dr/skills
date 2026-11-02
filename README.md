@@ -4,7 +4,7 @@ Agent skills for engineering, writing and design work, in one repo that installs
 
 - Matt Pocock's [skills](https://github.com/mattpocock/skills), vendored unchanged.
 - Lauren Tan's [pstack](https://github.com/cursor/plugins/tree/main/pstack) and Cursor's [cursor-team-kit](https://github.com/cursor/plugins/tree/main/cursor-team-kit) skills, rewritten so they run outside Cursor.
-- Corey Haines' [marketing skills](https://github.com/coreyhaines31/marketingskills), Vercel's [agent skills](https://github.com/vercel-labs/agent-skills), Teever's [Effect skills](https://github.com/teeverc/effect-ts), supermemory's [svg-animations](https://github.com/supermemoryai/skills), 0xpili's [simplified-technical-english](https://github.com/0xpili/simplified-technical-english), Boris Tane's [logging-best-practices](https://github.com/boristane/agent-skills), Emil Kowalski's [design, motion and Swift skills](https://github.com/emilkowalski/skills), Ayoub Ghriss' [i-have-adhd](https://github.com/ayghri/i-have-adhd) and Dan McAteer's [be-ambitious](https://github.com/DannyMac180/skills/tree/main/be-ambitious), vendored unchanged.
+- Corey Haines' [marketing skills](https://github.com/coreyhaines31/marketingskills), Vercel's [agent skills](https://github.com/vercel-labs/agent-skills), Effect's [Effect skills](https://github.com/Effect-TS/skills), supermemory's [svg-animations](https://github.com/supermemoryai/skills), 0xpili's [simplified-technical-english](https://github.com/0xpili/simplified-technical-english), Boris Tane's [logging-best-practices](https://github.com/boristane/agent-skills), Emil Kowalski's [design, motion and Swift skills](https://github.com/emilkowalski/skills), Ayoub Ghriss' [i-have-adhd](https://github.com/ayghri/i-have-adhd) and Dan McAteer's [be-ambitious](https://github.com/DannyMac180/skills/tree/main/be-ambitious), vendored unchanged.
 - Our own skills, distilled from day-to-day work.
 
 A weekly job pulls upstream changes into a pull request, so vendored skills stay current.
@@ -40,6 +40,7 @@ Add `-g` to install into your user folder instead of the current project. Not su
 - [correct](skills/engineering/correct/SKILL.md): Find the mistakes agents keep repeating in this repo and make each one impossible.
 - [create-formal-verification-skill](skills/engineering/create-formal-verification-skill/SKILL.md): Generate a project-local skill that formally verifies the code where a bug costs the most and tests reach the least, in any language, with whichever verification tool fits.
 - [create-verification-skill](skills/engineering/create-verification-skill/SKILL.md): Generate a project-local verification skill that drives your app the way a user does — any language, framework, or platform.
+- [effect-v3-to-v4](skills/engineering/effect-v3-to-v4/SKILL.md): Use this skill when migrating a codebase from Effect v3 to Effect v4, upgrading `effect` or any `@effect/*` package across the v3/v4 boundary.
 - [eval](skills/engineering/eval/SKILL.md): Blind test a skill or prompt change across models
 - [grill-with-docs](skills/engineering/grill-with-docs/SKILL.md): Grill a design and write its docs
 - [implement](skills/engineering/implement/SKILL.md): Build work from a spec or tickets
@@ -80,8 +81,7 @@ Add `-g` to install into your user folder instead of the current project. Not su
 - [diagnosing-bugs](skills/engineering/diagnosing-bugs/SKILL.md): Diagnose hard bugs and regressions
 - [domain-modeling](skills/engineering/domain-modeling/SKILL.md): Build and sharpen a domain model
 - [drizzle-postgres](skills/engineering/drizzle-postgres/SKILL.md): Drizzle bulk params, migration merges, baselines
-- [effect-ts](skills/engineering/effect-ts/SKILL.md): Effect v3 (stable) guidance for TypeScript; for an Effect v4 project use effect-v4 instead.
-- [effect-v4](skills/engineering/effect-v4/SKILL.md): Effect v4 (stable, effect@4.0.x) development and v3 → v4 migration guidance.
+- [effect-ts](skills/engineering/effect-ts/SKILL.md): Use this skill when setting up a repository that uses the Effect Typescript library.
 - [estimate](skills/engineering/estimate/SKILL.md): Ranged, calibrated estimates for agent runs, tickets and quotes
 - [file-structure](skills/engineering/file-structure/SKILL.md): Place, name and tidy files so the tree explains the code
 - [git-split-amended-followup](skills/engineering/git-split-amended-followup/SKILL.md): Split an amended fix into its own follow-up commit

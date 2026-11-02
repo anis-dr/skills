@@ -1,0 +1,4 @@
+interface:
+  display_name: "Effect V3 To V4"
+policy:
+  allow_implicit_invocation: false

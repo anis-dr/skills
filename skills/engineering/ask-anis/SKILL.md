@@ -167,7 +167,7 @@ Skills distilled from our own work. Most are model-invoked: the agent reaches fo
 
 ### Effect and TypeScript
 
-- **`/effect-v4`** is the Effect v4 API reference and v3-to-v4 migration guide: services, layers, errors, schema codecs, streams, testing. **`/effect-ts`** is the same for Effect v3. Both check out against the installed Effect source; the source wins.
+- **`/effect-ts`** reads the installed Effect package's `AGENTS.md` and source, so its guidance always matches the installed version. **`/effect-v3-to-v4`** is a manual v3-to-v4 migration driven by Effect's generated migration reference. User-invoked.
 - **`/setup-effect-toolchain`** sets up an Effect v4 repo's toolchain (TypeScript 7 with `@effect/tsgo`, Oxlint with the Effect, code-shape and anti-slop plugins, oxfmt) and proves every layer runs.
 - **`/pragmatic-effect`** keeps Effect code pragmatic: Effect where it buys typed effects, lifecycle or dependency boundaries, plain helpers everywhere else.
 - **`/anti-slop-migration`** takes an existing TypeScript codebase to zero anti-slop findings without laundering types.

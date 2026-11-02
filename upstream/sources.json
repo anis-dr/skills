@@ -1009,20 +1009,20 @@
     "mode": "ours"
   },
   {
-    "name": "effect-v4",
-    "bucket": "engineering",
-    "mode": "vendor",
-    "source": "https://github.com/teeverc/effect-ts",
-    "path": "skills/effect-v4",
-    "commit": "96d13f2a95fd91bc7de0493ccfb19026099f6ee8"
-  },
-  {
     "name": "effect-ts",
     "bucket": "engineering",
     "mode": "vendor",
-    "source": "https://github.com/teeverc/effect-ts",
+    "source": "https://github.com/Effect-TS/skills",
     "path": "skills/effect-ts",
-    "commit": "96d13f2a95fd91bc7de0493ccfb19026099f6ee8"
+    "commit": "155c50c911f9c99c294ef8a4461981c5bbe6453e"
+  },
+  {
+    "name": "effect-v3-to-v4",
+    "bucket": "engineering",
+    "mode": "vendor",
+    "source": "https://github.com/Effect-TS/skills",
+    "path": "skills/effect-v3-to-v4",
+    "commit": "155c50c911f9c99c294ef8a4461981c5bbe6453e"
   },
   {
     "name": "vercel-composition-patterns",

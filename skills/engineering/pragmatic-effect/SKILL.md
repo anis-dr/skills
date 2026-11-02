@@ -1,6 +1,6 @@
 ---
 name: pragmatic-effect
-description: "Use when the user asks to use Effect, write or refactor Effect code, simplify overcomplicated Effect abstractions, or keep Effect code pragmatic. Trigger on Effect, effect-smol, Effect.gen, Context.Service, Layer, Schema, runtime bridges, services, scoped state, or comments like 'we are complicating this'. Focuses on practical Effect v4 patterns that keep synchronous/domain logic plain while preserving typed effects, lifecycle, resource safety, and testable dependency boundaries."
+description: "Use when the user asks to use Effect, write or refactor Effect code, simplify overcomplicated Effect abstractions, or keep Effect code pragmatic. Trigger on Effect, Effect.gen, Context.Service, Layer, Schema, runtime bridges, services, scoped state, or comments like 'we are complicating this'. Focuses on practical Effect v4 patterns that keep synchronous/domain logic plain while preserving typed effects, lifecycle, resource safety, and testable dependency boundaries."
 ---
 
 # Pragmatic Effect
@@ -13,7 +13,7 @@ Before implementing Effect-heavy code:
 
 1. Inspect nearby code in the target repo.
 2. Read project rules such as `AGENTS.md`, `CLAUDE.md`, package rules, or local Effect skills when present.
-3. Prefer current Effect v4/effect-smol APIs and checked-in examples over old Effect v2/v3 memory. Call the Skill tool with "effect-v4" for the API reference and migration notes.
+3. Prefer the installed Effect package over old Effect v2/v3 memory: call the Skill tool with "effect-ts", then read `node_modules/effect/AGENTS.md` and the installed `node_modules/effect/src` for current APIs and examples.
 4. If a source file referenced by instructions is missing, say so and continue with available local examples.
 
 ## Simplification rule
