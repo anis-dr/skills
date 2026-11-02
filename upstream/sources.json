@@ -1111,7 +1111,7 @@
     "mode": "vendor",
     "source": "https://github.com/blader/humanizer",
     "path": ".",
-    "commit": "8c307f367c91bd974002f10f2be2965d642c13df"
+    "commit": "0ef9fe5bc3572734fd3ae6c448fe00a30cd5dcf0"
   },
   {
     "name": "ab-testing",
