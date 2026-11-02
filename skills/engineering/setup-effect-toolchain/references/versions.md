@@ -7,11 +7,12 @@ Install current versions, but keep the couplings. Query each with `npm view <pac
 - `@effect/tsgo` decides three versions. Its README section "Supported Package Versions" (`node_modules/@effect/tsgo/README.md`) lists the TypeScript, `oxlint` and `oxlint-tsgolint` versions it supports. Pick versions from that table, not the npm latest.
 - `@oxlint/plugins` must equal the `oxlint` version: the anti-slop plugin imports it.
 - `oxlint-plugin-effect` and `@shekohex/oxc-effect` track `oxlint`. After a bump, re-check the rule tables in `rule-ownership.md`.
-- `effect`, `@effect/platform-bun` and `@effect/vitest` share one version. In a monorepo, pin them once in the workspace `catalog`. Effect v4 ships on the `rc` dist-tag; `beta` stopped at `4.0.0-beta.107`.
-- `@effect/vitest` pins the `vitest` major: the `4.0.0-rc` line needs `vitest` 5, `4.0.0-beta.107` needs `vitest` 4.
+- `effect`, `@effect/platform-bun` and `@effect/vitest` share one version. In a monorepo, pin them once in the workspace `catalog`. Effect v4 ships on the `latest` dist-tag; `prev` is the last v3.
+- `@effect/vitest` pins the `vitest` major: 4.x needs `vitest` 5.
+- Moving an existing repo from `effect` 4.0.x to 4.1.x: apply [upgrade-4.1.md](upgrade-4.1.md) before running `typecheck`.
 - Pin the oxlint family exactly (`bun add -d --exact`). A caret range lets one package move without the others.
 
-## Known-good set (26 September 2026)
+## Known-good set (26 September 2026; Effect row 2 November 2026)
 
 | Package | Version |
 |---|---|
@@ -25,6 +26,6 @@ Install current versions, but keep the couplings. Query each with `npm view <pac
 | @shekohex/oxc-effect | 0.2.1 |
 | oxfmt | 0.70.0 |
 | ultracite | 7.12.0 |
-| effect, @effect/platform-bun, @effect/vitest | 4.0.0-rc.117 |
+| effect, @effect/platform-bun, @effect/vitest | 4.1.2 |
 | vitest | 5.0.2 |
 | turbo (monorepo) | 2.10.12 |
