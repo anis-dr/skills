@@ -1,16 +1,18 @@
-// Lint controls from setup-effect-toolchain: copy into a linted source folder, run lint, delete.
-// Each commented line must report the named rule; the last one only with --type-aware.
-export const logs = () => console.log("x"); // effect/noGlobals
-export const reads = (items: string[]) => Reflect.get(items, 0); // anti-slop/no-reflect-get
-export function passes(v: string): unknown {
-  return v;
-} // anti-slop/no-unknown-returns
+/** anti-slop-effect/no-service-constructor-imports: the import need not resolve. */
+import { makeStore } from "./store.ts";
+
+/** effect/noGlobals */
+export const logs = () => console.log("x");
+
+/** effect-shape/no-try-catch */
 export const guarded = () => {
   try {
-    return 1;
+    return makeStore;
   } catch {
     return 2;
   }
-}; // effect-shape/no-try-catch
+};
+
+/** typescript/no-floating-promises, only with --type-aware: on the statement after this declaration. */
 declare const pending: Promise<number>;
-pending; // typescript/no-floating-promises (type-aware only)
+pending;

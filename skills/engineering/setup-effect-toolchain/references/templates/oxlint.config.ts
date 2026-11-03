@@ -1,4 +1,3 @@
-// Template from setup-effect-toolchain. Delete the REACT blocks in repos without React.
 import { defineConfig } from "oxlint";
 import { recommended as effectRecommended } from "oxlint-plugin-effect/presets/recommended";
 
@@ -18,13 +17,9 @@ const effectStyleRules = {
   "effect-shape/no-effect-gen-callback-alias": "error",
   "effect-shape/no-effect-ladder": "error",
   "effect-shape/no-effect-never": "error",
-  "effect-shape/no-effect-run-in-test": "error",
   "effect-shape/no-effect-runfork": "error",
   "effect-shape/no-effect-side-effect-wrapper": "error",
-  "effect-shape/no-effect-sleep-in-test": "error",
   "effect-shape/no-effect-succeed-variable": "warn",
-  // Duplicated by effect/noGlobals.
-  "effect-shape/no-effect-sync-console": "off",
   "effect-shape/no-effect-type-alias": "error",
   "effect-shape/no-family-collection-read": "error",
   "effect-shape/no-flatmap-ladder": "warn",
@@ -36,7 +31,6 @@ const effectStyleRules = {
   "effect-shape/no-match-tag-neutral-fallback": "warn",
   "effect-shape/no-match-void-branch": "error",
   "effect-shape/no-naked-object-state-update": "error",
-  "effect-shape/no-native-current-time": "off",
   "effect-shape/no-nested-effect-call": "error",
   "effect-shape/no-option-as": "error",
   "effect-shape/no-option-boolean-normalization": "error",
@@ -50,35 +44,73 @@ const effectStyleRules = {
   "effect-shape/no-return-in-callback": "warn",
   "effect-shape/no-schema-sync-in-effect-generator": "error",
   "effect-shape/no-switch-statement": "error",
-  // Duplicated by effect/noThrowStatement.
-  "effect-shape/no-throw-in-effect-generator": "off",
   "effect-shape/no-try-catch": "error",
   "effect-shape/no-unknown-boolean-coercion-helper": "error",
   "effect-shape/no-wrapgraphql-catch": "error",
   "effect-shape/prefer-assert-in-effect-test": "warn",
   "effect-shape/prefer-effect-async": "warn",
   "effect-shape/prefer-effect-cache": "warn",
-  // Duplicated by effect/noGlobals or effect/noNodeBuiltinImport.
-  "effect-shape/prefer-effect-child-process": "off",
-  "effect-shape/prefer-effect-config": "off",
-  "effect-shape/prefer-effect-date-time": "off",
-  "effect-shape/prefer-effect-file-system": "off",
   "effect-shape/prefer-effect-fn": "error",
-  "effect-shape/prefer-effect-http-client": "off",
-  "effect-shape/prefer-effect-logging": "off",
-  "effect-shape/prefer-effect-random": "off",
-  "effect-shape/prefer-effect-scheduling": "off",
   "effect-shape/prefer-effect-test-layer": "warn",
   "effect-shape/prefer-effect-vitest": "error",
   "effect-shape/prefer-match-tags": "error",
   "effect-shape/prefer-match-value-tags": "warn",
-  "effect-shape/prefer-schema-json": "off",
   "effect-shape/prevent-dynamic-imports": "error",
   "effect-shape/require-return-yield-effect-terminal": "error",
   "effect-shape/warn-effect-sync-wrapper": "warn",
-} satisfies Record<string, "error" | "off" | "warn">;
+} satisfies Record<string, "error" | "warn">;
 
-// REACT: keep only when a package depends on react directly.
+/** effect-shape rules whose diagnostic an oxlint-plugin-effect rule owns (see rule-ownership.md). */
+const oxcEffectRulesOwnedElsewhere = {
+  /** Owned by effect/noEffectRunInTests. */
+  "effect-shape/no-effect-run-in-test": "off",
+  /** Owned by effect/noFixedWaitInTests. */
+  "effect-shape/no-effect-sleep-in-test": "off",
+  /** Owned by effect/noGlobals. */
+  "effect-shape/no-effect-sync-console": "off",
+  /** Owned by effect/noGlobals. */
+  "effect-shape/no-native-current-time": "off",
+  /** Owned by effect/noThrowStatement. */
+  "effect-shape/no-throw-in-effect-generator": "off",
+  /** Owned by effect/noNodeBuiltinImport. */
+  "effect-shape/prefer-effect-child-process": "off",
+  /** Owned by effect/noGlobals. */
+  "effect-shape/prefer-effect-config": "off",
+  /** Owned by effect/noGlobals. */
+  "effect-shape/prefer-effect-date-time": "off",
+  /** Owned by effect/noNodeBuiltinImport. */
+  "effect-shape/prefer-effect-file-system": "off",
+  /** Owned by effect/noGlobals. */
+  "effect-shape/prefer-effect-http-client": "off",
+  /** Owned by effect/noGlobals. */
+  "effect-shape/prefer-effect-logging": "off",
+  /** Owned by effect/noGlobals. */
+  "effect-shape/prefer-effect-random": "off",
+  /** Owned by effect/noGlobals. */
+  "effect-shape/prefer-effect-scheduling": "off",
+  /** Owned by effect/noGlobals. */
+  "effect-shape/prefer-schema-json": "off",
+} satisfies Record<string, "off">;
+
+/** oxlint-plugin-effect rules whose diagnostic effect-shape owns (see rule-ownership.md). */
+const effectRulesOwnedByOxcEffect = {
+  "effect/noDynamicImports": "off",
+  "effect/noEffectBind": "off",
+  "effect/noEffectDo": "off",
+  "effect/noSequentialEffectAll": "off",
+  "effect/noTryCatch": "off",
+  "effect/preferEffectFn": "off",
+} satisfies Record<string, "off">;
+
+/** Type-aware rules: they run only with oxlint-tsgolint installed and lint run with `--type-aware`. */
+const typeAwareRules = {
+  "typescript/no-floating-promises": "error",
+  "typescript/no-misused-promises": "error",
+  "typescript/no-unnecessary-type-assertion": "warn",
+  "typescript/switch-exhaustiveness-check": "error",
+} satisfies Record<string, "error" | "warn">;
+
+/** REACT: keep only when a package depends on react directly. */
 const reactRules = {
   "jsx-a11y/alt-text": "error",
   "jsx-a11y/anchor-has-content": "error",
@@ -101,7 +133,6 @@ const reactRules = {
   "react/no-danger": "error",
   "react/no-object-type-as-default-prop": "error",
   "react/no-unstable-nested-components": "error",
-  // Oxlint 1.79 split the former react/react-compiler rule by diagnostic.
   "react/error-boundaries": "warn",
   "react/globals": "warn",
   "react/immutability": "warn",
@@ -117,7 +148,8 @@ const reactRules = {
   "react/rules-of-hooks": "error",
 } satisfies Record<string, "error" | "off" | "warn">;
 
-const ignorePatterns = [
+/** Build output, caches and lockfiles. */
+const buildOutputPatterns = [
   "**/dist",
   "**/node_modules",
   "**/build",
@@ -125,14 +157,21 @@ const ignorePatterns = [
   "**/.turbo",
   "**/.vite",
   "**/coverage",
+  "**/*.d.ts.map",
+  "**/bun.lock",
+];
+
+/** Tool-generated files: add every generator this repo runs. */
+const generatedFilePatterns = [
   "**/*.gen.*",
   "**/*.generated.*",
   "**/generated",
   "**/__generated__",
-  "**/*.d.ts.map",
-  "**/bun.lock",
-  // Tool-generated files: add every generator this repo runs (e.g. drizzle-kit snapshots).
   "**/drizzle/**/snapshot.json",
+];
+
+/** Installed agent skills and agent config are not project source. */
+const agentDirectoryPatterns = [
   ".agent/**",
   ".agents/**",
   ".claude/**",
@@ -144,8 +183,10 @@ const ignorePatterns = [
   ".pi/**",
   ".roo/**",
   ".windsurf/**",
-  "tools/oxlint/anti-slop/**",
 ];
+
+/** Vendored code and fetched files. */
+const vendoredPatterns = ["tools/oxlint/anti-slop/**"];
 
 export default defineConfig({
   env: {
@@ -153,27 +194,29 @@ export default defineConfig({
     es2022: true,
     node: true,
   },
-  ignorePatterns,
+  ignorePatterns: [
+    ...buildOutputPatterns,
+    ...generatedFilePatterns,
+    ...agentDirectoryPatterns,
+    ...vendoredPatterns,
+  ],
   jsPlugins: [
     { name: "effect", specifier: "oxlint-plugin-effect/plugin" },
     { name: "effect-shape", specifier: "@shekohex/oxc-effect" },
-    {
-      name: "anti-slop",
-      specifier: "./tools/oxlint/anti-slop/index.ts",
-    },
     {
       name: "anti-slop-effect",
       specifier: "./tools/oxlint/anti-slop/effect/index.ts",
     },
   ],
   overrides: [
-    // TanStack Router only: its generated route tree carries eslint-disable comments.
+    /** TanStack Router only: its generated route tree carries eslint-disable comments. */
     {
       files: ["**/routeTree.gen.ts"],
       rules: {
         "unicorn/no-abusive-eslint-disable": "off",
       },
     },
+    /** Tests: effect/noPromiseChainsInTests owns Promise chains. */
     {
       files: ["**/*.{test,spec}.{ts,tsx,js,jsx}"],
       rules: {
@@ -181,7 +224,7 @@ export default defineConfig({
       },
     },
   ],
-  // REACT: drop "react" and "jsx-a11y" without React.
+  /** REACT: drop "react" and "jsx-a11y" without React. */
   plugins: [
     "typescript",
     "unicorn",
@@ -194,19 +237,13 @@ export default defineConfig({
   rules: {
     ...effectRecommended,
     ...effectStyleRules,
-    ...reactRules, // REACT
-    // anti-slop: only the rules no other plugin owns (see rule-ownership.md).
+    ...oxcEffectRulesOwnedElsewhere,
+    ...effectRulesOwnedByOxcEffect,
+    ...typeAwareRules,
+    /** REACT */
+    ...reactRules,
+    /** The one anti-slop rule no other plugin owns (see rule-ownership.md). */
     "anti-slop-effect/no-service-constructor-imports": "error",
-    "anti-slop/no-reflect-apply": "error",
-    "anti-slop/no-reflect-get": "error",
-    "anti-slop/no-unknown-returns": "error",
-    // The code-shape plugin owns these duplicated policies.
-    "effect/noDynamicImports": "off",
-    "effect/noEffectBind": "off",
-    "effect/noEffectDo": "off",
-    "effect/noSequentialEffectAll": "off",
-    "effect/noTryCatch": "off",
-    "effect/preferEffectFn": "off",
     "effect/preferMatchTagsExhaustive": "error",
     "func-style": "off",
     "import/no-cycle": "warn",
@@ -219,21 +256,17 @@ export default defineConfig({
     "promise/prefer-await-to-then": "error",
     "promise/valid-params": "error",
     "typescript/consistent-type-imports": "error",
-    // Type-aware, run only with oxlint-tsgolint installed and `--type-aware`: no-floating-promises,
-    // no-misused-promises, no-unnecessary-type-assertion, switch-exhaustiveness-check.
-    "typescript/no-floating-promises": "error",
     "typescript/no-import-type-side-effects": "error",
-    "typescript/no-misused-promises": "error",
-    "typescript/no-unnecessary-type-assertion": "warn",
-    "typescript/switch-exhaustiveness-check": "error",
     "unicorn/no-abusive-eslint-disable": "error",
     "unicorn/no-document-cookie": "error",
     "unicorn/no-invalid-fetch-options": "error",
     "unicorn/no-useless-undefined": "error",
   },
-  // REACT: map the repo's design-system wrappers to the native element they render,
-  // so jsx-a11y checks them. A wrapper that owns its accessible name through a
-  // required prop (e.g. a Button with a `label` prop) is left out.
+  /**
+   * REACT: map the repo's design-system wrappers to the native element they render,
+   * so jsx-a11y checks them. A wrapper that owns its accessible name through a
+   * required prop (e.g. a Button with a `label` prop) is left out.
+   */
   settings: {
     "jsx-a11y": {
       components: {
@@ -243,7 +276,7 @@ export default defineConfig({
       },
     },
     react: {
-      // TanStack Router's <Link to>; adjust for the repo's router.
+      /** TanStack Router's <Link to>; adjust for the repo's router. */
       linkComponents: [{ attribute: "to", name: "Link" }],
     },
   },

@@ -8,7 +8,7 @@ description: Set up an Effect v4 TypeScript repo's toolchain on Bun, TypeScript 
 Four layers, each owning its own diagnostics:
 
 - **Typecheck:** TypeScript 7 (native `tsc`) patched by `@effect/tsgo`, so `tsc` also reports Effect mistakes such as a floating Effect.
-- **Lint:** Oxlint with `oxlint-plugin-effect` (`effect/*`), `@shekohex/oxc-effect` (`effect-shape/*`), the local anti-slop plugin (`anti-slop/*`, `anti-slop-effect/*`), and type-aware `typescript/*` rules through `oxlint-tsgolint`.
+- **Lint:** Oxlint with `oxlint-plugin-effect` (`effect/*`), `@shekohex/oxc-effect` (`effect-shape/*`), the local anti-slop Effect plugin (`anti-slop-effect/*`), and type-aware `typescript/*` rules through `oxlint-tsgolint`.
 - **Format:** oxfmt with the ultracite preset.
 - **Runner:** `ultracite check` runs format check and lint in one command.
 
@@ -44,17 +44,17 @@ Templates live in [templates/](references/templates/). Replace `@SCOPE` with the
 
 Add `"prepare": "effect-tsgo patch"` to the root `package.json` and run it once. Copy `vscode-settings.json` to `.vscode/settings.json` so the editor uses the patched native compiler.
 
-Keep the Effect plugin's `diagnosticSeverity` offs from `base.json`: Oxlint owns those diagnostics.
+Keep the Effect plugin's `diagnosticSeverity` offs from `base.json`: Oxlint owns those diagnostics. Keep its `allowedUnstableApis` too: `@effect/platform-bun` and `@effect/vitest` mark their APIs `@stability unstable`, so without the entry every Bun entry point and every test fails `typecheck` with `effect(unstableApiUsage)`.
 
 Done when `typecheck` passes and the typecheck control proves the Effect language service is live: copy `templates/typecheck-control.ts` into a typechecked `src/`, run `typecheck`, see `effect(floatingEffect)` on the marked line, delete the file.
 
 ### 4. anti-slop plugin
 
-Call the Skill tool with "install-anti-slop" to copy the plugin into `tools/oxlint/anti-slop/`. If "install-anti-slop" isn't installed, ask the user to run npx skills add dmmulroy/anti-slop --skill install-anti-slop, then continue.
+Call the Skill tool with "install-anti-slop" to copy the plugin into `tools/oxlint/anti-slop/`. If "install-anti-slop" isn't installed, ask the user to run npx skills add dmmulroy/anti-slop --skill install-anti-slop, then continue. Skip its dependency step: step 2 already pinned `oxlint` and `@oxlint/plugins` to versions `@effect/tsgo` supports, and the npm latest may not be one.
 
-Enable only the anti-slop rules listed as enabled in [rule-ownership.md](references/rule-ownership.md), plus `anti-slop-effect/no-service-constructor-imports`. The skill's own list enables all 15; in an Effect repo eleven of them duplicate the Effect preset.
+Register only the Effect plugin (`tools/oxlint/anti-slop/effect/index.ts`) and enable `anti-slop-effect/no-service-constructor-imports`. The skill's own list enables all 15 generic rules; the Effect preset ships fourteen of them under its own names and `effect/noAs` makes the fifteenth moot ([rule-ownership.md](references/rule-ownership.md)).
 
-Done when `tools/oxlint/anti-slop/index.ts` and `effect/index.ts` exist.
+Done when `tools/oxlint/anti-slop/effect/index.ts` exists.
 
 ### 5. Oxlint and oxfmt config
 
@@ -66,6 +66,7 @@ Copy `templates/oxlint.config.ts` and `templates/oxfmt.config.ts` to the repo ro
 - Keep `unicorn` in `plugins`: listing `plugins` replaces Oxlint's defaults, and without it every `unicorn/*` rule in the config silently does nothing.
 - Keep `**/node_modules` in the Oxlint ignores: without it, `--type-aware` reports findings inside dependencies.
 - Keep the agent directories (`.agents/**`, `.claude/**`, …) ignored in both files. Installed skills are Markdown the formatter would otherwise rewrite and fail on.
+- Write any comment you add to either file as a `/** */` doc comment above a declaration, member or array element: the Effect preset's `effect/noComments` reports every other kind, and both files are linted.
 
 Done when both files ignore the same generated, vendored and agent folders.
 
@@ -83,9 +84,11 @@ Root `package.json`:
 
 `ultracite` forwards `--type-aware` to Oxlint. Without the flag the four type-aware `typescript/*` rules in the config silently do nothing. When the repo holds an `oxlint.config.*` that is not a package's own (a template, a fixture, vendored code), add `--disable-nested-config` to both lint scripts: Oxlint loads every such file as a nested config, even inside an ignored folder, and fails on its plugin paths. In a single package, `typecheck` is the `tsc` command from step 3. In a monorepo, add Turbo root tasks `//#lint`, `//#lint:fix` (uncached), `//#format`, `//#format:fix` (uncached), and a `typecheck` task that depends on `^build`.
 
+Run `format:fix` once. Deleting the React blocks leaves a `plugins` array oxfmt puts on one line, and hand-added `package.json` keys rarely sit in the order oxfmt sorts them into.
+
 ### 7. Prove every layer runs
 
-Copy `templates/lint-controls.ts` into a linted source folder and run `lint`. Each commented line must report its named rule: `effect/noGlobals`, `anti-slop/no-reflect-get`, `anti-slop/no-unknown-returns`, `effect-shape/no-try-catch`, and `typescript/no-floating-promises`. A missing rule means its plugin or flag is not wired; fix that before going on. Delete the file.
+Copy `templates/lint-controls.ts` into a linted source folder and run `lint`. Each doc comment names a rule that must report on the code it marks, one per plugin or flag: `anti-slop-effect/no-service-constructor-imports`, `effect/noGlobals`, `effect-shape/no-try-catch`, and `typescript/no-floating-promises`. A missing rule means its plugin or flag is not wired; fix that before going on. Delete the file.
 
 Then run `format`, `lint` and `typecheck` on the real code.
 
@@ -94,6 +97,8 @@ Done when every control reported its rule, the control files are gone, and all t
 ### 8. Existing code
 
 Report findings by rule and count. Fix each at its root cause. For anti-slop and Effect-preset type findings, call the Skill tool with "anti-slop-migration". Keep every rule at its configured severity and write no disable comments or `as` casts to get to zero; a finding that needs a product decision goes in the reply with its file and line.
+
+`effect/noComments` is one such decision when the code documents itself in line comments. `lint:fix` deletes every comment it reports; the plugin's README instead suggests `"effect/noComments": "off"` after the preset spread for such a codebase. Report the count and ask which the user wants before running `lint:fix`.
 
 Done when `lint` and `typecheck` exit 0, or the reply lists each remaining finding with the decision it waits on.
 

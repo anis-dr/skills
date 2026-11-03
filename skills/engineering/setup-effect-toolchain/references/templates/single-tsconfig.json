@@ -14,6 +14,7 @@
     "plugins": [
       {
         "name": "@effect/language-service",
+        "allowedUnstableApis": ["@effect/platform-bun", "@effect/vitest"],
         "diagnosticSeverity": {
           "asyncFunction": "off",
           "cryptoRandomUUID": "off",
@@ -24,13 +25,14 @@
           "globalDateInEffect": "off",
           "globalFetch": "off",
           "globalFetchInEffect": "off",
+          "globalJson": "off",
+          "globalJsonInEffect": "off",
           "globalRandom": "off",
           "globalRandomInEffect": "off",
           "globalTimers": "off",
           "globalTimersInEffect": "off",
           "newPromise": "off",
           "nodeBuiltinImport": "off",
-          "preferSchemaOverJson": "off",
           "processEnv": "off",
           "processEnvInEffect": "off",
           "tryCatchInEffectGen": "off"
