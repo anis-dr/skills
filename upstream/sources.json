@@ -1351,7 +1351,7 @@
     "mode": "vendor",
     "source": "https://github.com/coreyhaines31/marketingskills",
     "path": "skills/marketing-loops",
-    "commit": "88c79f6528a9347420e57ceb1fff9a60de651768"
+    "commit": "96798cf38736ecdba015a1d2b0521b0c8f8f41dd"
   },
   {
     "name": "marketing-plan",
@@ -1487,7 +1487,7 @@
     "mode": "vendor",
     "source": "https://github.com/coreyhaines31/marketingskills",
     "path": "skills/reverse-engineer-marketing",
-    "commit": "88c79f6528a9347420e57ceb1fff9a60de651768"
+    "commit": "96798cf38736ecdba015a1d2b0521b0c8f8f41dd"
   },
   {
     "name": "signup",
@@ -1519,7 +1519,7 @@
     "mode": "vendor",
     "source": "https://github.com/coreyhaines31/marketingskills",
     "path": "skills/social",
-    "commit": "88c79f6528a9347420e57ceb1fff9a60de651768"
+    "commit": "96798cf38736ecdba015a1d2b0521b0c8f8f41dd"
   },
   {
     "name": "video",
