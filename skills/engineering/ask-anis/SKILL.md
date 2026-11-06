@@ -256,6 +256,7 @@ Skills distilled from our own work. Most are model-invoked: the agent reaches fo
 - **`/animate-expo`** (Emil Kowalski's skill) builds animation for Expo and React Native that feels right on a real device.
 - **`/review-animations`** (Emil Kowalski's skill) reviews animation code against his craft bar. User-invoked: run it yourself.
 - **`/improve-animations`** (Emil Kowalski's skill) audits a codebase's animations and writes self-contained fix plans.
+- **`/choreograph`** (Emil Kowalski's skill) coordinates several elements that animate together (staggers, sequencing, overlap, crossfades, multi-step flows) so the group reads as one motion.
 - **`/remove-animations`** (Emil Kowalski's skill) finds the animations an interface does not need (keyboard actions, high-frequency surfaces, functional data, decoration) and removes them, never adding or retuning motion.
 - **`/find-animation-opportunities`** (Emil Kowalski's skill) finds where an interface should animate and where it should not.
 - **`/animation-performance`** (Emil Kowalski's skill) finds why an animation drops frames and makes it smooth.

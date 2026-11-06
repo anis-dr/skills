@@ -1668,6 +1668,14 @@
     "commit": "f1090bec277140d02ed202440185ad9d02ac1490"
   },
   {
+    "name": "choreograph",
+    "bucket": "design",
+    "mode": "vendor",
+    "source": "https://github.com/emilkowalski/skills",
+    "path": "skills/choreograph",
+    "commit": "c8a79627b59d72d764d6ab6f2c87c09a48169833"
+  },
+  {
     "name": "animation-performance",
     "bucket": "design",
     "mode": "vendor",
