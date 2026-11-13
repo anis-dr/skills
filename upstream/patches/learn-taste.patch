@@ -1,0 +1,13 @@
+diff --git a/SKILL.md b/SKILL.md
+index 9ea9da3..99dcc2a 100644
+--- a/SKILL.md
++++ b/SKILL.md
+@@ -22,7 +22,7 @@ It does ONE thing: write rules. It never changes component code, and it never ad
+ 
+ ### Phase 1: Collect corrections
+ 
+-Read the current conversation from the first turn. If the user names earlier sessions and you can read their transcripts (Claude Code stores them as JSONL under `~/.claude/projects/<project>/`), read those too.
++Read the current conversation from the first turn. If the user names earlier sessions, call the Skill tool with "transcripts" to find their transcripts in the harness you run in, and read those too.
+ 
+ Explicit corrections are the minority. Look for all five signals:
+ 

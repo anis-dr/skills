@@ -1,0 +1,13 @@
+diff --git a/SKILL.md b/SKILL.md
+index 71fb5af..1424e24 100644
+--- a/SKILL.md
++++ b/SKILL.md
+@@ -9,7 +9,7 @@ How to build gestures that feel physical. A gesture is direct manipulation: whil
+ 
+ ## First decision: build it, or use a solution that exists?
+ 
+-Doing a drawer gesture *right* means momentum-based dragging, overlay opacity matched to drag progress, velocity-aware dismissal, focus trapping, and Escape-to-close. That is weeks of edge cases, not an afternoon. **For a bottom sheet / drawer, default to [Vaul](https://vaul.emilkowal.ski/)** — it exists precisely because this is hard to hand-roll. Build the gesture yourself only when no library covers the interaction (custom swipe cards, bespoke drag interactions). When unsure, read `../pick-ui-library/SKILL.md`.
++Doing a drawer gesture *right* means momentum-based dragging, overlay opacity matched to drag progress, velocity-aware dismissal, focus trapping, and Escape-to-close. That is weeks of edge cases, not an afternoon. **For a bottom sheet / drawer, default to [Vaul](https://vaul.emilkowal.ski/)** — it exists precisely because this is hard to hand-roll. Build the gesture yourself only when no library covers the interaction (custom swipe cards, bespoke drag interactions). When unsure, tell the user to run `/pick-ui-library`.
+ 
+ ## The two phases of every gesture
+ 

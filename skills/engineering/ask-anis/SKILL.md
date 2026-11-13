@@ -247,6 +247,7 @@ Skills distilled from our own work. Most are model-invoked: the agent reaches fo
 - **`/emil-design-eng`** (Emil Kowalski's skill) applies his UI polish rules: component details, easing, hover and press feedback, and the invisible touches that make an interface feel right.
 - **`/apple-design`** (Emil Kowalski's skill) applies Apple's interaction principles to gestures, springs, sheets and direct manipulation.
 - **`/pick-ui-library`** (Emil Kowalski's skill) picks the right UI library for a task from his curated list. User-invoked: run it yourself.
+- **`/learn-taste`** (Emil Kowalski's skill) turns the design corrections you made in a session into rules with their reasons, written to `DESIGN.md`, a project skill or a lint check. User-invoked: run it yourself.
 - **`/ask-sonner`** (Emil Kowalski's skill) sets up, styles and troubleshoots the Sonner toast library.
 - **`/write-swift`** (Emil Kowalski's skill) writes modern Swift: value types, Swift 6 concurrency and data-race safety, protocols and generics, Swift Testing and macros.
 
@@ -257,6 +258,7 @@ Skills distilled from our own work. Most are model-invoked: the agent reaches fo
 - **`/review-animations`** (Emil Kowalski's skill) reviews animation code against his craft bar. User-invoked: run it yourself.
 - **`/improve-animations`** (Emil Kowalski's skill) audits a codebase's animations and writes self-contained fix plans.
 - **`/choreograph`** (Emil Kowalski's skill) coordinates several elements that animate together (staggers, sequencing, overlap, crossfades, multi-step flows) so the group reads as one motion.
+- **`/gestures`** (Emil Kowalski's skill) builds drag, swipe and sheet interactions that track the finger 1:1, carry velocity on release and stay interruptible.
 - **`/remove-animations`** (Emil Kowalski's skill) finds the animations an interface does not need (keyboard actions, high-frequency surfaces, functional data, decoration) and removes them, never adding or retuning motion.
 - **`/find-animation-opportunities`** (Emil Kowalski's skill) finds where an interface should animate and where it should not.
 - **`/animation-performance`** (Emil Kowalski's skill) finds why an animation drops frames and makes it smooth.

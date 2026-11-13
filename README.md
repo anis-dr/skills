@@ -163,6 +163,7 @@ Add `-g` to install into your user folder instead of the current project. Not su
 
 **User-invoked**
 
+- [learn-taste](skills/design/learn-taste/SKILL.md): Turn a session's design corrections into rules, with their why, in DESIGN.md, a project skill, or a lint check.
 - [pick-ui-library](skills/design/pick-ui-library/SKILL.md): Pick the right library for a given frontend task from a curated, opinionated list — numbers, OTP inputs, charts, command menus, virtualization, drag and drop, toasts, state, styling, and more.
 - [review-animations](skills/design/review-animations/SKILL.md): Reviews animation and motion code against a high craft bar derived from Emil Kowalski's design engineering philosophy.
 
@@ -180,6 +181,7 @@ Add `-g` to install into your user folder instead of the current project. Not su
 - [design-references](skills/design/design-references/SKILL.md): Mobbin references as a catalog to pick from
 - [emil-design-eng](skills/design/emil-design-eng/SKILL.md): This skill encodes Emil Kowalski's philosophy on UI polish, component design, animation decisions, and the invisible details that make software feel great.
 - [find-animation-opportunities](skills/design/find-animation-opportunities/SKILL.md): Search a codebase or UI for places that don't animate but should, and reject everything that shouldn't.
+- [gestures](skills/design/gestures/SKILL.md): Build drag, swipe, and sheet interactions that track the finger 1:1 and stay interruptible.
 - [improve-animations](skills/design/improve-animations/SKILL.md): Survey a codebase's animation and motion code as a senior motion advisor, then produce a prioritized audit and self-contained implementation plans for other agents (or cheaper models) to execute.
 - [logo-surface-board](skills/design/logo-surface-board/SKILL.md): Judge logo marks on favicon, tile and nav
 - [measure-ui](skills/design/measure-ui/SKILL.md): Prove UI fidelity and states by measuring

@@ -1676,6 +1676,22 @@
     "commit": "c8a79627b59d72d764d6ab6f2c87c09a48169833"
   },
   {
+    "name": "gestures",
+    "bucket": "design",
+    "mode": "vendor",
+    "source": "https://github.com/emilkowalski/skills",
+    "path": "skills/gestures",
+    "commit": "0f2e23b32bb1265e84cff8d3e75785fec953fb1b"
+  },
+  {
+    "name": "learn-taste",
+    "bucket": "design",
+    "mode": "vendor",
+    "source": "https://github.com/emilkowalski/skills",
+    "path": "skills/learn-taste",
+    "commit": "0f2e23b32bb1265e84cff8d3e75785fec953fb1b"
+  },
+  {
     "name": "animation-performance",
     "bucket": "design",
     "mode": "vendor",
