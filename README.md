@@ -164,7 +164,7 @@ Add `-g` to install into your user folder instead of the current project. Not su
 **User-invoked**
 
 - [learn-taste](skills/design/learn-taste/SKILL.md): Turn a session's design corrections into rules, with their why, in DESIGN.md, a project skill, or a lint check.
-- [pick-ui-library](skills/design/pick-ui-library/SKILL.md): Pick the right library for a given frontend task from a curated, opinionated list — numbers, OTP inputs, charts, command menus, virtualization, drag and drop, toasts, state, styling, and more.
+- [pick-ui-library](skills/design/pick-ui-library/SKILL.md): Pick the library for a frontend task from a curated list — primitives, toasts, drawers, command menus, OTP, numbers, charts, virtualization, drag and drop, state, styling.
 - [review-animations](skills/design/review-animations/SKILL.md): Reviews animation and motion code against a high craft bar derived from Emil Kowalski's design engineering philosophy.
 
 **Model-invoked**
@@ -179,7 +179,7 @@ Add `-g` to install into your user folder instead of the current project. Not su
 - [break-ui](skills/design/break-ui/SKILL.md): Try to break a piece of UI by feeding it worst-case data — long names, unbreakable emails, one-letter names, missing fields, huge counts, zero items, long labels, non-Latin text, emoji, extreme numbers — then render it behind a "Demo data / Worst case" toggle and report everything that broke, with the fix for each.
 - [choreograph](skills/design/choreograph/SKILL.md): Coordinate several elements that animate together — decide what moves, in what order, how much they overlap, and what stays still — so a group reads as one intentional motion instead of a pile of separate animations.
 - [design-references](skills/design/design-references/SKILL.md): Mobbin references as a catalog to pick from
-- [emil-design-eng](skills/design/emil-design-eng/SKILL.md): This skill encodes Emil Kowalski's philosophy on UI polish, component design, animation decisions, and the invisible details that make software feel great.
+- [emil-design-eng](skills/design/emil-design-eng/SKILL.md): Emil Kowalski's design-engineering philosophy for UI polish, component design, animation decisions, and the invisible details that make software feel great.
 - [find-animation-opportunities](skills/design/find-animation-opportunities/SKILL.md): Search a codebase or UI for places that don't animate but should, and reject everything that shouldn't.
 - [gestures](skills/design/gestures/SKILL.md): Build drag, swipe, and sheet interactions that track the finger 1:1 and stay interruptible.
 - [improve-animations](skills/design/improve-animations/SKILL.md): Survey a codebase's animation and motion code as a senior motion advisor, then produce a prioritized audit and self-contained implementation plans for other agents (or cheaper models) to execute.

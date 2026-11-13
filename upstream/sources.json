@@ -1559,7 +1559,7 @@
     "mode": "vendor",
     "source": "https://github.com/emilkowalski/skills",
     "path": "skills/break-ui",
-    "commit": "2d228630ba1446365f614a108cb8252f1feda202"
+    "commit": "0f2e23b32bb1265e84cff8d3e75785fec953fb1b"
   },
   {
     "name": "mobile-native",
@@ -1567,7 +1567,7 @@
     "mode": "vendor",
     "source": "https://github.com/emilkowalski/skills",
     "path": "skills/mobile-native",
-    "commit": "2d228630ba1446365f614a108cb8252f1feda202"
+    "commit": "0f2e23b32bb1265e84cff8d3e75785fec953fb1b"
   },
   {
     "name": "i-have-adhd",
@@ -1625,7 +1625,7 @@
     "mode": "vendor",
     "source": "https://github.com/emilkowalski/skills",
     "path": "skills/emil-design-eng",
-    "commit": "f1090bec277140d02ed202440185ad9d02ac1490"
+    "commit": "0f2e23b32bb1265e84cff8d3e75785fec953fb1b"
   },
   {
     "name": "animate",
@@ -1633,7 +1633,7 @@
     "mode": "vendor",
     "source": "https://github.com/emilkowalski/skills",
     "path": "skills/animate",
-    "commit": "f1090bec277140d02ed202440185ad9d02ac1490"
+    "commit": "0f2e23b32bb1265e84cff8d3e75785fec953fb1b"
   },
   {
     "name": "review-animations",
@@ -1641,7 +1641,7 @@
     "mode": "vendor",
     "source": "https://github.com/emilkowalski/skills",
     "path": "skills/review-animations",
-    "commit": "f1090bec277140d02ed202440185ad9d02ac1490"
+    "commit": "0f2e23b32bb1265e84cff8d3e75785fec953fb1b"
   },
   {
     "name": "improve-animations",
@@ -1649,7 +1649,7 @@
     "mode": "vendor",
     "source": "https://github.com/emilkowalski/skills",
     "path": "skills/improve-animations",
-    "commit": "f1090bec277140d02ed202440185ad9d02ac1490"
+    "commit": "0f2e23b32bb1265e84cff8d3e75785fec953fb1b"
   },
   {
     "name": "find-animation-opportunities",
@@ -1657,7 +1657,7 @@
     "mode": "vendor",
     "source": "https://github.com/emilkowalski/skills",
     "path": "skills/find-animation-opportunities",
-    "commit": "2d228630ba1446365f614a108cb8252f1feda202"
+    "commit": "0f2e23b32bb1265e84cff8d3e75785fec953fb1b"
   },
   {
     "name": "remove-animations",
@@ -1665,7 +1665,7 @@
     "mode": "vendor",
     "source": "https://github.com/emilkowalski/skills",
     "path": "skills/remove-animations",
-    "commit": "f1090bec277140d02ed202440185ad9d02ac1490"
+    "commit": "0f2e23b32bb1265e84cff8d3e75785fec953fb1b"
   },
   {
     "name": "choreograph",
@@ -1673,7 +1673,7 @@
     "mode": "vendor",
     "source": "https://github.com/emilkowalski/skills",
     "path": "skills/choreograph",
-    "commit": "c8a79627b59d72d764d6ab6f2c87c09a48169833"
+    "commit": "0f2e23b32bb1265e84cff8d3e75785fec953fb1b"
   },
   {
     "name": "gestures",
@@ -1697,7 +1697,7 @@
     "mode": "vendor",
     "source": "https://github.com/emilkowalski/skills",
     "path": "skills/animation-performance",
-    "commit": "f1090bec277140d02ed202440185ad9d02ac1490"
+    "commit": "0f2e23b32bb1265e84cff8d3e75785fec953fb1b"
   },
   {
     "name": "animation-vocabulary",
@@ -1705,7 +1705,7 @@
     "mode": "vendor",
     "source": "https://github.com/emilkowalski/skills",
     "path": "skills/animation-vocabulary",
-    "commit": "2d228630ba1446365f614a108cb8252f1feda202"
+    "commit": "0f2e23b32bb1265e84cff8d3e75785fec953fb1b"
   },
   {
     "name": "apple-design",
@@ -1713,7 +1713,7 @@
     "mode": "vendor",
     "source": "https://github.com/emilkowalski/skills",
     "path": "skills/apple-design",
-    "commit": "2d228630ba1446365f614a108cb8252f1feda202"
+    "commit": "0f2e23b32bb1265e84cff8d3e75785fec953fb1b"
   },
   {
     "name": "pick-ui-library",
@@ -1721,7 +1721,7 @@
     "mode": "vendor",
     "source": "https://github.com/emilkowalski/skills",
     "path": "skills/pick-ui-library",
-    "commit": "2d228630ba1446365f614a108cb8252f1feda202"
+    "commit": "0f2e23b32bb1265e84cff8d3e75785fec953fb1b"
   },
   {
     "name": "ask-sonner",
@@ -1729,7 +1729,7 @@
     "mode": "vendor",
     "source": "https://github.com/emilkowalski/skills",
     "path": "skills/ask-sonner",
-    "commit": "2d228630ba1446365f614a108cb8252f1feda202"
+    "commit": "0f2e23b32bb1265e84cff8d3e75785fec953fb1b"
   },
   {
     "name": "animate-expo",
@@ -1737,7 +1737,7 @@
     "mode": "vendor",
     "source": "https://github.com/emilkowalski/skills",
     "path": "skills/animate-expo",
-    "commit": "2d228630ba1446365f614a108cb8252f1feda202"
+    "commit": "0f2e23b32bb1265e84cff8d3e75785fec953fb1b"
   },
   {
     "name": "write-swift",
@@ -1745,7 +1745,7 @@
     "mode": "vendor",
     "source": "https://github.com/emilkowalski/skills",
     "path": "skills/write-swift",
-    "commit": "2d228630ba1446365f614a108cb8252f1feda202"
+    "commit": "0f2e23b32bb1265e84cff8d3e75785fec953fb1b"
   },
   {
     "name": "picker",
@@ -1754,7 +1754,7 @@
     "into": "prototype",
     "source": "https://github.com/emilkowalski/skills",
     "path": "skills/prototype/PICKER.md",
-    "commit": "2d228630ba1446365f614a108cb8252f1feda202"
+    "commit": "0f2e23b32bb1265e84cff8d3e75785fec953fb1b"
   },
   {
     "name": "be-ambitious",
