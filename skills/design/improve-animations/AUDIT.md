@@ -99,7 +99,7 @@ Hunt for: movement with no `prefers-reduced-motion` handling, ungated `:hover` m
 
 - Motion should match the product's personality — playful can be bouncier, a dashboard stays crisp. Mismatched personality across components is a finding.
 - Curves and durations should live as shared tokens. Five hand-typed cubic-beziers that almost match is a consolidation finding.
-- Everything-at-once group entrances where a **30–80ms stagger** belongs. Stagger is decorative — it must never block interaction. For group entrances, follow `../choreograph/SKILL.md` (one entrance per container, non-uniform delays).
+- Everything-at-once group entrances where a **30–80ms stagger** belongs. Stagger is decorative — it must never block interaction. For group entrances, call the Skill tool with "choreograph" and follow it (one entrance per container, non-uniform delays).
 - A jarring crossfade that shows two overlapping states can be masked with subtle `filter: blur(2px)` during the transition.
 
 Hunt for: duplicated near-identical easings/durations, one bouncy component in a crisp app, list/grid entrances with no stagger, crossfades that visibly double-expose.

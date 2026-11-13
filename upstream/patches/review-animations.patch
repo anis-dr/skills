@@ -1,0 +1,26 @@
+diff --git a/SKILL.md b/SKILL.md
+index 70bb73c..0557b59 100644
+--- a/SKILL.md
++++ b/SKILL.md
+@@ -63,7 +63,7 @@ Flag these on sight, hard:
+ - Missing `prefers-reduced-motion` handling on movement
+ - Ungated `:hover` motion
+ - Symmetric enter/exit timing on a press-and-release or hold interaction
+-- Everything-at-once entrance where a 30–80ms stagger belongs (non-uniform, one entrance per container; see `../choreograph/SKILL.md`)
++- Everything-at-once entrance where a 30–80ms stagger belongs (non-uniform, one entrance per container; call the Skill tool with "choreograph")
+ 
+ ## Remedial Preference Hierarchy
+ 
+diff --git a/STANDARDS.md b/STANDARDS.md
+index 065db58..7613160 100644
+--- a/STANDARDS.md
++++ b/STANDARDS.md
+@@ -148,7 +148,7 @@ When a crossfade shows two overlapping states despite tuning easing/duration, ad
+ 
+ ## Stagger
+ 
+-Stagger group entrances; 30–80ms between items. Longer delays feel slow. Stagger is decorative — never block interaction while it plays. For group entrances, follow `../choreograph/SKILL.md` (one entrance per container, non-uniform delays).
++Stagger group entrances; 30–80ms between items. Longer delays feel slow. Stagger is decorative — never block interaction while it plays. For group entrances, call the Skill tool with "choreograph" and follow it (one entrance per container, non-uniform delays).
+ 
+ ```css
+ .item { opacity: 0; transform: translateY(8px); animation: fadeIn 300ms var(--ease-out) forwards; }

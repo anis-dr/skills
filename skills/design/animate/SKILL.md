@@ -78,7 +78,7 @@ Walk down; stop at the first that fits.
 
 CSS animations beat JS under load — on `transform`/`opacity` they run on the compositor, while `requestAnimationFrame`-based animation drops frames while the browser loads, scripts, or paints. Use CSS for predetermined motion, JS for dynamic and interruptible motion.
 
-If the task needs a *component* rather than an animation — a toast, a drawer, a command menu, a dropdown — stop and read `../pick-ui-library/SKILL.md` to pick one. Hand-rolling those is how you end up with a `<div>` dropdown and no focus management.
+If the task needs a *component* rather than an animation — a toast, a drawer, a command menu, a dropdown — stop and tell the user to run `/pick-ui-library` to pick one. Hand-rolling those is how you end up with a `<div>` dropdown and no focus management.
 
 ### 4. Pick the properties
 

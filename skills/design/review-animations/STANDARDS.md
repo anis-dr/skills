@@ -148,7 +148,7 @@ When a crossfade shows two overlapping states despite tuning easing/duration, ad
 
 ## Stagger
 
-Stagger group entrances; 30–80ms between items. Longer delays feel slow. Stagger is decorative — never block interaction while it plays. For group entrances, follow `../choreograph/SKILL.md` (one entrance per container, non-uniform delays).
+Stagger group entrances; 30–80ms between items. Longer delays feel slow. Stagger is decorative — never block interaction while it plays. For group entrances, call the Skill tool with "choreograph" and follow it (one entrance per container, non-uniform delays).
 
 ```css
 .item { opacity: 0; transform: translateY(8px); animation: fadeIn 300ms var(--ease-out) forwards; }

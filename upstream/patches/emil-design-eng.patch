@@ -1,0 +1,19 @@
+diff --git a/SKILL.md b/SKILL.md
+index 5155a4b..1f81814 100644
+--- a/SKILL.md
++++ b/SKILL.md
+@@ -642,7 +642,7 @@ When multiple elements enter together, stagger their appearance. Each element an
+ }
+ ```
+ 
+-Keep stagger delays short (30-80ms between items). Long delays make the interface feel slow. Stagger is decorative — never block interaction while stagger animations are playing. For group entrances, follow `../choreograph/SKILL.md` (one entrance per container, non-uniform delays).
++Keep stagger delays short (30-80ms between items). Long delays make the interface feel slow. Stagger is decorative — never block interaction while stagger animations are playing. For group entrances, call the Skill tool with "choreograph" and follow it (one entrance per container, non-uniform delays).
+ 
+ ## Debugging Animations
+ 
+@@ -681,4 +681,4 @@ When reviewing UI code, check for:
+ | Keyframes on rapidly-triggered element     | Use CSS transitions for interruptibility                         |
+ | Motion `x`/`y` props under load (pre-14.2) | Upgrade to 14.2+, or use `transform: "translateX()"`             |
+ | Same enter/exit transition speed           | Make exit faster than enter (e.g., enter 250ms, exit 200ms)      |
+-| Elements all appear at once                | Add stagger delay (30-80ms between items, non-uniform; see `../choreograph/SKILL.md`) |
++| Elements all appear at once                | Add stagger delay (30-80ms between items, non-uniform; call the Skill tool with "choreograph") |

@@ -91,7 +91,7 @@ Sweep for these seams — each is a known class of genuine opportunity:
 - Panels, popovers, menus that appear with no connection to their trigger → scale in with `transform-origin` at the trigger (Base UI: `var(--transform-origin)`); modals are exempt — they stay centered
 
 **Group entrances**
-- A grid or list that pops in all at once on a page users see occasionally → 30–80ms stagger, non-uniform, one entrance per container (see `../choreograph/SKILL.md`); decorative, must never block interaction
+- A grid or list that pops in all at once on a page users see occasionally → 30–80ms stagger, non-uniform, one entrance per container (call the Skill tool with "choreograph"); decorative, must never block interaction
 
 **Gesture seams**
 - Draggable/swipeable elements that snap with no physics → springs (`{ type: "spring", duration: 0.5, bounce: 0.2 }`, bounce 0.1–0.3), velocity-based dismissal (`Math.abs(distance)/elapsedMs > ~0.11`), rubber-banding at boundaries instead of hard stops

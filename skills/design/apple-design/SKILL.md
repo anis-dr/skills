@@ -172,7 +172,7 @@ function rubberband(overshoot, dimension, constant = 0.55) {
 Smoothness is about *what's in the frames*, not just the frame rate.
 
 - For very fast motion, a subtle **motion blur / stretch** encodes speed and reads better than a hard sharp streak.
-- `requestAnimationFrame` is the web's display-synced clock (Apple uses `CADisplayLink`). Animate only compositor-friendly properties — `transform` and `opacity` — and add `will-change` only after you measure a shift or dropped frames (see `../animation-performance/SKILL.md`).
+- `requestAnimationFrame` is the web's display-synced clock (Apple uses `CADisplayLink`). Animate only compositor-friendly properties — `transform` and `opacity` — and add `will-change` only after you measure a shift or dropped frames (call the Skill tool with "animation-performance").
 
 ## 12. Materials & depth — translucency conveys hierarchy
 
