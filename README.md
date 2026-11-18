@@ -187,6 +187,7 @@ Add `-g` to install into your user folder instead of the current project. Not su
 - [measure-ui](skills/design/measure-ui/SKILL.md): Prove UI fidelity and states by measuring
 - [mobile-native](skills/design/mobile-native/SKILL.md): Make a web app feel native on a phone — the small CSS and meta-tag fixes that separate "a website in a browser" from something that feels installed.
 - [pen-dev](skills/design/pen-dev/SKILL.md): Design, gate and migrate tokens in pen.dev files
+- [plotter](skills/design/plotter/SKILL.md): Draw and animate flat construction illustrations
 - [redesign-inventory](skills/design/redesign-inventory/SKILL.md): Redesign a UI without dropping any control
 - [refactoring-ui](skills/design/refactoring-ui/SKILL.md): Refactoring UI rules, scales and review checklist
 - [remove-animations](skills/design/remove-animations/SKILL.md): Find the animations an interface doesn't need and remove them — motion on keyboard actions, high-frequency surfaces, functional data, and decoration with no purpose — then clean up what they leave behind.

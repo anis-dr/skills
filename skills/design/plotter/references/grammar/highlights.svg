@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="560" height="440" viewBox="0 0 560 440" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="butt" stroke-linejoin="round" style="font-family:Cal Sans,sans-serif;font-optical-sizing:auto;font-synthesis:none;font-variation-settings:'GEOM' 25;font-weight:400" role="img" aria-labelledby="highlights-title highlights-desc">
+  <title id="highlights-title">The shared part of two intervals</title>
+  <desc id="highlights-desc">Two availability intervals overlap between x260 and x380. Only that shared portion is shaded in each row; outlines and guides remain independent.</desc>
+  <metadata>Conceptual interval diagram after TIM-01. One hour is 60 SVG units; A spans 4 hours from x140 to 380, B spans 3 hours from x260 to 440, and their common 2-hour window is x260 to 380. Both highlight patches follow the respective rounded boundary and are painted once. No opaque background patches.</metadata>
+  <g stroke="none" fill="currentColor" fill-opacity="var(--plotter-opacity-highlight, 0.055)" data-plotter-fill="highlight" data-grammar-focus="true">
+    <path d="M260 160H372Q380 160 380 168V192Q380 200 372 200H260Z"/>
+    <path d="M268 240H380V280H268Q260 280 260 272V248Q260 240 268 240Z"/>
+  </g>
+  <g stroke-opacity="1">
+    <rect x="140" y="160" width="240" height="40" rx="8"/>
+    <rect x="260" y="240" width="180" height="40" rx="8"/>
+  </g>
+  <path d="M260 116V152M380 116V152M380 208V232M260 288V312M380 288V312" stroke-opacity="0.14" stroke-dasharray="3 5"/>
+  <g stroke-opacity="0.32">
+    <path d="M260 84V108M380 84V108M260 92H308M332 92H380m-124 4 8-8m112 8 8-8"/>
+  </g>
+  <g fill="currentColor" stroke="none" font-size="11" opacity="0.72">
+    <text x="140" y="144">Schedule A</text>
+    <text x="260" y="224">Schedule B</text>
+    <text x="320" y="337" text-anchor="middle">Shared availability</text>
+  </g>
+  <text x="320" y="95" text-anchor="middle" fill="currentColor" stroke="none" font-size="10" opacity="0.52">2h</text>
+</svg>
