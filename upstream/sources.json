@@ -229,7 +229,7 @@
     "mode": "vendor",
     "source": "https://github.com/mattpocock/skills",
     "path": "skills/in-progress/software-factory",
-    "commit": "5863806dd4e15c63174bee4e7515a4256792ecfa"
+    "commit": "abeeaf95660ba9e8b7c753eb38f441ca707a8823"
   },
   {
     "name": "writing-shape",
@@ -319,7 +319,7 @@
     "mode": "vendor",
     "source": "https://github.com/cursor/plugins",
     "path": "pstack/skills/arena",
-    "commit": "35a90942a7f02e1ebbc2443643179815f2147954"
+    "commit": "e58dd043600587dbaf58ba315e7f2b38373eeb43"
   },
   {
     "name": "interrogate",
@@ -1119,7 +1119,7 @@
     "mode": "vendor",
     "source": "https://github.com/blader/humanizer",
     "path": ".",
-    "commit": "b48c832f0f809c1b5658edbb838c2521b72f2413"
+    "commit": "a32f24407364c74c812b43c15926d638bee1e072"
   },
   {
     "name": "ab-testing",
