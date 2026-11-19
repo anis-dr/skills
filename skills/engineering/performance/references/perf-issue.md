@@ -3,11 +3,11 @@
 One measured slowness, traced and fixed once against a baseline. For sustained improvement of a metric toward a target, use [Hillclimb](hillclimb.md) instead.
 
 1. **Capture a baseline trace** into `.scratchpad/<task>/`, where the post-fix trace and the comparison also go, on the surface where the user sees the slowness. For a web or Electron UI, call the Skill tool with "control-ui". For a CLI or TUI, call the Skill tool with "control-cli". Record the number and the artifact path. Vet the baseline, and every number after it, before you plan from it: call the Skill tool with "benchmark-checklist", which checks the limiter, tuning, hardware limits, errors, repeatability, end-to-end relevance, and that the timed work happened. A number that fails one of its checks is inconclusive; say which check it failed.
-2. **Ground the hypotheses.** Call the Skill tool with "how" over the slow path so each hypothesis names a real mechanism. Run it before you claim a ceiling.
+2. **Ground the hypotheses.** Trace the slow path in the code so each hypothesis names a real mechanism. Run it before you claim a ceiling.
 
    Try the performance mantras in order, cheapest first. A mantra earns an attempt only when the trace shows work it would remove or move:
 
-   1. Don't do it. Stop work whose result nothing uses rather than cheapening it. The trace shows what is slow, never that it is deletable, so this one needs the `how` pass, not the profiler.
+   1. Don't do it. Stop work whose result nothing uses rather than cheapening it. The trace shows what is slow, never that it is deletable, so this one needs that read of the code, not the profiler.
    2. Do it, but don't do it again.
    3. Do it less.
    4. Do it later.
@@ -16,6 +16,6 @@ One measured slowness, traced and fixed once against a baseline. For sustained i
    7. Do it cheaper.
 
    When an earlier mantra meets the target, stop.
-3. **Plan the fix from the trace.** If it crosses a function boundary, sketch its types and signatures first; for a redesign, tell the user to run `/architect` and wait. Hand the implementation to a subagent on a fast model with a tight scope. Review its diff yourself; its summary is not a review. Then capture a post-fix trace on the same surface as the baseline. Verify each attempt before trying the next.
+3. **Plan the fix from the trace.** If it crosses a function boundary, sketch its types and signatures first; for a redesign, tell the user to run `/architect` and wait. Hand the implementation to a subagent on your strongest judgment model with a tight scope. Review its diff yourself; its summary is not a review. Then capture a post-fix trace on the same surface as the baseline. Verify each attempt before trying the next.
 4. **Compare the artifacts.** Parse both traces into something you can query and diff (JSON into sqlite, then a diff). An inconclusive result or a wrong-surface measurement is not a pass. Flag it.
 5. **Open the PR.** Call the Skill tool with "pr" to write the body, and cite the baseline and post-fix measurement in it. Then open it with `gh pr create`.

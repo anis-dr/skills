@@ -768,7 +768,7 @@
       "pstack/skills/poteto-mode/scripts/package.json",
       "pstack/skills/poteto-mode/scripts/bun.lock"
     ],
-    "commit": "ae5650febf4320793844c12c4adaa937f417f8da"
+    "commit": "35a90942a7f02e1ebbc2443643179815f2147954"
   },
   {
     "name": "autonomous-run",
@@ -776,7 +776,7 @@
     "mode": "fork",
     "source": "https://github.com/cursor/plugins",
     "path": "pstack/skills/poteto-mode/playbooks/autonomous-run.md",
-    "commit": "ae5650febf4320793844c12c4adaa937f417f8da"
+    "commit": "35a90942a7f02e1ebbc2443643179815f2147954"
   },
   {
     "name": "pause-resume",
@@ -787,7 +787,7 @@
       "pstack/skills/poteto-mode/playbooks/pause-safely.md",
       "pstack/skills/poteto-mode/playbooks/session-pickup.md"
     ],
-    "commit": "019a6a20592c10bf92869e5740368f578a9997fd"
+    "commit": "35a90942a7f02e1ebbc2443643179815f2147954"
   },
   {
     "name": "performance",
@@ -798,7 +798,7 @@
       "pstack/skills/poteto-mode/playbooks/perf-issue.md",
       "pstack/skills/poteto-mode/playbooks/hillclimb.md"
     ],
-    "commit": "019a6a20592c10bf92869e5740368f578a9997fd"
+    "commit": "35a90942a7f02e1ebbc2443643179815f2147954"
   },
   {
     "name": "typescript-library",
@@ -818,7 +818,7 @@
     "mode": "fork",
     "source": "https://github.com/cursor/plugins",
     "path": "pstack/skills/poteto-mode/playbooks/eval.md",
-    "commit": "019a6a20592c10bf92869e5740368f578a9997fd"
+    "commit": "35a90942a7f02e1ebbc2443643179815f2147954"
   },
   {
     "name": "logo-surface-board",
