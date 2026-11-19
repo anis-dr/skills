@@ -1,0 +1,4 @@
+interface:
+  display_name: "Ask Emil"
+policy:
+  allow_implicit_invocation: false

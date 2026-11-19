@@ -83,6 +83,7 @@ Add `-g` to install into your user folder instead of the current project. Not su
 - [drizzle-postgres](skills/engineering/drizzle-postgres/SKILL.md): Drizzle bulk params, migration merges, baselines
 - [effect-ts](skills/engineering/effect-ts/SKILL.md): Use this skill when setting up a repository that uses the Effect Typescript library.
 - [estimate](skills/engineering/estimate/SKILL.md): Ranged, calibrated estimates for agent runs, tickets and quotes
+- [fable-5-2-prompt-audit](skills/engineering/fable-5-2-prompt-audit/SKILL.md): Audit the prompts and instructions in a project for lines written for earlier Claude models that Anthropic says to reconsider on Claude Fable 5.2: standing delegation rules, token budgets written into the prompt, harness code that edits earlier turns, "treat that answer as done" lines, think-less instructions, hard style limits, and cautions that have piled up in notes and memory.
 - [file-structure](skills/engineering/file-structure/SKILL.md): Place, name and tidy files so the tree explains the code
 - [git-split-amended-followup](skills/engineering/git-split-amended-followup/SKILL.md): Split an amended fix into its own follow-up commit
 - [how](skills/engineering/how/SKILL.md): Use for "how does X work", code walkthroughs before changing something, and placement / ownership / layering questions ("where should this live", "which package owns this", "is this the right layer").
@@ -144,6 +145,7 @@ Add `-g` to install into your user folder instead of the current project. Not su
 - [be-ambitious](skills/productivity/be-ambitious/SKILL.md): Turn a task or prompt into a deeper version of itself, not a bigger one.
 - [checkbox-picker](skills/productivity/checkbox-picker/SKILL.md): Bulk keep/delete choices in a local picker
 - [diagram-rules](skills/productivity/diagram-rules/SKILL.md): Judgement for any diagram, before the tool
+- [explain-this](skills/productivity/explain-this/SKILL.md): Explain any digital artifact — a paper, PDF, article, code diff, or codebase — so the person actually understands it, not just skims it.
 - [grilling](skills/productivity/grilling/SKILL.md): Stress-test thinking a round of questions at a time
 - [humanizer](skills/productivity/humanizer/SKILL.md): Make AI-written text sound like the writer
 - [macos-uninstall](skills/productivity/macos-uninstall/SKILL.md): Remove a macOS app and all its leftovers
@@ -163,6 +165,7 @@ Add `-g` to install into your user folder instead of the current project. Not su
 
 **User-invoked**
 
+- [ask-emil](skills/design/ask-emil/SKILL.md): Ask which skill or flow fits your situation.
 - [learn-taste](skills/design/learn-taste/SKILL.md): Turn a session's design corrections into rules, with their why, in DESIGN.md, a project skill, or a lint check.
 - [pick-ui-library](skills/design/pick-ui-library/SKILL.md): Pick the library for a frontend task from a curated list — primitives, toasts, drawers, command menus, OTP, numbers, charts, virtualization, drag and drop, state, styling.
 - [review-animations](skills/design/review-animations/SKILL.md): Reviews animation and motion code against a high craft bar derived from Emil Kowalski's design engineering philosophy.

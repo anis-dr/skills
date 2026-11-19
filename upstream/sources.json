@@ -1757,12 +1757,36 @@
     "commit": "0f2e23b32bb1265e84cff8d3e75785fec953fb1b"
   },
   {
+    "name": "ask-emil",
+    "bucket": "design",
+    "mode": "vendor",
+    "source": "https://github.com/emilkowalski/skills",
+    "path": "skills/ask-emil",
+    "commit": "64eb3deb9a5fbfa041faf783e0bc3fd635872e9c"
+  },
+  {
     "name": "be-ambitious",
     "bucket": "productivity",
     "mode": "vendor",
     "source": "https://github.com/DannyMac180/skills",
     "path": "be-ambitious",
     "commit": "7dc63b7a748b8bd14bf213c15ecddd4536409407"
+  },
+  {
+    "name": "explain-this",
+    "bucket": "productivity",
+    "mode": "vendor",
+    "source": "https://github.com/DannyMac180/skills",
+    "path": "explain-this",
+    "commit": "5b02caf97c72bdd9fd1a9933032942a8650a836c"
+  },
+  {
+    "name": "fable-5-2-prompt-audit",
+    "bucket": "engineering",
+    "mode": "vendor",
+    "source": "https://github.com/DannyMac180/skills",
+    "path": "fable-5-2-prompt-audit",
+    "commit": "5b02caf97c72bdd9fd1a9933032942a8650a836c"
   },
   {
     "name": "plotter",

@@ -633,5 +633,20 @@
     "source": "https://github.com/emilkowalski/skills",
     "path": "skills/prototype",
     "reason": "Name clash with Matt's prototype; its PICKER.md is vendored as a reference"
+  },
+  {
+    "source": "https://github.com/DannyMac180/skills",
+    "path": "codex-dynamic-workflows",
+    "reason": "Codex only: plans and runs native Codex multi-agent workflows"
+  },
+  {
+    "source": "https://github.com/DannyMac180/skills",
+    "path": "codex-relay",
+    "reason": "Codex only: opens a native Codex task and waits for its message"
+  },
+  {
+    "source": "https://github.com/DannyMac180/skills",
+    "path": "modsmith",
+    "reason": "Claude Code only: patterns and templates for Claude Code mods (function-hooks plugins)"
   }
 ]

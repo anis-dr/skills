@@ -221,6 +221,8 @@ Skills distilled from our own work. Most are model-invoked: the agent reaches fo
 
 - **`/i-have-adhd`** shapes replies for a reader with ADHD: next actions first, numbered steps, visible progress and fewer tangents. User-invoked: it stays active until "stop adhd mode" or "normal mode" (Ayoub Ghriss' skill).
 - **`/be-ambitious`** rewrites a task as a deeper version of itself, not a bigger one: what a top professional would add, the rawest source material, the named methods and tools, and an external check with a pass criterion. It stops at the rewritten prompt (Dan McAteer's skill).
+- **`/explain-this`** explains a paper, PDF, article, diff or repo so you understand it, not just skim it: shaped by a learner profile it keeps in `~/.explain-this/`, checked with quizzes, and kept with spaced-repetition review cards (Dan McAteer's skill).
+- **`/fable-5-2-prompt-audit`** audits a project's prompts, instruction files, skills, memory notes and harness code for instructions written for earlier Claude models that Anthropic's Fable 5.2 guide says to remove, test or rewrite, with file and line for each. It edits nothing until you approve (Dan McAteer's skill).
 - **`/diagram-rules`** is the judgement for any diagram before the tool: draw or use a table, which kind answers the reader's question, what belongs in a node and on an edge, how much fits, and a check before showing it. Model-invoked: `/show-me`, `/technical-pdf` and `/technical-html` load it first.
 - **`/technical-pdf`** writes and visually checks a technical PDF (report, spec, runbook, proposal) in Typst, including client quotes whose prices compute from a day rate.
 - **`/technical-html`** turns a Markdown document (status report, design doc, how-to, reference) into one self-contained HTML page in the house style: stat cards, callouts, status pills, step cards, a table of contents and D2 diagrams laid out with TALA. It writes with `/technical-writing` and picks each visual with `/show-me`. Use it instead of `/technical-pdf` when the user wants HTML or a nicer view of a Markdown file.
@@ -250,6 +252,7 @@ Skills distilled from our own work. Most are model-invoked: the agent reaches fo
 - **`/pick-ui-library`** (Emil Kowalski's skill) picks the right UI library for a task from his curated list. User-invoked: run it yourself.
 - **`/learn-taste`** (Emil Kowalski's skill) turns the design corrections you made in a session into rules with their reasons, written to `DESIGN.md`, a project skill or a lint check. User-invoked: run it yourself.
 - **`/ask-sonner`** (Emil Kowalski's skill) sets up, styles and troubleshoots the Sonner toast library.
+- **`/ask-emil`** (Emil Kowalski's skill) is his own router over the design and motion skills here: one skill or one short sequence for your situation, and the one to reach for next. User-invoked: run it yourself.
 - **`/write-swift`** (Emil Kowalski's skill) writes modern Swift: value types, Swift 6 concurrency and data-race safety, protocols and generics, Swift Testing and macros.
 
 ### Motion
