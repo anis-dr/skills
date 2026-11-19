@@ -4,7 +4,7 @@ Agent skills for engineering, writing and design work, in one repo that installs
 
 - Matt Pocock's [skills](https://github.com/mattpocock/skills), vendored unchanged.
 - Lauren Tan's [pstack](https://github.com/cursor/plugins/tree/main/pstack) and Cursor's [cursor-team-kit](https://github.com/cursor/plugins/tree/main/cursor-team-kit) skills, rewritten so they run outside Cursor.
-- Corey Haines' [marketing skills](https://github.com/coreyhaines31/marketingskills), Vercel's [agent skills](https://github.com/vercel-labs/agent-skills), Effect's [Effect skills](https://github.com/Effect-TS/skills), supermemory's [svg-animations](https://github.com/supermemoryai/skills), 0xpili's [simplified-technical-english](https://github.com/0xpili/simplified-technical-english), Boris Tane's [logging-best-practices](https://github.com/boristane/agent-skills), Emil Kowalski's [design, motion and Swift skills](https://github.com/emilkowalski/skills), Ayoub Ghriss' [i-have-adhd](https://github.com/ayghri/i-have-adhd) and Dan McAteer's [be-ambitious](https://github.com/DannyMac180/skills/tree/main/be-ambitious), vendored unchanged.
+- Corey Haines' [marketing skills](https://github.com/coreyhaines31/marketingskills), Vercel's [agent skills](https://github.com/vercel-labs/agent-skills), Effect's [Effect skills](https://github.com/Effect-TS/skills), supermemory's [svg-animations](https://github.com/supermemoryai/skills), 0xpili's [simplified-technical-english](https://github.com/0xpili/simplified-technical-english), Boris Tane's [logging-best-practices](https://github.com/boristane/agent-skills), Emil Kowalski's [design, motion and Swift skills](https://github.com/emilkowalski/skills), Ayoub Ghriss' [i-have-adhd](https://github.com/ayghri/i-have-adhd), Dan McAteer's [be-ambitious](https://github.com/DannyMac180/skills/tree/main/be-ambitious) and Jakub Krehel's [interface skills](https://github.com/jakubkrehel/skills), vendored unchanged.
 - Our own skills, distilled from day-to-day work.
 
 A weekly job pulls upstream changes into a pull request, so vendored skills stay current.
@@ -32,6 +32,7 @@ Add `-g` to install into your user folder instead of the current project. Not su
 
 **User-invoked**
 
+- [afk](skills/engineering/afk/SKILL.md): Improve a project while you're away and leave a report
 - [architect](skills/engineering/architect/SKILL.md): Sketch types, signatures, and module structure before code, then stay in the loop while implementation fills in.
 - [arena](skills/engineering/arena/SKILL.md): Spawn N parallel candidates at the same task, pick a base, graft the strongest parts of the losers into it.
 - [ask-anis](skills/engineering/ask-anis/SKILL.md): Find the right skill or workflow
@@ -60,6 +61,7 @@ Add `-g` to install into your user folder instead of the current project. Not su
 - [to-spec](skills/engineering/to-spec/SKILL.md): Turn a conversation into a spec
 - [to-tickets](skills/engineering/to-tickets/SKILL.md): Split a plan into tracer-bullet tickets
 - [triage](skills/engineering/triage/SKILL.md): Move issues through triage roles
+- [upskill](skills/engineering/upskill/SKILL.md): Propose tooling from a project's record and your past agent sessions
 - [wayfinder](skills/engineering/wayfinder/SKILL.md): Map a large effort as decision tickets
 
 **Model-invoked**
@@ -166,9 +168,14 @@ Add `-g` to install into your user folder instead of the current project. Not su
 **User-invoked**
 
 - [ask-emil](skills/design/ask-emil/SKILL.md): Ask which skill or flow fits your situation.
+- [break](skills/design/break/SKILL.md): Render one component under hostile inputs and report what breaks
+- [explain-interface](skills/design/explain-interface/SKILL.md): How was this built? From a URL or a screenshot
+- [interface-review](skills/design/interface-review/SKILL.md): Branch, PR and working-tree interface review
 - [learn-taste](skills/design/learn-taste/SKILL.md): Turn a session's design corrections into rules, with their why, in DESIGN.md, a project skill, or a lint check.
 - [pick-ui-library](skills/design/pick-ui-library/SKILL.md): Pick the library for a frontend task from a curated list — primitives, toasts, drawers, command menus, OTP, numbers, charts, virtualization, drag and drop, state, styling.
 - [review-animations](skills/design/review-animations/SKILL.md): Reviews animation and motion code against a high craft bar derived from Emil Kowalski's design engineering philosophy.
+- [state-machine](skills/design/state-machine/SKILL.md): Every state of one component on a throwaway page, behind a switcher
+- [variant](skills/design/variant/SKILL.md): Several versions of one UI piece behind a picker
 
 **Model-invoked**
 
@@ -179,7 +186,16 @@ Add `-g` to install into your user folder instead of the current project. Not su
 - [app-ux](skills/design/app-ux/SKILL.md): App screen rules for click cost, states and generated-UI tells
 - [apple-design](skills/design/apple-design/SKILL.md): Apple's approach to interface design and fluid, physical motion, translated for the web.
 - [ask-sonner](skills/design/ask-sonner/SKILL.md): Guide to Sonner, the React toast library — install and wire up the Toaster, pick the right toast() call, promise and loading toasts, updating, dismissing and persisting toasts, styling, theming and icons, positioning and multiple toasters.
+- [better-accessibility](skills/design/better-accessibility/SKILL.md): Focus, keyboard, ARIA, forms and screen readers
+- [better-colors](skills/design/better-colors/SKILL.md): Building, naming and applying color systems
+- [better-interface](skills/design/better-interface/SKILL.md): Cross-discipline interface review
+- [better-layout](skills/design/better-layout/SKILL.md): Structure, grouping, alignment and adaptive layout
+- [better-motion](skills/design/better-motion/SKILL.md): When to animate, exact values and recipes for transitions, layout animation and drag
+- [better-typography](skills/design/better-typography/SKILL.md): Fonts, type scales, spacing and wrapping
+- [better-ui](skills/design/better-ui/SKILL.md): Design engineering details for polished interfaces
+- [better-writing](skills/design/better-writing/SKILL.md): UX writing, interface copy and microcopy
 - [break-ui](skills/design/break-ui/SKILL.md): Try to break a piece of UI by feeding it worst-case data — long names, unbreakable emails, one-letter names, missing fields, huge counts, zero items, long labels, non-Latin text, emoji, extreme numbers — then render it behind a "Demo data / Worst case" toggle and report everything that broke, with the fix for each.
+- [build-design](skills/design/build-design/SKILL.md): Build UI from a design file so it matches
 - [choreograph](skills/design/choreograph/SKILL.md): Coordinate several elements that animate together — decide what moves, in what order, how much they overlap, and what stays still — so a group reads as one intentional motion instead of a pile of separate animations.
 - [design-references](skills/design/design-references/SKILL.md): Mobbin references as a catalog to pick from
 - [emil-design-eng](skills/design/emil-design-eng/SKILL.md): Emil Kowalski's design-engineering philosophy for UI polish, component design, animation decisions, and the invisible details that make software feel great.

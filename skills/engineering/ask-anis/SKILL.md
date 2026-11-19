@@ -130,6 +130,8 @@ Before you change code you don't know, or when the shape of new code is the hard
 - **`/show-me-your-work`** keeps a decision log for long or unattended runs, so a reviewer can trust the result.
 - **`/transcripts`** knows where each harness stores session transcripts. Model-invoked: `/recall`, `/show-me-your-work` and `/automate-me` use it.
 - **`/automate-me`** turns your working conventions, mined from past chats, into a personal `-mode` skill.
+- **`/afk`** (Jakub Krehel's skill) spends the hours you are away improving one project: it gathers evidence, lists at least fifteen ideas, builds the strongest few as single commits on a local `afk/<date>` branch, tries to reject each one, and leaves a report. It pushes nothing unless you asked. User-invoked: run it yourself.
+- **`/upskill`** (Jakub Krehel's skill) reads every prompt you typed to coding agents on one project, plus its commits, pull requests and CI runs, counts where your time went, and proposes the checks, hooks, scripts and skills that would have saved the most. It builds the ones you pick. User-invoked: run it yourself.
 
 ## Writing
 
@@ -267,6 +269,25 @@ Skills distilled from our own work. Most are model-invoked: the agent reaches fo
 - **`/find-animation-opportunities`** (Emil Kowalski's skill) finds where an interface should animate and where it should not.
 - **`/animation-performance`** (Emil Kowalski's skill) finds why an animation drops frames and makes it smooth.
 - **`/animation-vocabulary`** (Emil Kowalski's skill) names a motion effect you describe so you can ask for it precisely.
+
+### Interfaces (Jakub Krehel's skills)
+
+One collection that names its own owners: each `better-*` skill holds the rules for one domain, and the others call on them by name.
+
+- **`/better-interface`** reviews a screen, flow or whole interface across all seven domains below and returns one ranked report with a verdict. For a branch, pull request or uncommitted change, run `/interface-review` instead.
+- **`/better-accessibility`** reviews and fixes keyboard and focus behaviour, ARIA, accessible names, forms, screen-reader announcements, motion and zoom against WCAG 2.2.
+- **`/better-layout`** sets grouping, alignment, reading order and responsive structure, so a layout holds up when it is resized, translated or mirrored.
+- **`/better-writing`** writes and reviews interface copy (labels, errors, empty states, confirmations) in the product's own voice.
+- **`/better-typography`** sets and reviews how text renders: type scale, spacing, font features, wrapping, truncation and punctuation.
+- **`/better-colors`** builds and checks color systems: palette generation, semantic token names, format conversion and measured contrast.
+- **`/better-ui`** polishes surfaces and icons with exact values for border radius, optical alignment, shadows and icon states.
+- **`/better-motion`** decides what should animate and builds it, with exact values for duration, easing, scale and distance, and recipes for enters, exits, icon swaps, shared layout animation and drag.
+- **`/build-design`** builds UI from a Figma file or a design image with the project's existing tokens and components, then compares the result against the design.
+- **`/interface-review`** reviews a branch, pull request or uncommitted change for the interface problems it introduced or regressed, and hands the verdict to `/better-interface`. User-invoked: run it yourself.
+- **`/explain-interface`** explains how a website, a visual effect or an animation was built, from a live URL or a screenshot. User-invoked: run it yourself.
+- **`/break`** renders one component on a temporary page under every scenario that can reach it and marks what breaks. It only observes; `/break-ui` covers the same ground with a worst-case data toggle and fixes. User-invoked: run it yourself.
+- **`/state-machine`** renders every state of one component on a throwaway page, with mock data and a switcher, so you can work on each state. User-invoked: run it yourself.
+- **`/variant`** builds three versions of one piece of UI that differ on one axis, behind a picker in the real page, and never ranks them. User-invoked: run it yourself.
 
 ## Standalone
 

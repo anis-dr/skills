@@ -1795,5 +1795,133 @@
     "source": "https://github.com/pasqualevitiello/plotter",
     "path": "skills/plotter",
     "commit": "01df092aed163462ca5902c7b21a9c9f7c60e68f"
+  },
+  {
+    "name": "afk",
+    "bucket": "engineering",
+    "mode": "vendor",
+    "source": "https://github.com/jakubkrehel/skills",
+    "path": "skills/afk",
+    "commit": "672ae44ace6aaed65b86cbb1e2fd6fbea0e79578"
+  },
+  {
+    "name": "better-accessibility",
+    "bucket": "design",
+    "mode": "vendor",
+    "source": "https://github.com/jakubkrehel/skills",
+    "path": "skills/better-accessibility",
+    "commit": "672ae44ace6aaed65b86cbb1e2fd6fbea0e79578"
+  },
+  {
+    "name": "better-colors",
+    "bucket": "design",
+    "mode": "vendor",
+    "source": "https://github.com/jakubkrehel/skills",
+    "path": "skills/better-colors",
+    "commit": "672ae44ace6aaed65b86cbb1e2fd6fbea0e79578"
+  },
+  {
+    "name": "better-interface",
+    "bucket": "design",
+    "mode": "vendor",
+    "source": "https://github.com/jakubkrehel/skills",
+    "path": "skills/better-interface",
+    "commit": "672ae44ace6aaed65b86cbb1e2fd6fbea0e79578"
+  },
+  {
+    "name": "better-layout",
+    "bucket": "design",
+    "mode": "vendor",
+    "source": "https://github.com/jakubkrehel/skills",
+    "path": "skills/better-layout",
+    "commit": "672ae44ace6aaed65b86cbb1e2fd6fbea0e79578"
+  },
+  {
+    "name": "better-motion",
+    "bucket": "design",
+    "mode": "vendor",
+    "source": "https://github.com/jakubkrehel/skills",
+    "path": "skills/better-motion",
+    "commit": "672ae44ace6aaed65b86cbb1e2fd6fbea0e79578"
+  },
+  {
+    "name": "better-typography",
+    "bucket": "design",
+    "mode": "vendor",
+    "source": "https://github.com/jakubkrehel/skills",
+    "path": "skills/better-typography",
+    "commit": "672ae44ace6aaed65b86cbb1e2fd6fbea0e79578"
+  },
+  {
+    "name": "better-ui",
+    "bucket": "design",
+    "mode": "vendor",
+    "source": "https://github.com/jakubkrehel/skills",
+    "path": "skills/better-ui",
+    "commit": "672ae44ace6aaed65b86cbb1e2fd6fbea0e79578"
+  },
+  {
+    "name": "better-writing",
+    "bucket": "design",
+    "mode": "vendor",
+    "source": "https://github.com/jakubkrehel/skills",
+    "path": "skills/better-writing",
+    "commit": "672ae44ace6aaed65b86cbb1e2fd6fbea0e79578"
+  },
+  {
+    "name": "break",
+    "bucket": "design",
+    "mode": "vendor",
+    "source": "https://github.com/jakubkrehel/skills",
+    "path": "skills/break",
+    "commit": "672ae44ace6aaed65b86cbb1e2fd6fbea0e79578"
+  },
+  {
+    "name": "build-design",
+    "bucket": "design",
+    "mode": "vendor",
+    "source": "https://github.com/jakubkrehel/skills",
+    "path": "skills/build-design",
+    "commit": "672ae44ace6aaed65b86cbb1e2fd6fbea0e79578"
+  },
+  {
+    "name": "explain-interface",
+    "bucket": "design",
+    "mode": "vendor",
+    "source": "https://github.com/jakubkrehel/skills",
+    "path": "skills/explain-interface",
+    "commit": "672ae44ace6aaed65b86cbb1e2fd6fbea0e79578"
+  },
+  {
+    "name": "interface-review",
+    "bucket": "design",
+    "mode": "vendor",
+    "source": "https://github.com/jakubkrehel/skills",
+    "path": "skills/interface-review",
+    "commit": "672ae44ace6aaed65b86cbb1e2fd6fbea0e79578"
+  },
+  {
+    "name": "state-machine",
+    "bucket": "design",
+    "mode": "vendor",
+    "source": "https://github.com/jakubkrehel/skills",
+    "path": "skills/state-machine",
+    "commit": "672ae44ace6aaed65b86cbb1e2fd6fbea0e79578"
+  },
+  {
+    "name": "upskill",
+    "bucket": "engineering",
+    "mode": "vendor",
+    "source": "https://github.com/jakubkrehel/skills",
+    "path": "skills/upskill",
+    "commit": "672ae44ace6aaed65b86cbb1e2fd6fbea0e79578"
+  },
+  {
+    "name": "variant",
+    "bucket": "design",
+    "mode": "vendor",
+    "source": "https://github.com/jakubkrehel/skills",
+    "path": "skills/variant",
+    "commit": "672ae44ace6aaed65b86cbb1e2fd6fbea0e79578"
   }
 ]
