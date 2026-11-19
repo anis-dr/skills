@@ -7,16 +7,6 @@ interface Rule {
 
 const rules: ReadonlyArray<Rule> = [
   {
-    // pstack's per-role model config file and its fallback instructions.
-    name: "modelPreamble",
-    rewrites: [
-      [
-        /Each spawn below names a role line in the `pstack-models\.mdc` rule and a default\.[^\n]*/gu,
-        "Each spawn below names the model it needs by role. Use the closest model your harness offers; when it offers no choice, use its default model.",
-      ],
-    ],
-  },
-  {
     // pstack's Task tool parameters (`subagent_type`, `readonly`) written inline.
     name: "inlineSpawnParams",
     rewrites: [
@@ -39,35 +29,12 @@ const rules: ReadonlyArray<Rule> = [
     ],
   },
   {
-    // pstack's per-role model lines (`pstack-models.mdc`, `~/.cursor/rules/`) and the model ids hard-coded as their defaults.
-    name: "modelLines",
-    rewrites: [
-      [
-        /`model`: the `[^`]+` line, default `grok-[^`]+`\./gu,
-        "Use a fast model.",
-      ],
-      [
-        /`model`: the `[^`]+` line, default `claude-[^`]+`\./gu,
-        "Use your strongest judgment model.",
-      ],
-      [/^Take the runners from the `architect runners` line[^\n]*\n\n/gmu, ""],
-      [
-        /Use the `arena runners` line in `~\/\.cursor\/rules\/pstack-models\.mdc`\..*?(?= Spawn more runners)/gu,
-        "Default to two, one each on your strongest judgment model and the strongest model of another family. If your harness offers one family, fill both seats with the strongest model you have and say so.",
-      ],
-      [
-        /choose one model from the `arena cross-judge pool` line in `~\/\.cursor\/rules\/pstack-models\.mdc`\..*? The judge sees the rubric/gu,
-        "pick a judge model, preferring a model from another family than yours. Spawn one read-only judge subagent on that model. It sees the rubric",
-      ],
-    ],
-  },
-  {
-    // pstack's per-spawn reasoning level and fast/standard speed, a Cursor-only
+    // pstack's per-spawn reasoning level (and, in older text, fast/standard speed), a Cursor-only
     // setting described in poteto-mode, which is not vendored here.
     name: "subagentEffort",
     rewrites: [
       [
-        / Pick each subagent's reasoning level and fast or standard speed for the job, per the Subagents section(?: of the \*\*poteto-mode\*\* skill)?\./gu,
+        / Pick each subagent's reasoning level(?: and fast or standard speed)?(?: for the job)?,? per the Subagents section(?: of the \*\*poteto-mode\*\* skill)?\./gu,
         "",
       ],
     ],

@@ -1,17 +1,17 @@
 diff --git a/SKILL.md b/SKILL.md
-index 01cc5db..a8b03a1 100644
+index 17d325d..5295dac 100644
 --- a/SKILL.md
 +++ b/SKILL.md
-@@ -73,6 +73,8 @@ Don't mix modes: no reference tables inside a tutorial, no tutorial hand-holding
- - Write procedures as direct commands, never as narration and never in the passive: "Install the component", not "the component must be installed".
+@@ -50,6 +50,8 @@ One document, one mode. Don't mix modes. Split and link instead.
+ - Write procedures as direct commands, never as narration and never in the passive.
  - Avoid "-ing" words where you can.
  
 +For procedure steps, warnings, and cautions, and for any doc the user wants in STE, call the Skill tool with "simplified-technical-english" and write those parts in full STE, including its word list and its check script. The rest of the doc keeps the lighter principles above.
 +
  ## Leave no sentence open to two readings (Global English)
  
- - Keep words like "only" and "not" next to the word they change: "only fails on growth" and "fails only on growth" say different things.
-@@ -90,7 +92,7 @@ Don't mix modes: no reference tables inside a tutorial, no tutorial hand-holding
+ - Keep words like "only" and "not" next to the word they change.
+@@ -63,7 +65,7 @@ One document, one mode. Don't mix modes. Split and link instead.
  
  ## Voice and repo specifics
  

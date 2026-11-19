@@ -33,7 +33,7 @@ The route most work travels. You have an idea and want it built.
 
 4. **`/retro`** closes the loop. After a build, and especially one that went sideways, it looks back over the session and suggests changes to the agent's **environment**, not the code: navigation pointers, automated checks, the coding standards `/code-review` enforces, steering files, tooling. Mechanical mistakes become deterministic checks; judgement calls become coding standards. The next build then starts from a better environment.
 
-   **`/reflect`** is its sibling for skills: three reviewers mine the session's transcript, and each lesson becomes an edit to a skill the session used (or a new skill), applied after you approve. `/retro` fixes the repo's environment, `/reflect` fixes the skills; each hands the other's findings back to you.
+   **`/reflect`** is its sibling for skills: it reads the session's transcript, and each durable lesson becomes an edit to a skill the session used, applied after you approve. `/retro` fixes the repo's environment, `/reflect` fixes the skills; each hands the other's findings back to you.
 
    **`/omp-session-retro`** does both over days or months of sessions across omp, Claude Code, Codex, Cursor and pi: one report with environment findings and skill findings kept apart.
 
@@ -88,8 +88,8 @@ Read [PHASE-BOUNDARIES.md](PHASE-BOUNDARIES.md) for the ordered tree: the five q
 Before you change code you don't know, or when the shape of new code is the hard part.
 
 - **`/how`** explains how a subsystem works: runtime flow, ownership, where things live. Reach for it before changing code you haven't traced.
-- **`/why`** finds out why code is the way it is, from source control, tickets, docs, chat and error tracking, one investigator per source.
-- **`/architect`** sketches types, signatures and module structure before code, then stays in the loop while implementation fills in. It hands two steps back to you: run `/arena` for the design sketch and `/interrogate` for pressure on it.
+- **`/why`** finds out why code is the way it is from the record: the commits and PR discussions behind it, and other sources when that trail is thin. It cites what the authors wrote and marks its own guesses.
+- **`/architect`** sketches types, signatures and module structure before code, then stays in the loop while implementation fills in. For a large or contested design it hands the sketch back to you: run `/arena`.
 - **`/arena`** runs N candidates at the same task on different models, picks a base, and grafts the strongest parts of the others into it. Use it when one attempt would lock in the wrong shape.
 - **`/principles`** is the set of engineering principles every design, plan, implementation, debugging session and review loads first (laziness, foundational thinking, boundaries, idempotence, proving work). Model-invoked: the workflow skills call it.
 - **`/typescript-best-practices`** loads whenever you read or edit `.ts` or `.tsx` files.
@@ -128,7 +128,7 @@ Before you change code you don't know, or when the shape of new code is the hard
 - **`/swarm`** fans a task out to N parallel workers in the background (slices, a race on identical briefs, or both), drains them and returns one report. User-invoked.
 - **`/software-factory`** (beta, Matt Pocock's skill) gives shared language for designing a software factory: the tasks it runs and the services it plugs into. User-invoked.
 - **`/show-me-your-work`** keeps a decision log for long or unattended runs, so a reviewer can trust the result.
-- **`/transcripts`** knows where each harness stores session transcripts. Model-invoked: `/recall`, `/reflect`, `/show-me-your-work` and `/automate-me` use it.
+- **`/transcripts`** knows where each harness stores session transcripts. Model-invoked: `/recall`, `/show-me-your-work` and `/automate-me` use it.
 - **`/automate-me`** turns your working conventions, mined from past chats, into a personal `-mode` skill.
 
 ## Writing
